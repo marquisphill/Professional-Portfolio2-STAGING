@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Portfolio</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Animate.css -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <!-- Swiper CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="./css/main.css" rel="stylesheet">
+  <link href="./css/responsive.css" rel="stylesheet">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Phillip Da Silva-Marquis | Business Systems Analyst" />
+<meta property="og:description" content="Portfolio of Phillip Da Silva-Marquis: showcasing system integrations, vendor onboarding, custom process automation, and product management solutions that deliver measurable impact." />
+<meta property="og:image" content="https://marquisphill.github.io/Professional-Portfolio2/images/url_preview_v1.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://marquisphill.github.io/Professional-Portfolio2/" />
+<meta property="og:type" content="website" />
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Phillip Da Silva-Marquis | Business Systems Analyst" />
+<meta name="twitter:description" content="Portfolio of Phillip Da Silva-Marquis: showcasing system integrations, vendor onboarding, custom process automation, and product management solutions that deliver measurable impact." />
+<meta name="twitter:image" content="https://marquisphill.github.io/Professional-Portfolio2/images/url_preview_v1.jpg" />
+
+
+
+</head>
+<body>
+
+<!-- ===== Header / Navbar ===== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Phillip Da Silva-Marquis</a>
+
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <!-- Standard -->
+        <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+
+        <!-- Prominent -->
+        <li class="nav-item">
+          <a class="nav-link fw-bold text-primary active" aria-current="page" href="#cases">
+            See My Impact
+          </a>
+        </li>
+
+        <!-- Standard -->
+        <li class="nav-item"><a class="nav-link" href="experience.html">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="experience.html#career-goals">Career Goals</a></li>
+        <li class="nav-item"><a class="nav-link" href="#recommendations">Recommendations</a></li>
+
+        <!-- Separator -->
+        <li class="nav-separator"></li>
+
+        <!-- Deprioritized -->
+        <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Get In Touch</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- ===== Hero ===== -->
+<section id="hero" class="d-flex align-items-center text-center">
+  <div class="container">
+    <h1 class="animate__animated animate__fadeInDown">Business Systems Analyst</h1>
+     <p class="subtitle animate__animated animate__fadeInUp">
+      Bridging BA + PO + PM to deliver vendor onboarding, integrations, 
+      and scalable fintech/e-commerce solutions
+    </p>
+
+    <!-- New responsive hero buttons -->
+    <div class="hero-cta-grid">
+  <!-- 1: Track My Path -->
+  <a href="experience.html" class="hero-cta hero-cta-1" aria-label="Track my path and see where I am going">
+    <span class="label">Track My Path</span>
+    <span class="hover-note">…and see where I am going</span>
+  </a>
+
+  <!-- 2: Download Resume -->
+  <a href="Phillip_Marquis_2025_Resume_.pdf" 
+     download 
+     class="hero-cta hero-cta-2" 
+     aria-label="Download resume">
+    <span class="label">Download Resume</span>
+    <span class="hover-note">Looking forward to hearing from you</span>
+  </a>
+
+  <!-- 3: See My Impact -->
+  <a href="#cases" class="hero-cta hero-cta-3 impact-btn" aria-label="See my impact and how I delivered value">
+    <span class="label">See My Impact</span>
+    <span class="hover-note">…and how I delivered value</span>
+  </a>
+</div>
+
+<!-- Bottom-right Preview Resume button -->
+<div class="hero-preview-btn">
+  <button id="resumePreviewBtnIndex" type="button" class="btn career-goals-btn">
+    Preview Resume
+  </button>
+</div>
+
+
+
+  </div>
+</section>
+
+
+
+
+
+<!-- ===== Case Studies ===== -->
+<section id="cases" class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="section-title">Case Studies</h2>
+    <p class="lead">A few projects where I delivered measurable impact.</p>
+    <button
+  id="toggleCaseList"
+  type="button"
+  class="btn btn-primary mt-3"
+  aria-controls="caseList"
+  aria-expanded="false"
+>View Case Studies</button>
+
+    <div id="caseList" class="case-list mt-4">
+
+      <!-- ================= Case Study 1 ================= -->
+      <div class="case-preview">
+        <h5>Faster Onboarding & Process Automation</h5>
+        <p class="takeaway-gradient">
+  Cut vendor onboarding from 6 weeks to 2 weeks while automating invoicing and scaling marketplace growth.
+</p>
+        <button class="btn btn-outline-dark read-btn" data-target="case1">Read</button>
+
+        <div id="case1" class="case-details">
+          <!-- Hide button -->
+          <div class="text-center mb-3">
+            <button class="btn btn-outline-dark hide-btn">Hide Case Study</button>
+          </div>
+
+          <!-- 3 Boxes + Arrows -->
+          <div class="case-flow">
+            <div class="flow-item"><div class="case-card"><h6>The Business Challenge</h6><p>Onboarding vendors to the marketplace took 6 weeks and invoicing was manual. Adding new vendors was not scalable.</p></div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-item"><div class="case-card"><h6>The Solution</h6><p>I integrated API-based software (Logicbroker) with FlexShoppers custom applications, standardizing operations, merchandising, and accounting processes (order processing, invoicing, product data management).</p></div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-item"><div class="case-card"><h6>The Impact</h6><p>Cut vendor onboarding time by 50%, accelerated contract signings and marketplace growth.</p></div></div>
+          </div>
+
+      <!-- Enhanced Case Study 1 (per screenshot) -->
+<div class="full-view mt-4">
+  <h5><span class="highlight">Logicbroker Marketplace Integration</span></h5>
+  <p><em>Business Systems Analyst · Integration · Vendor Onboarding & Process Design</em></p>
+  <p>
+    Onboarding wholesalers and retailers to the digital marketplace was slow and inefficient. The merchandising team relied on manual processes that took hours, and getting products online could take weeks due to limited development capacity.
+    <span class="highlight">Logicbroker</span> was selected as the integration solution to connect with FlexShopper’s <span class="highlight">custom applications</span>, marking the company’s largest integration project at the time.
+  </p>
+  <ul>
+    <li><strong>My Role:</strong> <span class="highlight">Elicited requirements</span> from operations, accounting, and marketing teams; facilitated cross-departmental workshops; and proposed solutions for gaps that Logicbroker could not address.</li>
+    <li><strong>Challenges:</strong> Created detailed <span class="highlight">process documentation</span> and an architectural diagram to demonstrate how Logicbroker would integrate. Designed <span class="highlight">custom integrations</span> for major retailers unable to use standard onboarding flows.</li>
+    <li><strong>Results/Impact:</strong> <span class="highlight">Reduced onboarding time</span> from several weeks to 2 weeks (contract signed to products live). Standardized invoices, enabling NetSuite to automate wholesaler and retailer payments. Streamlined product data enrichment and minimized merchandising tasks.</li>
+    <li><strong>Reflection:</strong> Strengthened ability to manage conflicting stakeholder priorities while delivering solutions aligned with business goals. Enhanced <span class="highlight">process modeling</span> and cross-team collaboration skills.</li>
+  </ul>
+</div>
+
+          <!-- Contact Me -->
+          <div class="text-center mt-4">
+            <a href="#contact" class="btn btn-primary contact-btn">Contact Me</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= Case Study 2 ================= -->
+      <div class="case-preview">
+        <h5>Designed and Implemented Custom Rebate App to Streamline Back-end Promotions</h5>
+        <p class="takeaway-gradient">
+  Reduced rebate setup time from 1 week to 1 day, enabling faster, error-free promotion launches.
+</p>
+        <button class="btn btn-outline-dark read-btn" data-target="case2">Read</button>
+
+        <div id="case2" class="case-details">
+          <!-- Hide button -->
+          <div class="text-center mb-3">
+            <button class="btn btn-outline-dark hide-btn">Hide Case Study</button>
+          </div>
+
+          <!-- 3 Boxes + Arrows -->
+          <div class="case-flow">
+            <div class="flow-item"><div class="case-card"><h6>The Business Challenge</h6><p>Onboarding vendors to the marketplace took 6 weeks and invoicing was manual. Adding new vendors was not scalable.</p></div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-item"><div class="case-card"><h6>The Solution</h6><p>I integrated API-based software (Logicbroker) with FlexShoppers custom applications, standardizing operations, merchandising, and accounting processes (order processing, invoicing, product data management).</p></div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-item"><div class="case-card"><h6>The Impact</h6><p>Cut vendor onboarding time by 50%, accelerated contract signings and marketplace growth.</p></div></div>
+          </div>
+
+     <!-- Enhanced Case Study 2 -->
+<div class="full-view mt-4">
+  <h5><span class="highlight">Rebate Management App to Streamline Promotions</span></h5>
+  <p><em>BA · Product Design · Workshops & Requirements</em></p>
+  <p>
+    <span class="highlight">Rebate setup</span> was slow and error-prone, requiring manual validation across multiple teams. 
+    The process delayed <span class="highlight">vendor promotion launches</span> and introduced risks of misconfiguration.
+  </p>
+  <ul>
+    <li><strong>My Role:</strong> 
+      Led <span class="highlight">business analysis efforts</span> to design a custom rebate management application with a 
+      <span class="highlight">user interface</span> for the merchandising team. 
+      Facilitated <span class="highlight">cross-functional workshops</span> with developers, designers, and merchandising stakeholders 
+      to define use cases and required functionality. 
+      Delivered <span class="highlight">user stories</span> covering all possible UI actions and mapped example rebate criteria for both 
+      the front-end interface and back-end logic.
+    </li>
+    <li><strong>Challenges:</strong> Needed to support <span class="highlight">complex rebate criteria setup</span> (UI rules, validation, change control). 
+      Ensured <span class="highlight">SKU validation</span> and <span class="highlight">error logging</span> met developer requirements. 
+      Balanced merchandising UI needs with system functionality beyond rebate generation.
+    </li>
+    <li><strong>Results/Impact:</strong> 
+      <span class="highlight">Reduced rebate setup time</span> for merchandising team from <span class="highlight">1 week to 1 day</span>; 
+      accelerated rebate program scaling allowing for <span class="highlight">more rebate programs</span>.
+    </li>
+    <li><strong>Reflection:</strong> Strengthened ability to balance <span class="highlight">stakeholder usability requirements</span> 
+      with <span class="highlight">technical system constraints</span>, ensuring that both business and development needs were met.
+    </li>
+  </ul>
+</div>
+
+
+          <!-- Contact Me -->
+          <div class="text-center mt-4">
+            <a href="#contact" class="btn btn-primary contact-btn">Contact Me</a>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ================= Case Study 3 ================= -->
+      <div class="case-preview">
+        <h5>New Revenue Channel via Catalog-as-a-Service</h5>
+        <p class="takeaway-gradient">
+  Opened a new recurring revenue channel by automating partner catalog syndication with revenue-share invoicing.
+</p>
+        <button class="btn btn-outline-dark read-btn" data-target="case3">Read</button>
+
+        <div id="case3" class="case-details">
+          <div class="text-center mb-3">
+            <button class="btn btn-outline-dark hide-btn">Hide Case Study</button>
+          </div>
+
+          <div class="case-flow">
+            <div class="flow-item"><div class="case-card"><h6>The Challenge</h6><p>FlexShopper needed new recurring revenue streams while ensuring accurate accounting and vendor policies.</p></div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-item"><div class="case-card"><h6>The Solution</h6><p>Enabled catalog syndication to merchant partner sites with a new CaaS model and lender data integrations.</p></div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-item"><div class="case-card"><h6>The Impact</h6><p>Opened a new recurring revenue channel through automated product catalog syndication with revenue share.</p></div></div>
+          </div>
+
+         <!-- Enhanced Case Study 3 -->
+<div class="full-view mt-4">
+  <h5><span class="highlight">New Revenue Channel via Catalog-as-a-Service (CaaS)</span></h5>
+  <p><em>BA/PM · Integration · Accounting & Partner Systems</em></p>
+  <p>
+    FlexShopper needed <span class="highlight">new recurring revenue streams</span> while ensuring accurate accounting and compliance with vendor policies. 
+    The company also required a way to syndicate its product catalog to merchant partner sites under a <span class="highlight">revenue-share model</span>.
+  </p>
+  <ul>
+    <li><strong>My Role:</strong> Led both <span class="highlight">business analysis</span> and project management efforts to enable catalog syndication. 
+      Gathered and defined requirements by leveraging expertise in accounting workflows and custom CaaS applications. 
+      Collaborated with development and accounting teams to design a process model and build a <span class="highlight">back-end automated invoicing system</span> 
+      that captured revenue from third-party merchant sites.
+    </li>
+    <li><strong>Challenges:</strong> Designed <span class="highlight">revenue share processes</span> to handle all return scenarios by vendor policy, payment method, and profitability tied to lease origination date. 
+      Ensured the system could scale across partners while maintaining accounting accuracy.
+    </li>
+    <li><strong>Results/Impact:</strong> Opened a <span class="highlight">new recurring revenue channel</span> by enabling automated product catalog syndication to partner merchant sites under a revenue-share model. 
+      Established <span class="highlight">automated invoicing flows</span> tied directly to partner transactions.
+    </li>
+    <li><strong>Reflection:</strong> Strengthened ability to design solutions at the intersection of business goals, accounting integrity, and partner integrations. 
+      Enhanced skills in mapping complex financial workflows into <span class="highlight">scalable, system-driven processes</span>.
+    </li>
+  </ul>
+</div>
+
+
+          <div class="text-center mt-4">
+            <a href="#contact" class="btn btn-primary contact-btn">Contact Me</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===== Experience ===== -->
+<section id="experience" class="py-5 bg-experience">
+  <div class="container">
+    <h2 class="section-title text-center">Experience</h2>
+    <p class="lead text-center">See my professional journey and accomplishments.</p>
+    <div class="text-center">
+      <a href="experience.html" class="btn btn-primary mt-3">View Experience</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== Recommendations (Option 1) ===== -->
+<section id="recommendations" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title text-center">Recommendations</h2>
+    <p class="lead text-center">What colleagues and leaders have said about working with me.</p>
+    <div class="text-center">
+      <button id="toggleRecommendations" class="btn btn-primary mt-3">View Recommendations</button>
+    </div>
+
+    <div id="recommendationsList" class="recommendations-list mt-4 text-start">
+      <!-- Navin Anand -->
+      <div class="recommendation-card">
+        <h5>Navin Anand</h5>
+        <p class="meta"><em>Chief Technology Officer (worked with Phillip on the same team) · FlexShopper Inc. · August 9, 2025</em></p>
+        <p>
+          Phil was part of our PMO team, where he consistently demonstrated adaptability, and strategic thinking.
+          Starting within the Development PMO, Phil quickly pivoted to the Business PMO without missing a beat—showing his
+          ability to bridge technical and business perspectives seamlessly.
+        </p>
+        <p>
+          Phil effectively managed a diverse set of stakeholders, including external partners, internal business SMEs,
+          and development teams. He excelled at facilitating discussions with all key parties to prioritize initiatives,
+          ensuring that our backlog was always aligned with ROI-driven decision-making. His command of Jira, Confluence,
+          Asana, and other PM tools made him a highly efficient and well-organized PM/BA/PO.
+        </p>
+        <p>
+          <strong>From day one, Phil took on large-scale programs with confidence and delivered results—Logicbroker being a standout
+          example.</strong> His ability to coordinate complex projects, align cross-functional teams, and keep everyone focused on shared
+          goals made him an indispensable part of our success.
+        </p>
+        <p>I would recommend Phil for any program or project management role—his combination of adaptability, and results-oriented leadership is truly top-tier.</p>
+        <p class="linkedin-link"><a href="https://www.linkedin.com/in/navin-anand/" target="_blank">View LinkedIn</a></p>
+      </div>
+
+      <!-- Joseph Zannucci -->
+      <div class="recommendation-card">
+        <h5>Joseph Zannucci</h5>
+        <p class="meta"><em>Project Manager IT/DEV & Scrum Master (managed Phillip directly) · FlexShopper Inc. · August 14, 2025</em></p>
+        <p>
+          I'm happy to recommend Phill, who reported directly to me at Flexshopper. I worked with him on several projects,
+          and he was consistently reliable, organized, and eager to grow.
+        </p>
+        <p>
+          <strong>He played a key role in managing off-cycle requests</strong> from our Merchandising team and was a huge help in supporting
+          payment process integrations. No matter the task, he approached it with a positive attitude and strong attention
+          to detail.
+        </p>
+        <p>
+          Phill was also a great team player—easy to work with and always willing to lend a hand.
+          I’m confident he’ll bring the same energy and dedication to any role he takes on.
+        </p>
+        <p class="linkedin-link"><a href="https://www.linkedin.com/in/joseph-zannucci-14726076/" target="_blank">View LinkedIn</a></p>
+      </div>
+
+      <!-- Moe Sheikha -->
+      <div class="recommendation-card">
+        <h5>Moe Sheikha</h5>
+        <p class="meta"><em>Software Development Manager (worked with Phillip but on different teams) · FlexShopper Inc. · August 19, 2025</em></p>
+        <p>
+          I had the pleasure of working with Phil at FlexShopper, where he consistently impressed me with his thoroughness and ability
+          to keep projects on track. He has a <strong>great eye for detail</strong>, asks thoughtful questions, and ensures that nothing slips through
+          the cracks.
+        </p>
+        <p>
+          Beyond his strong work ethic, Phil is approachable and easy to work with, which makes collaboration smooth and effective.
+          I’d gladly work with him again on any project.
+        </p>
+       <p class="linkedin-link"><a href="https://www.linkedin.com/in/mohanads/" target="_blank">View LinkedIn</a></p>
+      </div>
+
+      <!-- Dennis Owcarz -->
+      <div class="recommendation-card">
+        <h5>Dennis Owcarz</h5>
+        <p class="meta"><em>Chief Merchandising Officer (managed Phillip directly) · FlexShopper Inc. · August 8, 2025</em></p>
+        <p>
+          Phillip reported to me for half a year at FlexShopper. The highest compliment I can give him is that I would
+          hire him again in a second if I had the opportunity! He quickly developed into a true asset on my team and
+          could always be counted on to get the job done right.
+        </p>
+        <p>
+          He consistently led by example—managing tasks, collaborating cross-functionally, keeping close attention to
+          detail, and meeting deadlines with ease. His work ethic and dedication made a lasting impact.
+        </p>
+        <p>
+          Beyond his skills, Phillip has an <strong>outstanding personality</strong>. His positive energy and
+          great attitude are contagious, drawing people toward him and creating a motivating team environment.
+        </p>
+        <p class="linkedin-link"><a href="https://www.linkedin.com/in/dennis-owcarz-7500a27/" target="_blank">View LinkedIn</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== About Me ===== -->
+<section id="about" class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center">About Me</h2>
+    <div class="text-start">
+      <p class="mt-3">
+        I’m a Business Systems Analyst who thrives at the intersection of people, process, and technology. Over the years, I’ve led large-scale system integrations, streamlined vendor onboarding, and built tools that turned weeks of manual work into days or even hours. Whether I’m mapping complex workflows in NetSuite and Logicbroker or designing a rebate app that makes back-end promotions painless, I bring structure to ambiguity and turn business needs into technical results.
+      </p>
+      <p class="mt-3">
+        Outside of work, I’m equally passionate about creative problem-solving. From producing music and writing fictional stories to developing a domain-specific AI framework project that explores how applied AI can power real-world storytelling, I enjoy pushing boundaries, blending technical rigor with creativity, and helping teams deliver smarter together.
+      </p>
+
+      <!-- Right-aligned button -->
+      <div class="text-end mt-3">
+        <a href="experience.html#career-goals" class="btn career-goals-btn">See My Career Goals</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ===== Contact ===== -->
+<section id="contact" class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="section-title">Get In Touch</h2>
+    <p>
+      <a href="https://www.linkedin.com/in/phillipdasilvamarquis" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="linkedin-gradient">
+        <i class="fab fa-linkedin"></i> Connect on LinkedIn
+      </a>
+    </p>
+    <form
+      action="https://formspree.io/f/mvgqyoby"
+      method="POST"
+      class="mt-3"
+      id="contactForm"
+    >
+      <input 
+        type="text" 
+        name="name" 
+        class="form-control mb-2" 
+        placeholder="Your Name" 
+        required
+      >
+      <input 
+        type="email" 
+        name="email" 
+        class="form-control mb-2" 
+        placeholder="Your Email" 
+        required
+      >
+      <textarea 
+        name="message" 
+        class="form-control mb-2" 
+        rows="4" 
+        placeholder="Message" 
+        required
+      ></textarea>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+  </div>
+</section>
+
+
+
+<!-- ===== Footer ===== -->
+<footer class="py-3 bg-dark text-light text-center">
+  <p>© 2025 Phillip Da Silva-Marquis · Business Systems Analyst</p>
+  <p>
+    <a href="https://www.linkedin.com/in/phillip-marquis-7661a8107/" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="linkedin-gradient">
+      <i class="fab fa-linkedin"></i> Connect on LinkedIn
+    </a>
+  </p>
+</footer>
+
+<!-- ===== Scripts ===== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch("header.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("site-header").innerHTML = html;
+      });
+  });
+</script>
+
+
+
+<!-- Floating Contact Button (mobile only) -->
+<a href="#contact" class="floating-contact-btn d-lg-none" aria-label="Contact Me">
+  <i class="fas fa-envelope"></i>
+</a>
+
+<!-- Resume Preview Accordion (Index) -->
+<div id="resumePreviewAccordionIndex" class="resume-preview-accordion">
+  <div class="resume-content">
+    <h2 class="mb-2">Phillip Da Silva-Marquis</h2>
+    <p class="lead mb-3 text-muted">Business Systems Analyst · Integration & Process Automation</p>
+
+    <!-- Impact Section -->
+    <h4 class="preview-section">Key Impact</h4>
+    <ul class="mb-3">
+      <li><strong>50% faster</strong> vendor onboarding (6 → 2 weeks) at FlexShopper</li>
+      <li><strong>Rebate setup reduced</strong> from 1 week → 1 day</li>
+      <li><strong>Scaled 14K+ SKUs</strong> with PIM ownership at Pet Supermarket</li>
+    </ul>
+
+    <!-- Skills Section -->
+    <h4 class="preview-section">Core Skills</h4>
+    <p class="mb-3">
+      Integrations (Logicbroker, NetSuite, Syndigo), Agile delivery, Requirements (BRDs/FSDs), UAT, Workflow automation
+    </p>
+
+    <!-- Certifications Section -->
+    <h4 class="preview-section">Certifications</h4>
+    <p class="mb-4">PSPO I (Udemy) · Preparing for PSM I (scrum.org)</p>
+
+    <!-- Download Button -->
+    <a href="Phillip_Marquis_2025_Resume_.pdf" download class="btn btn-career w-100">
+      Download Full Resume
+    </a>
+
+    <!-- Close Link -->
+    <p class="mt-3 text-center">
+      <a href="#" id="closeResumePreviewIndex" style="font-size:0.85rem; color:#999;">Close Preview</a>
+    </p>
+  </div>
+</div>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const previewBtn   = document.getElementById("resumePreviewBtnIndex");
+  const accordion    = document.getElementById("resumePreviewAccordionIndex");
+  const closeLink    = document.getElementById("closeResumePreviewIndex");
+
+  if (previewBtn && accordion && closeLink) {
+    previewBtn.addEventListener("click", () => {
+      accordion.classList.add("show");
+      // hide the button while preview is open
+      previewBtn.style.visibility = "hidden";
+    });
+
+    closeLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      accordion.classList.remove("show");
+      previewBtn.style.visibility = "visible";
+    });
+  }
+});
+</script>
+
+
+
+</body>
+</html>

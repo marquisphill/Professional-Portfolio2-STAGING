@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Experience · Phillip Da Silva-Marquis</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Site CSS -->
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
+
+  <style>
+    /* ===== Symmetrical Timeline ===== */
+    .timeline{ position:relative; margin:40px 0; padding:0; }
+    .timeline::before{ content:""; position:absolute; top:0; bottom:0; left:50%; width:2px; background:#623aa2; transform:translateX(-50%); }
+    .timeline-item{ position:relative; width:50%; padding:20px 30px; }
+    .timeline-item:nth-child(odd){ left:0; text-align:right; }
+    .timeline-item:nth-child(even){ left:50%; }
+    .timeline-content{ background:#fff; border:1px solid #ddd; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,.08); padding:20px; position:relative; z-index:1; }
+    .timeline-content h5{ font-weight:700; margin-bottom:5px; }
+    .timeline-date{ font-size:.9rem; color:#666; margin-bottom:10px; }
+    .timeline-content::before{ content:""; position:absolute; top:36px; height:2px; width:30px; background:#623aa2; }
+    .timeline-item:nth-child(odd) .timeline-content::before{ right:-30px; }
+    .timeline-item:nth-child(even) .timeline-content::before{ left:-30px; }
+    @media (max-width: 768px){
+      .timeline::before{ left:8px; }
+      .timeline-item{ width:100%; left:0 !important; padding-left:40px; padding-right:20px; text-align:left !important; }
+      .timeline-content::before{ display:none; }
+    }
+
+    /* Home button */
+    .home-btn {
+      background: linear-gradient(to right, #623aa2, #f97794);
+      color: #fff !important;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+      transition: transform 0.2s ease, filter 0.2s ease;
+      border: none;
+      margin-right: 8px;
+    }
+    .home-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .navbar-toggler { border: none !important; box-shadow: none !important; }
+
+    /* Praise button */
+    .praise-btn {
+      background: linear-gradient(to right, #623aa2, #f97794);
+      color: #fff !important;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+    .praise-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+    /* Fun Fact bar under navbar */
+    .fun-fact-bar {
+      position: fixed;
+      top: 60px; /* just under navbar */
+      left: 0;
+      right: 0;
+      background: #fff;
+      text-align: center;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #7a5cb8; /* lighter brand blue */
+      padding: 4px 10px;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      display: none;
+      z-index: 1040;
+    }
+    .fun-fact-bar.show { display: block; }
+
+/* Floating Preview Resume button */
+.sticky-preview-btn {
+  position: fixed;
+  bottom: 20px;        /* 20px from bottom */
+  right: 100px;        /* desktop offset so it doesn’t overlap Contact button */
+  background: linear-gradient(to right, #f94144, #277da1);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+  z-index: 1050;
+
+  opacity: 0.85;              /* slight transparency */
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sticky-preview-btn:hover {
+  opacity: 1;                 /* fully visible on hover */
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+/* 🔹 Mobile override: keep button visible and avoid overlap */
+@media (max-width: 768px) {
+  .sticky-preview-btn {
+    right: auto;       /* reset desktop offset */
+    left: 20px;        /* stick to left side */
+    bottom: 30px;      /* raise it above contact button */
+  }
+}
+
+/* Resume preview accordion */
+.resume-preview-accordion {
+  position: fixed;
+  bottom: 100px;   /* above sticky button */
+  right: 20px;
+  width: 90%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  padding: 20px;
+  display: none;
+  z-index: 1100;
+}
+.resume-preview-accordion.show {
+  display: block;
+  animation: fadeSlideIn 0.3s ease both;
+}
+
+.resume-content h2 {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.resume-content .lead {
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.preview-section {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #623aa2;
+  border-left: 4px solid #f97794;
+  padding-left: 8px;
+}
+
+/* === Index: Resume Preview overlay === */
+.resume-preview-accordion {
+  position: fixed;
+  bottom: 100px;           /* sits above the bottom buttons */
+  right: 20px;
+  width: 90%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  padding: 20px;
+  display: none;           /* hidden by default */
+  z-index: 1100;           /* above navbar/hero and contact button */
+}
+.resume-preview-accordion.show {
+  display: block;          /* <- this is the missing piece */
+  animation: fadeSlideIn 0.3s ease both;
+}
+
+/* Mobile: center and raise a bit more to avoid overlap */
+@media (max-width: 768px) {
+  .resume-preview-accordion {
+    left: 16px;
+    right: 16px;
+    bottom: 88px;
+    width: auto;           /* use left/right for width */
+  }
+}
+
+    
+  </style>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Phillip Da Silva-Marquis</a>
+    <a href="index.html#hero" class="btn home-btn ms-auto me-2">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="experience.html">Experience</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold text-primary" href="index.html#cases">Case Studies</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About Me</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#recommendations">Recommendations</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Fun Fact Bar -->
+<div id="funFactBar" class="fun-fact-bar"></div>
+
+<!-- ===== Hero ===== -->
+<section id="experience-hero" class="d-flex align-items-center text-center bg-light py-5" style="margin-top:120px;">
+  <div class="container">
+    <h1 class="mb-3">My Professional Experience</h1>
+    <p class="lead mb-4">Explore my career journey across project management, business analysis, and ecommerce growth.</p>
+    
+    <div class="row justify-content-center g-3">
+      <div class="col-12 col-md-auto">
+        <a href="Phillip_Marquis_2025_Resume_.pdf" class="btn btn-dark btn-lg w-100" download>
+          Download Resume
+        </a>
+      </div>
+      <div class="col-12 col-md-auto">
+        <a href="#career-goals" class="btn btn-primary btn-lg w-100">
+          View My Career Goals
+        </a>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+      <div class="col-12 col-md-6">
+        <a href="index.html#recommendations?open=recommendations" 
+   class="btn btn-lg w-100 praise-btn">
+  See Colleague Praise
+</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Experience Sections ===== -->
+<section id="experience-list" class="py-5">
+  <div class="container">
+
+    <!-- FlexShopper -->
+    <h2 class="section-title mb-4">FlexShopper <span class="text-muted">Nov 2023 – Aug 2025</span></h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h5>Project Manager, Merchandising</h5>
+          <p class="timeline-date">Mar 2025 – Aug 2025</p>
+          <p>Led projects and requirements across merchandising initiatives; launched category microsites with finance waterfall, streamlining merchant onboarding and driving new revenue activation.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h5>Business Systems Analyst / PMO Analyst</h5>
+          <p class="timeline-date">Nov 2023 – Mar 2025</p>
+          <p>Drove Agile delivery and authored BRDs/FSDs; integrated Logicbroker with NetSuite to automate remittance, onboard 35+ vendors, cut onboarding SLAs by 50%, and standardize the invoice process.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pet Supermarket -->
+    <h2 class="section-title mb-4">Pet Supermarket <span class="text-muted">Jul 2013 – Jul 2023</span></h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h5>Junior Business Analyst</h5>
+          <p class="timeline-date">Jan 2021 – Jul 2023</p>
+          <p>Acted as PIM product owner; onboarded 200+ vendors and scaled data ops for 14K+ SKUs while coordinating SFCC integrations and QA for reliable releases.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h5>Web Catalog Specialist</h5>
+          <p class="timeline-date">Aug 2018 – Jan 2021</p>
+          <p>Implemented the company’s first PIM and maintained 14K products; published 150+ new web items weekly and drove promo execution to support ecommerce growth.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h5>Digital Marketing Specialist</h5>
+          <p class="timeline-date">Oct 2015 – Aug 2018</p>
+          <p>Onboarded Oracle Responsys and managed a 1.5M list; warmed up the IP and lifted email open rate 30%, increasing site traffic by 17% through data-driven campaigns.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h5>Ecommerce Specialist</h5>
+          <p class="timeline-date">Jul 2015 – Aug 2015</p>
+          <p>Supported store migration and site redesign; managed Amazon Seller ops and introduced faceted search to improve product discovery.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h5>Sales Associate</h5>
+          <p class="timeline-date">Jul 2013 – Apr 2015</p>
+          <p>Delivered high-touch customer service and achieved sales goals through product expertise and relationship building.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== Education ===== -->
+<section id="education" class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="section-title">Education</h2>
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-8">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Florida Atlantic University</h5>
+            <p class="text-muted mb-1">Bachelor of Arts in Communication</p>
+            <p class="text-muted">Minor in English</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Career Goals ===== -->
+<section id="career-goals" class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center">Career Goals</h2>
+    <div class="text-start">
+      <p class="lead mt-3">
+        I aspire to become a certified Scrum Master and am actively preparing for the PSM I exam. 
+        My focus is on building a strong foundation in Agile practices to lead teams more effectively, 
+        foster collaboration, and deliver value-driven results. In addition, I am interested in 
+        exploring a career path in Product Management, where I can help create impactful products in 
+        the tech space. I am actively exploring domains to identify where my skills and curiosity 
+        align, with the goal of finding an area I am truly passionate about.
+      </p>
+
+      <!-- Right-aligned button -->
+      <div class="d-flex justify-content-center gap-3 mt-3">
+  <!-- Normal button -->
+  <a href="experience.html#experience-list" class="btn career-goals-btn">
+    See My Experience
+  </a>
+
+  <!-- Sticky Preview Resume button -->
+  <button id="resumePreviewBtn" type="button" class="btn btn-career sticky-preview-btn">
+    Preview Resume
+  </button>
+</div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ===== Contact ===== -->
+<section id="contact" class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="section-title">Get In Touch</h2>
+    <p>
+      <a href="https://www.linkedin.com/in/phillipdasilvamarquis" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="linkedin-gradient">
+        <i class="fab fa-linkedin"></i> Connect on LinkedIn
+      </a>
+    </p>
+    <form
+      action="https://formspree.io/f/mvgqyoby"
+      method="POST"
+      class="mt-3"
+      id="contactForm"
+    >
+      <input 
+        type="text" 
+        name="name" 
+        class="form-control mb-2" 
+        placeholder="Your Name" 
+        required
+      >
+      <input 
+        type="email" 
+        name="email" 
+        class="form-control mb-2" 
+        placeholder="Your Email" 
+        required
+      >
+      <textarea 
+        name="message" 
+        class="form-control mb-2" 
+        rows="4" 
+        placeholder="Message" 
+        required
+      ></textarea>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+  </div>
+</section>
+
+
+<!-- ===== Footer ===== -->
+<footer class="py-3 bg-dark text-light text-center">
+  <p>© 2025 Phillip Da Silva-Marquis · Business Systems Analyst</p>
+  <p>
+    <a href="https://www.linkedin.com/in/phillip-marquis-7661a8107/" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="linkedin-gradient">
+      <i class="fab fa-linkedin"></i> Connect on LinkedIn
+    </a>
+  </p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./js/main.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const funFacts = [
+      "Fun Fact: I cut vendor onboarding time by 50% at FlexShopper",
+      "Fun Fact: I reduced rebate setup time from 1 week to 1 day at FlexShopper",
+      `Fun Fact: I created a process model for a revenue share program, <a href="Revenue_Share_Process_Model.pdf" target="_blank" style="color:#7a5cb8;">check it out</a>`
+    ];
+    const funFactBar = document.getElementById("funFactBar");
+    let index = 0;
+
+    setTimeout(() => {
+      funFactBar.innerHTML = funFacts[index];
+      funFactBar.classList.add("show");
+
+      setInterval(() => {
+        index = (index + 1) % funFacts.length;
+        funFactBar.innerHTML = funFacts[index];
+      }, 7000);
+    }, 5000);
+
+
+// ===== Resume Preview Toggle =====
+const previewBtn = document.getElementById("resumePreviewBtn");
+const previewAccordion = document.getElementById("resumePreviewAccordion");
+const closePreviewBtn = document.getElementById("closeResumePreview");
+
+if (previewBtn && previewAccordion && closePreviewBtn) {
+  previewBtn.addEventListener("click", () => {
+    previewAccordion.classList.add("show");
+    previewBtn.style.visibility = "hidden"; // keep spacing in sticky layout
+  });
+
+  closePreviewBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    previewAccordion.classList.remove("show");
+    previewBtn.style.visibility = "visible";
+  });
+}
+
+    
+  });
+</script>
+
+
+
+
+<!-- Floating Contact Button (mobile only) -->
+<a href="#contact" class="floating-contact-btn d-lg-none" aria-label="Contact Me">
+  <i class="fas fa-envelope"></i>
+</a>
+
+
+<!-- Resume Preview Accordion -->
+<div id="resumePreviewAccordion" class="resume-preview-accordion">
+  <div class="resume-content">
+    <h2 class="mb-2">Phillip Da Silva-Marquis</h2>
+    <p class="lead mb-3 text-muted">Business Systems Analyst · Integration & Process Automation</p>
+
+    <!-- Impact Section -->
+    <h4 class="preview-section">Key Impact</h4>
+    <ul class="mb-3">
+      <li><strong>50% faster</strong> vendor onboarding (6 → 2 weeks) at FlexShopper</li>
+      <li><strong>Rebate setup reduced</strong> from 1 week → 1 day</li>
+      <li><strong>Scaled 14K+ SKUs</strong> with PIM ownership at Pet Supermarket</li>
+    </ul>
+
+    <!-- Skills Section -->
+    <h4 class="preview-section">Core Skills</h4>
+    <p class="mb-3">
+      Integrations (Logicbroker, NetSuite, Syndigo), Agile delivery, Requirements (BRDs/FSDs), UAT, Workflow automation
+    </p>
+
+    <!-- Certifications Section -->
+    <h4 class="preview-section">Certifications</h4>
+    <p class="mb-4">PSPO I (Udemy) · Preparing for PSM I (scrum.org)</p>
+
+    <!-- Download Button -->
+    <a href="Phillip_Marquis_2025_Resume_.pdf" download class="btn btn-career w-100">
+      Download Full Resume
+    </a>
+
+    <!-- Close Link -->
+    <p class="mt-3 text-center">
+      <a href="#" id="closeResumePreview" style="font-size:0.85rem; color:#999;">Close Preview</a>
+    </p>
+  </div>
+</div>
+
+
+
+
+
+</body>
+</html>

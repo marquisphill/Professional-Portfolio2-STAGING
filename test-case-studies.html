@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Case Studies – Full Test</title>
+  <link rel="stylesheet" href="./css/test-css.css" />
+</head>
+<body>
+
+<!-- ===== Case Studies Section (Test Version) ===== -->
+<section id="cases" class="section bg-light">
+  <div class="container text-center">
+    <!-- Preview -->
+    <h2 class="section-title">Case Studies</h2>
+    <p class="lead">A few projects where I delivered measurable impact.</p>
+    <button id="toggleCaseList" class="btn btn-primary">View Case Studies</button>
+
+    <!-- Hidden case list -->
+    <div id="caseList" class="case-list">
+      <div class="case-flow">
+        <div class="flow-item">
+          <div class="case-card">
+            <h5>The Challenge</h5>
+            <p>Vendors faced slow onboarding and manual invoicing.</p>
+          </div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-item">
+          <div class="case-card">
+            <h5>The Solution</h5>
+            <p>Integrated Logicbroker with NetSuite and GCP.</p>
+          </div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-item">
+          <div class="case-card">
+            <h5>Impact</h5>
+            <p>Cut onboarding time by 50% and reduced accounting touches.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions below cards -->
+      <div class="case-actions">
+        <button class="btn toggle-full">See Full Case Study</button>
+        <a href="#contact" class="btn contact-me">Contact Me</a>
+      </div>
+
+      <!-- Full view -->
+      <div class="full-view">
+        <h5>Faster Vendor Onboarding & Automated Invoicing</h5>
+        <p><em>BA/PM · Integration · EDI & APIs</em></p>
+        <p>
+          Led integration of Logicbroker with FlexShopper’s custom order/lease management systems and accounting databases (GCP & NetSuite). 
+          Delivered multi-vendor onboarding flows, custom architecture for non-standard vendors, and special invoice handling requirements.
+        </p>
+        <ul>
+          <li><strong>Impact:</strong> Cut vendor onboarding time by 50%, doubling capacity; reduced manual touches in accounting reconciliation.</li>
+          <li><strong>Stack:</strong> Logicbroker (Azure APIs), NetSuite, GCP, EDI transactions, dashboards.</li>
+          <li><strong>Artifacts:</strong> BRD, Visio architecture diagram, Confluence SOPs, Go-live Checklist.</li>
+          <li><strong>Complexity:</strong> Supported vendors unable to onboard to Logicbroker; implemented custom invoice logic.</li>
+        </ul>
+        <div class="case-actions">
+          <button class="btn toggle-full">Hide Full Case Study</button>
+          <a href="#contact" class="btn contact-me">Contact Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Placeholder contact section -->
+<section id="contact" class="section bg-plain">
+  <div class="container text-center">
+    <h2>Contact Me</h2>
+    <p>This is a placeholder contact area for testing smooth scroll.</p>
+  </div>
+</section>
+
+<script src="./js/test-js.js"></script>
+</body>
+</html>

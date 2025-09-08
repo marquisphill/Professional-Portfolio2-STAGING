@@ -1,0 +1,718 @@
+/* ---------------- Base ---------------- */
+body {
+  font-family: 'Arial', sans-serif;
+  scroll-behavior: smooth;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* ---------------- Hero ---------------- */
+#hero {
+  min-height: 100vh;
+  background: linear-gradient(to right, #f97794, #623aa2);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+#hero p {
+  font-size: 1.2rem;
+}
+
+/* Hero subtitle (tagline under main title) */
+#hero .subtitle {
+  max-width: 650px;       /* tighten width */
+  margin: 0 auto 20px;    /* center and add spacing below */
+  font-style: italic;     /* softer tagline feel */
+  font-weight: 300;       /* lighter than main header */
+  font-size: 1.05rem;     /* slightly smaller than default */
+  line-height: 1.4;       /* improve readability */
+  color: rgba(255, 255, 255, 0.9); /* softer white */
+}
+
+
+
+/* ---------------- Timeline ---------------- */
+.timeline {
+  border-left: 3px solid #f97794;
+  padding-left: 20px;
+}
+
+.timeline-item {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.timeline-item:before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 0;
+  width: 15px;
+  height: 15px;
+  background: #f97794;
+  border-radius: 50%;
+}
+
+/* ---------------- Footer ---------------- */
+footer {
+  font-size: 0.9rem;
+}
+
+/* =======================================================
+   Case Studies Section
+   ======================================================= */
+
+/* Case list container */
+.case-list {
+  display: none;
+  text-align: left;
+  margin-top: 20px;
+}
+.case-list.show {
+  display: block;
+  animation: fadeSlideIn 0.45s ease forwards;
+}
+
+/* Case preview card */
+.case-preview {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: linear-gradient(to right, #ffffff 70%, #faf5fb); /* subtle brand wash */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.case-preview h5 {
+  margin-bottom: 6px;
+  font-size: 1.25rem;
+}
+
+.case-preview p {
+  margin-bottom: 12px;
+  color: #555;
+}
+
+/* Case details wrapper */
+.case-details {
+  display: none;
+  margin-top: 15px;
+}
+.case-details.open {
+  display: block;
+  animation: fadeSlideIn 0.45s ease both;
+}
+
+/* Swiper carousel inside case details */
+.case-details .swiper {
+  padding: 15px 0;
+}
+
+.case-details .card {
+  background: #fdfdfd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Carousel card titles */
+.case-details .card h6 {
+  font-size: 1.2rem;   /* bigger than default */
+  font-weight: 700;    /* bold */
+  margin-bottom: 10px;
+  color: #333;         /* darker for emphasis */
+}
+
+
+/* Link: View Full Case Study */
+.view-full {
+  font-size: 0.9rem;
+  color: #007bff;
+  text-decoration: underline;
+  text-align: right;
+  display: block;
+  margin-top: 10px;
+}
+.view-full:hover {
+  color: #0056b3;
+}
+
+.case-details .full-view {
+  display: none;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.case-details.open .full-view {
+  display: block;
+  animation: fadeSlideIn 0.45s ease both;
+}
+
+.full-view h5 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+.full-view p em {
+  color: #666;
+}
+.full-view ul {
+  margin-top: 15px;
+  padding-left: 20px;
+}
+.full-view li {
+  margin-bottom: 6px;
+}
+
+/* Collapse button in full view */
+.collapse-full {
+  margin-top: 15px;
+}
+
+/* Contact Me button inside carousel */
+.contact-btn {
+  margin-top: 12px;
+  background: #f97794;
+  color: #fff;
+  border: none;
+  transition: background 0.3s ease;
+}
+.contact-btn:hover {
+  background: #623aa2;
+  color: #fff;
+}
+
+/* Fade + slide animation */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.takeaway-gradient {
+  background: linear-gradient(to right, #f97794, #623aa2); /* same as your brand */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  font-style: italic;
+  margin-bottom: 8px; /* spacing before Case Study label */
+  display: inline-block; /* ensures gradient applies cleanly */
+}
+
+/* ============================
+   Case Studies Carousel Arrows
+   ============================ */
+
+/* Arrows styled as circular buttons */
+.case-details .swiper-button-next,
+.case-details .swiper-button-prev {
+  color: #623aa2;              /* arrow color */
+  font-weight: bold;
+  top: 50%;                    /* vertically centered */
+  transform: translateY(-50%);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 10;                 /* keep arrows above slides */
+}
+
+/* Keep arrows inside the card edges */
+.case-details .swiper-button-next {
+  right: 10px;
+}
+.case-details .swiper-button-prev {
+  left: 10px;
+}
+
+/* Add padding inside swiper so arrows don't overlap text */
+.case-details .swiper {
+  padding: 20px 60px; /* extra space for arrows inside the card */
+}
+
+/* ============================
+   Experience Page Styling
+   ============================ */
+
+/* Hero section on experience.html */
+#experience-hero {
+  background: linear-gradient(to right, #f97794, #623aa2);
+  color: #fff;
+  padding: 100px 20px;
+}
+#experience-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+#experience-hero p.lead {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* Experience cards */
+#experience-list .card {
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+#experience-list .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+#experience-list .card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #333;
+}
+#experience-list .text-muted {
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 10px;
+  display: block;
+}
+#experience-list p {
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Contact section on experience.html */
+#experience-list + #contact {
+  margin-top: 40px;
+}
+
+/* Subtle different shade for Experience section */
+.bg-experience {
+  background-color: #f2f5f9; /* slightly darker than bg-light (#f8f9fa) */
+}
+
+/* ============================
+   Hero: 3 large actionable buttons
+   ============================ */
+.hero-cta-grid {
+  /* desktop layout: 1 & 2 on top, 3 spans full width below */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 980px;
+  margin: 28px auto 0;
+  padding: 0 10px;
+}
+
+.hero-cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  padding: 28px 24px;
+  border-radius: 0;                 /* sharp edges per requirement */
+  text-decoration: none;
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+  overflow: hidden;
+}
+.hero-cta:link,
+.hero-cta:visited { color: #fff; }
+
+.hero-cta .label {
+  font-weight: 800;
+  letter-spacing: .2px;
+  font-size: clamp(1.05rem, 2.2vw, 1.6rem);
+}
+
+.hero-cta .hover-note {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  max-width: 90%;
+  font-style: italic;
+  font-size: .95rem;
+  line-height: 1.25;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .25s ease, transform .25s ease;
+  text-align: right;
+  pointer-events: none;
+}
+
+.hero-cta:hover,
+.hero-cta:focus-visible {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+}
+
+.hero-cta:hover .hover-note,
+.hero-cta:focus-visible .hover-note {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Solid colors matched to the hero gradient theme */
+.hero-cta-1 { background: #623aa2; }  /* purple */
+.hero-cta-2 { background: #8b59c2; }  /* mid-violet to complement */
+.hero-cta-3 { background: #f97794; }  /* pink */
+
+/* Make the 3rd button span full width on desktop */
+.hero-cta-3 { grid-column: 1 / -1; }
+
+/* Responsive: stack 1 → 2 → 3 on small screens */
+@media (max-width: 768px) {
+  .hero-cta-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 22px;
+  }
+  .hero-cta-3 { grid-column: auto; }
+  .hero-cta { min-height: 96px; }
+}
+
+/* ===== Case Studies Option 3 ===== */
+.case-flow {
+  display:flex;
+  align-items:stretch;
+  justify-content:center;
+  gap:18px;
+  margin-top:20px;
+}
+.flow-item { flex:1; display:flex; }
+.case-card {
+  flex:1;
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:8px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  padding:20px;
+  text-align:left;
+  display:flex;
+  flex-direction:column;
+}
+.case-card h6 { font-size:1.1rem; font-weight:700; margin-bottom:8px; }
+.case-card p { margin:0; }
+
+/* Arrows */
+.flow-arrow {
+  position:relative;
+  align-self:center;
+  width:60px;
+  height:8px;
+  background:var(--purple, #623aa2);
+  border-radius:4px;
+}
+.flow-arrow::after {
+  content:"";
+  position:absolute;
+  top:50%;
+  right:-14px;
+  transform:translateY(-50%);
+  border-left:16px solid var(--purple, #623aa2);
+  border-top:10px solid transparent;
+  border-bottom:10px solid transparent;
+}
+
+/* Mobile stack with down arrows */
+@media (max-width:768px) {
+  .case-flow { flex-direction:column; }
+  .flow-arrow {
+    width:8px; height:50px; margin:0 auto;
+  }
+  .flow-arrow::after {
+    top:auto; right:auto;
+    left:50%; bottom:-14px;
+    transform:translateX(-50%);
+    border:none;
+    border-top:16px solid var(--purple, #623aa2);
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+  }
+}
+
+.case-details { display:none; margin-top:20px; }
+.case-details.open { display:block; animation:fadeSlideIn .4s ease both; }
+
+.case-flow {
+  display:flex; align-items:stretch; justify-content:center; gap:18px; margin-top:20px;
+}
+.flow-item { flex:1; display:flex; }
+.case-card { flex:1; background:#fff; border:1px solid #ddd; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,.08); padding:20px; }
+.case-card h6 { font-size:1.1rem; font-weight:700; margin-bottom:8px; }
+
+.flow-arrow {
+  position:relative; align-self:center; width:60px; height:8px;
+  background:#623aa2; border-radius:4px;
+}
+.flow-arrow::after {
+  content:""; position:absolute; top:50%; right:-14px; transform:translateY(-50%);
+  border-left:16px solid #623aa2; border-top:10px solid transparent; border-bottom:10px solid transparent;
+}
+@media (max-width:768px){
+  .case-flow{ flex-direction:column; }
+  .flow-arrow{ width:8px; height:50px; margin:0 auto; }
+  .flow-arrow::after{
+    top:auto; left:50%; bottom:-14px; transform:translateX(-50%);
+    border:none; border-top:16px solid #623aa2; border-left:10px solid transparent; border-right:10px solid transparent;
+  }
+}
+
+/* ===== Recommendations Section ===== */
+.recommendations-list {
+  display: none;
+  text-align: left;
+}
+
+.recommendations-list.show {
+  display: block;
+  animation: fadeSlideIn 0.45s ease both;
+}
+
+.recommendation-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.recommendation-card h5 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.recommendation-card .meta {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.recommendation-card p {
+  margin-bottom: 12px;
+}
+
+.recommendation-card .linkedin-link {
+  font-style: italic;
+  color: #999;
+  margin-top: 10px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Highlighted keywords for enhanced case studies */
+.highlight {
+  color: #007bff; /* Bootstrap primary blue */
+  font-weight: bold;
+}
+
+/* Separator line between main and deprioritized links */
+.nav-separator {
+  width: 1px;
+  background: #ddd;
+  margin: 0 12px;
+  list-style: none;
+}
+
+/* Keep consistent spacing on collapsed menus (mobile) */
+@media (max-width: 991px) {
+  .nav-separator {
+    display: none; /* hide line in mobile dropdown */
+  }
+}
+
+/* Career Goals button (reverse gradient of sticky home button) */
+.career-goals-btn {
+  background: linear-gradient(135deg, #ff4b4b, #007bff, #ff4b4b);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.career-goals-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+/* Prevent Career Goals header from being hidden by Fun Facts */
+#career-goals {
+  scroll-margin-top: 120px; /* adjust based on height of Fun Facts overlay */
+}
+
+
+/* Prevent Career Goals header from being hidden by Fun Facts */
+#career-goals {
+  scroll-margin-top: 100px; /* desktop/tablet offset */
+}
+
+@media (max-width: 768px) {
+  #career-goals {
+    scroll-margin-top: 180px; /* larger offset for mobile */
+  }
+}
+
+.case-label {
+  color: #007bff; /* Bootstrap blue, matches brand */
+  font-weight: 700;
+  border: none;
+  background: none;
+  cursor: default;
+}
+
+/* Gradient LinkedIn link */
+.linkedin-gradient {
+  background: linear-gradient(to right, #f97794, #623aa2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+.linkedin-gradient:hover {
+  opacity: 0.8;
+}
+
+/* Gradient Career Goals Button */
+.btn-career {
+  background: linear-gradient(to right, #f94144, #277da1); /* red → blue */
+  border: none;
+  color: #fff !important;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.btn-career:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Ensure anchored sections are not hidden behind navbar or banner */
+#experience-list {
+  scroll-margin-top: 180px; /* adjust to height of navbar + banner */
+}
+
+.floating-contact-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(to right, #f97794, #623aa2); /* brand gradient */
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 14px 16px;
+  border-radius: 50%;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  z-index: 1050;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.floating-contact-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  color: #fff;
+  text-decoration: none;
+}
+
+
+/* Bottom-right hero button */
+.hero-preview-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+/* Ensure hero is relative so button anchors correctly */
+#hero {
+  position: relative;
+}
+
+/* Resume preview (shared) */
+.resume-preview-accordion {
+  position: fixed;
+  bottom: 100px;              /* above sticky/floating UI */
+  right: 20px;
+  width: 90%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  padding: 20px;
+  display: none;
+  z-index: 1100;
+}
+.resume-preview-accordion.show {
+  display: block;
+  animation: fadeSlideIn 0.3s ease both;
+}
+
+/* Make the hero “Preview Resume” button slightly transparent */
+.hero-preview-btn #resumePreviewBtnIndex {
+  opacity: 0.85;
+  transition: opacity .2s ease, transform .2s ease, filter .2s ease;
+}
+.hero-preview-btn #resumePreviewBtnIndex:hover {
+  opacity: 1;
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+/* Mobile: widen the preview + keep clear of bottom UI */
+@media (max-width: 576px) {
+  .resume-preview-accordion {
+    right: 10px;
+    left: 10px;               /* center on small screens */
+    width: auto;
+    bottom: 90px;
+  }
+}
+
+.resume-content h2 {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.resume-content .lead {
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.preview-section {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #623aa2;
+  border-left: 4px solid #f97794;
+  padding-left: 8px;
+}
+
