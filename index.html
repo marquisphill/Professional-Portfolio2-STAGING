@@ -322,6 +322,51 @@ em,i{font-style:normal;}
 /* ---------- close ---------- */
 .close{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-block:var(--s6);}
 .close__line{font-size:var(--t-beat);max-width:18ch;margin-bottom:var(--s5);}
+
+/* ---------- résumé download block (Enhancement 03) ----------
+   Sits after .card as a sibling, not inside it: the summary (name, impact,
+   skills, credentials) blooms first via the existing .card.is-bloom
+   mechanic; this block fades in second, once that settles. Same --d-slow/
+   --e-out pair the bloom itself uses, so the two reveals read as one
+   sequence instead of two unrelated animations. */
+.resume-download{
+  margin-top:var(--s5);
+  opacity:0;transform:translateY(16px);
+  transition:opacity var(--d-slow) var(--e-out),transform var(--d-slow) var(--e-out);
+}
+.resume-download.is-shown{opacity:1;transform:none;}
+.resume-download__note{font-size:var(--t-meta);color:var(--ink-faint);margin-top:var(--s2);}
+
+.tailored{margin-top:var(--s5);}
+.tailored__head{display:flex;align-items:center;gap:var(--s1);}
+.tailored__tick{width:16px;height:2px;background:var(--orange-dim);flex:none;}
+.tailored__title{font-family:var(--font-display);font-weight:700;font-size:var(--t-lead);}
+.tailored__sub{font-style:italic;font-size:var(--t-meta);color:var(--ink-muted);margin-top:var(--s1);max-width:52ch;}
+.tailored__cards{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s2);margin-top:var(--s3);}
+/* Cut-corner tilted "tag" card - the brand's existing tick-and-eyebrow accent
+   language (§7.3/§8.8 in the design file) reapplied as a shape instead of a
+   line, so it reads as this site's motif rather than a generic bordered box.
+   Zero box-shadows, per the site's own rule - depth is --bg-raised + hairline
+   border only. */
+.tailored__card{
+  position:relative;display:block;width:180px;padding:18px 16px 14px;
+  background:var(--bg-raised);border:1px solid var(--line);border-radius:2px;
+  transform:rotate(var(--tilt,0deg));
+  transition:border-color var(--d-fast) var(--e-inout),transform var(--d-fast) var(--e-inout);
+}
+.tailored__card::before{
+  content:"";position:absolute;top:0;left:0;width:0;height:0;
+  border-style:solid;border-width:18px 18px 0 0;
+  border-color:var(--orange-dim) transparent transparent transparent;
+  transition:border-color var(--d-fast) var(--e-inout);
+}
+.tailored__card:hover,.tailored__card:focus-visible{border-color:var(--orange);transform:rotate(0deg);}
+.tailored__card:hover::before,.tailored__card:focus-visible::before{border-color:var(--orange) transparent transparent transparent;}
+.tailored__eyebrow{display:block;font-size:.625rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;}
+.tailored__label{display:block;font-family:var(--font-display);font-weight:700;font-size:1rem;line-height:1.2;color:var(--ink);}
+.tailored__foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px;font-size:var(--t-meta);color:var(--ink-muted);}
+.tailored__foot svg{display:block;}
+.tailored__card:hover .tailored__foot,.tailored__card:focus-visible .tailored__foot{color:var(--ink);}
 .card{
   border:1px solid var(--line-strong);border-radius:var(--r-lg);padding:var(--s4);
   max-width:560px;background:var(--bg-raised);
@@ -374,6 +419,15 @@ em,i{font-style:normal;}
   .ghost{right:0;left:0;bottom:0;}
   .ghost__btn{width:100%;border-radius:0;border-left:0;border-right:0;border-bottom:0;background:var(--bg-raised);text-align:center;min-height:44px;}
   .ghost__peek{right:var(--s2);left:var(--s2);width:auto;}
+  .btn-filled{display:block;width:100%;text-align:center;}
+  /* Enhancement 03: tilt is a desktop-only flourish. Mobile flattens to a
+     single stacked column, full width, like every other mobile list on
+     this site (§10). */
+  .tailored__cards{flex-direction:column;gap:var(--s2);}
+  .tailored__card{width:100%;transform:none!important;display:flex;align-items:center;justify-content:space-between;padding:16px 18px;}
+  .tailored__eyebrow,.tailored__label{display:inline;}
+  .tailored__eyebrow{display:block;margin-bottom:4px;}
+  .tailored__foot{margin-top:0;flex:none;}
 }
 @media (max-width:399px){
   .beat__line{font-size:1.75rem;}
@@ -391,6 +445,8 @@ em,i{font-style:normal;}
   .card{transform:none;transition:opacity 120ms linear;}
   .band__wipe,.door__label,.ghost__peek{transition-duration:120ms;}
   .rail__cap.is-done{animation:none;}
+  .resume-download{transition:opacity 120ms linear;transform:none;}
+  .tailored__card{transition:border-color 120ms linear;}
   *{scroll-behavior:auto !important;}
 }
 </style>
@@ -463,7 +519,7 @@ em,i{font-style:normal;}
       <div class="employers">
         <div><div class="employer__name">Pet Supermarket</div><div class="employer__yrs">2013 – 2023</div></div>
         <div><div class="employer__name">FlexShopper</div><div class="employer__yrs">2023 – 2025</div></div>
-        <div><div class="employer__name">CITY Furniture</div><div class="employer__yrs">2025 – 2026</div></div>
+        <div><div class="employer__name">CITY Home</div><div class="employer__yrs">2025 – 2026</div></div>
       </div>
       <button class="door" type="button" data-door="B" data-door-beat="2">
         <span class="door__tick"></span><span class="door__label">where the 20 came from →</span>
@@ -479,6 +535,7 @@ em,i{font-style:normal;}
   <section class="close wrap" data-beat="5" data-close>
     <h2 class="close__line">That took 35 seconds. Here is the résumé.</h2>
     <div class="card" data-card></div>
+    <div class="resume-download" data-resume-download-block></div>
   </section>
 </div>
 
@@ -545,7 +602,7 @@ em,i{font-style:normal;}
       <p class="lead muted" style="margin-bottom:var(--s4)">Ten years of learning to build things like that:</p>
       <div class="roles">
         <div>
-          <div class="role__co">CITY Furniture</div>
+          <div class="role__co">CITY Home</div>
           <div class="role__range">Oct 2025 – Jul 2026 · Tamarac, FL</div>
           <div class="role__items"><div class="role__item"><b>Sr. Business Analyst, Enterprise OMS Modernization</b></div></div>
         </div>
@@ -580,6 +637,7 @@ em,i{font-style:normal;}
   <section class="close wrap" data-beat="8" data-close>
     <h2 class="close__line">That took 1 minute 40 seconds. You have the numbers and where they came from.</h2>
     <div class="card" data-card></div>
+    <div class="resume-download" data-resume-download-block></div>
   </section>
 </div>
 
@@ -621,7 +679,7 @@ em,i{font-style:normal;}
         <button class="btn panel__trigger" type="button" data-panel aria-expanded="false" aria-controls="p-reports">Read the full case</button>
         <div class="panel__region" id="p-reports">
           <h4>Context</h4>
-          <p>CITY Furniture was retiring a legacy <b>IBM i/AS400</b> system and moving to IBM Sterling OMS. Everything running off the old system had to be dispositioned before the new one could be scoped. That included over <b>1,000 reports</b> built up over years, most of them undocumented.</p>
+          <p>CITY Home was retiring a legacy <b>IBM i/AS400</b> system and moving to IBM Sterling OMS. Everything running off the old system had to be dispositioned before the new one could be scoped. That included over <b>1,000 reports</b> built up over years, most of them undocumented.</p>
           <h4>What I did</h4>
           <p>Met with every report owner to start triage, which cut the list to about 500. Ran workshops where each owner marked their reports <b>keep or retire</b> with a purpose, a cadence and an owner attached. That got it to about 200. From there I set up an AI pass over the remaining reports and gave it the rules it had to work inside: group the ones that belong together, score every merge, show the work, and leave the final decision to me. I reviewed the output and landed on about 20 data models.</p>
           <h4>Checking the work</h4>
@@ -711,7 +769,7 @@ em,i{font-style:normal;}
     <div class="beat__payload">
       <div class="roles">
         <div class="dwell" data-dwell tabindex="0">
-          <div class="role__co">CITY Furniture</div>
+          <div class="role__co">CITY Home</div>
           <div class="role__range">Sr. Business Analyst, Enterprise OMS Modernization · Oct 2025 – Jul 2026</div>
           <ul class="dwell__detail">
             <li>Cut <b>1,000+ legacy reports</b> to about 20 audit-ready data models. Ran stakeholder triage to get to 200, then set the rules for an AI pass over the rest and kept approval on every merge. Mapped the survivors back to their source systems so the data team had current-state and future-state sourcing before the build started.</li>
@@ -823,6 +881,7 @@ em,i{font-style:normal;}
   <section class="close wrap" data-beat="12" data-close>
     <h2 class="close__line">That took 11 minutes. That is the whole record.</h2>
     <div class="card" data-card></div>
+    <div class="resume-download" data-resume-download-block></div>
   </section>
 </div>
 
@@ -832,7 +891,7 @@ em,i{font-style:normal;}
 <div class="ghost" id="ghost">
   <div class="ghost__peek" id="ghostPeek">
     <ul>
-      <li><b>1,000+ legacy reports</b> cut to about 20 audit-ready data models on an enterprise OMS modernization at CITY Furniture</li>
+      <li><b>1,000+ legacy reports</b> cut to about 20 audit-ready data models on an enterprise OMS modernization at CITY Home</li>
       <li>Owned requirements and delivery for the platform that <b>replaced FlexShopper's order and inventory system</b></li>
       <li>Vendor onboarding cut from <b>6 weeks to 2 weeks</b>, rebate setup from <b>1 week to 1 day</b></li>
       <li><b>200+ vendors</b> and <b>14K+ SKUs</b> managed through Syndigo PIM at Pet Supermarket</li>
@@ -860,7 +919,7 @@ em,i{font-style:normal;}
   <p class="card__sub">Senior Business Analyst · Product Owner</p>
   <h4>Key impact</h4>
   <ul>
-    <li><b>1,000+ legacy reports</b> cut to about 20 audit-ready data models on an enterprise OMS modernization at CITY Furniture</li>
+    <li><b>1,000+ legacy reports</b> cut to about 20 audit-ready data models on an enterprise OMS modernization at CITY Home</li>
     <li>Owned requirements and delivery for the platform that <b>replaced FlexShopper's order and inventory system</b></li>
     <li>Vendor onboarding cut from <b>6 weeks to 2 weeks</b>, rebate setup from <b>1 week to 1 day</b></li>
     <li><b>200+ vendors</b> and <b>14K+ SKUs</b> managed through Syndigo PIM at Pet Supermarket</li>
@@ -869,12 +928,26 @@ em,i{font-style:normal;}
   <p>Requirements discovery (BRDs/FSDs), gap analysis, process and UML modeling, UAT, backlog ownership, Agile &amp; Scrum, systems integration (IBM Sterling OMS, Logicbroker, NetSuite, Syndigo, SFCC, Oracle CC), report rationalization, and directing AI on analysis work with line-level traceability.</p>
   <h4>Credentials</h4>
   <p>PSPO I (Udemy) · Studying for PSM I (scrum.org)<br>Bachelor of Arts in Communication · Minor in English · Florida Atlantic University</p>
-  <div class="card__cta">
-    <a class="btn-filled" href="2026_Resume_Phillip_Da_Silva_Marquis.pdf" download data-ga="resume_download" data-resume-download>Download the résumé</a>
-  </div>
   <div class="card__alt">
     <button class="btn" type="button" data-longer hidden>I've got more time →</button>
     <a class="btn" href="https://www.linkedin.com/in/phillip-marquis-7661a8107/" target="_blank" rel="noopener">Find me on LinkedIn</a>
+  </div>
+</template>
+
+<!-- Enhancement 03: résumé download block, cloned into each close beat
+     alongside (but separately from) the summary card above. Master résumé
+     is a fixed, always-the-same-file download - it does not follow the
+     ghost picker's selectedResume the way the old single CTA used to. -->
+<template id="resumeDownloadTpl">
+  <a class="btn-filled" href="2026_Resume_Phillip_Da_Silva_Marquis.pdf" download data-resume-master>Download the résumé</a>
+  <p class="resume-download__note">The general résumé — right for anyone who hasn't named a specific role.</p>
+  <div class="tailored">
+    <div class="tailored__head">
+      <span class="tailored__tick" aria-hidden="true"></span>
+      <span class="tailored__title">Download a tailored résumé</span>
+    </div>
+    <p class="tailored__sub">These are hand-tailored résumés, built for specific kinds of roles.</p>
+    <div class="tailored__cards" data-tailored-cards></div>
   </div>
 </template>
 
@@ -896,7 +969,10 @@ var choice=D.getElementById('choice'), rail=D.getElementById('rail'),
     wordmark=D.getElementById('wordmark'), announce=D.getElementById('announce'),
     ghost=D.getElementById('ghost'), ghostBtn=D.getElementById('ghostBtn'), ghostPeek=D.getElementById('ghostPeek'),
     tpl=D.getElementById('cardTpl');
-var threads={}, active=null, minRemaining=Infinity, doneFlashed=false;
+/* Enhancement 03: renamed from minRemaining. It's no longer clamped to only
+   ever decrease - see updateRail() - so the name changed to match what it
+   now actually holds: the current remaining time, not a running minimum. */
+var threads={}, active=null, currentRemaining=Infinity, doneFlashed=false;
 
 D.getElementById('yr').textContent=new Date().getFullYear();
 
@@ -918,6 +994,15 @@ function ga(name,params){ if(window.gtag) gtag('event',name,params||{}); }
       start(path==='A'?'B':'C',0);
     });
   }
+});
+
+/* ---------- résumé download block (Enhancement 03) ----------
+   Populated the same way as the card above: clone a <template> into each
+   close beat's placeholder div. Reveal timing lives in closeIO, below -
+   this only builds the DOM. */
+var resumeTpl=D.getElementById('resumeDownloadTpl');
+[].forEach.call(D.querySelectorAll('[data-resume-download-block]'),function(block){
+  block.appendChild(resumeTpl.content.cloneNode(true));
 });
 
 /* ---------- reveal (Enhancement 01 item 2) ----------
@@ -1007,10 +1092,18 @@ function updateRail(){
   var isNarrow=window.matchMedia('(max-width:767px)').matches;
   if(isNarrow){ fill.style.width=(p*100)+'%'; fill.style.height='3px'; }
   else { fill.style.height=(p*100)+'%'; fill.style.width='2px'; }
+  /* Enhancement 03: the rail now tracks scroll position directly, both
+     directions - scrolling up counts back up, scrolling down counts back
+     down toward 0. This replaces the old "only ever decreases" clamp
+     (originally a deliberate MUST in §8.1 of the design file, reversed
+     here by direct request) with a plain assignment. doneFlashed stays
+     one-shot: reaching the end still flashes the rail cap once per path
+     visit, it just doesn't re-arm if the user scrolls back up and down
+     again in the same visit. */
   var remaining=Math.ceil((1-p)*BUDGET[active]);
-  if(remaining<minRemaining) minRemaining=remaining;
-  num.textContent=fmt(minRemaining);
-  if(minRemaining<=0&&!doneFlashed){
+  currentRemaining=remaining;
+  num.textContent=fmt(currentRemaining);
+  if(currentRemaining<=0&&!doneFlashed){
     doneFlashed=true; cap.classList.add('is-done');
     ga('path_complete',{path:active});
   }
@@ -1020,9 +1113,24 @@ function updateRail(){
 var closeIO=new IntersectionObserver(function(es){
   es.forEach(function(e){
     var card=e.target.querySelector('[data-card]');
+    var resumeBlock=e.target.querySelector('[data-resume-download-block]');
     if(e.isIntersecting){
       card.classList.add('is-bloom');
       ghost.classList.add('is-hidden');
+      /* Enhancement 03: the résumé download block (master + tailored) fades
+         in AFTER the summary card above it has finished blooming, not at
+         the same time. 900ms = --d-slow, the same duration the bloom
+         transition itself already runs, so the second reveal picks up
+         right as the first one settles rather than an unrelated new
+         number. Not separately re-gated on the rail hitting 0: by design
+         the close beat only reaches 40% visible (this observer's
+         threshold) once the thread is essentially fully scrolled, so the
+         two conditions are already the same moment in practice. Guarded so
+         it only ever fires once per path visit, same as the card's own
+         is-bloom. */
+      if(resumeBlock&&!resumeBlock.classList.contains('is-shown')){
+        setTimeout(function(){ resumeBlock.classList.add('is-shown'); },reduce?0:900);
+      }
     } else {
       ghost.classList.remove('is-hidden');
     }
@@ -1033,7 +1141,7 @@ var closeIO=new IntersectionObserver(function(es){
 function start(path,scrollTo){
   if(!threads[path]) return;
   if(active&&threads[active]){ threads[active].hidden=true; threads[active].classList.remove('is-active'); }
-  active=path; minRemaining=Infinity; doneFlashed=false; cap.classList.remove('is-done');
+  active=path; currentRemaining=Infinity; doneFlashed=false; cap.classList.remove('is-done');
   var t=threads[path];
   t.hidden=false; t.classList.add('is-active');
   choice.classList.add('is-gone');
@@ -1161,6 +1269,33 @@ function buildResumeChips(){
   });
 }
 
+/* ---------- tailored résumé cards, Screen E (Enhancement 03) ----------
+   Same RESUME_VARIANTS array as the ghost picker above - one source of
+   truth for the job-type list either way. Unlike the chips, these are
+   plain download links (no selection state to track), so they're built
+   as static <a download> elements rather than reusing applyResumeSelection.
+   Master résumé is NOT included here - it's the fixed [data-resume-master]
+   link already sitting in the template next to this container. */
+var TAILORED_TILTS=[-1.2,0.8,-0.6,1.1]; /* desktop-only; flattened on mobile in CSS */
+var DOWNLOAD_ICON='<svg width="14" height="14" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 2V12M9 12L4.5 7.5M9 12L13.5 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15.5H15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+function buildTailoredCards(){
+  [].forEach.call(D.querySelectorAll('[data-tailored-cards]'),function(wrap){
+    RESUME_VARIANTS.forEach(function(r,i){
+      var a=D.createElement('a');
+      a.className='tailored__card'; a.href=r.file; a.download='';
+      a.style.setProperty('--tilt',TAILORED_TILTS[i%TAILORED_TILTS.length]+'deg');
+      a.innerHTML='<span class="tailored__eyebrow">Job type</span>'+
+                  '<span class="tailored__label">'+r.label+'</span>'+
+                  '<span class="tailored__foot"><span>Download</span>'+DOWNLOAD_ICON+'</span>';
+      /* wired directly rather than relying on the generic [data-ga] click
+         loop below - these elements don't exist yet when that loop runs
+         at boot */
+      a.addEventListener('click',function(){ ga('resume_download_tailored',{path:active||'none',variant:r.key}); });
+      wrap.appendChild(a);
+    });
+  });
+}
+
 function hashFor(p){ return p==='A'?'#p1':p==='B'?'#p3':'#p5'; }
 function pathFor(h){ return h==='#p1'?'A':h==='#p3'?'B':h==='#p5'?'C':null; }
 
@@ -1197,12 +1332,12 @@ function toChoice(){
     cur.style.opacity='0';
     setTimeout(function(){
       cur.style.opacity=''; cur.style.transition='';
-      var carried=minRemaining;
+      var carried=currentRemaining;
       start(to,0);
       /* frame the target beat identically, without a scroll-to-top flash */
       var y=target.getBoundingClientRect().top+window.pageYOffset-keepOffset;
       window.scrollTo(0,Math.max(0,y));
-      minRemaining=Infinity;
+      currentRemaining=Infinity;
       updateRail();
       paintReveals();
       tweenNumeral(carried);
@@ -1212,7 +1347,7 @@ function toChoice(){
 
 function tweenNumeral(fromVal){
   if(reduce||!isFinite(fromVal)) return;
-  var toVal=minRemaining, t0=performance.now();
+  var toVal=currentRemaining, t0=performance.now();
   (function step(t){
     var p=Math.min(1,(t-t0)/900);
     num.textContent=fmt(Math.round(fromVal+(toVal-fromVal)*p));
@@ -1444,6 +1579,14 @@ window.addEventListener('popstate',function(){
 /* ---------- résumé picker boot ---------- */
 buildResumeChips();
 applyResumeSelection(selectedResume,false);
+
+/* Enhancement 03: tailored download cards, and GA on the master résumé
+   buttons - both built/cloned after the generic [data-ga] wiring loop
+   above already ran, so wired directly here instead. */
+buildTailoredCards();
+[].forEach.call(D.querySelectorAll('[data-resume-master]'),function(a){
+  a.addEventListener('click',function(){ ga('resume_download_master',{path:active||'none'}); });
+});
 
 /* ---------- boot ---------- */
 var initial=pathFor(location.hash);
