@@ -1,587 +1,1454 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional Portfolio STAGING</title>
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Animate.css -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-  <!-- Swiper CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
-  <link href="./css/main.css" rel="stylesheet">
-  <link href="./css/responsive.css" rel="stylesheet">
-
-<!-- Open Graph Meta Tags -->
-<meta property="og:title" content="Phillip Da Silva-Marquis | Business Systems Analyst" />
-<meta property="og:description" content="Portfolio of Phillip Da Silva-Marquis: showcasing system integrations, vendor onboarding, custom process automation, and product management solutions that deliver measurable impact." />
-<meta property="og:image" content="https://marquisphill.github.io/Professional-Portfolio2/images/url_preview_v1.jpg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://marquisphill.github.io/Professional-Portfolio2/" />
-<meta property="og:type" content="website" />
-
-<!-- Twitter Card Meta Tags -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Phillip Da Silva-Marquis | Business Systems Analyst" />
-<meta name="twitter:description" content="Portfolio of Phillip Da Silva-Marquis: showcasing system integrations, vendor onboarding, custom process automation, and product management solutions that deliver measurable impact." />
-<meta name="twitter:image" content="https://marquisphill.github.io/Professional-Portfolio2/images/url_preview_v1.jpg" />
-
-
-
-</head>
-<body>
-
-<!-- ===== Header / Navbar ===== -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="index.html">STAGING - Phillip Da Silva-Marquis - STAGING</a>
-
-    <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <!-- Standard -->
-        <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-
-        <!-- Prominent -->
-        <li class="nav-item">
-          <a class="nav-link fw-bold text-primary active" aria-current="page" href="#cases">
-            See My Impact
-          </a>
-        </li>
-
-        <!-- Standard -->
-        <li class="nav-item"><a class="nav-link" href="experience.html">Experience</a></li>
-        <li class="nav-item"><a class="nav-link" href="experience.html#career-goals">Career Goals</a></li>
-        <li class="nav-item"><a class="nav-link" href="#recommendations">Recommendations</a></li>
-
-        <!-- Separator -->
-        <li class="nav-separator"></li>
-
-        <!-- Deprioritized -->
-        <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Get In Touch</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-
-<!-- ===== Hero ===== -->
-<section id="hero" class="d-flex align-items-center text-center">
-  <div class="container">
-    <h1 class="animate__animated animate__fadeInDown">Business Systems Analyst</h1>
-     <p class="subtitle animate__animated animate__fadeInUp">
-      Bridging BA + PO + PM to deliver vendor onboarding, integrations, 
-      and scalable fintech/e-commerce solutions
-    </p>
-
-    <!-- New responsive hero buttons -->
-    <div class="hero-cta-grid">
-  <!-- 1: Track My Path -->
-  <a href="experience.html" class="hero-cta hero-cta-1" aria-label="Track my path and see where I am going">
-    <span class="label">Track My Path</span>
-    <span class="hover-note">…and see where I am going</span>
-  </a>
-
-  <!-- 2: Download Resume -->
-  <a href="Phillip_Marquis_2025_Resume_.pdf" 
-     download 
-     class="hero-cta hero-cta-2" 
-     aria-label="Download resume">
-    <span class="label">Download Resume</span>
-    <span class="hover-note">Looking forward to hearing from you</span>
-  </a>
-
-  <!-- 3: See My Impact -->
-  <a href="#cases" class="hero-cta hero-cta-3 impact-btn" aria-label="See my impact and how I delivered value">
-    <span class="label">See My Impact</span>
-    <span class="hover-note">…and how I delivered value</span>
-  </a>
-</div>
-
-<!-- Bottom-right Preview Resume button -->
-<div class="hero-preview-btn">
-  <button id="resumePreviewBtnIndex" type="button" class="btn career-goals-btn">
-    Preview Resume
-  </button>
-</div>
-
-
-
-  </div>
-</section>
-
-
-
-
-
-<!-- ===== Case Studies ===== -->
-<section id="cases" class="py-5 bg-light">
-  <div class="container text-center">
-    <h2 class="section-title">Case Studies</h2>
-    <p class="lead">A few projects where I delivered measurable impact.</p>
-    <button
-  id="toggleCaseList"
-  type="button"
-  class="btn btn-primary mt-3"
-  aria-controls="caseList"
-  aria-expanded="false"
->View Case Studies</button>
-
-    <div id="caseList" class="case-list mt-4">
-
-      <!-- ================= Case Study 1 ================= -->
-      <div class="case-preview">
-        <h5>Faster Onboarding & Process Automation</h5>
-        <p class="takeaway-gradient">
-  Cut vendor onboarding from 6 weeks to 2 weeks while automating invoicing and scaling marketplace growth.
-</p>
-        <button class="btn btn-outline-dark read-btn" data-target="case1">Read</button>
-
-        <div id="case1" class="case-details">
-          <!-- Hide button -->
-          <div class="text-center mb-3">
-            <button class="btn btn-outline-dark hide-btn">Hide Case Study</button>
-          </div>
-
-          <!-- 3 Boxes + Arrows -->
-          <div class="case-flow">
-            <div class="flow-item"><div class="case-card"><h6>The Business Challenge</h6><p>Onboarding vendors to the marketplace took 6 weeks and invoicing was manual. Adding new vendors was not scalable.</p></div></div>
-            <div class="flow-arrow"></div>
-            <div class="flow-item"><div class="case-card"><h6>The Solution</h6><p>I integrated API-based software (Logicbroker) with FlexShoppers custom applications, standardizing operations, merchandising, and accounting processes (order processing, invoicing, product data management).</p></div></div>
-            <div class="flow-arrow"></div>
-            <div class="flow-item"><div class="case-card"><h6>The Impact</h6><p>Cut vendor onboarding time by 50%, accelerated contract signings and marketplace growth.</p></div></div>
-          </div>
-
-      <!-- Enhanced Case Study 1 (per screenshot) -->
-<div class="full-view mt-4">
-  <h5><span class="highlight">Logicbroker Marketplace Integration</span></h5>
-  <p><em>Business Systems Analyst · Integration · Vendor Onboarding & Process Design</em></p>
-  <p>
-    Onboarding wholesalers and retailers to the digital marketplace was slow and inefficient. The merchandising team relied on manual processes that took hours, and getting products online could take weeks due to limited development capacity.
-    <span class="highlight">Logicbroker</span> was selected as the integration solution to connect with FlexShopper’s <span class="highlight">custom applications</span>, marking the company’s largest integration project at the time.
-  </p>
-  <ul>
-    <li><strong>My Role:</strong> <span class="highlight">Elicited requirements</span> from operations, accounting, and marketing teams; facilitated cross-departmental workshops; and proposed solutions for gaps that Logicbroker could not address.</li>
-    <li><strong>Challenges:</strong> Created detailed <span class="highlight">process documentation</span> and an architectural diagram to demonstrate how Logicbroker would integrate. Designed <span class="highlight">custom integrations</span> for major retailers unable to use standard onboarding flows.</li>
-    <li><strong>Results/Impact:</strong> <span class="highlight">Reduced onboarding time</span> from several weeks to 2 weeks (contract signed to products live). Standardized invoices, enabling NetSuite to automate wholesaler and retailer payments. Streamlined product data enrichment and minimized merchandising tasks.</li>
-    <li><strong>Reflection:</strong> Strengthened ability to manage conflicting stakeholder priorities while delivering solutions aligned with business goals. Enhanced <span class="highlight">process modeling</span> and cross-team collaboration skills.</li>
-  </ul>
-</div>
-
-          <!-- Contact Me -->
-          <div class="text-center mt-4">
-            <a href="#contact" class="btn btn-primary contact-btn">Contact Me</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ================= Case Study 2 ================= -->
-      <div class="case-preview">
-        <h5>Designed and Implemented Custom Rebate App to Streamline Back-end Promotions</h5>
-        <p class="takeaway-gradient">
-  Reduced rebate setup time from 1 week to 1 day, enabling faster, error-free promotion launches.
-</p>
-        <button class="btn btn-outline-dark read-btn" data-target="case2">Read</button>
-
-        <div id="case2" class="case-details">
-          <!-- Hide button -->
-          <div class="text-center mb-3">
-            <button class="btn btn-outline-dark hide-btn">Hide Case Study</button>
-          </div>
-
-          <!-- 3 Boxes + Arrows -->
-          <div class="case-flow">
-            <div class="flow-item"><div class="case-card"><h6>The Business Challenge</h6><p>Onboarding vendors to the marketplace took 6 weeks and invoicing was manual. Adding new vendors was not scalable.</p></div></div>
-            <div class="flow-arrow"></div>
-            <div class="flow-item"><div class="case-card"><h6>The Solution</h6><p>I integrated API-based software (Logicbroker) with FlexShoppers custom applications, standardizing operations, merchandising, and accounting processes (order processing, invoicing, product data management).</p></div></div>
-            <div class="flow-arrow"></div>
-            <div class="flow-item"><div class="case-card"><h6>The Impact</h6><p>Cut vendor onboarding time by 50%, accelerated contract signings and marketplace growth.</p></div></div>
-          </div>
-
-     <!-- Enhanced Case Study 2 -->
-<div class="full-view mt-4">
-  <h5><span class="highlight">Rebate Management App to Streamline Promotions</span></h5>
-  <p><em>BA · Product Design · Workshops & Requirements</em></p>
-  <p>
-    <span class="highlight">Rebate setup</span> was slow and error-prone, requiring manual validation across multiple teams. 
-    The process delayed <span class="highlight">vendor promotion launches</span> and introduced risks of misconfiguration.
-  </p>
-  <ul>
-    <li><strong>My Role:</strong> 
-      Led <span class="highlight">business analysis efforts</span> to design a custom rebate management application with a 
-      <span class="highlight">user interface</span> for the merchandising team. 
-      Facilitated <span class="highlight">cross-functional workshops</span> with developers, designers, and merchandising stakeholders 
-      to define use cases and required functionality. 
-      Delivered <span class="highlight">user stories</span> covering all possible UI actions and mapped example rebate criteria for both 
-      the front-end interface and back-end logic.
-    </li>
-    <li><strong>Challenges:</strong> Needed to support <span class="highlight">complex rebate criteria setup</span> (UI rules, validation, change control). 
-      Ensured <span class="highlight">SKU validation</span> and <span class="highlight">error logging</span> met developer requirements. 
-      Balanced merchandising UI needs with system functionality beyond rebate generation.
-    </li>
-    <li><strong>Results/Impact:</strong> 
-      <span class="highlight">Reduced rebate setup time</span> for merchandising team from <span class="highlight">1 week to 1 day</span>; 
-      accelerated rebate program scaling allowing for <span class="highlight">more rebate programs</span>.
-    </li>
-    <li><strong>Reflection:</strong> Strengthened ability to balance <span class="highlight">stakeholder usability requirements</span> 
-      with <span class="highlight">technical system constraints</span>, ensuring that both business and development needs were met.
-    </li>
-  </ul>
-</div>
-
-
-          <!-- Contact Me -->
-          <div class="text-center mt-4">
-            <a href="#contact" class="btn btn-primary contact-btn">Contact Me</a>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- ================= Case Study 3 ================= -->
-      <div class="case-preview">
-        <h5>New Revenue Channel via Catalog-as-a-Service</h5>
-        <p class="takeaway-gradient">
-  Opened a new recurring revenue channel by automating partner catalog syndication with revenue-share invoicing.
-</p>
-        <button class="btn btn-outline-dark read-btn" data-target="case3">Read</button>
-
-        <div id="case3" class="case-details">
-          <div class="text-center mb-3">
-            <button class="btn btn-outline-dark hide-btn">Hide Case Study</button>
-          </div>
-
-          <div class="case-flow">
-            <div class="flow-item"><div class="case-card"><h6>The Challenge</h6><p>FlexShopper needed new recurring revenue streams while ensuring accurate accounting and vendor policies.</p></div></div>
-            <div class="flow-arrow"></div>
-            <div class="flow-item"><div class="case-card"><h6>The Solution</h6><p>Enabled catalog syndication to merchant partner sites with a new CaaS model and lender data integrations.</p></div></div>
-            <div class="flow-arrow"></div>
-            <div class="flow-item"><div class="case-card"><h6>The Impact</h6><p>Opened a new recurring revenue channel through automated product catalog syndication with revenue share.</p></div></div>
-          </div>
-
-         <!-- Enhanced Case Study 3 -->
-<div class="full-view mt-4">
-  <h5><span class="highlight">New Revenue Channel via Catalog-as-a-Service (CaaS)</span></h5>
-  <p><em>BA/PM · Integration · Accounting & Partner Systems</em></p>
-  <p>
-    FlexShopper needed <span class="highlight">new recurring revenue streams</span> while ensuring accurate accounting and compliance with vendor policies. 
-    The company also required a way to syndicate its product catalog to merchant partner sites under a <span class="highlight">revenue-share model</span>.
-  </p>
-  <ul>
-    <li><strong>My Role:</strong> Led both <span class="highlight">business analysis</span> and project management efforts to enable catalog syndication. 
-      Gathered and defined requirements by leveraging expertise in accounting workflows and custom CaaS applications. 
-      Collaborated with development and accounting teams to design a process model and build a <span class="highlight">back-end automated invoicing system</span> 
-      that captured revenue from third-party merchant sites.
-    </li>
-    <li><strong>Challenges:</strong> Designed <span class="highlight">revenue share processes</span> to handle all return scenarios by vendor policy, payment method, and profitability tied to lease origination date. 
-      Ensured the system could scale across partners while maintaining accounting accuracy.
-    </li>
-    <li><strong>Results/Impact:</strong> Opened a <span class="highlight">new recurring revenue channel</span> by enabling automated product catalog syndication to partner merchant sites under a revenue-share model. 
-      Established <span class="highlight">automated invoicing flows</span> tied directly to partner transactions.
-    </li>
-    <li><strong>Reflection:</strong> Strengthened ability to design solutions at the intersection of business goals, accounting integrity, and partner integrations. 
-      Enhanced skills in mapping complex financial workflows into <span class="highlight">scalable, system-driven processes</span>.
-    </li>
-  </ul>
-</div>
-
-
-          <div class="text-center mt-4">
-            <a href="#contact" class="btn btn-primary contact-btn">Contact Me</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-<!-- ===== Experience ===== -->
-<section id="experience" class="py-5 bg-experience">
-  <div class="container">
-    <h2 class="section-title text-center">Experience</h2>
-    <p class="lead text-center">See my professional journey and accomplishments.</p>
-    <div class="text-center">
-      <a href="experience.html" class="btn btn-primary mt-3">View Experience</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===== Recommendations (Option 1) ===== -->
-<section id="recommendations" class="py-5 bg-light">
-  <div class="container">
-    <h2 class="section-title text-center">Recommendations</h2>
-    <p class="lead text-center">What colleagues and leaders have said about working with me.</p>
-    <div class="text-center">
-      <button id="toggleRecommendations" class="btn btn-primary mt-3">View Recommendations</button>
-    </div>
-
-    <div id="recommendationsList" class="recommendations-list mt-4 text-start">
-      <!-- Navin Anand -->
-      <div class="recommendation-card">
-        <h5>Navin Anand</h5>
-        <p class="meta"><em>Chief Technology Officer (worked with Phillip on the same team) · FlexShopper Inc. · August 9, 2025</em></p>
-        <p>
-          Phil was part of our PMO team, where he consistently demonstrated adaptability, and strategic thinking.
-          Starting within the Development PMO, Phil quickly pivoted to the Business PMO without missing a beat—showing his
-          ability to bridge technical and business perspectives seamlessly.
-        </p>
-        <p>
-          Phil effectively managed a diverse set of stakeholders, including external partners, internal business SMEs,
-          and development teams. He excelled at facilitating discussions with all key parties to prioritize initiatives,
-          ensuring that our backlog was always aligned with ROI-driven decision-making. His command of Jira, Confluence,
-          Asana, and other PM tools made him a highly efficient and well-organized PM/BA/PO.
-        </p>
-        <p>
-          <strong>From day one, Phil took on large-scale programs with confidence and delivered results—Logicbroker being a standout
-          example.</strong> His ability to coordinate complex projects, align cross-functional teams, and keep everyone focused on shared
-          goals made him an indispensable part of our success.
-        </p>
-        <p>I would recommend Phil for any program or project management role—his combination of adaptability, and results-oriented leadership is truly top-tier.</p>
-        <p class="linkedin-link"><a href="https://www.linkedin.com/in/navin-anand/" target="_blank">View LinkedIn</a></p>
-      </div>
-
-      <!-- Joseph Zannucci -->
-      <div class="recommendation-card">
-        <h5>Joseph Zannucci</h5>
-        <p class="meta"><em>Project Manager IT/DEV & Scrum Master (managed Phillip directly) · FlexShopper Inc. · August 14, 2025</em></p>
-        <p>
-          I'm happy to recommend Phill, who reported directly to me at Flexshopper. I worked with him on several projects,
-          and he was consistently reliable, organized, and eager to grow.
-        </p>
-        <p>
-          <strong>He played a key role in managing off-cycle requests</strong> from our Merchandising team and was a huge help in supporting
-          payment process integrations. No matter the task, he approached it with a positive attitude and strong attention
-          to detail.
-        </p>
-        <p>
-          Phill was also a great team player—easy to work with and always willing to lend a hand.
-          I’m confident he’ll bring the same energy and dedication to any role he takes on.
-        </p>
-        <p class="linkedin-link"><a href="https://www.linkedin.com/in/joseph-zannucci-14726076/" target="_blank">View LinkedIn</a></p>
-      </div>
-
-      <!-- Moe Sheikha -->
-      <div class="recommendation-card">
-        <h5>Moe Sheikha</h5>
-        <p class="meta"><em>Software Development Manager (worked with Phillip but on different teams) · FlexShopper Inc. · August 19, 2025</em></p>
-        <p>
-          I had the pleasure of working with Phil at FlexShopper, where he consistently impressed me with his thoroughness and ability
-          to keep projects on track. He has a <strong>great eye for detail</strong>, asks thoughtful questions, and ensures that nothing slips through
-          the cracks.
-        </p>
-        <p>
-          Beyond his strong work ethic, Phil is approachable and easy to work with, which makes collaboration smooth and effective.
-          I’d gladly work with him again on any project.
-        </p>
-       <p class="linkedin-link"><a href="https://www.linkedin.com/in/mohanads/" target="_blank">View LinkedIn</a></p>
-      </div>
-
-      <!-- Dennis Owcarz -->
-      <div class="recommendation-card">
-        <h5>Dennis Owcarz</h5>
-        <p class="meta"><em>Chief Merchandising Officer (managed Phillip directly) · FlexShopper Inc. · August 8, 2025</em></p>
-        <p>
-          Phillip reported to me for half a year at FlexShopper. The highest compliment I can give him is that I would
-          hire him again in a second if I had the opportunity! He quickly developed into a true asset on my team and
-          could always be counted on to get the job done right.
-        </p>
-        <p>
-          He consistently led by example—managing tasks, collaborating cross-functionally, keeping close attention to
-          detail, and meeting deadlines with ease. His work ethic and dedication made a lasting impact.
-        </p>
-        <p>
-          Beyond his skills, Phillip has an <strong>outstanding personality</strong>. His positive energy and
-          great attitude are contagious, drawing people toward him and creating a motivating team environment.
-        </p>
-        <p class="linkedin-link"><a href="https://www.linkedin.com/in/dennis-owcarz-7500a27/" target="_blank">View LinkedIn</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===== About Me ===== -->
-<section id="about" class="py-5">
-  <div class="container">
-    <h2 class="section-title text-center">About Me</h2>
-    <div class="text-start">
-      <p class="mt-3">
-        I’m a Business Systems Analyst who thrives at the intersection of people, process, and technology. Over the years, I’ve led large-scale system integrations, streamlined vendor onboarding, and built tools that turned weeks of manual work into days or even hours. Whether I’m mapping complex workflows in NetSuite and Logicbroker or designing a rebate app that makes back-end promotions painless, I bring structure to ambiguity and turn business needs into technical results.
-      </p>
-      <p class="mt-3">
-        Outside of work, I’m equally passionate about creative problem-solving. From producing music and writing fictional stories to developing a domain-specific AI framework project that explores how applied AI can power real-world storytelling, I enjoy pushing boundaries, blending technical rigor with creativity, and helping teams deliver smarter together.
-      </p>
-
-      <!-- Right-aligned button -->
-      <div class="text-end mt-3">
-        <a href="experience.html#career-goals" class="btn career-goals-btn">See My Career Goals</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-<!-- ===== Contact ===== -->
-<section id="contact" class="py-5 bg-light">
-  <div class="container text-center">
-    <h2 class="section-title">Get In Touch</h2>
-    <p>
-      <a href="https://www.linkedin.com/in/phillipdasilvamarquis" 
-         target="_blank" 
-         rel="noopener noreferrer" 
-         class="linkedin-gradient">
-        <i class="fab fa-linkedin"></i> Connect on LinkedIn
-      </a>
-    </p>
-    <form
-      action="https://formspree.io/f/mvgqyoby"
-      method="POST"
-      class="mt-3"
-      id="contactForm"
-    >
-      <input 
-        type="text" 
-        name="name" 
-        class="form-control mb-2" 
-        placeholder="Your Name" 
-        required
-      >
-      <input 
-        type="email" 
-        name="email" 
-        class="form-control mb-2" 
-        placeholder="Your Email" 
-        required
-      >
-      <textarea 
-        name="message" 
-        class="form-control mb-2" 
-        rows="4" 
-        placeholder="Message" 
-        required
-      ></textarea>
-      <button type="submit" class="btn btn-primary">Send Message</button>
-    </form>
-  </div>
-</section>
-
-
-
-<!-- ===== Footer ===== -->
-<footer class="py-3 bg-dark text-light text-center">
-  <p>© 2025 Phillip Da Silva-Marquis · Business Systems Analyst</p>
-  <p>
-    <a href="https://www.linkedin.com/in/phillip-marquis-7661a8107/" 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       class="linkedin-gradient">
-      <i class="fab fa-linkedin"></i> Connect on LinkedIn
-    </a>
-  </p>
-</footer>
-
-<!-- ===== Scripts ===== -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="js/main.js"></script>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Phillip Da Silva-Marquis · Senior Business Analyst</title>
+<meta name="description" content="I work across business, process, systems, data and product. I have worked each of those from the inside.">
+
+<meta property="og:title" content="Phillip Da Silva-Marquis · Senior Business Analyst">
+<meta property="og:description" content="I work across business, process, systems, data and product. I have worked each of those from the inside.">
+<meta property="og:image" content="https://marquisphill.github.io/Professional-Portfolio2/images/og-d01.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://marquisphill.github.io/Professional-Portfolio2/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Phillip Da Silva-Marquis · Senior Business Analyst">
+<meta name="twitter:description" content="I work across business, process, systems, data and product. I have worked each of those from the inside.">
+<meta name="twitter:image" content="https://marquisphill.github.io/Professional-Portfolio2/images/og-d01.jpg">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0705'/%3E%3Crect x='6' y='5' width='4' height='22' fill='%23FF6A13'/%3E%3Crect x='13' y='5' width='13' height='4' fill='%23F5F0EA'/%3E%3Crect x='13' y='14' width='10' height='4' fill='%23F5F0EA'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GF8YXENEH"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    fetch("header.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("site-header").innerHTML = html;
-      });
-  });
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GF8YXENEH');
 </script>
 
+<style>
+:root{
+  --bg:#0A0705; --bg-raised:#14100C; --bg-inset:#060403;
+  --orange:#FF6A13; --orange-deep:#D4520A; --orange-dim:#7A3208;
+  --yellow:#FFC233;
+  --ink:#F5F0EA; --ink-muted:#A39A92; --ink-faint:#5C544D;
+  --line:rgba(245,240,234,.10); --line-strong:rgba(245,240,234,.22);
 
+  --font-display:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --font-body:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --font-mono:ui-monospace,'SF Mono',Menlo,monospace;
 
-<!-- Floating Contact Button (mobile only) -->
-<a href="#contact" class="floating-contact-btn d-lg-none" aria-label="Contact Me">
-  <i class="fas fa-envelope"></i>
-</a>
+  --t-mega:clamp(3.2rem,11vw,9rem);
+  --t-beat:clamp(2rem,6vw,4.5rem);
+  --t-lead:clamp(1.1rem,2.2vw,1.5rem);
+  --t-body:1rem; --t-meta:.8125rem; --t-micro:.6875rem;
 
-<!-- Resume Preview Accordion (Index) -->
-<div id="resumePreviewAccordionIndex" class="resume-preview-accordion">
-  <div class="resume-content">
-    <h2 class="mb-2">Phillip Da Silva-Marquis</h2>
-    <p class="lead mb-3 text-muted">Business Systems Analyst · Integration & Process Automation</p>
+  --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:64px; --s6:96px; --s7:160px;
+  --r-sm:4px; --r-md:10px; --r-lg:20px; --r-pill:999px;
 
-    <!-- Impact Section -->
-    <h4 class="preview-section">Key Impact</h4>
-    <ul class="mb-3">
-      <li><strong>50% faster</strong> vendor onboarding (6 → 2 weeks) at FlexShopper</li>
-      <li><strong>Rebate setup reduced</strong> from 1 week → 1 day</li>
-      <li><strong>Scaled 14K+ SKUs</strong> with PIM ownership at Pet Supermarket</li>
-    </ul>
+  --e-out:cubic-bezier(.22,1,.36,1);
+  --e-inout:cubic-bezier(.65,0,.35,1);
+  --d-fast:180ms; --d-mid:420ms; --d-slow:900ms;
 
-    <!-- Skills Section -->
-    <h4 class="preview-section">Core Skills</h4>
-    <p class="mb-3">
-      Integrations (Logicbroker, NetSuite, Syndigo), Agile delivery, Requirements (BRDs/FSDs), UAT, Workflow automation
-    </p>
+  --gutter:clamp(20px,5vw,64px);
+  --rail-x:28px;
+}
 
-    <!-- Certifications Section -->
-    <h4 class="preview-section">Certifications</h4>
-    <p class="mb-4">PSPO I (Udemy) · Preparing for PSM I (scrum.org)</p>
+*,*::before,*::after{box-sizing:border-box;}
+html{color-scheme:dark;-webkit-text-size-adjust:100%;}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font-body);font-size:var(--t-body);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3,h4{margin:0;font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;line-height:1.02;}
+p{margin:0;}
+ul{margin:0;padding:0;list-style:none;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+em,i{font-style:normal;}
 
-    <!-- Download Button -->
-    <a href="Phillip_Marquis_2025_Resume_.pdf" download class="btn btn-career w-100">
-      Download Full Resume
-    </a>
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px;}
 
-    <!-- Close Link -->
-    <p class="mt-3 text-center">
-      <a href="#" id="closeResumePreviewIndex" style="font-size:0.85rem; color:#999;">Close Preview</a>
-    </p>
-  </div>
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+.skip{position:absolute;left:var(--s2);top:-100px;z-index:200;background:var(--bg-raised);color:var(--ink);padding:10px 16px;border:1px solid var(--line-strong);border-radius:var(--r-sm);font-size:var(--t-meta);transition:top var(--d-fast) var(--e-inout);}
+.skip:focus{top:var(--s2);}
+
+.wrap{max-width:1100px;margin:0 auto;padding-inline:var(--gutter);}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums;}
+.micro{font-size:var(--t-micro);text-transform:uppercase;letter-spacing:.14em;}
+.lead{font-size:var(--t-lead);line-height:1.45;}
+.muted{color:var(--ink-muted);}
+.measure{max-width:62ch;}
+
+/* ---------- near-invisible button ---------- */
+.btn{
+  display:inline-block;font:inherit;font-size:var(--t-meta);color:var(--ink-muted);
+  background:none;border:0;border-bottom:1px solid var(--line);border-radius:0;
+  padding:4px 0;cursor:pointer;
+  transition:color var(--d-fast) var(--e-inout),border-color var(--d-fast) var(--e-inout),border-width var(--d-fast) var(--e-inout);
+}
+.btn:hover,.btn:focus-visible{color:var(--ink);border-bottom-width:2px;border-bottom-color:var(--orange);}
+.btn:active{border-bottom-color:var(--orange-deep);}
+@media (hover:none){ .btn{border-bottom-color:var(--line-strong);} }
+
+.btn-filled{
+  display:inline-block;font-family:var(--font-display);font-weight:700;font-size:var(--t-lead);
+  background:var(--orange);color:var(--bg);border:0;border-radius:var(--r-pill);
+  padding:14px 32px;cursor:pointer;line-height:1.2;
+  transition:background var(--d-fast) var(--e-inout);
+}
+.btn-filled:hover,.btn-filled:focus-visible{background:var(--orange-deep);}
+
+/* ---------- countdown rail ---------- */
+.rail{position:fixed;left:var(--rail-x);top:0;bottom:0;width:2px;z-index:60;display:none;}
+.rail.is-on{display:block;}
+.rail__track{position:absolute;inset:0;background:var(--orange-dim);opacity:.3;}
+.rail__fill{position:absolute;left:0;top:0;width:2px;height:0;background:var(--orange);}
+.rail__cap{position:absolute;left:-2px;top:auto;bottom:-3px;width:6px;height:6px;background:var(--yellow);}
+.rail__num{position:absolute;left:12px;top:auto;bottom:-9px;font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:var(--t-meta);color:var(--ink-muted);white-space:nowrap;}
+.rail__cap.is-done{animation:capflash var(--d-fast) var(--e-inout) 2;}
+@keyframes capflash{50%{transform:scale(2.4);}}
+
+/* ---------- wordmark ---------- */
+.wordmark{position:fixed;left:var(--gutter);top:var(--s3);z-index:60;font-size:var(--t-meta);color:var(--ink-muted);letter-spacing:.01em;opacity:0;pointer-events:none;transition:opacity var(--d-fast) var(--e-out);}
+.wordmark.is-on{opacity:1;pointer-events:auto;}
+/* Enhancement 01 item 6: a real control home, reusing the quiet-button language
+   from 7.2 and the tick-and-label wayfinding grammar from 7.3 / 8.8. */
+.wordmark a{
+  display:inline-flex;align-items:center;gap:6px;
+  min-height:44px;padding:4px 0;
+  border-bottom:1px solid transparent;color:var(--ink-muted);
+  transition:color var(--d-fast) var(--e-inout),border-color var(--d-fast) var(--e-inout),border-width var(--d-fast) var(--e-inout);
+}
+.wordmark__chev{font-size:12px;line-height:1;color:var(--orange-dim);transition:color var(--d-fast) var(--e-inout);}
+.wordmark a:hover,.wordmark a:focus-visible{color:var(--ink);border-bottom-width:2px;border-bottom-color:var(--orange);}
+.wordmark a:hover .wordmark__chev,.wordmark a:focus-visible .wordmark__chev{color:var(--orange);}
+
+/* ---------- SCREEN 0 ---------- */
+.choice{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:var(--s5) var(--s4);}
+.choice__mark{font-size:var(--t-meta);color:var(--ink-muted);margin-bottom:var(--s4);}
+.choice__id{font-size:clamp(1.9rem,4.6vw,3.4rem);max-width:26ch;margin-bottom:var(--s3);}
+.choice__prompt{font-size:var(--t-meta);color:var(--ink-muted);margin-bottom:var(--s3);}
+.bands{border-top:1px solid var(--line);}
+.band{
+  position:relative;display:grid;grid-template-columns:minmax(96px,150px) 1fr;
+  align-items:center;gap:var(--s3);
+  width:100%;min-height:96px;padding:var(--s2) 0;
+  border:0;border-bottom:1px solid var(--line);background:none;text-align:left;cursor:pointer;
+  font:inherit;color:inherit;overflow:hidden;
+}
+.band__wipe{position:absolute;inset:0;background:var(--orange);opacity:0;transform:scaleX(0);transform-origin:left;transition:transform var(--d-fast) var(--e-inout),opacity var(--d-fast) var(--e-inout);pointer-events:none;}
+.band:hover .band__wipe,.band:focus-visible .band__wipe{opacity:.08;transform:scaleX(1);}
+.band__dur{position:relative;font-family:var(--font-mono);font-variant-numeric:tabular-nums;color:var(--ink-faint);line-height:.9;transition:color var(--d-fast) var(--e-inout);}
+.band__dur b{display:block;font-weight:500;font-size:clamp(1.8rem,4.2vw,2.9rem);}
+.band:hover .band__dur,.band:focus-visible .band__dur{color:var(--orange);}
+.band__body{position:relative;}
+.band__name{display:block;font-family:var(--font-display);font-weight:700;font-size:var(--t-lead);letter-spacing:.02em;}
+.band__promise{display:block;font-size:var(--t-meta);color:var(--ink-muted);margin-top:4px;transition:color var(--d-fast) var(--e-inout);}
+.band:hover .band__promise,.band:focus-visible .band__promise{color:var(--ink);}
+
+/* ---------- threads & beats ---------- */
+.thread{padding-left:0;}
+.beat{min-height:82vh;display:flex;flex-direction:column;justify-content:center;padding-block:var(--s5);}
+.beat__eyebrow{font-size:var(--t-micro);text-transform:uppercase;letter-spacing:.14em;color:var(--ink-muted);margin-bottom:var(--s3);}
+/* Enhancement 01 item 4: marks the seam between back-to-back case studies.
+   In-column row, no full-bleed rule, no background band - the scoped exception
+   to the no-separators rule, not a reopening of it. */
+.case-eyebrow{
+  display:flex;align-items:center;gap:var(--s1);
+  font-size:var(--t-micro);text-transform:uppercase;letter-spacing:.14em;
+  color:var(--ink-muted);margin-bottom:var(--s3);
+}
+.case-eyebrow__tick{width:16px;height:2px;background:var(--orange-dim);flex:none;}
+.beat__line{font-size:var(--t-beat);max-width:20ch;}
+.beat__line--sm{font-size:clamp(1.5rem,3.6vw,2.4rem);max-width:28ch;}
+.beat__sub{font-size:var(--t-lead);color:var(--ink-muted);margin-top:var(--s3);max-width:52ch;}
+.beat__payload{margin-top:var(--s4);}
+.beat__hook{font-size:var(--t-lead);color:var(--ink-muted);margin-top:var(--s4);max-width:46ch;}
+
+/* peel: at rest the line sits dim; reveal resolves it */
+/* Enhancement 01 item 2: reveal is a pure function of scroll position (--rv),
+   so scrolling back up reverses it with no separate un-reveal logic. Stagger is
+   an offset inside each child's own window, not a timed delay. */
+.js .beat{--rv:1;}
+.js .beat__line{opacity:calc(.4 + .6*clamp(0,var(--rv),1));}
+.js .beat__eyebrow,.js .case-eyebrow{--p:clamp(0,var(--rv),1);opacity:var(--p);transform:translateY(calc(24px*(1 - var(--p))));}
+.js .beat__sub{--p:clamp(0,calc((var(--rv) - .10)/.90),1);opacity:var(--p);transform:translateY(calc(24px*(1 - var(--p))));}
+.js .beat__payload{--p:clamp(0,calc((var(--rv) - .20)/.80),1);opacity:var(--p);transform:translateY(calc(24px*(1 - var(--p))));}
+.js .beat__hook{--p:clamp(0,calc((var(--rv) - .30)/.70),1);opacity:var(--p);transform:translateY(calc(24px*(1 - var(--p))));}
+
+/* ---------- redaction ---------- */
+/* Enhancement 01 item 2: driven by the beat's own --rv, not a one-shot trigger. */
+.redact{position:relative;display:inline-block;color:var(--ink);}
+.js .redact{--rp:0;opacity:calc(.08 + .92*var(--rp));}
+.redact::after{
+  content:"";position:absolute;left:-2px;right:-2px;top:.08em;bottom:.12em;
+  background:var(--ink-faint);
+}
+.js .redact::after{
+  right:auto;width:calc((100% + 4px)*(1 - var(--rp)));
+  filter:blur(calc(6px*(1 - var(--rp))));
+}
+.js .redact.is-hot{color:var(--yellow);}
+
+/* ---------- stat cells ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s5) var(--s4);}
+/* §8.6 asks for --t-mega here; four-up at 1100px cannot fit "1,000+ → ~20"
+   at that size, so the figure is scaled to the largest size that holds the
+   unit on one line. Mono + tabular-nums + orange delta are per spec. */
+.stat__fig{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:clamp(1.35rem,2.3vw,2rem);line-height:1.1;color:var(--ink);white-space:nowrap;}
+.stat__fig .to{color:var(--orange);white-space:nowrap;}
+.stat__label{font-size:var(--t-meta);color:var(--ink-muted);margin-top:var(--s2);max-width:22ch;}
+
+/* ---------- employer list (A3) ---------- */
+.employers{display:flex;flex-wrap:wrap;gap:var(--s4) var(--s5);}
+.employer__name{font-family:var(--font-display);font-weight:700;font-size:clamp(1.2rem,2.6vw,1.75rem);}
+.employer__yrs{font-family:var(--font-mono);font-size:var(--t-meta);color:var(--ink-muted);margin-top:6px;}
+
+/* ---------- timeline (B6 / C9) ---------- */
+.roles{display:grid;gap:var(--s4);}
+.role__co{font-family:var(--font-display);font-weight:700;font-size:1.15rem;}
+.role__range{font-family:var(--font-mono);font-size:var(--t-meta);color:var(--ink-muted);margin-top:2px;}
+.role__items{margin-top:var(--s2);display:grid;gap:10px;}
+.role__item{font-size:var(--t-meta);color:var(--ink-muted);}
+.role__item b{color:var(--ink);font-weight:500;}
+
+/* ---------- dwell ---------- */
+.dwell{position:relative;border-bottom:1px solid var(--line);cursor:default;transition:border-color var(--d-fast) var(--e-inout);}
+.dwell.is-open{border-bottom-color:var(--orange);}
+.dwell__detail{display:none;margin-top:var(--s2);padding-left:var(--s2);border-left:1px solid var(--line);}
+.dwell.is-open .dwell__detail{display:block;animation:fade var(--d-fast) var(--e-out) both;}
+/* Enhancement 01 item 3: visible countdown while the dwell arms. */
+.dwell__arm{
+  display:flex;align-items:center;gap:var(--s2);margin-top:var(--s1);
+  opacity:0;transition:opacity var(--d-fast) var(--e-inout);pointer-events:none;
+}
+.dwell__arm.is-armed{opacity:1;}
+.dwell__prompt{font-size:var(--t-micro);text-transform:uppercase;letter-spacing:.14em;color:var(--ink-muted);}
+.dwell__bar{position:relative;width:64px;height:2px;background:var(--bg-inset);flex:none;}
+.dwell__fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--orange);}
+.dwell__arm.is-done .dwell__fill{background:var(--yellow);}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.dwell__detail li{font-size:var(--t-meta);color:var(--ink-muted);margin-bottom:8px;max-width:62ch;}
+.dwell__detail li b{color:var(--ink);font-weight:500;}
+
+/* ---------- quote ---------- */
+.quote{font-family:var(--font-display);font-weight:500;font-size:clamp(1.3rem,3vw,2.1rem);line-height:1.2;max-width:22ch;}
+.quote__attrib{font-size:var(--t-meta);color:var(--ink-muted);margin-top:var(--s3);}
+.refs{display:grid;gap:var(--s5);}
+.ref__q{font-family:var(--font-display);font-weight:500;font-size:clamp(1.1rem,2.2vw,1.45rem);line-height:1.25;max-width:32ch;}
+.ref__who{font-size:var(--t-meta);color:var(--ink-muted);margin-top:var(--s2);}
+.ref__body{margin-top:var(--s2);}
+.ref__body p{font-size:var(--t-meta);color:var(--ink-muted);max-width:62ch;margin-bottom:10px;}
+
+/* ---------- deep panel ---------- */
+.panel{border-top:1px solid var(--line);padding-top:var(--s3);}
+.panel__head{font-family:var(--font-display);font-weight:700;font-size:clamp(1.15rem,2.4vw,1.6rem);}
+.panel__one{font-size:var(--t-lead);color:var(--ink-muted);margin-top:var(--s2);max-width:52ch;}
+.panel__region{display:none;margin-top:var(--s3);}
+.panel__region.is-open{display:block;animation:fade var(--d-mid) var(--e-out) both;}
+.panel__region h4{font-family:var(--font-body);font-weight:500;font-size:var(--t-micro);text-transform:uppercase;letter-spacing:.14em;color:var(--orange);margin-top:var(--s3);margin-bottom:6px;}
+.panel__region p{font-size:var(--t-body);color:var(--ink-muted);max-width:62ch;}
+.panel__region p b,.panel__region p strong{color:var(--ink);font-weight:500;}
+.panel__trigger{margin-top:var(--s3);}
+
+/* ---------- capability grid ---------- */
+.caps{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4);}
+.cap__t{font-size:var(--t-micro);text-transform:uppercase;letter-spacing:.14em;color:var(--orange);margin-bottom:var(--s2);}
+.cap__l{font-size:var(--t-meta);color:var(--ink-muted);line-height:1.7;}
+
+/* ---------- side door ---------- */
+.door{display:inline-flex;align-items:center;gap:8px;margin-top:var(--s4);opacity:.35;background:none;border:0;padding:6px 0;cursor:pointer;font:inherit;transition:opacity var(--d-fast) var(--e-inout);}
+.door:hover,.door:focus-visible{opacity:1;}
+.door__tick{width:12px;height:2px;background:var(--orange);flex:none;}
+.door__label{font-size:var(--t-micro);text-transform:uppercase;letter-spacing:.14em;color:var(--orange);transition:transform var(--d-fast) var(--e-inout);}
+.door:hover .door__label,.door:focus-visible .door__label{transform:translateX(4px);}
+
+/* ---------- résumé ghost / peek ---------- */
+.ghost{position:fixed;right:var(--s3);bottom:var(--s3);z-index:70;}
+.ghost__btn{
+  display:block;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-pill);
+  padding:10px 20px;font:inherit;font-size:var(--t-meta);color:var(--ink-muted);cursor:pointer;
+  transition:color var(--d-fast) var(--e-inout),border-color var(--d-fast) var(--e-inout);
+}
+.ghost.is-open .ghost__btn,.ghost__btn:hover,.ghost__btn:focus-visible{color:var(--ink);border-color:var(--line-strong);}
+.ghost__peek{
+  position:absolute;right:0;bottom:calc(100% + 10px);width:320px;max-width:calc(100vw - 2*var(--s3));
+  background:var(--bg-raised);border:1px solid var(--line-strong);border-radius:var(--r-md);
+  padding:var(--s3);opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:opacity var(--d-fast) var(--e-out),transform var(--d-fast) var(--e-out),visibility var(--d-fast);
+}
+.ghost.is-open .ghost__peek{opacity:1;visibility:visible;transform:none;}
+.ghost__peek li{font-size:var(--t-meta);color:var(--ink-muted);margin-bottom:10px;}
+.ghost__peek li b{color:var(--ink);font-weight:500;}
+.ghost__links{display:flex;gap:var(--s3);margin-top:var(--s2);}
+.ghost.is-hidden{opacity:0;visibility:hidden;transition:opacity var(--d-slow) var(--e-out),visibility var(--d-slow);}
+
+/* ---------- role-fit résumé picker (Enhancement 02) ---------- */
+/* Screen 0 entry point - quiet, secondary, beneath the three bands. Not a
+   fourth path: no time budget, no rail entry, no hash. See design §8.10. */
+.resume-picker-entry{display:block;margin-top:var(--s4);}
+/* Entry point 2 - a disclosure inside the ghost's existing Peek state,
+   reusing the §8.7 deep-panel toggle/region pattern rather than a new one. */
+.resume-picker{margin-top:var(--s3);border-top:1px solid var(--line);padding-top:var(--s3);}
+.resume-picker__toggle{display:block;}
+.resume-picker__panel{display:none;margin-top:var(--s2);}
+.resume-picker__panel.is-open{display:block;animation:fade var(--d-mid) var(--e-out) both;}
+.resume-picker__chips{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s3);}
+.resume-picker__chip{border-bottom:1px solid var(--line);}
+/* The one visual departure allowed here per §8.10 - orange 2px, permanent
+   while selected, never filled (the filled-button exception stays Screen E's
+   download button only). */
+.resume-picker__chip.is-selected{border-bottom:2px solid var(--orange);}
+.resume-picker__confirm{font-size:var(--t-micro);color:var(--ink-muted);margin-top:var(--s2);min-height:1.4em;transition:color var(--d-fast) var(--e-inout);}
+.resume-picker__confirm.is-flash{color:var(--yellow);}
+/* What that variant leads with - the bank's own one-line descriptor per row,
+   same register as the ghost's own impact bullets just above. */
+.resume-picker__descriptor{font-size:var(--t-meta);color:var(--ink-muted);margin-top:4px;max-width:52ch;}
+.resume-picker__close{margin-top:var(--s2);}
+/* Widen to fit the chip row, desktop only - mobile keeps the ghost's existing
+   full-width strip behavior (§10) and must not fight that override. */
+@media (min-width:768px){
+  .ghost__peek.is-picker-open{width:360px;}
+}
+
+/* ---------- close ---------- */
+.close{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-block:var(--s6);}
+.close__line{font-size:var(--t-beat);max-width:18ch;margin-bottom:var(--s5);}
+.card{
+  border:1px solid var(--line-strong);border-radius:var(--r-lg);padding:var(--s4);
+  max-width:560px;background:var(--bg-raised);
+  transform:scale(.94);opacity:0;transition:transform var(--d-slow) var(--e-out),opacity var(--d-slow) var(--e-out);
+}
+.card.is-bloom{transform:none;opacity:1;}
+.card h3{font-size:1.3rem;margin-bottom:4px;}
+.card__sub{font-size:var(--t-meta);color:var(--ink-muted);margin-bottom:var(--s3);}
+.card h4{font-family:var(--font-body);font-weight:500;font-size:var(--t-micro);text-transform:uppercase;letter-spacing:.14em;color:var(--orange);margin-top:var(--s3);margin-bottom:8px;}
+.card li{font-size:var(--t-meta);color:var(--ink-muted);margin-bottom:8px;}
+.card li b{color:var(--ink);font-weight:500;}
+.card p{font-size:var(--t-meta);color:var(--ink-muted);}
+.card__cta{margin-top:var(--s4);}
+.card__alt{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s3);}
+
+.foot{padding:var(--s5) 0 var(--s6);border-top:1px solid var(--line);margin-top:var(--s6);}
+.foot p{font-size:var(--t-meta);color:var(--ink-faint);}
+.foot a{border-bottom:1px solid var(--line);}
+.foot a:hover{border-bottom-color:var(--orange);color:var(--ink);}
+
+/* ---------- JS visibility ---------- */
+.js .thread{display:none;}
+.js .thread.is-active{display:block;}
+.js .choice.is-gone{display:none;}
+.js .thread{padding-left:56px;}          /* rail gutter, ≥768px */
+@media (max-width:767px){ .js .thread{padding-left:0;} }
+/* Screen 0 is a single viewport with nothing else in it (§6) */
+.js #choice:not(.is-gone) ~ .foot{display:none;}
+
+/* ---------- responsive ---------- */
+@media (max-width:1023px){
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .caps{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:767px){
+  .rail{left:0;right:0;top:0;bottom:auto;width:auto;height:3px;}
+  .rail__track{inset:0;}
+  .rail__fill{height:3px;width:0;top:0;}
+  .rail__cap{left:auto;right:-1px;bottom:auto;top:0;width:3px;height:6px;}
+  .rail__num{left:auto;right:8px;top:8px;}
+  .wordmark{top:12px;}
+  .beat{min-height:76vh;}
+  .band{grid-template-columns:1fr;gap:var(--s1);min-height:120px;}
+  .band__dur b{font-size:2.1rem;}
+  .choice{padding-block:var(--s4) 56px;}
+  .choice__mark{margin-bottom:var(--s3);}
+  .choice__id{font-size:clamp(1.5rem,5.4vw,1.9rem);margin-bottom:var(--s2);}
+  .choice__prompt{margin-bottom:var(--s2);}
+  .caps{grid-template-columns:1fr;}
+  .ghost{right:0;left:0;bottom:0;}
+  .ghost__btn{width:100%;border-radius:0;border-left:0;border-right:0;border-bottom:0;background:var(--bg-raised);text-align:center;min-height:44px;}
+  .ghost__peek{right:var(--s2);left:var(--s2);width:auto;}
+}
+@media (max-width:399px){
+  .beat__line{font-size:1.75rem;}
+  .stats{grid-template-columns:1fr;}
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  /* reduced motion means no scrubbing at all, not slower scrubbing */
+  .js .beat__line,.js .beat__eyebrow,.js .case-eyebrow,.js .beat__sub,.js .beat__payload,.js .beat__hook{opacity:1;transform:none;}
+  .redact::after,.js .redact::after{display:none;}
+  .js .redact{opacity:1;}
+  .redact,.js .redact.is-hot{color:var(--ink);}
+  .dwell__arm{display:none !important;}
+  .card{transform:none;transition:opacity 120ms linear;}
+  .band__wipe,.door__label,.ghost__peek{transition-duration:120ms;}
+  .rail__cap.is-done{animation:none;}
+  *{scroll-behavior:auto !important;}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.className+=' js';</script>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="rail" id="rail" aria-hidden="true">
+  <div class="rail__track"></div>
+  <div class="rail__fill" id="railFill"><div class="rail__cap" id="railCap"></div><div class="rail__num" id="railNum">0:00</div></div>
 </div>
 
+<div class="wordmark" id="wordmark"><a href="#" data-escape aria-label="Return to path choice"><span class="wordmark__chev" aria-hidden="true">‹</span>Phillip Da Silva-Marquis</a></div>
+<p class="sr-only" aria-live="polite" id="announce"></p>
 
+<!-- ============ SCREEN 0 — THE CHOICE ============ -->
+<nav class="choice wrap" id="choice" aria-label="Choose how much time you have">
+  <p class="choice__mark">Phillip Da Silva-Marquis</p>
+  <h1 class="choice__id">Senior Business Analyst. Retail floor to enterprise modernization, ten years.</h1>
+  <p class="choice__prompt">How long do you have?</p>
+
+  <div class="bands">
+    <button class="band" data-path="A" type="button">
+      <span class="band__wipe"></span>
+      <span class="band__dur"><b data-dur>0:35</b></span>
+      <span class="band__body">
+        <span class="band__name">THE BRIEF</span>
+        <span class="band__promise">Enough to pitch me in a meeting.</span>
+      </span>
+    </button>
+    <button class="band" data-path="B" type="button">
+      <span class="band__wipe"></span>
+      <span class="band__dur"><b data-dur>1:40</b></span>
+      <span class="band__body">
+        <span class="band__name">THE CASE</span>
+        <span class="band__promise">The numbers, and where they came from.</span>
+      </span>
+    </button>
+    <button class="band" data-path="C" type="button">
+      <span class="band__wipe"></span>
+      <span class="band__dur"><b data-dur>11:00</b></span>
+      <span class="band__body">
+        <span class="band__name">THE OPERATOR</span>
+        <span class="band__promise">How I think. The whole record.</span>
+      </span>
+    </button>
+  </div>
+
+  <button class="btn resume-picker-entry" type="button" data-resume-picker-link>Hiring for something specific? Get the résumé built for it →</button>
+</nav>
+
+<main id="main">
+
+<!-- ================= PATH A — 60 SECONDS ================= -->
+<div class="thread" data-path="A" data-budget="60">
+
+  <section class="beat wrap" data-beat="1">
+    <h2 class="beat__line">Ten years between the business and the build.</h2>
+    <p class="beat__sub">Retail technology, ecommerce, fintech. Requirements, integrations, product.</p>
+  </section>
+
+  <section class="beat wrap" data-beat="2" data-hook="redact">
+    <h2 class="beat__line">Last year I cut <span class="redact" data-redact>1,000+</span> legacy reports down to about 20.</h2>
+  </section>
+
+  <section class="beat wrap" data-beat="3" data-hook="clause">
+    <div class="beat__payload">
+      <div class="employers">
+        <div><div class="employer__name">Pet Supermarket</div><div class="employer__yrs">2013 – 2023</div></div>
+        <div><div class="employer__name">FlexShopper</div><div class="employer__yrs">2023 – 2025</div></div>
+        <div><div class="employer__name">CITY Furniture</div><div class="employer__yrs">2025 – 2026</div></div>
+      </div>
+      <button class="door" type="button" data-door="B" data-door-beat="2">
+        <span class="door__tick"></span><span class="door__label">where the 20 came from →</span>
+      </button>
+    </div>
+    <p class="beat__hook">Ten years. One thing runs through all of it-</p>
+  </section>
+
+  <section class="beat wrap" data-beat="4">
+    <h2 class="beat__line">I use AI on analysis work, and I check what it leaves out.</h2>
+  </section>
+
+  <section class="close wrap" data-beat="5" data-close>
+    <h2 class="close__line">That took 35 seconds. Here is the résumé.</h2>
+    <div class="card" data-card></div>
+  </section>
+</div>
+
+<!-- ================= PATH B — 3 MINUTES ================= -->
+<div class="thread" data-path="B" data-budget="180">
+
+  <section class="beat wrap" data-beat="1" data-hook="count">
+    <p class="beat__eyebrow">Four numbers worth repeating.</p>
+    <div class="beat__payload">
+      <div class="stats">
+        <div class="stat">
+          <div class="stat__fig">1,000+ <span class="to">→ <span data-count data-from="1000" data-to="20" data-prefix="~">~20</span></span></div>
+          <div class="stat__label">Legacy reports cut to audit-ready data models</div>
+        </div>
+        <div class="stat">
+          <div class="stat__fig">6 wks <span class="to">→ 2 wks</span></div>
+          <div class="stat__label">Vendor onboarding, contract to live products</div>
+        </div>
+        <div class="stat">
+          <div class="stat__fig">1 wk <span class="to">→ 1 day</span></div>
+          <div class="stat__label">Rebate setup for the merchandising team</div>
+        </div>
+        <div class="stat">
+          <div class="stat__fig">25</div>
+          <div class="stat__label">Workstreams on an enterprise OMS modernization</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="beat wrap" data-beat="2" data-hook="clause" data-case="PROCESS">
+    <h2 class="beat__line">Over 1,000 legacy reports. No record of which ones anyone still used.</h2>
+    <p class="beat__hook">I met with every owner and got it to 200. The last stretch does not scale by hand-</p>
+  </section>
+
+  <section class="beat wrap" data-beat="3">
+    <h2 class="beat__line">so I set the rules and let AI run the pass.</h2>
+    <div class="beat__payload">
+      <p class="lead muted">Every merge scored. Final call stayed with me.</p>
+      <button class="door" type="button" data-door="C" data-door-beat="5">
+        <span class="door__tick"></span><span class="door__label">the full method →</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="beat wrap" data-beat="4" data-case="PLATFORM">
+    <h2 class="beat__line">FlexShopper's order system was homegrown and out of road.</h2>
+    <p class="beat__sub">I owned the thing that replaced it. CRM, ERP, storefront, catalog, every vendor.</p>
+  </section>
+
+  <section class="beat wrap" data-beat="5" data-hook="clause" data-case="TOOLING">
+    <h2 class="beat__line beat__line--sm">Then I built a tool that answered requirements questions for the whole team.</h2>
+    <div class="beat__payload">
+      <button class="door" type="button" data-door="C" data-door-beat="7">
+        <span class="door__tick"></span><span class="door__label">how it worked →</span>
+      </button>
+    </div>
+    <p class="beat__hook">An answer a BA cannot source is not worth much. So-</p>
+  </section>
+
+  <section class="beat wrap" data-beat="6">
+    <h2 class="beat__line beat__line--sm">every answer came back with the source line attached.</h2>
+    <div class="beat__payload">
+      <p class="lead muted" style="margin-bottom:var(--s4)">Ten years of learning to build things like that:</p>
+      <div class="roles">
+        <div>
+          <div class="role__co">CITY Furniture</div>
+          <div class="role__range">Oct 2025 – Jul 2026 · Tamarac, FL</div>
+          <div class="role__items"><div class="role__item"><b>Sr. Business Analyst, Enterprise OMS Modernization</b></div></div>
+        </div>
+        <div>
+          <div class="role__co">FlexShopper Inc.</div>
+          <div class="role__range">Nov 2023 – Aug 2025 · Boca Raton, FL</div>
+          <div class="role__items">
+            <div class="role__item"><b>Project Manager, Merchandising</b> · Mar 2025 – Aug 2025</div>
+            <div class="role__item"><b>Business Systems Analyst / PMO Analyst</b> · Nov 2023 – Mar 2025</div>
+          </div>
+        </div>
+        <div>
+          <div class="role__co">Pet Supermarket Inc.</div>
+          <div class="role__range">Jul 2013 – Jul 2023 · Sunrise, FL</div>
+          <div class="role__items">
+            <div class="role__item"><b>Junior Business Analyst</b> · Jan 2021 – Jul 2023</div>
+            <div class="role__item"><b>Web Catalog Specialist</b> · Aug 2018 – Jan 2021</div>
+            <div class="role__item"><b>Digital Marketing Specialist</b> · Oct 2015 – Aug 2018</div>
+            <div class="role__item"><b>Ecommerce Specialist</b> · Jul 2015 – Aug 2015</div>
+            <div class="role__item"><b>Sales Associate</b> · Jul 2013 – Apr 2015</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="beat wrap" data-beat="7">
+    <blockquote class="quote">"The highest compliment I can give him is that I would hire him again in a second if I had the opportunity."</blockquote>
+    <p class="quote__attrib">Dennis Owcarz · Chief Merchandising Officer, FlexShopper</p>
+  </section>
+
+  <section class="close wrap" data-beat="8" data-close>
+    <h2 class="close__line">That took 1 minute 40 seconds. You have the numbers and where they came from.</h2>
+    <div class="card" data-card></div>
+  </section>
+</div>
+
+<!-- ================= PATH C — 5 MINUTES ================= -->
+<div class="thread" data-path="C" data-budget="300">
+
+  <section class="beat wrap" data-beat="1">
+    <p class="beat__eyebrow">Four things I do.</p>
+    <h2 class="beat__line beat__line--sm">Decide what to kill</h2>
+    <p class="beat__sub measure">Most analysis work goes into deciding what to build. Deciding what to stop doing is harder and usually worth more. Getting 1,000 reports down to 20 took a retirement conversation with every owner, one at a time.</p>
+  </section>
+
+  <section class="beat wrap" data-beat="2" data-hook="clause">
+    <h2 class="beat__line beat__line--sm">Set the rules before AI runs</h2>
+    <p class="beat__sub measure">AI gets through an analysis pass in an afternoon that used to take months. What makes the output usable is deciding up front what it has to show you. On the report work I told it what to merge, told it to show its work on every merge, and kept the final call on what actually merged. The artifacts that came back, a coverage manifest and an evidence trail, I kept, adjusted, and used to check the results before the business saw anything.</p>
+    <p class="beat__hook">Which comes out of something else I do-</p>
+  </section>
+
+  <section class="beat wrap" data-beat="3">
+    <h2 class="beat__line beat__line--sm">I would rather build the tool than write the document again.</h2>
+    <div class="beat__payload">
+      <p class="lead" style="margin-bottom:var(--s2)">Build the tool, not just the document</p>
+      <p class="measure muted">A BRD answers a question once. A searchable version of it answers the same question for everyone. Same reason behind the dashboards, the onboarding SOP, the vendor portal FAQ, and the PIM intake form. If something is taking too long by hand, I would rather leave behind something the next person can use.</p>
+    </div>
+  </section>
+
+  <section class="beat wrap" data-beat="4" data-hook="clause">
+    <h2 class="beat__line beat__line--sm">Find the gap nobody assigned</h2>
+    <p class="beat__sub measure">A prioritization method the team did not have. A requirements structure that was going to break once it hit development. A clause missing from a contract before anyone signed. A lot of what I have left behind started as something nobody asked for.</p>
+    <p class="beat__hook">Four principles is easy to say. Here is all four on one project-</p>
+  </section>
+
+  <section class="beat wrap" data-beat="5" data-case="PROCESS">
+    <h2 class="beat__line beat__line--sm">over 1,000 reports, and no record of why most of them existed.</h2>
+    <div class="beat__payload">
+      <div class="panel">
+        <div class="panel__head">Over 1,000 legacy reports cut to about 20 data models</div>
+        <p class="panel__one">Cut a decade of accumulated reporting down to the models worth rebuilding, with the work behind each decision checkable.</p>
+        <button class="btn panel__trigger" type="button" data-panel aria-expanded="false" aria-controls="p-reports">Read the full case</button>
+        <div class="panel__region" id="p-reports">
+          <h4>Context</h4>
+          <p>CITY Furniture was retiring a legacy <b>IBM i/AS400</b> system and moving to IBM Sterling OMS. Everything running off the old system had to be dispositioned before the new one could be scoped. That included over <b>1,000 reports</b> built up over years, most of them undocumented.</p>
+          <h4>What I did</h4>
+          <p>Met with every report owner to start triage, which cut the list to about 500. Ran workshops where each owner marked their reports <b>keep or retire</b> with a purpose, a cadence and an owner attached. That got it to about 200. From there I set up an AI pass over the remaining reports and gave it the rules it had to work inside: group the ones that belong together, score every merge, show the work, and leave the final decision to me. I reviewed the output and landed on about 20 data models.</p>
+          <h4>Checking the work</h4>
+          <p>The output came back with a <b>coverage manifest</b> showing which retained reports had a description, a sample and parsed columns, plus an <b>evidence trail</b> with each report's stated purpose, parsed columns and original header. I kept both, adjusted them to what the project needed, and used them to check the results. Anything thin showed up as a gap instead of quietly dropping out.</p>
+          <h4>Results</h4>
+          <p>About 200 stakeholder-vetted reports came down to about <b>20 audit-ready data models</b>. I also mapped those reports back to their source systems and worked with the dev teams to establish which sources were migrating, which were staying, and what was changing, so the data team had current-state and future-state sourcing before the build started. Tracked the whole effort on a dashboard and used AI to generate the weekly steering report off that data instead of building it by hand.</p>
+          <h4>Reflection</h4>
+          <p>The data team got a decided starting point instead of a pile, and every decision behind it was checkable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="beat wrap" data-beat="6" data-case="PLATFORM">
+    <h2 class="beat__line beat__line--sm">The one before it was bigger, and I owned all of it.</h2>
+    <div class="beat__payload">
+      <div class="panel">
+        <div class="panel__head">Replacing the order and inventory system, end to end</div>
+        <p class="panel__one">Owned requirements and delivery for the platform that replaced FlexShopper's legacy order system, its inventory management, and eventually its catalog ETL.</p>
+        <button class="btn panel__trigger" type="button" data-panel aria-expanded="false" aria-controls="p-lb">Read the full case</button>
+        <div class="panel__region" id="p-lb">
+          <h4>Context</h4>
+          <p>The largest integration project the company had run. Logicbroker did not sit alongside the legacy order and inventory system, it <b>replaced it outright</b>, and later absorbed the catalog ETL as product enrichment moved in.</p>
+          <h4>What I did</h4>
+          <p>Drove requirements and coordinated the build across engineers and vendors. Not spec writing handed off to someone else. Started with <b>1:1 stakeholder interviews</b> to understand each team's process, then brought them together in group sessions to reconcile the workflows. Wrote the BRDs and hundreds of Jira stories with acceptance criteria, led every Agile ceremony on the project, and was business-side owner of the Logicbroker to NetSuite invoice integration as <b>sole liaison</b> to the third-party NetSuite developer.</p>
+          <h4>Challenges</h4>
+          <p>Ran a departmental <b>gap analysis</b> against the legacy system. Could Customer Service still modify orders, could Accounting still reconcile invoices. Accounting's check found a real hole: Logicbroker had no way to bake per-vendor allowances into invoice reconciliation. Worked with Logicbroker to design a custom feature for it, a table holding each vendor's allowance terms, referenced automatically at invoice generation. Separately, when hundreds of API errors hit in one day, I traced the cause to an ambiguous error message on the vendor side, got it rewritten to be actionable, and built a <b>self-service FAQ</b> into the vendor portal so it would not recur at scale.</p>
+          <h4>Results</h4>
+          <p>Onboarding cut from six weeks to two, contract to live products. <b>35+ vendors</b> onboarded on the redesigned workflow. Standardized invoices let NetSuite automate wholesaler and retailer payments. Documented the end-to-end onboarding SOP and drove adoption through change management: current-state workshop, refinement, playback with live edits, then a formal announcement to leadership and the team. Presented status to the <b>CEO monthly</b> and built an executive dashboard showing milestones and blockers.</p>
+          <h4>Reflection</h4>
+          <p>The vendor relationship mattered as much as the build. Leadership wanted a flat two week onboarding promise and the real range was two weeks to three months depending on each vendor's integration capability. Being straight about that in both directions got us free development work from Logicbroker and eventually their team doing vendor outreach for us.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="beat wrap" data-beat="7" data-case="TOOLING">
+    <h2 class="beat__line beat__line--sm">The smallest thing I built there got used the most.</h2>
+    <div class="beat__payload">
+      <div class="panel">
+        <div class="panel__head">A searchable requirements layer the whole BA team could use</div>
+        <p class="panel__one">Built a Claude Skill that let any analyst ask questions of hundreds of pages of BRDs and get answers back with the source line attached.</p>
+        <button class="btn panel__trigger" type="button" data-panel aria-expanded="false" aria-controls="p-brd">Read the full case</button>
+        <div class="panel__region" id="p-brd">
+          <h4>Context</h4>
+          <p>Requirements for the OMS program lived across hundreds of pages of BRDs spanning 25 workstreams. Every question from a stakeholder or an engineer about what had been committed turned into a search for whichever BA picked it up.</p>
+          <h4>What I did</h4>
+          <p>Built a <b>Claude Skill</b> that loads the project's BRDs into a queryable database, so any BA could ask a plain language question and get an answer back. Built it as a Skill rather than something only I could run, so the rest of the team could use it.</p>
+          <h4>The part that mattered</h4>
+          <p>A summary is not much use to a BA who cannot point to where it came from. Every answer comes back with a <b>traceable ID</b> resolving to the source BRD and the exact line. The answer and the source arrive together.</p>
+          <h4>Results</h4>
+          <p>Requirements questions got answered faster and the answers held up, because the source was attached. The same approach was used on the same program to turn hundreds of pages of BRDs into <b>executive summaries with line-level traceability</b>, done in about a week.</p>
+          <h4>Reflection</h4>
+          <p>Fast answers are easy to get. Answers a BA can defend in a workshop are not. Attaching the source line is what made it usable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="beat wrap" data-beat="8" data-hook="clause" data-case="CONTRACT">
+    <h2 class="beat__line beat__line--sm">And one that was not in my scope at all.</h2>
+    <div class="beat__payload">
+      <div class="panel">
+        <div class="panel__head">A new revenue channel, and a gap in the contract behind it</div>
+        <p class="panel__one">Built the Catalog-as-a-Service revenue-share program, then found the missing revenue-recovery mechanism in the MSA before anyone signed it.</p>
+        <button class="btn panel__trigger" type="button" data-panel aria-expanded="false" aria-controls="p-caas">Read the full case</button>
+        <div class="panel__region" id="p-caas">
+          <h4>Context</h4>
+          <p>FlexShopper needed <b>new recurring revenue streams</b> and a way to syndicate its product catalog onto merchant partner sites under a <b>revenue-share model</b>, without losing accounting accuracy or falling out of compliance with vendor policies.</p>
+          <h4>What I did</h4>
+          <p>Led both the business analysis and the project management. Gathered requirements across Product, Sales, Legal, Marketing, Merchandising and Operations, then worked with development and accounting to design the process model and build the <b>automated invoicing system</b> capturing revenue from third-party merchant sites. Also drafted the <b>Statements of Work</b> for our development partners scoping the category microsites the program ran on.</p>
+          <h4>Challenges</h4>
+          <p>Returns were the hard part. Revenue implications varied by vendor policy, payment method, which catalog the item came from, who financed it, and the lease origination date. The process had to handle every one of those and stay scalable across partners without losing accounting accuracy.</p>
+          <h4>Results</h4>
+          <p>Reading the MSA on my own, I found it had <b>no mechanism to recover revenue</b> on returns for items we had financed out of our own catalog. Took it to the Chief of Merchandising, who had written it, with a diagram showing what the returns coverage was missing. Worked out the scenarios that needed to be written in, settled on a <b>revenue-clawback</b> approach, and drove the system change to support it. Caught before the partner signed.</p>
+          <h4>Reflection</h4>
+          <p>Reading the MSA was not part of my scope. I read it anyway and found the gap before it cost anything.</p>
+          <p style="margin-top:var(--s3)"><a class="btn" href="Revenue_Share_Process_Model.pdf" target="_blank" rel="noopener" data-ga="process_model">View the process model (PDF)</a></p>
+        </div>
+      </div>
+    </div>
+    <p class="beat__hook">Ten years of noticing things nobody assigned.</p>
+  </section>
+
+  <section class="beat wrap" data-beat="9">
+    <h2 class="beat__line beat__line--sm">The record</h2>
+    <div class="beat__payload">
+      <div class="roles">
+        <div class="dwell" data-dwell tabindex="0">
+          <div class="role__co">CITY Furniture</div>
+          <div class="role__range">Sr. Business Analyst, Enterprise OMS Modernization · Oct 2025 – Jul 2026</div>
+          <ul class="dwell__detail">
+            <li>Cut <b>1,000+ legacy reports</b> to about 20 audit-ready data models. Ran stakeholder triage to get to 200, then set the rules for an AI pass over the rest and kept approval on every merge. Mapped the survivors back to their source systems so the data team had current-state and future-state sourcing before the build started.</li>
+            <li>Built a <b>reusable Claude Skill</b> that let any BA on the project search the program's BRDs and get answers back with the source line attached.</li>
+            <li>Wrote a <b>65-page BRD</b> covering the CRM's UI and functional requirements for the new OMS: invoice search, invoice detail display, claims submission and routing. Plus hundreds of Jira user stories with acceptance criteria.</li>
+            <li>Ran a current-state and future-state <b>gap analysis on the CRM</b>. It showed the CRM needed far less rework than the program assumed, which kept the build from being over-scoped.</li>
+            <li>Facilitated week-long, all-day requirements workshops with <b>sign-off at the end of each day</b>.</li>
+            <li>Introduced the requirement-prioritization method and the epic and user-story structure the team adopted as standard. Neither existed when I started.</li>
+            <li>Produced activity diagrams for <b>90+ customer-notification messages</b>, giving engineering an unambiguous build spec.</li>
+            <li>Contributed metrics, risks and blockers to weekly steering across a program spanning <b>25 workstreams</b>.</li>
+          </ul>
+        </div>
+        <div class="dwell" data-dwell tabindex="0">
+          <div class="role__co">FlexShopper Inc.</div>
+          <div class="role__range">Project Manager, Merchandising · Mar 2025 – Aug 2025</div>
+          <ul class="dwell__detail">
+            <li>Managed the full merchandising project portfolio at once: vendor onboarding, financing-application partner onboarding and catalog work. Owned priorities, dependencies, risks and milestones across all of it.</li>
+            <li>Owned the end-to-end lifecycle of the Logicbroker dropship platform. Enhancements, vendor onboarding, product-data requirements, order workflows, invoicing and issue resolution.</li>
+            <li>Partnered with brands and retailers to design lease-to-own and financing experiences on partner sites and custom category microsites. Drafted the <b>SOWs</b> scoping those builds, which added a new revenue source.</li>
+            <li>Wrote a <b>project charter uniting three siloed initiatives</b> (microsites, Catalog-as-a-Service, marketing campaigns) that leadership had not been coordinating. Presented it to the executive team and got all three aligned on common goals.</li>
+            <li>Presented platform roadmap, enhancements and performance to the <b>CEO monthly</b>, backed by an executive dashboard showing milestones and blockers.</li>
+          </ul>
+        </div>
+        <div class="dwell" data-dwell tabindex="0">
+          <div class="role__co">FlexShopper Inc.</div>
+          <div class="role__range">Business Systems Analyst / PMO Analyst · Nov 2023 – Mar 2025</div>
+          <ul class="dwell__detail">
+            <li>Drove requirements and delivery for the <b>Logicbroker platform replacement</b>. It became the system of record for orders and inventory, integrated to the CRM, NetSuite, the storefront, the catalog ETL and every vendor by EDI, API or portal.</li>
+            <li>Onboarded <b>35+ vendors</b> on a redesigned catalog, product, order and invoice workflow, cutting onboarding from six weeks to two.</li>
+            <li>Designed the <b>custom rebate management application</b> with a merchandising UI, validation rules and error logging. Rebate setup went from <b>one week to one day</b>.</li>
+            <li>Business-side owner of the Logicbroker to NetSuite invoice integration and sole liaison to the third-party NetSuite developer, including first contact on production integration issues after go-live.</li>
+            <li>Translated requirements across Marketing, Merchandising, Accounting, Operations, Product and Technology into BRDs, functional specs, UML diagrams and <b>100+ Jira user stories</b>.</li>
+            <li>Ran Scrum ceremonies across three development teams and coordinated go-live planning, UAT, issue resolution and post-launch support.</li>
+          </ul>
+        </div>
+        <div class="dwell" data-dwell tabindex="0">
+          <div class="role__co">Pet Supermarket Inc.</div>
+          <div class="role__range">Sales Associate → Junior Business Analyst · Jul 2013 – Jul 2023</div>
+          <ul class="dwell__detail">
+            <li><b>Junior Business Analyst</b> · Jan 2021 – Jul 2023 · Product Owner for the Syndigo Riversand PIM. Requirements, backlog refinement, testing and Salesforce Commerce Cloud integration. Onboarded <b>200+ vendors</b> across <b>14K+ SKUs</b>, and designed the vendor-portal intake form that fed data into the PIM, leading its implementation with the development team.</li>
+            <li><b>Web Catalog Specialist</b> · Aug 2018 – Jan 2021 · Implemented the company's first PIM platform and maintained a 14,000-product catalog, publishing roughly <b>150 new web items per week</b> and running promotional execution for ecommerce.</li>
+            <li><b>Digital Marketing Specialist</b> · Oct 2015 – Aug 2018 · Implemented Oracle Responsys for a <b>1.5M-member</b> email audience, lifting open rates <b>30%</b> through segmentation and automated journeys. Co-managed paid social that grew site traffic <b>17%</b>.</li>
+            <li><b>Ecommerce Specialist</b> · Jul 2015 – Aug 2015 · Supported store migration and site redesign, managed Amazon Seller operations and introduced faceted search to improve product discovery.</li>
+            <li><b>Sales Associate</b> · Jul 2013 – Apr 2015 · Where the decade started. Customer service and sales goals. This is where I learned how a retail operation runs from the floor.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="role__item" style="margin-top:var(--s4)">Bachelor of Arts in Communication · Minor in English · Florida Atlantic University</p>
+    </div>
+  </section>
+
+  <section class="beat wrap" data-beat="10">
+    <h2 class="beat__line beat__line--sm">What I actually know how to do</h2>
+    <div class="beat__payload">
+      <div class="caps">
+        <div><div class="cap__t">Requirements &amp; analysis</div><div class="cap__l">Requirements discovery · BRDs &amp; FSDs · Gap analysis · Process modeling · UML (use case, sequence, activity) · User stories &amp; acceptance criteria · Traceability · UAT · Workshop facilitation · Visio</div></div>
+        <div><div class="cap__t">Delivery &amp; product ownership</div><div class="cap__l">Backlog ownership · Sprint planning · Scrum ceremonies · Prioritization frameworks · Release &amp; go-live coordination · Change management · Executive reporting · Jira · Confluence · Asana</div></div>
+        <div><div class="cap__t">Systems &amp; integrations</div><div class="cap__l">IBM Sterling OMS · IBM i/AS400 (legacy) · Logicbroker · NetSuite · Syndigo Riversand PIM · Salesforce Commerce Cloud · Oracle Commerce Cloud · BigCommerce · APIs &amp; EDI · Workflow automation</div></div>
+        <div><div class="cap__t">Data &amp; reporting</div><div class="cap__l">Report rationalization · Data mapping · Source-system analysis · Current/future-state modeling · SQL logic definition · Power BI · Excel modeling</div></div>
+        <div><div class="cap__t">AI in practice</div><div class="cap__l">Directing AI on analysis work · Setting rules and constraints for AI output · Reviewing and adapting AI output · Claude Skills · Requirements traceability · Automated status reporting · Document synthesis at scale</div></div>
+        <div><div class="cap__t">Commerce &amp; catalog</div><div class="cap__l">Catalog operations · Product information management · Vendor &amp; marketplace onboarding · Order lifecycle · CRM &amp; lifecycle marketing · Oracle Responsys</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="beat wrap" data-beat="11">
+    <h2 class="beat__line beat__line--sm">Four people who worked with me, in their own words.</h2>
+    <div class="beat__payload">
+      <div class="refs">
+        <div class="ref">
+          <blockquote class="ref__q">"From day one, Phil took on large-scale programs with confidence and delivered results — Logicbroker being a standout example."</blockquote>
+          <p class="ref__who">Navin Anand · Chief Technology Officer, FlexShopper · Aug 2025 · <a class="btn" href="https://www.linkedin.com/in/navin-anand/" target="_blank" rel="noopener">LinkedIn</a></p>
+          <div class="ref__body">
+            <p>"Phil was part of our PMO team, where he consistently demonstrated adaptability and strategic thinking. Starting within the Development PMO, Phil quickly pivoted to the Business PMO without missing a beat — showing his ability to bridge technical and business perspectives seamlessly."</p>
+            <p>"Phil effectively managed a diverse set of stakeholders, including external partners, internal business SMEs and development teams. He excelled at facilitating discussions with all key parties to prioritize initiatives, ensuring our backlog was always aligned with ROI-driven decision-making. His command of Jira, Confluence, Asana and other PM tools made him a highly efficient and well-organized PM/BA/PO."</p>
+            <p>"His ability to coordinate complex projects, align cross-functional teams and keep everyone focused on shared goals made him an indispensable part of our success. I would recommend Phil for any program or project management role — his combination of adaptability and results-oriented leadership is truly top-tier."</p>
+          </div>
+        </div>
+        <div class="ref">
+          <blockquote class="ref__q">"The highest compliment I can give him is that I would hire him again in a second if I had the opportunity."</blockquote>
+          <p class="ref__who">Dennis Owcarz · Chief Merchandising Officer, FlexShopper · Aug 2025 · <a class="btn" href="https://www.linkedin.com/in/dennis-owcarz-7500a27/" target="_blank" rel="noopener">LinkedIn</a></p>
+          <div class="ref__body">
+            <p>"Phillip reported to me for half a year at FlexShopper. He quickly developed into a true asset on my team and could always be counted on to get the job done right."</p>
+            <p>"He consistently led by example — managing tasks, collaborating cross-functionally, keeping close attention to detail and meeting deadlines with ease. His work ethic and dedication made a lasting impact."</p>
+            <p>"Beyond his skills, Phillip has an outstanding personality. His positive energy and great attitude are contagious, drawing people toward him and creating a motivating team environment."</p>
+          </div>
+        </div>
+        <div class="ref">
+          <blockquote class="ref__q">"He played a key role in managing off-cycle requests from our Merchandising team and was a huge help supporting payment process integrations."</blockquote>
+          <p class="ref__who">Joseph Zannucci · PM IT/DEV &amp; Scrum Master, FlexShopper · Aug 2025 · <a class="btn" href="https://www.linkedin.com/in/joseph-zannucci-14726076/" target="_blank" rel="noopener">LinkedIn</a></p>
+          <div class="ref__body">
+            <p>"I'm happy to recommend Phill, who reported directly to me at FlexShopper. I worked with him on several projects, and he was consistently reliable, organized and eager to grow."</p>
+            <p>"No matter the task, he approached it with a positive attitude and strong attention to detail. Phill was also a great team player — easy to work with and always willing to lend a hand. I'm confident he'll bring the same energy and dedication to any role he takes on."</p>
+          </div>
+        </div>
+        <div class="ref">
+          <blockquote class="ref__q">"He has a great eye for detail, asks thoughtful questions, and ensures that nothing slips through the cracks."</blockquote>
+          <p class="ref__who">Moe Sheikha · Software Development Manager, FlexShopper · Aug 2025 · <a class="btn" href="https://www.linkedin.com/in/mohanads/" target="_blank" rel="noopener">LinkedIn</a></p>
+          <div class="ref__body">
+            <p>"I had the pleasure of working with Phil at FlexShopper, where he consistently impressed me with his thoroughness and ability to keep projects on track."</p>
+            <p>"Beyond his strong work ethic, Phil is approachable and easy to work with, which makes collaboration smooth and effective. I'd gladly work with him again on any project."</p>
+          </div>
+        </div>
+      </div>
+      <p class="measure muted" style="margin-top:var(--s5)">I tend to notice the thing nobody assigned. A prioritization method a team did not have. A requirements structure that was going to break once it hit development. A compliance conversation that was not happening anywhere, not just on my projects. A clause missing from a contract before anyone signed it.</p>
+    </div>
+  </section>
+
+  <section class="close wrap" data-beat="12" data-close>
+    <h2 class="close__line">That took 11 minutes. That is the whole record.</h2>
+    <div class="card" data-card></div>
+  </section>
+</div>
+
+</main>
+
+<!-- ============ RÉSUMÉ GHOST ============ -->
+<div class="ghost" id="ghost">
+  <div class="ghost__peek" id="ghostPeek">
+    <ul>
+      <li><b>1,000+ legacy reports</b> cut to about 20 audit-ready data models on an enterprise OMS modernization at CITY Furniture</li>
+      <li>Owned requirements and delivery for the platform that <b>replaced FlexShopper's order and inventory system</b></li>
+      <li>Vendor onboarding cut from <b>6 weeks to 2 weeks</b>, rebate setup from <b>1 week to 1 day</b></li>
+      <li><b>200+ vendors</b> and <b>14K+ SKUs</b> managed through Syndigo PIM at Pet Supermarket</li>
+    </ul>
+    <div class="ghost__links">
+      <a class="btn" href="2026_Resume_Phillip_Da_Silva_Marquis.pdf" target="_blank" rel="noopener" data-ga="resume_preview" data-resume-preview>Preview</a>
+      <a class="btn" href="2026_Resume_Phillip_Da_Silva_Marquis.pdf" download data-ga="resume_download" data-resume-download>Download</a>
+    </div>
+    <div class="resume-picker" data-resume-picker>
+      <button class="btn resume-picker__toggle" type="button" data-resume-picker-toggle aria-expanded="false" aria-controls="resumePickerPanel">Tailored for a specific role?</button>
+      <div class="resume-picker__panel" id="resumePickerPanel">
+        <div class="resume-picker__chips" data-resume-chips></div>
+        <p class="resume-picker__confirm" data-resume-confirm></p>
+        <p class="resume-picker__descriptor" data-resume-descriptor hidden></p>
+        <button class="btn resume-picker__close" type="button" data-resume-picker-close>Done</button>
+      </div>
+    </div>
+  </div>
+  <button class="ghost__btn" id="ghostBtn" type="button" aria-expanded="false" aria-controls="ghostPeek">Résumé</button>
+</div>
+
+<!-- card template, cloned into each close beat -->
+<template id="cardTpl">
+  <h3>Phillip Da Silva-Marquis</h3>
+  <p class="card__sub">Senior Business Analyst · Product Owner</p>
+  <h4>Key impact</h4>
+  <ul>
+    <li><b>1,000+ legacy reports</b> cut to about 20 audit-ready data models on an enterprise OMS modernization at CITY Furniture</li>
+    <li>Owned requirements and delivery for the platform that <b>replaced FlexShopper's order and inventory system</b></li>
+    <li>Vendor onboarding cut from <b>6 weeks to 2 weeks</b>, rebate setup from <b>1 week to 1 day</b></li>
+    <li><b>200+ vendors</b> and <b>14K+ SKUs</b> managed through Syndigo PIM at Pet Supermarket</li>
+  </ul>
+  <h4>Core skills</h4>
+  <p>Requirements discovery (BRDs/FSDs), gap analysis, process and UML modeling, UAT, backlog ownership, Agile &amp; Scrum, systems integration (IBM Sterling OMS, Logicbroker, NetSuite, Syndigo, SFCC, Oracle CC), report rationalization, and directing AI on analysis work with line-level traceability.</p>
+  <h4>Credentials</h4>
+  <p>PSPO I (Udemy) · Studying for PSM I (scrum.org)<br>Bachelor of Arts in Communication · Minor in English · Florida Atlantic University</p>
+  <div class="card__cta">
+    <a class="btn-filled" href="2026_Resume_Phillip_Da_Silva_Marquis.pdf" download data-ga="resume_download" data-resume-download>Download the résumé</a>
+  </div>
+  <div class="card__alt">
+    <button class="btn" type="button" data-longer hidden>I've got more time →</button>
+    <a class="btn" href="https://www.linkedin.com/in/phillip-marquis-7661a8107/" target="_blank" rel="noopener">Find me on LinkedIn</a>
+  </div>
+</template>
+
+<footer class="foot wrap">
+  <p>© <span id="yr">2026</span> Phillip Da Silva-Marquis · Senior Business Analyst · Fort Lauderdale, FL</p>
+</footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const previewBtn   = document.getElementById("resumePreviewBtnIndex");
-  const accordion    = document.getElementById("resumePreviewAccordionIndex");
-  const closeLink    = document.getElementById("closeResumePreviewIndex");
+(function(){
+"use strict";
+var D=document, root=D.documentElement;
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* Enhancement 01 item 1: one source for path length. Screen 0's numeral and the
+   rail's remaining-time both derive from this - never hardcode a time twice. */
+var PATH_BUDGET_SECONDS={A:35,B:100,C:660};
+var BUDGET=PATH_BUDGET_SECONDS;
+var choice=D.getElementById('choice'), rail=D.getElementById('rail'),
+    fill=D.getElementById('railFill'), cap=D.getElementById('railCap'), num=D.getElementById('railNum'),
+    wordmark=D.getElementById('wordmark'), announce=D.getElementById('announce'),
+    ghost=D.getElementById('ghost'), ghostBtn=D.getElementById('ghostBtn'), ghostPeek=D.getElementById('ghostPeek'),
+    tpl=D.getElementById('cardTpl');
+var threads={}, active=null, minRemaining=Infinity, doneFlashed=false;
 
-  if (previewBtn && accordion && closeLink) {
-    previewBtn.addEventListener("click", () => {
-      accordion.classList.add("show");
-      // hide the button while preview is open
-      previewBtn.style.visibility = "hidden";
-    });
+D.getElementById('yr').textContent=new Date().getFullYear();
 
-    closeLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      accordion.classList.remove("show");
-      previewBtn.style.visibility = "visible";
+[].forEach.call(D.querySelectorAll('.thread'),function(t){
+  threads[t.dataset.path]=t; t.hidden=true;
+});
+
+function ga(name,params){ if(window.gtag) gtag('event',name,params||{}); }
+
+/* ---------- populate close cards ---------- */
+[].forEach.call(D.querySelectorAll('[data-card]'),function(card){
+  card.appendChild(tpl.content.cloneNode(true));
+  var path=card.closest('.thread').dataset.path;
+  var longer=card.querySelector('[data-longer]');
+  if(path==='A'||path==='B'){
+    longer.hidden=false;
+    longer.addEventListener('click',function(){
+      ga('path_defect',{from:path});
+      start(path==='A'?'B':'C',0);
     });
   }
 });
+
+/* ---------- reveal (Enhancement 01 item 2) ----------
+   Continuous and reversible: every beat's visual state is f(scroll position),
+   so scrolling back up un-reveals it for free. One rAF tick recomputes every
+   visible beat rather than one listener per beat.
+   Note: implemented as the throttled-scroll path from the spec for all engines
+   rather than dual-pathing with animation-timeline: view(), so the curve lives
+   in exactly one place and cannot drift between implementations. */
+var TOP_START=.85, TOP_END=.40;
+
+/* innerHeight can read 0 in a backgrounded/offscreen view; fall back to the
+   layout viewport so progress never divides by a bogus height */
+function vh(){ return window.innerHeight||root.clientHeight||0; }
+
+function revealProgress(el){
+  var h=vh()||1;
+  var top=el.getBoundingClientRect().top;
+  var p=(TOP_START*h - top)/((TOP_START-TOP_END)*h);
+  return p<0?0:(p>1?1:p);
+}
+
+function paintReveals(){
+  if(!active) return;
+  var beats=threads[active].querySelectorAll('.beat,[data-close]');
+  [].forEach.call(beats,function(b){
+    var p=reduce?1:revealProgress(b);
+    b.style.setProperty('--rv',p);
+    var r=b.querySelector('[data-redact]');
+    if(r){
+      r.style.setProperty('--rp',p);
+      r.classList.toggle('is-hot',!reduce&&p>.9&&p<1);
+    }
+    /* counters stay forward-only by deliberate exception - a number ticking
+       back down on scroll-up reads as the figure un-counting itself */
+    if(p>.35) runCounters(b);
+  });
+  paintBeatTwoState();
+}
+
+/* Enhancement 01 items 5 and 6 both key off "has the user reached beat 2 yet".
+   Computed here from geometry rather than by IntersectionObserver: this already
+   runs on every scroll frame, it reverses for free, and it has no callback lag. */
+function paintBeatTwoState(){
+  var b2=threads[active]&&threads[active].querySelector('.beat[data-beat="2"]');
+  if(!b2){ wordmark.classList.add('is-on'); return; }
+  /* half a viewport in, so it doesn't fire while beat 2 is merely peeking up
+     from under beat 1 - beats are ~76vh, so the next one is always peeking */
+  var arrived=b2.getBoundingClientRect().top < vh()*.5;
+  wordmark.classList.toggle('is-on',arrived);
+  if(arrived&&!ghostPeeked&&!reduce){
+    ghostPeeked=true;
+    ghostOpen();
+    setTimeout(function(){ if(!ghost.matches(':hover')) ghostClose(); },1600);
+  }
+}
+
+function runCounters(scope){
+  [].forEach.call(scope.querySelectorAll('[data-count]'),function(el){
+    if(el.dataset.ran) return; el.dataset.ran='1';
+    var from=+el.dataset.from, to=+el.dataset.to, pre=el.dataset.prefix||'';
+    if(reduce){ el.textContent=pre+to; return; }
+    var t0=performance.now(), dur=900;
+    (function step(t){
+      var p=Math.min(1,(t-t0)/dur), v=Math.round(from+(to-from)*(1-Math.pow(1-p,3)));
+      el.textContent=pre+v.toLocaleString();
+      if(p<1) requestAnimationFrame(step); else el.textContent=pre+to;
+    })(t0);
+  });
+}
+
+/* ---------- rail ---------- */
+function fmt(s){ var m=Math.floor(s/60), r=Math.max(0,Math.round(s%60)); return m+':'+(r<10?'0':'')+r; }
+
+/* Screen 0 numerals come from PATH_BUDGET_SECONDS, same as the rail. */
+[].forEach.call(D.querySelectorAll('.band'),function(b){
+  var el=b.querySelector('[data-dur]');
+  if(el) el.textContent=fmt(PATH_BUDGET_SECONDS[b.dataset.path]);
+});
+
+function updateRail(){
+  if(!active) return;
+  var t=threads[active], r=t.getBoundingClientRect();
+  var total=t.offsetHeight-window.innerHeight;
+  var done=Math.min(Math.max(-r.top,0),Math.max(total,1));
+  var p=total>0?done/total:1;
+  var isNarrow=window.matchMedia('(max-width:767px)').matches;
+  if(isNarrow){ fill.style.width=(p*100)+'%'; fill.style.height='3px'; }
+  else { fill.style.height=(p*100)+'%'; fill.style.width='2px'; }
+  var remaining=Math.ceil((1-p)*BUDGET[active]);
+  if(remaining<minRemaining) minRemaining=remaining;
+  num.textContent=fmt(minRemaining);
+  if(minRemaining<=0&&!doneFlashed){
+    doneFlashed=true; cap.classList.add('is-done');
+    ga('path_complete',{path:active});
+  }
+}
+
+/* ---------- close card bloom ---------- */
+var closeIO=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    var card=e.target.querySelector('[data-card]');
+    if(e.isIntersecting){
+      card.classList.add('is-bloom');
+      ghost.classList.add('is-hidden');
+    } else {
+      ghost.classList.remove('is-hidden');
+    }
+  });
+},{threshold:.4});
+
+/* ---------- start a path ---------- */
+function start(path,scrollTo){
+  if(!threads[path]) return;
+  if(active&&threads[active]){ threads[active].hidden=true; threads[active].classList.remove('is-active'); }
+  active=path; minRemaining=Infinity; doneFlashed=false; cap.classList.remove('is-done');
+  var t=threads[path];
+  t.hidden=false; t.classList.add('is-active');
+  choice.classList.add('is-gone');
+  rail.classList.add('is-on');
+  wordmark.classList.remove('is-on');
+
+  buildCaseEyebrows(t);
+  runCounters(t.querySelector('.beat'));
+  var closeEl=t.querySelector('[data-close]');
+  if(closeEl) closeIO.observe(closeEl);
+
+  window.scrollTo(0, scrollTo||0);
+  updateRail();
+  paintReveals();
+  var n=t.querySelectorAll('.beat,[data-close]').length;
+  announce.textContent='Now on the '+(path==='A'?'35 second':path==='B'?'1 minute 40 second':'11 minute')+' path, '+n+' sections.';
+  if(location.hash!==hashFor(path)) history.pushState({path:path},'',hashFor(path));
+}
+
+/* Enhancement 01 item 4: counter is derived from how many cases THIS path
+   shows, never hardcoded - Path B shows 3, Path C shows 4. */
+function buildCaseEyebrows(thread){
+  var cases=thread.querySelectorAll('.beat[data-case]');
+  var total=cases.length;
+  [].forEach.call(cases,function(beat,i){
+    if(beat.querySelector('.case-eyebrow')) return;
+    var row=D.createElement('p');
+    row.className='case-eyebrow';
+    var tick=D.createElement('span');
+    tick.className='case-eyebrow__tick';
+    row.appendChild(tick);
+    row.appendChild(D.createTextNode('CASE '+(i+1)+' OF '+total+' \u00b7 '+beat.dataset.case));
+    beat.insertBefore(row,beat.firstElementChild);
+  });
+}
+
+/* Enhancement 01 item 5: one-time "here's what this is" peek, the first time any
+   path crosses beat 1 into beat 2. Once per session - not on a side door, not on
+   re-picking a path, never on a loop. Fired from paintBeatTwoState(). */
+var ghostPeeked=false;
+
+/* ---------- role-fit résumé picker (Enhancement 02) ----------
+   Single source for the chip list, mirroring content bank v4.1 §10. Add a
+   row here (and to the bank) to add a job type - nothing else in the build
+   needs to change. Delivery Lead is intentionally omitted: flagged not-ready
+   in the bank, not shippable yet (see Enhancement 02 §4). */
+/* descriptor text is verbatim from the bank's "One-line descriptor" column -
+   not written for this UI, so it isn't touched when compressing/rewording. */
+var RESUME_DEFAULT={key:'DEFAULT',label:'General résumé',file:'2026_Resume_Phillip_Da_Silva_Marquis.pdf',descriptor:''};
+var RESUME_VARIANTS=[
+  {key:'PO',label:'Product Owner',file:'resumes/phillip-dasilvamarquis-resume-product-owner.pdf',descriptor:'Backlog ownership, prioritization, and Agile delivery, from the product side of the table.'},
+  {key:'SBA',label:'Senior Business Analyst',file:'resumes/phillip-dasilvamarquis-resume-senior-business-analyst.pdf',descriptor:'Requirements, systems integration, and enterprise modernization work, led end to end.'},
+  {key:'PM',label:'Digital Product Manager',file:'resumes/phillip-dasilvamarquis-resume-digital-product-manager.pdf',descriptor:'Platform ownership and cross-functional delivery, from discovery through go-live.'},
+  {key:'ECOMMERCE',label:'Ecommerce & Digital Transformation',file:'resumes/phillip-dasilvamarquis-resume-ecommerce-digital-transformation.pdf',descriptor:'Ecommerce operations and legacy-to-modern platform transformation, with AI worked in as a practical tool.'}
+];
+var RESUME_ALL=[RESUME_DEFAULT].concat(RESUME_VARIANTS);
+var RESUME_STORAGE_KEY='resumeVariant';
+var selectedResume=RESUME_DEFAULT.key;
+try{
+  var storedResume=sessionStorage.getItem(RESUME_STORAGE_KEY);
+  if(storedResume&&RESUME_ALL.some(function(r){return r.key===storedResume;})) selectedResume=storedResume;
+}catch(e){}
+
+function findResume(key){
+  var hit=null;
+  RESUME_ALL.forEach(function(r){ if(r.key===key) hit=r; });
+  return hit||RESUME_DEFAULT;
+}
+
+/* Updates every résumé link on the page (the ghost's own Preview/Download,
+   plus the Download button inside all three close-card clones), the chip
+   selected-state, and the confirmation line/live-region announcement. */
+function applyResumeSelection(key,announceIt){
+  var r=findResume(key);
+  selectedResume=r.key;
+  try{ sessionStorage.setItem(RESUME_STORAGE_KEY,r.key); }catch(e){}
+
+  [].forEach.call(D.querySelectorAll('[data-resume-download]'),function(a){ a.href=r.file; });
+  [].forEach.call(D.querySelectorAll('[data-resume-preview]'),function(a){ a.href=r.file; });
+
+  [].forEach.call(D.querySelectorAll('.resume-picker__chip'),function(btn){
+    var on=btn.dataset.resumeKey===r.key;
+    btn.classList.toggle('is-selected',on);
+    btn.setAttribute('aria-pressed',on?'true':'false');
+  });
+
+  var confirmEl=D.querySelector('[data-resume-confirm]');
+  if(confirmEl){
+    var text='Now showing: '+r.label;
+    confirmEl.textContent=text;
+    if(announceIt){
+      confirmEl.classList.remove('is-flash');
+      void confirmEl.offsetWidth; /* restart the transition on repeat selections */
+      confirmEl.classList.add('is-flash');
+      setTimeout(function(){ confirmEl.classList.remove('is-flash'); },900);
+      /* reuse the existing path-change live region (§11 item 5) rather than
+         adding a second one - descriptor folded in so a screen-reader user
+         gets the same "what's different about this one" a sighted user sees */
+      announce.textContent=r.descriptor?text+'. '+r.descriptor:text;
+      ga('resume_variant_select',{variant:r.key});
+    }
+  }
+
+  /* What's actually different about this variant - the content bank's own
+     one-line descriptor per row (§10), not written for this UI. Empty for
+     the general résumé, which has no single angle to state. */
+  var descEl=D.querySelector('[data-resume-descriptor]');
+  if(descEl){
+    descEl.textContent=r.descriptor||'';
+    descEl.hidden=!r.descriptor;
+  }
+}
+
+function buildResumeChips(){
+  var wrap=D.querySelector('[data-resume-chips]');
+  if(!wrap||wrap.dataset.built) return;
+  wrap.dataset.built='1';
+  RESUME_ALL.forEach(function(r){
+    var b=D.createElement('button');
+    b.type='button'; b.className='btn resume-picker__chip';
+    b.textContent=r.label; b.dataset.resumeKey=r.key;
+    b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',function(){ applyResumeSelection(r.key,true); });
+    wrap.appendChild(b);
+  });
+}
+
+function hashFor(p){ return p==='A'?'#p1':p==='B'?'#p3':'#p5'; }
+function pathFor(h){ return h==='#p1'?'A':h==='#p3'?'B':h==='#p5'?'C':null; }
+
+function toChoice(){
+  if(active&&threads[active]){ threads[active].hidden=true; threads[active].classList.remove('is-active'); }
+  active=null; choice.classList.remove('is-gone');
+  rail.classList.remove('is-on'); wordmark.classList.remove('is-on');
+  ghost.classList.remove('is-hidden','is-open');
+  window.scrollTo(0,0);
+  if(location.hash) history.pushState({},'',location.pathname);
+}
+
+[].forEach.call(D.querySelectorAll('.band'),function(b){
+  b.addEventListener('click',function(){
+    ga('path_select',{path:b.dataset.path});
+    start(b.dataset.path,0);
+  });
+});
+
+[].forEach.call(D.querySelectorAll('[data-escape]'),function(a){
+  a.addEventListener('click',function(e){ e.preventDefault(); toChoice(); });
+});
+
+/* ---------- side doors ---------- */
+[].forEach.call(D.querySelectorAll('[data-door]'),function(btn){
+  btn.addEventListener('click',function(){
+    var to=btn.dataset.door, beatN=btn.dataset.doorBeat, from=active;
+    var target=threads[to].querySelector('[data-beat="'+beatN+'"]');
+    var keepOffset=btn.getBoundingClientRect().top;
+    ga('side_door',{from:from,to:to,beat:beatN});
+
+    var cur=threads[from];
+    cur.style.transition='opacity 300ms var(--e-inout)';
+    cur.style.opacity='0';
+    setTimeout(function(){
+      cur.style.opacity=''; cur.style.transition='';
+      var carried=minRemaining;
+      start(to,0);
+      /* frame the target beat identically, without a scroll-to-top flash */
+      var y=target.getBoundingClientRect().top+window.pageYOffset-keepOffset;
+      window.scrollTo(0,Math.max(0,y));
+      minRemaining=Infinity;
+      updateRail();
+      paintReveals();
+      tweenNumeral(carried);
+    },reduce?0:300);
+  });
+});
+
+function tweenNumeral(fromVal){
+  if(reduce||!isFinite(fromVal)) return;
+  var toVal=minRemaining, t0=performance.now();
+  (function step(t){
+    var p=Math.min(1,(t-t0)/900);
+    num.textContent=fmt(Math.round(fromVal+(toVal-fromVal)*p));
+    if(p<1) requestAnimationFrame(step);
+  })(t0);
+}
+
+/* ---------- deep panels ---------- */
+[].forEach.call(D.querySelectorAll('[data-panel]'),function(btn){
+  btn.addEventListener('click',function(){
+    var region=D.getElementById(btn.getAttribute('aria-controls'));
+    var open=region.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    btn.textContent=open?'Close':'Read the full case';
+  });
+});
+
+/* ---------- dwell (Enhancement 01 item 3) ----------
+   A visible countdown while the dwell arms, so the interaction is discoverable
+   instead of something you find by accident. Keyboard is untouched: focus still
+   reveals instantly, with no countdown to run.
+   Scope is C9 (the [data-dwell] career rows). The resume ghost's own dwell-to-peek
+   is the other trigger on the site and is deliberately NOT given this treatment
+   this round - see the enhancement file, it is flagged as a recommendation. */
+var DWELL_MS=1200, DWELL_GRACE=150, DWELL_SLOP=10;
+
+[].forEach.call(D.querySelectorAll('[data-dwell]'),function(el){
+  var graceT=null, doneT=null, rafId=null, startT=0, touching=false, touchY=0, moved=false;
+
+  var arm=D.createElement('div');
+  arm.className='dwell__arm';
+  var prompt=D.createElement('span');
+  prompt.className='dwell__prompt';
+  var bar=D.createElement('span');
+  bar.className='dwell__bar';
+  var fill=D.createElement('span');
+  fill.className='dwell__fill';
+  bar.appendChild(fill);
+  arm.appendChild(prompt); arm.appendChild(bar);
+  arm.setAttribute('aria-hidden','true');
+  el.appendChild(arm);
+
+  function open(){ el.classList.add('is-open'); }
+  function close(){ el.classList.remove('is-open'); }
+
+  function disarm(){
+    if(graceT){ clearTimeout(graceT); graceT=null; }
+    /* the post-completion cleanup must be cancelled too, or a stale one from the
+       previous dwell strips the arming state off the next countdown mid-fill */
+    if(doneT){ clearTimeout(doneT); doneT=null; }
+    if(rafId){ cancelAnimationFrame(rafId); rafId=null; }
+    arm.classList.remove('is-armed','is-done');
+    fill.style.width='0%';
+  }
+
+  function beginCountdown(touch){
+    if(reduce){ open(); return; }
+    prompt.textContent = touch ? 'Keep your finger here to see details'
+                               : 'Keep your mouse here to see details';
+    graceT=setTimeout(function(){
+      graceT=null;
+      if(touch&&moved) return;
+      arm.classList.add('is-armed');
+      startT=performance.now();
+      (function step(t){
+        var p=Math.min(1,(t-startT)/DWELL_MS);
+        fill.style.width=(p*100)+'%';
+        if(p<1){ rafId=requestAnimationFrame(step); return; }
+        rafId=null;
+        arm.classList.add('is-done');
+        open();
+        doneT=setTimeout(function(){ doneT=null; arm.classList.remove('is-armed','is-done'); },260);
+      })(performance.now());
+    },DWELL_GRACE);
+  }
+
+  /* ----- mouse ----- */
+  el.addEventListener('pointerenter',function(e){
+    if(e.pointerType==='touch') return;
+    disarm(); beginCountdown(false);
+  });
+  el.addEventListener('pointerleave',function(e){
+    if(e.pointerType==='touch') return;
+    disarm(); close();
+  });
+  el.addEventListener('click',function(e){
+    /* touch reveals by held press now, not by tap - don't let the synthetic
+       click that follows a touch toggle it back shut */
+    if(touching) return;
+    disarm();
+    el.classList.toggle('is-open');
+  });
+
+  /* ----- touch: held press, cancelled by scrolling ----- */
+  el.addEventListener('touchstart',function(e){
+    touching=true; moved=false;
+    touchY=e.touches[0].clientY;
+    disarm(); beginCountdown(true);
+  },{passive:true});
+  el.addEventListener('touchmove',function(e){
+    if(Math.abs(e.touches[0].clientY-touchY)>DWELL_SLOP){ moved=true; disarm(); }
+  },{passive:true});
+  function endTouch(){
+    disarm();
+    setTimeout(function(){ touching=false; },0);
+  }
+  el.addEventListener('touchend',endTouch,{passive:true});
+  el.addEventListener('touchcancel',endTouch,{passive:true});
+
+  /* ----- keyboard: instant, no countdown ----- */
+  el.addEventListener('focus',function(){ disarm(); open(); });
+  el.addEventListener('blur',function(){ disarm(); close(); });
+  el.addEventListener('keydown',function(e){
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); disarm(); el.classList.toggle('is-open'); }
+  });
+});
+
+/* ---------- résumé ghost ---------- */
+var ghostTimer, ghostViaPointer=false;
+function ghostOpen(){ ghost.classList.add('is-open'); ghostBtn.setAttribute('aria-expanded','true'); }
+function ghostClose(){ ghost.classList.remove('is-open'); ghostBtn.setAttribute('aria-expanded','false'); }
+
+/* Résumé picker disclosure - mirrors the §8.7 deep-panel toggle pattern.
+   A click interaction only; never opened by the outer peek's hover/dwell. */
+var resumePickerToggle=D.querySelector('[data-resume-picker-toggle]');
+var resumePickerPanel=D.getElementById('resumePickerPanel');
+var resumePickerClose=D.querySelector('[data-resume-picker-close]');
+var resumePickerLink=D.querySelector('[data-resume-picker-link]');
+
+function openResumePicker(focusChips){
+  resumePickerPanel.classList.add('is-open');
+  resumePickerToggle.setAttribute('aria-expanded','true');
+  ghostPeek.classList.add('is-picker-open');
+  if(focusChips){
+    /* setTimeout, not requestAnimationFrame: rAF callbacks are suspended
+       entirely while the tab isn't actively painting, and a click can be the
+       last thing that happens before that (e.g. the window losing focus
+       right after). setTimeout still fires either way, and mousedown above
+       already stops the browser's own click-focuses-the-button default
+       action from having anything to win against. */
+    setTimeout(function(){
+      var firstChip=resumePickerPanel.querySelector('.resume-picker__chip');
+      if(firstChip) firstChip.focus();
+    },0);
+  }
+}
+function closeResumePicker(){
+  resumePickerPanel.classList.remove('is-open');
+  resumePickerToggle.setAttribute('aria-expanded','false');
+  ghostPeek.classList.remove('is-picker-open');
+}
+/* A mouse click's native default action focuses the clicked <button> itself;
+   that default action can resolve after our own click handler and silently
+   win a same-or-later-tick .focus() redirect to a different element. Both
+   buttons below deliberately move focus elsewhere on click ("MUST land
+   inside the expanded chip row when the picker opens via click"), so both
+   suppress that default via mousedown before it can compete. */
+function suppressClickFocus(e){ e.preventDefault(); }
+resumePickerToggle.addEventListener('mousedown',suppressClickFocus);
+resumePickerToggle.addEventListener('click',function(){
+  resumePickerPanel.classList.contains('is-open') ? closeResumePicker() : openResumePicker(true);
+});
+resumePickerClose.addEventListener('click',closeResumePicker);
+
+/* Screen 0 entry point (§8.10 entry point 1) - the one deliberate click
+   trigger for a Peek state that otherwise only opens on hover/dwell. Does
+   not start a path, does not scroll, does not touch the rail or the hash. */
+if(resumePickerLink){
+  resumePickerLink.addEventListener('mousedown',suppressClickFocus);
+  resumePickerLink.addEventListener('click',function(){
+    ghostOpen();
+    openResumePicker(true);
+    ga('resume_picker_open',{via:'screen0_link'});
+  });
+}
+/* pointer focus must not pre-open, or the click below would immediately close it */
+ghostBtn.addEventListener('pointerdown',function(){ ghostViaPointer=true; });
+ghostBtn.addEventListener('click',function(){
+  ghost.classList.contains('is-open')?ghostClose():ghostOpen();
+  ghostViaPointer=false;
+});
+ghost.addEventListener('pointerenter',function(e){ if(e.pointerType==='touch')return; ghostTimer=setTimeout(ghostOpen,reduce?0:1200); });
+ghost.addEventListener('pointerleave',function(){ clearTimeout(ghostTimer); ghostClose(); });
+ghost.addEventListener('focusin',function(){ if(!ghostViaPointer) ghostOpen(); });
+ghost.addEventListener('focusout',function(e){ if(!ghost.contains(e.relatedTarget)){ ghostClose(); ghostViaPointer=false; } });
+
+/* ---------- GA on outbound assets ---------- */
+[].forEach.call(D.querySelectorAll('[data-ga]'),function(a){
+  a.addEventListener('click',function(){ ga(a.dataset.ga,{path:active||'none'}); });
+});
+
+/* ---------- keyboard ---------- */
+D.addEventListener('keydown',function(e){
+  if(e.key!=='Escape') return;
+  if(ghost.classList.contains('is-open')){ ghostClose(); return; }
+  if(active) toChoice();
+});
+
+/* ---------- scroll ---------- */
+var ticking=false;
+function schedulePaint(){
+  if(ticking) return;
+  ticking=true;
+  requestAnimationFrame(function(){ ticking=false; updateRail(); paintReveals(); });
+  /* rAF is suspended whenever the view isn't painting. Without this the flag
+     latches true and every later scroll repaint is dropped, so the beats freeze
+     mid-reveal. Unlatch on a timer and repaint so it can recover on its own. */
+  setTimeout(function(){
+    if(!ticking) return;
+    ticking=false; updateRail(); paintReveals();
+  },250);
+}
+window.addEventListener('scroll',schedulePaint,{passive:true});
+/* rAF is suspended while the tab is hidden, which would otherwise leave `ticking`
+   stuck true forever and kill every scroll repaint after the user comes back */
+D.addEventListener('visibilitychange',function(){
+  if(D.hidden) return;
+  ticking=false;
+  updateRail(); paintReveals();
+});
+window.addEventListener('resize',function(){ updateRail(); paintReveals(); },{passive:true});
+
+/* ---------- history ---------- */
+window.addEventListener('popstate',function(){
+  var p=pathFor(location.hash);
+  if(p) start(p,0); else toChoice();
+});
+
+/* ---------- résumé picker boot ---------- */
+buildResumeChips();
+applyResumeSelection(selectedResume,false);
+
+/* ---------- boot ---------- */
+var initial=pathFor(location.hash);
+if(initial) start(initial,0);
+})();
 </script>
-
-
-
 </body>
 </html>

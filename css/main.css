@@ -85,11 +85,20 @@ footer {
   animation: fadeSlideIn 0.45s ease forwards;
 }
 
+
+/* Case studies background */
+.bg-brand-gradient {
+  background: linear-gradient(to right, #623aa2, #f97794 );
+  color: #212529; /* ensure text is readable */
+}
+
 /* Case preview card */
 .case-preview {
   margin-bottom: 20px;
   padding: 20px;
   background: linear-gradient(to right, #ffffff 70%, #faf5fb); /* subtle brand wash */
+  color: #007bff;
+
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
@@ -121,6 +130,7 @@ footer {
 
 .case-details .card {
   background: #fdfdfd;
+  
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.08);
   min-height: 200px;
@@ -155,6 +165,7 @@ footer {
   display: none;
   padding: 20px;
   background: #f9f9f9;
+  color: #212529;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   margin-top: 20px;
@@ -491,6 +502,7 @@ footer {
 
 .recommendation-card {
   background: #fff;
+  color: #212529;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
@@ -714,5 +726,30 @@ html {
   color: #623aa2;
   border-left: 4px solid #f97794;
   padding-left: 8px;
+}
+
+/* Headshot wrapper for About Me */
+.headshot-wrapper {
+  width: 260px;            /* base size */
+  height: 260px;
+  border-radius: 50%;      /* circle crop */
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  margin: 0 auto;
+}
+
+.headshot-wrapper img {
+  width: 110%;             /* zoom into face */
+  height: 140%;
+  object-fit: cover;        /* fill the circle */
+  object-position: center;  /* keep face centered */
+}
+
+/* Scale up a bit on larger screens */
+@media (min-width: 992px) {
+  .headshot-wrapper {
+    width: 300px;
+    height: 300px;
+  }
 }
 

@@ -1,0 +1,128 @@
+- id: M-2025-10-26-01
+  title: Opening & Bilingual Welcome
+  tags: [ceremony, intro, bilingual, tone]
+  date: 2025-10-26
+  confidence: 0.98
+  type: note
+  content: |
+    (Guests are seated on the patio. Gentle background music is already playing.)
+
+    [JOHN’S PERSONAL INTRODUCTION — to be filled in by John before rehearsal]
+    (John briefly introduces himself here — 30–45 seconds.)
+    Examples of what to include:
+    - Who he is (friend, family member, how he knows Phill and Estefania)
+    - A light, genuine anecdote or memory about the couple
+    - Tone: friendly, conversational, warm
+    (Once finished, transition smoothly into the next line below.)
+
+    Hi everyone, welcome. Take a deep breath, look around you, and enjoy this moment. We’re surrounded by love, the ocean breeze, and two incredible people — Phill and Estefania — who are about to begin their next adventure together.
+
+    Y ahora, bienvenidos todos. Respiren profundo, disfruten este momento y celebremos juntos este amor tan bonito que tenemos frente a nosotros.
+
+- id: M-2025-10-26-02
+  title: Processional Cues
+  tags: [ceremony, processional, cues, music]
+  date: 2025-10-26
+  confidence: 0.98
+  type: note
+  content: |
+    CUE: Phill walks down the aisle as calm background music continues.
+
+    CUE: Once he reaches the arch, Estefania walks down the aisle with her parents.
+
+    CUE: Track 1 begins for Estefania’s entrance. Music fades as she arrives at the arch.
+
+- id: M-2025-10-26-03
+  title: Love Story Narrative
+  tags: [ceremony, story, tone]
+  date: 2025-10-26
+  confidence: 0.98
+  type: note
+  content: |
+    Every love story starts somewhere — sometimes it’s chance, sometimes it’s a swipe, and sometimes ... it’s a voice memo about making a hundred dumplings.
+
+    Phill heard Estefania’s voice for the first time online, describing her perfect Sunday — and that was all it took.
+
+    When they finally met at Le Tub — yes, the restaurant with the bathroom theme — Estefania was nervous, but Phill was calm and kind. They talked by the water, ate terrible food, and laughed until the nerves melted away.
+
+    That day set the tone for everything that came after: laughter, curiosity, balance, and an easy rhythm that just felt right.
+
+    If you’ve spent any time with these two, you know their love doesn’t need to be loud — it’s steady, warm, and full of laughter.
+
+    Phill brings calm and thoughtfulness; Nia brings creativity, confidence, and spark. Together they’ve built a life that’s joyful and grounded — filled with inside jokes, puns, late-night talks, and shared adventures big and small.
+
+    That’s the beauty of their love — it feels like home and discovery all at once.
+
+- id: M-2025-10-26-04
+  title: Vows — Bilingual Transition & Cue
+  tags: [ceremony, vows, bilingual, cue]
+  date: 2025-10-26
+  confidence: 0.98
+  type: note
+  content: |
+    Love is more than a feeling — it’s a promise. And now, Phill and Estefania will share the promises they’ve written for each other.
+
+    Y ahora llegamos a uno de los momentos más significativos de esta ceremonia — los votos. Estas son las promesas personales que Phill y Estefania han escrito para el otro.
+
+    Whenever you’re ready, you may begin.
+
+    CUE: Phill and Estefania read their vows.
+
+- id: M-2025-10-26-05
+  title: Ring Exchange — Symbolism & Repeat-After-Me
+  tags: [ceremony, rings, vows, bilingual]
+  date: 2025-10-26
+  confidence: 0.98
+  type: note
+  content: |
+    The rings you exchange are simple in shape but endless in meaning — a reminder that love has no beginning and no end.
+
+    Y ahora, llegamos al intercambio de anillos — un símbolo eterno del compromiso y amor que comparten.
+
+    CUE: Nikki brings the rings forward.
+
+    Phill, place this ring on Estefania’s hand and repeat after me:
+    “With this ring, I give you my heart, and I promise to love you today and always.”
+
+    Estefania, place this ring on Phill’s hand and repeat after me:
+    “With this ring, I give you my heart, and I promise to love you today and always.”
+
+- id: M-2025-10-26-06
+  title: The “I Do” Questions
+  tags: [ceremony, vows, I-do]
+  date: 2025-10-26
+  confidence: 0.98
+  type: note
+  content: |
+    Phill, do you take Estefania to be your wife — to love her, laugh with her, support her, and stand beside her through all of life’s adventures?
+    PHILL: I do.
+
+    Estefania, do you take Phill to be your husband — to love him, laugh with him, support him, and stand beside him through all of life’s adventures?
+    ESTEFANIA: I do.
+
+- id: M-2025-10-26-07
+  title: Pronouncement & Bilingual Declaration
+  tags: [ceremony, pronouncement, bilingual]
+  date: 2025-10-26
+  confidence: 0.98
+  type: note
+  content: |
+    Phill and Estefania, you have shared your vows, exchanged rings, and spoken your “I dos.” By the power vested in me, it is my honor to pronounce you husband and wife.
+
+    Con todo mi corazón — los declaro oficialmente marido y mujer.
+
+    You may now kiss! 💞
+
+    CUE: Track 2 plays immediately after the kiss.
+
+- id: M-2025-10-26-08
+  title: Closing Cheers & Recessional / Dinner Flow
+  tags: [ceremony, closing, recessional, logistics]
+  date: 2025-10-26
+  confidence: 0.98
+  type: note
+  content: |
+    Let’s hear it one more time for Phill and Estefania!
+    Felicidades a los recién casados — congratulations to the newlyweds!
+
+    CUE: Phill and Estefania remain at the arch for photos, then join guests on the patio and lead everyone toward dinner in a relaxed flow.
