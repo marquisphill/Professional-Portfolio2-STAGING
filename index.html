@@ -135,7 +135,10 @@ em,i{font-style:normal;}
 .choice{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:var(--s5) var(--s4);}
 .choice__mark{font-size:var(--t-meta);color:var(--ink-muted);margin-bottom:var(--s4);}
 .choice__id{font-size:clamp(1.9rem,4.6vw,3.4rem);max-width:26ch;margin-bottom:var(--s3);}
-.choice__prompt{font-size:var(--t-meta);color:var(--ink-muted);margin-bottom:var(--s3);}
+.choice__prompt{font-size:var(--t-meta);color:var(--ink-muted);margin-bottom:6px;}
+/* Enhancement 05 item 1: quieter than the prompt above it, not a second
+   question - see design file §6 item 3. */
+.choice__prompt-warmth{font-size:var(--t-meta);color:var(--ink-faint);margin-bottom:var(--s3);}
 .bands{border-top:1px solid var(--line);}
 .band{
   position:relative;display:grid;grid-template-columns:minmax(96px,150px) 1fr;
@@ -149,7 +152,16 @@ em,i{font-style:normal;}
 .band__dur{position:relative;font-family:var(--font-mono);font-variant-numeric:tabular-nums;color:var(--ink-faint);line-height:.9;transition:color var(--d-fast) var(--e-inout);}
 .band__dur b{display:block;font-weight:500;font-size:clamp(1.8rem,4.2vw,2.9rem);}
 .band:hover .band__dur,.band:focus-visible .band__dur{color:var(--orange);}
-.band__body{position:relative;}
+.band__body{position:relative;transition:text-align var(--d-fast) var(--e-inout);}
+/* Enhancement 05 item 4: per-band rhythmic hover, layered on top of the
+   existing wipe/color hover above, not replacing it. Band A has no rule
+   here - left is already its resting state. See design file §6/§8.13. */
+.band:nth-of-type(2):hover .band__body,.band:nth-of-type(2):focus-visible .band__body{text-align:center;}
+.band:nth-of-type(3):hover .band__body,.band:nth-of-type(3):focus-visible .band__body{text-align:right;}
+@media (hover:none){
+  .band:nth-of-type(2):hover .band__body,.band:nth-of-type(2):focus-visible .band__body,
+  .band:nth-of-type(3):hover .band__body,.band:nth-of-type(3):focus-visible .band__body{text-align:left;}
+}
 .band__name{display:block;font-family:var(--font-display);font-weight:700;font-size:var(--t-lead);letter-spacing:.02em;}
 .band__promise{display:block;font-size:var(--t-meta);color:var(--ink-muted);margin-top:4px;transition:color var(--d-fast) var(--e-inout);}
 .band:hover .band__promise,.band:focus-visible .band__promise{color:var(--ink);}
@@ -167,6 +179,10 @@ em,i{font-style:normal;}
   color:var(--ink-muted);margin-bottom:var(--s3);
 }
 .case-eyebrow__tick{width:16px;height:2px;background:var(--orange-dim);flex:none;}
+/* Enhancement 05 item 5: the case-eyebrow seam gets one step more whitespace
+   than an ordinary beat-to-beat scroll - --s6 instead of the beat's own
+   --s5 padding-block. Nothing else about beat spacing changes. See §5. */
+.beat[data-case]{padding-top:var(--s6);}
 .beat__line{font-size:var(--t-beat);max-width:20ch;}
 .beat__line--sm{font-size:clamp(1.5rem,3.6vw,2.4rem);max-width:28ch;}
 .beat__sub{font-size:var(--t-lead);color:var(--ink-muted);margin-top:var(--s3);max-width:52ch;}
@@ -294,7 +310,33 @@ em,i{font-style:normal;}
 /* ---------- role-fit résumé picker (Enhancement 02) ---------- */
 /* Screen 0 entry point - quiet, secondary, beneath the three bands. Not a
    fourth path: no time budget, no rail entry, no hash. See design §8.10. */
-.resume-picker-entry{display:block;margin-top:var(--s4);}
+/* Enhancement 05 item 2: the résumé-picker link and the new quick-glance
+   link share a row, wrapping on narrow viewports - neither is a nav bar,
+   both stay footnote-weight beneath the three bands. See §6 items 6-7. */
+.choice__links{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);margin-top:var(--s4);}
+.resume-picker-entry,.quick-glance-link{display:block;margin-top:0;}
+
+/* ---------- quick-glance panel (Enhancement 05) ----------
+   Non-path reveal, same family as the résumé picker's own disclosure -
+   see design file §8.14. Opens in place beneath the three bands; Screen 0
+   never scrolls, never pushes a history entry. */
+.quick-glance{display:none;margin-top:var(--s4);padding-top:var(--s4);border-top:1px solid var(--line);}
+.quick-glance.is-open{display:block;animation:fade var(--d-mid) var(--e-out) both;}
+.quick-glance__id{max-width:40ch;}
+.quick-glance__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s5) var(--s4);margin-top:var(--s4);}
+.quick-glance__cta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3);margin-top:var(--s4);}
+@media (max-width:639px){ .quick-glance__stats{grid-template-columns:1fr;gap:var(--s4);} }
+
+/* ---------- resolution-chime toggle (Enhancement 05) ---------- */
+.sound-toggle{
+  position:fixed;left:calc(var(--rail-x) + 10px);top:var(--s2);z-index:61;display:none;
+  background:none;border:0;padding:6px;color:var(--ink-faint);cursor:pointer;
+  transition:color var(--d-fast) var(--e-inout);
+}
+.sound-toggle.is-on{display:block;}
+.sound-toggle svg{display:block;}
+.sound-toggle:hover,.sound-toggle:focus-visible,.sound-toggle[aria-pressed="true"]{color:var(--orange);}
+@media (max-width:767px){ .sound-toggle{left:auto;right:48px;top:4px;} }
 /* Entry point 2 - a disclosure inside the ghost's existing Peek state,
    reusing the §8.7 deep-panel toggle/region pattern rather than a new one. */
 .resume-picker{margin-top:var(--s3);border-top:1px solid var(--line);padding-top:var(--s3);}
@@ -460,6 +502,9 @@ em,i{font-style:normal;}
   <div class="rail__track"></div>
   <div class="rail__fill" id="railFill"><div class="rail__cap" id="railCap"></div><div class="rail__num" id="railNum">0:00</div></div>
 </div>
+<button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false" aria-label="Turn resolution sound on">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z" fill="currentColor"/><path d="M16 8.5c1.2 1 1.2 5.9 0 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+</button>
 
 <div class="wordmark" id="wordmark"><a href="#" data-escape aria-label="Return to path choice"><span class="wordmark__chev" aria-hidden="true">‹</span>Phillip Da Silva-Marquis</a></div>
 <p class="sr-only" aria-live="polite" id="announce"></p>
@@ -469,6 +514,7 @@ em,i{font-style:normal;}
   <p class="choice__mark">Phillip Da Silva-Marquis</p>
   <h1 class="choice__id">Senior Business Analyst. Retail floor to enterprise modernization, ten years.</h1>
   <p class="choice__prompt">How long do you have?</p>
+  <p class="choice__prompt-warmth">I'll meet you wherever you land.</p>
 
   <div class="bands">
     <button class="band" data-path="A" type="button">
@@ -497,7 +543,32 @@ em,i{font-style:normal;}
     </button>
   </div>
 
-  <button class="btn resume-picker-entry" type="button" data-resume-picker-link>Hiring for something specific? Get the résumé built for it →</button>
+  <div class="choice__links">
+    <button class="btn resume-picker-entry" type="button" data-resume-picker-link>Hiring for something specific? Get the résumé built for it →</button>
+    <button class="btn quick-glance-link" type="button" data-quick-glance-link aria-expanded="false" aria-controls="quickGlancePanel">Only have a glance? Here's the shape of it →</button>
+  </div>
+
+  <div class="quick-glance" id="quickGlancePanel" data-quick-glance tabindex="-1">
+    <p class="quick-glance__id lead">Senior Business Analyst. Retail floor to enterprise modernization, ten years.</p>
+    <div class="quick-glance__stats">
+      <div class="stat">
+        <div class="stat__fig">1,000+ <span class="to">→ ~20</span></div>
+        <div class="stat__label">Legacy reports cut to audit-ready data models</div>
+      </div>
+      <div class="stat">
+        <div class="stat__fig">6 wks <span class="to">→ 2 wks</span></div>
+        <div class="stat__label">Vendor onboarding, contract to live products</div>
+      </div>
+      <div class="stat">
+        <div class="stat__fig">1 wk <span class="to">→ 1 day</span></div>
+        <div class="stat__label">Rebate setup for the merchandising team</div>
+      </div>
+    </div>
+    <div class="quick-glance__cta">
+      <a class="btn-filled" href="2026_Resume_Phillip_Da_Silva_Marquis.pdf" download data-ga="resume_download_quickglance">Download the résumé</a>
+      <button class="btn quick-glance__close" type="button" data-quick-glance-close>Done</button>
+    </div>
+  </div>
 </nav>
 
 <main id="main">
@@ -1005,6 +1076,45 @@ var resumeTpl=D.getElementById('resumeDownloadTpl');
   block.appendChild(resumeTpl.content.cloneNode(true));
 });
 
+/* ---------- resolution chime (Enhancement 05) ----------
+   One synthesized tone, layered onto the same four yellow-flash moments
+   the site already marks as resolved - no new trigger. Muted by default;
+   enabling it persists for the session only, same rule as the résumé
+   picker's own selection (§8.10, §8.12, §11 item 12). */
+var SOUND_KEY='soundOn', soundOn=false;
+try{ soundOn=sessionStorage.getItem(SOUND_KEY)==='1'; }catch(e){}
+var saveData=!!(navigator.connection&&navigator.connection.saveData);
+var audioCtx=null;
+function playResolveTone(){
+  if(!soundOn||saveData) return;
+  try{
+    if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+    var ctx=audioCtx, now=ctx.currentTime;
+    var osc=ctx.createOscillator(), gain=ctx.createGain();
+    osc.type='sine';
+    osc.frequency.setValueAtTime(660,now);
+    osc.frequency.linearRampToValueAtTime(880,now+.18);
+    gain.gain.setValueAtTime(.06,now);
+    gain.gain.exponentialRampToValueAtTime(.0001,now+.18);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start(now); osc.stop(now+.2);
+  }catch(e){}
+}
+var soundToggle=D.getElementById('soundToggle');
+function paintSoundToggle(){
+  if(!soundToggle) return;
+  soundToggle.setAttribute('aria-pressed',soundOn?'true':'false');
+  soundToggle.setAttribute('aria-label',soundOn?'Turn resolution sound off':'Turn resolution sound on');
+}
+if(soundToggle){
+  paintSoundToggle();
+  soundToggle.addEventListener('click',function(){
+    soundOn=!soundOn;
+    try{ sessionStorage.setItem(SOUND_KEY,soundOn?'1':'0'); }catch(e){}
+    paintSoundToggle();
+  });
+}
+
 /* ---------- reveal (Enhancement 01 item 2) ----------
    Continuous and reversible: every beat's visual state is f(scroll position),
    so scrolling back up un-reveals it for free. One rAF tick recomputes every
@@ -1035,6 +1145,11 @@ function paintReveals(){
     if(r){
       r.style.setProperty('--rp',p);
       r.classList.toggle('is-hot',!reduce&&p>.9&&p<1);
+      /* Enhancement 05: chime fires once per resolve, and re-arms if the
+         user scrolls back up and the value dissolves again - same
+         reversible mechanic as the visual resolve itself. */
+      if(p>=1){ if(r.dataset.resolved!=='1'){ r.dataset.resolved='1'; playResolveTone(); } }
+      else { r.dataset.resolved='0'; }
     }
     /* counters stay forward-only by deliberate exception - a number ticking
        back down on scroll-up reads as the figure un-counting itself */
@@ -1064,12 +1179,12 @@ function runCounters(scope){
   [].forEach.call(scope.querySelectorAll('[data-count]'),function(el){
     if(el.dataset.ran) return; el.dataset.ran='1';
     var from=+el.dataset.from, to=+el.dataset.to, pre=el.dataset.prefix||'';
-    if(reduce){ el.textContent=pre+to; return; }
+    if(reduce){ el.textContent=pre+to; playResolveTone(); return; }
     var t0=performance.now(), dur=900;
     (function step(t){
       var p=Math.min(1,(t-t0)/dur), v=Math.round(from+(to-from)*(1-Math.pow(1-p,3)));
       el.textContent=pre+v.toLocaleString();
-      if(p<1) requestAnimationFrame(step); else el.textContent=pre+to;
+      if(p<1) requestAnimationFrame(step); else { el.textContent=pre+to; playResolveTone(); }
     })(t0);
   });
 }
@@ -1106,6 +1221,7 @@ function updateRail(){
   if(currentRemaining<=0&&!doneFlashed){
     doneFlashed=true; cap.classList.add('is-done');
     ga('path_complete',{path:active});
+    playResolveTone();
   }
 }
 
@@ -1146,6 +1262,7 @@ function start(path,scrollTo){
   t.hidden=false; t.classList.add('is-active');
   choice.classList.add('is-gone');
   rail.classList.add('is-on');
+  if(soundToggle) soundToggle.classList.add('is-on');
   wordmark.classList.remove('is-on');
 
   buildCaseEyebrows(t);
@@ -1303,6 +1420,7 @@ function toChoice(){
   if(active&&threads[active]){ threads[active].hidden=true; threads[active].classList.remove('is-active'); }
   active=null; choice.classList.remove('is-gone');
   rail.classList.remove('is-on'); wordmark.classList.remove('is-on');
+  if(soundToggle) soundToggle.classList.remove('is-on');
   ghost.classList.remove('is-hidden','is-open');
   window.scrollTo(0,0);
   if(location.hash) history.pushState({},'',location.pathname);
@@ -1418,6 +1536,7 @@ var DWELL_MS=1200, DWELL_GRACE=150, DWELL_SLOP=10;
         if(p<1){ rafId=requestAnimationFrame(step); return; }
         rafId=null;
         arm.classList.add('is-done');
+        playResolveTone();
         open();
         doneT=setTimeout(function(){ doneT=null; arm.classList.remove('is-armed','is-done'); },260);
       })(performance.now());
@@ -1523,6 +1642,43 @@ if(resumePickerLink){
     ga('resume_picker_open',{via:'screen0_link'});
   });
 }
+/* ---------- quick-glance panel (Enhancement 05) ----------
+   Non-path reveal, same disclosure family as the résumé picker above - see
+   design file §8.14. Opens in place on Screen 0: no rail, no history push,
+   no Screen E. */
+var quickGlanceLink=D.querySelector('[data-quick-glance-link]');
+var quickGlancePanel=D.querySelector('[data-quick-glance]');
+var quickGlanceClose=D.querySelector('[data-quick-glance-close]');
+function openQuickGlance(){
+  quickGlancePanel.classList.add('is-open');
+  quickGlancePanel.style.maxHeight='';
+  quickGlancePanel.style.overflowY='';
+  quickGlanceLink.setAttribute('aria-expanded','true');
+  /* §6/§8.14 - Screen 0 must never scroll. If the panel doesn't fit beneath
+     the bands in the current viewport, it scrolls internally instead of
+     the page ever growing past 100svh. */
+  var avail=window.innerHeight-quickGlancePanel.getBoundingClientRect().top-24;
+  quickGlancePanel.style.maxHeight=Math.max(120,avail)+'px';
+  quickGlancePanel.style.overflowY='auto';
+  setTimeout(function(){
+    try{ quickGlancePanel.focus({preventScroll:true}); }
+    catch(e){ quickGlancePanel.focus(); }
+  },0);
+  ga('quick_glance_open',{});
+}
+function closeQuickGlance(){
+  quickGlancePanel.classList.remove('is-open');
+  quickGlanceLink.setAttribute('aria-expanded','false');
+}
+if(quickGlanceLink){
+  quickGlanceLink.addEventListener('click',function(){
+    quickGlancePanel.classList.contains('is-open')?closeQuickGlance():openQuickGlance();
+  });
+}
+if(quickGlanceClose){
+  quickGlanceClose.addEventListener('click',closeQuickGlance);
+}
+
 /* pointer focus must not pre-open, or the click below would immediately close it */
 ghostBtn.addEventListener('pointerdown',function(){ ghostViaPointer=true; });
 ghostBtn.addEventListener('click',function(){
