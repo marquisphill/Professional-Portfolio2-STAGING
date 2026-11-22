@@ -308,6 +308,10 @@ a{color:var(--accent)}
 .gcat:hover .ghead{transform:rotate(-8deg)}
 .gcat.talk .ghead{animation:gnod .5s ease-in-out 2}
 @keyframes gnod{0%,100%{transform:rotate(0)}50%{transform:rotate(-7deg)}}
+.gmouth{transform-box:fill-box;transform-origin:50% 0;transform:scale(.4,0);transition:transform .22s cubic-bezier(.16,1,.3,1)}
+.gcat.chomp .gmouth{transform:scale(1.25,1.6)}
+.gcat.chomp .ghead{transform:rotate(-4deg) scale(1.08)}
+.gcat.chomp .geyes{animation:none;transform:scaleY(.55)}
 .gcat:focus-visible{outline:2px solid #3ddc84;outline-offset:4px;border-radius:8px}
 .gbubble{position:fixed;z-index:9060;width:310px;max-width:calc(100vw - 16px);box-sizing:border-box;padding:14px 14px 12px;border-radius:14px;background:#0f1b14;border:1px solid #2a9a5f;box-shadow:0 16px 40px rgba(0,0,0,.55);color:#e6f2ea;font-size:13.5px;line-height:1.5}
 .gbubble[hidden]{display:none}
@@ -762,6 +766,7 @@ a{color:var(--accent)}
     <path d="M-16 -29 L-7 -15 Q 0 -17.5 7 -15 L16 -29 L17 -6 C 18 4, 12 13, 0 15 C -12 13, -18 4, -17 -6 Z" fill="#ff4d4f"/>
     <g class="geyes"><ellipse cx="-6" cy="0" rx="2.8" ry="3.8" fill="#07100b"/><ellipse cx="6" cy="0" rx="2.8" ry="3.8" fill="#07100b"/></g>
     <path d="M-15 6 L-31 3 M-14.5 9.5 L-31 11.5 M15 6 L31 3 M14.5 9.5 L31 11.5" stroke="#ff4d4f" stroke-width="1.6" stroke-linecap="round"/>
+    <g class="gmouth"><ellipse cx="0" cy="8.5" rx="6" ry="4.6" fill="#3a0608"/><ellipse cx="0" cy="10.6" rx="3.4" ry="1.8" fill="#ff8a8c"/></g>
   </g></g>
 </svg></span></button>
 <div class="gbubble" id="gbubble" hidden role="dialog" aria-label="Phill’s cat">
@@ -1359,11 +1364,12 @@ a{color:var(--accent)}
     W.state = 'open'; W.busy = false;
     if (!W.el.contains(document.activeElement)) W.el.focus({ preventScroll: true });
     ga('open_window', { window_id: W.id });
+    checkClutter();
   }
-  async function closeW(W) {
-    if (W.busy || W.state === 'closed') return;
+  async function closeW(W, quiet) {
+    if ((W.busy && !quiet) || W.state === 'closed') return;
     W.busy = true;
-    if (W.state === 'min') { W.el.style.visibility = ''; }
+    if (W.state === 'min' || quiet) { W.el.style.visibility = ''; }
     else {
       const to = W.el.getBoundingClientRect(), dest = srcRect(W.src);
       if (reduce) await W.el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 140 }).finished;
@@ -1381,6 +1387,7 @@ a{color:var(--accent)}
     W.el.remove(); WINS.delete(W.id);
     if (W.onClose) W.onClose();
     const next = topWin(); if (next) { focusW(next); next.el.focus({ preventScroll: true }); }
+    if (openCount() <= CLUTTER) cleanupArmed = true;
   }
   async function minimizeW(W) {
     if (W.busy || W.state !== 'open') return;
@@ -2290,6 +2297,65 @@ a{color:var(--accent)}
     say(msg);
     const mine = msgSeq;
     setTimeout(() => { if (mine === msgSeq) hideBubble(); }, 2600);
+  }
+
+  /* ---------- tidy up: with more than 3 windows open, the cat offers to eat the extras ---------- */
+  const CLUTTER = 3;
+  let cleanupArmed = true, cleaning = false;
+  function openCount() { let n = 0; WINS.forEach(W => { if (W.state === 'open' || W.state === 'min') n++; }); return n; }
+  function checkClutter() {
+    if (!cleanupArmed || cleaning || tour || gcat.hidden || openCount() <= CLUTTER) return;
+    cleanupArmed = false;
+    offerCleanup();
+  }
+  async function offerCleanup() {
+    const token = ++stepToken;
+    ringOff(); gbub.hidden = true;
+    await moveCat({ x: innerWidth / 2 - CAT_W() / 2, y: (innerHeight - 44) / 2 - CAT_H() / 2 }, false);
+    if (token !== stepToken) return;
+    say('<span class="gname">Phill’s cat</span>You have a lot of windows open. Can I clean them up?', [
+      { label: 'Yes', pri: true, fn: () => eatWindows(token) },
+      { label: 'No thanks', quiet: true, fn: () => guideRest('Okay! They’re all yours.') }
+    ]);
+    ga('cleanup_offer', { windows: openCount() });
+  }
+  async function eatWindows(token) {
+    if (token !== stepToken || cleaning) return;
+    cleaning = true; gbub.hidden = true;
+    const keep = topWin();
+    const victims = [...WINS.values()].filter(W => W !== keep && W.state !== 'closed' && !W.busy);
+    ga('cleanup_accept', { closed: victims.length });
+    gcat.classList.add('chomp');
+    await sleep(reduce ? 0 : 260);
+    const m = $('.gmouth', gcat).getBoundingClientRect(), mx = m.left + m.width / 2, my = m.top + m.height / 2;
+    await Promise.all(victims.map(async (W, i) => {
+      W.busy = true;
+      if (!reduce && W.state === 'open') {
+        await sleep(i * 110);
+        const r = W.el.getBoundingClientRect();
+        const dx = mx - (r.left + r.width / 2), dy = my - (r.top + r.height / 2);
+        // shrink toward the cat while still behind the window you're reading, then pop over it into his mouth
+        const z = +W.el.style.zIndex || 1, tilt = i % 2 ? 1 : -1;
+        const mid = `translate(${dx * .45}px, ${dy * .45}px) scale(.4) rotate(${tilt * 6}deg)`;
+        W.inner.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, fill: 'forwards' });
+        await W.el.animate([
+          { transform: 'none', opacity: 1, zIndex: z, borderRadius: '8px', filter: 'blur(0)', easing: 'cubic-bezier(.3,0,.5,1)' },
+          { transform: mid, opacity: 1, zIndex: z, borderRadius: '14px', offset: .42 },
+          { transform: mid, opacity: 1, zIndex: 9040, borderRadius: '14px', offset: .43, easing: 'cubic-bezier(.6,0,.9,.4)' },
+          { transform: `translate(${dx}px, ${dy}px) scale(.02) rotate(${tilt * 22}deg)`, opacity: 0, zIndex: 9040, borderRadius: '40px', filter: 'blur(2px)' }
+        ], { duration: 680, fill: 'forwards' }).finished;
+        gbodyEl.animate([{ transform: 'none' }, { transform: 'scale(1.12,.9)' }, { transform: 'none' }], { duration: 200, easing: 'ease-out' });
+      }
+      await closeW(W, true);
+    }));
+    gcat.classList.remove('chomp');
+    cleaning = false;
+    if (keep && keep.state === 'open') { focusW(keep); keep.el.focus({ preventScroll: true }); }
+    if (token !== stepToken) return;
+    cheer();
+    await sleep(reduce ? 0 : 450);
+    if (token !== stepToken) return;
+    guideRest('All clean! I kept the one you were looking at.');
   }
 
   gcat.addEventListener('click', () => {
