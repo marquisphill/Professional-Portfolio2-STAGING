@@ -1,4 +1,12 @@
 {
   "updated": "2026-11-22",
-  "prototypes": []
+  "prototypes": [
+    {
+      "slug": "view-resume-tutorial",
+      "title": "Prototype tutorial: how to view my résumé",
+      "url": "labs/view-resume-tutorial.html",
+      "date": "2026-11-22",
+      "summary": "Step-by-step walkthrough of the three ways to get the résumé: the Résumé button, a tailored version, or the end of a path."
+    }
+  ]
 }
