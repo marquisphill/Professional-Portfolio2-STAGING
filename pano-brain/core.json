@@ -54,7 +54,7 @@
       {
         "value": "1,000+ → ~20",
         "what": "Legacy reports cut to audit-ready data models",
-        "where": "CITY Furniture",
+        "where": "CITY Home",
         "topic": "case-reports"
       },
       {
@@ -72,7 +72,7 @@
       {
         "value": "25",
         "what": "Workstreams on an enterprise OMS modernization",
-        "where": "CITY Furniture",
+        "where": "CITY Home",
         "topic": "role-city"
       },
       {
@@ -102,7 +102,7 @@
         "open": "doc:marinemax"
       },
       {
-        "org": "CITY Furniture",
+        "org": "CITY Home",
         "role": "Sr. Business Analyst, Enterprise OMS Modernization",
         "dates": "Oct 2025 – Jul 2026",
         "place": "Tamarac, FL",
@@ -430,8 +430,9 @@
     {
       "id": "role-city",
       "category": "experience",
-      "title": "CITY Furniture: modernizing the order system",
+      "title": "CITY Home: modernizing the order system",
       "triggers": [
+        "city home",
         "city furniture",
         "oms",
         "ibm sterling",
@@ -439,7 +440,7 @@
         "previous job"
       ],
       "script": [
-        "Before MarineMax, Phill was <b>Sr. Business Analyst at CITY Furniture</b>, Oct 2025 to Jul 2026.",
+        "Before MarineMax, Phill was <b>Sr. Business Analyst at CITY Home</b>, Oct 2025 to Jul 2026.",
         "The program: retire a legacy IBM i/AS400 system and move to <b>IBM Sterling OMS</b>, across 25 workstreams.",
         "He wrote a 65-page BRD for the CRM, activity diagrams for 90+ customer messages, cut 1,000+ reports to about 20, and built the BRD Skill."
       ],
@@ -464,7 +465,7 @@
         "crm"
       ],
       "script": [
-        "At CITY Furniture, Phill ran a current-state and future-state gap analysis on the CRM.",
+        "At CITY Home, Phill ran a current-state and future-state gap analysis on the CRM.",
         "It showed the CRM needed <b>far less rework</b> than the program assumed.",
         "That kept the build from being over-scoped. Sometimes the best requirement is the one you don't need."
       ],
@@ -488,7 +489,7 @@
         "requirements gathering"
       ],
       "script": [
-        "Phill facilitated <b>week-long, all-day requirements workshops</b> at CITY Furniture, with sign-off at the end of every day.",
+        "Phill facilitated <b>week-long, all-day requirements workshops</b> at CITY Home, with sign-off at the end of every day.",
         "He also introduced the prioritization method and the epic and user-story structure the team adopted as standard. Neither existed when he started."
       ],
       "follow_ups": [
@@ -661,7 +662,7 @@
         "legacy"
       ],
       "script": [
-        "My favorite story. CITY Furniture had <b>over 1,000 legacy reports</b>, mostly undocumented.",
+        "My favorite story. CITY Home had <b>over 1,000 legacy reports</b>, mostly undocumented.",
         "Phill met every owner to triage (down to about 500), then ran keep-or-retire workshops (about 200).",
         "Then he set rules for an AI pass over the rest: group, score every merge, show the work, leave the final call to him. Result: <b>about 20 audit-ready data models.</b>"
       ],
@@ -812,7 +813,7 @@
         "brd"
       ],
       "script": [
-        "CITY Furniture's requirements lived in <b>hundreds of pages of BRDs</b> across 25 workstreams. Every question meant a BA digging by hand.",
+        "CITY Home's requirements lived in <b>hundreds of pages of BRDs</b> across 25 workstreams. Every question meant a BA digging by hand.",
         "Phill built a <b>Claude Skill</b> so any BA could ask a plain-language question and get an answer back.",
         "The part that mattered: every answer comes with the <b>source BRD and the exact line</b> attached. Answers a BA can defend in a workshop."
       ],
@@ -962,7 +963,7 @@
         "dashboard"
       ],
       "script": [
-        "At CITY Furniture, Phill tracked the report work on a dashboard.",
+        "At CITY Home, Phill tracked the report work on a dashboard.",
         "Then he had AI generate the <b>weekly steering report</b> straight off that data, instead of building it by hand every week.",
         "He also used AI to turn hundreds of pages of BRDs into executive summaries with line-level traceability, in about a week."
       ],
