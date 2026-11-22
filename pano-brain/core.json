@@ -442,7 +442,7 @@
       "script": [
         "Before MarineMax, Phill was <b>Sr. Business Analyst at CITY Home</b>, Oct 2025 to Jul 2026.",
         "The program: retire a legacy IBM i/AS400 system and move to <b>IBM Sterling OMS</b>, across 25 workstreams.",
-        "He wrote a 65-page BRD for the CRM, activity diagrams for 90+ customer messages, cut 1,000+ reports to about 20, and built the BRD Skill."
+        "He wrote a 65-page BRD for the CRM, activity diagrams for 90+ customer messages, cut 1,000+ reports to about 20, and built the BRD knowledge base pipeline."
       ],
       "follow_ups": [
         "case-reports",
@@ -664,7 +664,7 @@
       "script": [
         "My favorite story. CITY Home had <b>over 1,000 legacy reports</b>, mostly undocumented.",
         "Phill met every owner to triage (down to about 500), then ran keep-or-retire workshops (about 200).",
-        "Then he set rules for an AI pass over the rest: group, score every merge, show the work, leave the final call to him. Result: <b>about 20 audit-ready data models.</b>"
+        "Then a Claude Skill he built clustered the rest and QA-scored every merge, and nothing was built without the report owner's sign-off. Result: <b>about 20 audit-ready data models.</b>"
       ],
       "follow_ups": [
         "checking-ai-work",
@@ -804,7 +804,7 @@
     {
       "id": "case-brdskill",
       "category": "case-studies",
-      "title": "The BRD Skill",
+      "title": "The BRD Knowledgebase Pipeline",
       "triggers": [
         "brd skill",
         "claude skill",
@@ -814,8 +814,8 @@
       ],
       "script": [
         "CITY Home's requirements lived in <b>hundreds of pages of BRDs</b> across 25 workstreams. Every question meant a BA digging by hand.",
-        "Phill built a <b>Claude Skill</b> so any BA could ask a plain-language question and get an answer back.",
-        "The part that mattered: every answer comes with the <b>source BRD and the exact line</b> attached. Answers a BA can defend in a workshop."
+        "Phill built a pipeline: a scheduled skill turns raw BRDs into a <b>line-numbered knowledge base</b>, where every document gets a unique ID. A BA can ask it a question, or get an executive summary out of it.",
+        "The part that mattered: every answer points to the <b>exact document and line</b>, or says it isn't documented. The executive summary that came out of it got sign-off in about a week."
       ],
       "follow_ups": [
         "steering-report",

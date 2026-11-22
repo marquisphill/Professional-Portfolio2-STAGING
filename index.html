@@ -191,6 +191,69 @@ a{color:var(--accent)}
 .page .jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding-top:16px;border-top:1px solid var(--pane-line)}
 .page a[data-open]{cursor:pointer}
 .page .sig{margin-top:20px;font-style:italic;color:var(--ink-soft)}
+/* ---------- sheet: light case-study page driven by a process diagram ---------- */
+.pagewrap{container-type:inline-size}
+.page.sheet{max-width:900px;background:#f4f7f3;color:#12241a;padding:40px 44px 44px;border-radius:4px}
+.sheet .kicker{color:#157a45;font-weight:700}
+.sheet h1{font-size:26px}
+.sheet .meta{color:#4d6457;font-size:14px}
+.sheet p{color:#2e4337}
+.sheet b,.sheet strong{color:#12241a}
+.sheet .ktid{color:#c62f32}
+.sheet .stats{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:0 0 26px}
+.sheet .stats li{background:#fff;border-color:#cfdcd3;color:#4d6457;padding:14px 16px}
+.sheet .stats b{font-size:26px;color:#0f3d26;line-height:1.2;margin-bottom:2px}
+.sheet .rule{display:flex;align-items:center;gap:10px;margin:26px 0 14px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#4d6457;font-weight:700}
+.sheet .rule::after{content:"";flex:1;height:1px;background:#d5dfd8}
+.sheet .rule .phint{order:2;font-size:11.5px;letter-spacing:0;text-transform:none;font-weight:400}
+.sheet .diagram{background:#fff;border:1px solid #d5dfd8;border-radius:8px;padding:26px 20px 22px}
+.sheet .flow{display:flex;align-items:stretch;gap:10px}
+.sheet .flow>.node{flex:1 1 0;min-width:0}
+.sheet .pstart{flex:none;width:78px;border-radius:8px;background:#12241a;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+.sheet .chev{flex:none;display:flex;align-items:center;justify-content:center;color:#7f988a;font-size:18px;line-height:1;pointer-events:none}
+.sheet .node{position:relative;display:flex;flex-direction:column;gap:4px;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid #cfdcd3;background:#fff;color:#2e4337;font-size:12px;line-height:1.45;text-decoration:none;cursor:pointer;text-align:left}
+.sheet .node:hover,.sheet .node:focus-visible{border-color:#157a45;box-shadow:0 0 0 3px rgba(21,122,69,.16);outline:none}
+.sheet .node b{font-size:13.5px;line-height:1.3;color:#12241a}
+.sheet .node .n{position:absolute;top:-10px;left:-10px;min-width:22px;height:22px;padding:0 5px;box-sizing:border-box;border-radius:11px;background:#0f3d26;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.sheet .node.skill{background:#fdf2dc;border-color:#e2b866}
+.sheet .node.skill b{color:#7a4b00}
+.sheet .node.kb{background:#e3f5ea;border-color:#7ccaa0}
+.sheet .node.kb b{color:#0f5a33}
+.sheet .node.done b::before{content:"\2713\00a0";color:#157a45}
+.sheet .fork{display:flex;align-items:center;gap:10px;margin:18px 0 16px;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#0f5a33;font-weight:700}
+.sheet .fork::before,.sheet .fork::after{content:"";flex:1;height:1px;background:#d5dfd8}
+.sheet .lanes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.sheet .turn{display:flex;justify-content:flex-end;padding:6px 6% 6px 0;color:#7f988a;font-size:18px;line-height:1}
+.sheet .legend-row{display:flex;flex-wrap:wrap;gap:8px 16px;margin:10px 0 0;font-size:11.5px;color:#4d6457}
+.sheet .legend-row span{display:inline-flex;align-items:center;gap:6px}
+.sheet .legend-row i{width:12px;height:12px;border-radius:3px;border:1px solid #cfdcd3;background:#fff}
+.sheet .legend-row i.skill{background:#fdf2dc;border-color:#e2b866}
+.sheet .legend-row i.kb{background:#e3f5ea;border-color:#7ccaa0}
+.sheet .steps{display:flex;flex-direction:column;gap:18px;margin:0 0 6px}
+.sheet .step{border-radius:6px;transition:background .6s}
+.sheet .step.flash{background:#e3f5ea}
+.sheet .step h3,.sheet .lead{margin:0 0 6px;font-size:15px;color:#12241a;display:flex;align-items:center;gap:10px}
+.sheet .step h3 .n{min-width:24px;height:24px;padding:0 6px;box-sizing:border-box;border-radius:12px;background:#0f3d26;color:#fff;font-size:11.5px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.sheet .step p{margin:0}
+.sheet .guards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 8px;padding:0;list-style:none}
+.sheet .guards li{margin:0;padding:14px 16px;background:#fff;border:1px solid #cfdcd3;border-top:3px solid #157a45;border-radius:6px;font-size:12.5px;line-height:1.5;color:#2e4337;max-width:none}
+.sheet .guards b{display:block;font-size:13.5px;margin-bottom:4px}
+.sheet .fine{margin:18px 0 0;font-size:11.5px;color:#4d6457}
+.sheet .jump{border-top-color:#d5dfd8}
+@container (max-width: 760px){
+  .page.sheet{padding:26px 18px 30px}
+  .sheet h1{font-size:23px}
+  .sheet .diagram{padding:20px 16px 18px}
+  .sheet .flow{flex-direction:column;gap:6px}
+  .sheet .flow>.node{flex:none}
+  .sheet .pstart{width:auto;height:34px}
+  .sheet .chev{height:18px;font-size:0}
+  .sheet .chev::before{content:"\2193";font-size:16px}
+  .sheet .lanes{grid-template-columns:minmax(0,1fr);gap:18px}
+  .sheet .turn{justify-content:center;padding:0;height:24px}
+  .sheet .guards{grid-template-columns:minmax(0,1fr)}
+  .sheet .rule .phint{display:none}
+}
 
 /* pdf + photos */
 .pdfwrap{flex:1;min-height:0;background:#525659}
@@ -898,7 +961,7 @@ a{color:var(--accent)}
         <li>Produced activity diagrams for 90+ customer-notification messages, giving engineering an unambiguous build spec.</li>
         <li>Contributed metrics, risks and blockers to weekly steering across a program spanning 25 workstreams.</li>
       </ul>
-      ${jump(['Case: 1,000+ reports → ~20', 'doc:reports'], ['Case: the BRD Skill', 'doc:brdskill'])}` },
+      ${jump(['Case: 1,000+ reports → ~20', 'doc:reports'], ['Case: BRD Knowledgebase Pipeline', 'doc:brdskill'])}` },
 
     flexpm: { file: 'FlexShopper – Project Manager.docx', title: 'FlexShopper – Project Manager', html: `
       <p class="kicker">Experience</p>
@@ -951,21 +1014,51 @@ a{color:var(--accent)}
         <li>Studying for <strong>PSM I</strong> (scrum.org)</li>
       </ul>` },
 
-    reports: { file: '1,000+ reports → ~20.docx', title: 'Case: 1,000+ reports → ~20', html: `
-      <p class="kicker">Case study · CITY Home</p>
-      <h1>Over 1,000 legacy reports cut to about 20 data models</h1>
-      <p class="meta">Cut a decade of accumulated reporting down to the models worth rebuilding, with the work behind each decision checkable.</p>
-      <h2>Context</h2>
-      <p>CITY Home was retiring a legacy IBM i/AS400 system and moving to IBM Sterling OMS. Everything running off the old system had to be dispositioned before the new one could be scoped. That included over 1,000 reports built up over years, most of them undocumented.</p>
-      <h2>What I did</h2>
-      <p>Met with every report owner to start triage, which cut the list to about 500. Ran workshops where each owner marked their reports keep or retire with a purpose, a cadence and an owner attached. That got it to about 200. From there I set up an AI pass over the remaining reports and gave it the rules it had to work inside: group the ones that belong together, score every merge, show the work, and leave the final decision to me. I reviewed the output and landed on about 20 data models.</p>
-      <h2>Checking the work</h2>
-      <p>The output came back with a coverage manifest showing which retained reports had a description, a sample and parsed columns, plus an evidence trail with each report’s stated purpose, parsed columns and original header. I kept both, adjusted them to what the project needed, and used them to check the results. Anything thin showed up as a gap instead of quietly dropping out.</p>
-      <h2>Results</h2>
-      <p>About 200 stakeholder-vetted reports came down to about 20 audit-ready data models. I also mapped those reports back to their source systems and worked with the dev teams to establish which sources were migrating, which were staying, and what was changing, so the data team had current-state and future-state sourcing before the build started. Tracked the whole effort on a dashboard and used AI to generate the weekly steering report off that data instead of building it by hand.</p>
-      <h2>Reflection</h2>
-      <p>The data team got a decided starting point instead of a pile, and every decision behind it was checkable.</p>
-      ${jump(['How I use AI', 'doc:ai'], ['Next case: replacing the order system', 'doc:logicbroker'])}` },
+    reports: { sheet: true, file: 'Report Consolidation Pipeline.docx', title: 'Case: Report Consolidation Pipeline', html: `
+      <p class="kicker">Case study · CITY Home · AI Lab</p>
+      <h1>Report Consolidation Pipeline</h1>
+      <p class="meta">An AI-assisted method for rationalizing 1,000+ legacy reports during a system modernization.</p>
+      <ul class="stats">
+        <li><b>1,000+ → ~200</b>Reports left after owner triage and keep/retire workshops</li>
+        <li><b>~200 → ~20</b>Audit-ready data models after the AI consolidation pass</li>
+      </ul>
+      <div class="rule">How it works<span class="phint">Tap a step to read about it</span></div>
+      <div class="diagram">
+        <div class="flow">
+          <div class="pstart">Start</div><span class="chev" aria-hidden="true">›</span>
+          <a class="node" href="#" data-goto="r1"><span class="n">1</span><b>Compile report context</b><span>Analysis doc, sample output and workshop notes for every report.</span></a><span class="chev" aria-hidden="true">›</span>
+          <a class="node skill" href="#" data-goto="r2"><span class="n">2</span><b>Add context to Claude</b><span>All sources loaded into a Claude Project and read raw.</span></a><span class="chev" aria-hidden="true">›</span>
+          <a class="node skill" href="#" data-goto="r3"><span class="n">3</span><b>Run the Rebuild Playbook skill</b><span>Clusters reports by family and purpose, scores similarity, flags gaps.</span></a>
+        </div>
+        <div class="turn" aria-hidden="true">↓</div>
+        <div class="flow">
+          <a class="node" href="#" data-goto="r4"><span class="n">4</span><b>Review stable clusters</b><span>QA scores separate Stable from Needs Review.</span></a><span class="chev" aria-hidden="true">›</span>
+          <a class="node" href="#" data-goto="r5"><span class="n">5</span><b>Stakeholder sign-off</b><span>Each cluster goes to its report owner to confirm the merge.</span></a><span class="chev" aria-hidden="true">›</span>
+          <a class="node done" href="#" data-goto="r6"><span class="n">6</span><b>Rebuild per requirements</b><span>Data team builds the signed-off, consolidated report.</span></a>
+        </div>
+      </div>
+      <div class="legend-row"><span><i class="skill"></i>Claude does the work</span><span><i></i>People decide</span></div>
+      <h2 class="rule">The problem</h2>
+      <p>CITY Home was retiring a legacy IBM i/AS400 system and moving to IBM Sterling OMS, and over 1,000 reports had built up on the old system over the years, most of them undocumented. Triage with every report owner cut the list to about 500, and keep/retire workshops got it to about 200. Many of those were near-duplicates: the same data and purpose, split apart by time range, department, or a “final” designation used for contractor payment reporting. Rebuilding them one-for-one would have carried the redundant logic forward instead of fixing it.</p>
+      <div class="rule">Step by step</div>
+      <div class="steps">
+        <div class="step" data-step="r1"><h3><span class="n">1</span>Compile the context</h3><p>For each report I assembled three sources: its SpoolFlex analysis document (purpose, data sources, attributes, and the AS400 program it belonged to), its actual sample output, and my structured notes from stakeholder workshops covering keep/retire, feedback, cadence and owner. I owned compiling all of it, for every report in scope, before any of it reached Claude.</p></div>
+        <div class="step" data-step="r2"><h3><span class="n">2</span>Add it to Claude</h3><p>All of the sources went into a Claude Project and were read raw. There was no step to restructure them first, so the skill had to work from the documents as they were.</p></div>
+        <div class="step" data-step="r3"><h3><span class="n">3</span>The Rebuild Playbook skill proposes consolidations</h3><p>A Claude Skill I built groups reports into families by name and purpose, then checks description similarity, shared columns and department to decide whether a variant really belongs. Every cluster gets a <span class="ktid">QA score</span>: purpose coverage plus minimum and average pairwise similarity. It’s marked Stable or flagged for review.</p></div>
+        <div class="step" data-step="r4"><h3><span class="n">4</span>Only stable clusters move forward</h3><p>A low-confidence merge is never silently accepted. A coverage manifest showed which reports had a description, a sample and parsed columns, and an evidence trail kept each report’s stated purpose, columns and original header. Anything thin showed up as a gap to chase down.</p></div>
+        <div class="step" data-step="r5"><h3><span class="n">5</span>The report owner signs off</h3><p>I packaged each cluster with its evidence and QA score, and the data team took it to the report owner. They handled any new requirement a merge introduced, like a date-range filter or a status flag separating a preliminary run from a final one.</p></div>
+        <div class="step" data-step="r6"><h3><span class="n">6</span>The data team rebuilds to spec</h3><p>Once signed off, a cluster became a confirmed, ready-to-build target. I also mapped the reports back to their source systems, so the data team had current-state and future-state sourcing before the build started.</p></div>
+      </div>
+      <div class="rule">Guardrails</div>
+      <ul class="guards">
+        <li><b>Nothing silently dropped</b>Every report in scope is tracked to an outcome. A documentation gap shows up as a flag, never a quiet omission.</li>
+        <li><b>Every merge is scored</b>Clusters are ranked on purpose coverage and similarity before anyone sees them, so a weak match gets flagged, not presented as done.</li>
+        <li><b>The business decides</b>The AI proposes a consolidation and never finalizes one. Nothing reaches the build queue without the report owner’s sign-off.</li>
+      </ul>
+      <h2 class="rule">Outcome</h2>
+      <p>The data team was understaffed and needed a clear, buildable list of exactly which reports to rebuild. About 200 stakeholder-vetted reports came down to about 20 audit-ready, QA-scored data models, cutting duplicate work before it ever reached a build ticket. I tracked the whole effort on a dashboard and had AI generate the weekly steering report from that data instead of building it by hand.</p>
+      <p class="fine">Recreated for the portfolio. No company documents or data are shown.</p>
+      ${jump(['Previous: BRD Knowledgebase Pipeline', 'doc:brdskill'], ['Next case: replacing the order system', 'doc:logicbroker'])}` },
 
     logicbroker: { file: 'Replacing the order system.docx', title: 'Case: Replacing the order system', html: `
       <p class="kicker">Case study · FlexShopper</p>
@@ -986,23 +1079,57 @@ a{color:var(--accent)}
       <p>Standardized invoices let NetSuite automate wholesaler and retailer payments. Documented the end-to-end onboarding SOP and drove adoption through change management: current-state workshop, refinement, playback with live edits, then a formal announcement to leadership and the team. Presented status to the CEO monthly and built an executive dashboard showing milestones and blockers.</p>
       <h2>Reflection</h2>
       <p>The vendor relationship mattered as much as the build. Leadership wanted a flat two week onboarding promise and the real range was two weeks to three months depending on each vendor’s integration capability. Being straight about that in both directions got us free development work from Logicbroker and eventually their team doing vendor outreach for us.</p>
-      ${jump(['Next case: the BRD Skill', 'doc:brdskill'])}` },
+      ${jump(['Next case: BRD Knowledgebase Pipeline', 'doc:brdskill'])}` },
 
-    brdskill: { file: 'BRD Q&A Skill.docx', title: 'Case: The BRD Skill', html: `
+    brdskill: { sheet: true, file: 'BRD Knowledgebase Pipeline.docx', title: 'Case: BRD Knowledgebase Pipeline', html: `
       <p class="kicker">Case study · CITY Home · AI Lab</p>
-      <h1>A searchable requirements layer the whole BA team could use</h1>
-      <p class="meta">Built a Claude Skill that let any analyst ask questions of hundreds of pages of BRDs and get answers back with the source line attached.</p>
-      <h2>Context</h2>
-      <p>Requirements for the OMS program lived across hundreds of pages of BRDs spanning 25 workstreams. Every question from a stakeholder or an engineer about what had been committed turned into a search for whichever BA picked it up.</p>
-      <h2>What I did</h2>
-      <p>Built a Claude Skill that loads the project’s BRDs into a queryable database, so any BA could ask a plain language question and get an answer back. Built it as a Skill rather than something only I could run, so the rest of the team could use it.</p>
-      <h2>The part that mattered</h2>
-      <p>A summary is not much use to a BA who cannot point to where it came from. Every answer comes back with a traceable ID resolving to the source BRD and the exact line. The answer and the source arrive together.</p>
-      <h2>Results</h2>
-      <p>Requirements questions got answered faster and the answers held up, because the source was attached. The same approach was used on the same program to turn hundreds of pages of BRDs into executive summaries with line-level traceability, done in about a week.</p>
-      <h2>Reflection</h2>
-      <p>Fast answers are easy to get. Answers a BA can defend in a workshop are not. Attaching the source line is what made it usable.</p>
-      ${jump(['Next case: Catalog-as-a-Service', 'doc:caas'], ['AI Lab', 'folder:ailab'])}` },
+      <h1>BRD Knowledgebase Pipeline</h1>
+      <p class="meta">A deterministic, traceable process for verifying and summarizing business requirements at scale.</p>
+      <ul class="stats">
+        <li><b>300+ → 6</b>Pages of requirements synthesized into the executive review</li>
+        <li><b>~1 week</b>To executive sign-off, down from an open-ended review</li>
+      </ul>
+      <div class="rule">How it works<span class="phint">Tap a step to read about it</span></div>
+      <div class="diagram">
+        <div class="flow">
+          <div class="pstart">Start</div><span class="chev" aria-hidden="true">›</span>
+          <a class="node" href="#" data-goto="b1"><span class="n">1</span><b>Raw BRDs submitted</b><span>BA or PO drops raw BRDs into an Unprocessed folder. Any format, no prep.</span></a><span class="chev" aria-hidden="true">›</span>
+          <a class="node skill" href="#" data-goto="b2"><span class="n">2</span><b>Scheduled normalization skill</b><span>Rebuilds each doc as plain text, every word kept, every line numbered.</span></a><span class="chev" aria-hidden="true">›</span>
+          <a class="node kb" href="#" data-goto="b3"><span class="n">3</span><b>Processed knowledge base</b><span>Each doc gets a unique ID. The only source the AI may read.</span></a>
+        </div>
+        <div class="fork">Two ways to use the knowledge base</div>
+        <div class="lanes">
+          <div class="flow">
+            <a class="node skill" href="#" data-goto="b4a"><span class="n">4a</span><b>Executive formatting skill</b><span>Applies the team’s agreed structure: summary, statement length, page limit.</span></a><span class="chev" aria-hidden="true">›</span>
+            <a class="node done" href="#" data-goto="b4a"><b>Executive-ready document</b><span>Formatted summary, ready for review or sign-off.</span></a>
+          </div>
+          <div class="flow">
+            <a class="node" href="#" data-goto="b4b"><span class="n">4b</span><b>Ask the project AI</b><span>Does this requirement exist? Which doc is it in?</span></a><span class="chev" aria-hidden="true">›</span>
+            <a class="node done" href="#" data-goto="b4b"><b>Grounded, traceable answer</b><span>Points to the exact doc ID and line, or says it isn’t documented.</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="legend-row"><span><i class="skill"></i>Automated skill</span><span><i class="kb"></i>Knowledge base</span><span><i></i>People</span></div>
+      <h2 class="rule">The problem</h2>
+      <p>Leadership and cross-functional teams needed fast, trustworthy access to requirements buried across hundreds of pages of BRDs, without reading every document and without an AI ever inventing a requirement that wasn’t written down. Speed and precision both had to hold at once.</p>
+      <div class="rule">Step by step</div>
+      <div class="steps">
+        <div class="step" data-step="b1"><h3><span class="n">1</span>Raw BRDs go in as-is</h3><p>Two folders: <b>Unprocessed Documents</b> for BRDs exactly as submitted, and <b>Processed Documents</b> for the normalized output. Nobody has to clean anything up before dropping it in.</p></div>
+        <div class="step" data-step="b2"><h3><span class="n">2</span>A scheduled skill normalizes them</h3><p>A scheduled task runs a normalization skill that rebuilds each document as plain text. Every word stays, headings and formatting go, and <span class="ktid">every line gets a number</span>.</p></div>
+        <div class="step" data-step="b3"><h3><span class="n">3</span>One processed knowledge base</h3><p>Each document gets a <span class="ktid">unique ID</span>. Doc ID plus line number is what makes an answer traceable to an exact source line instead of a paraphrase. The project AI is allowed to read this folder and nothing else.</p></div>
+        <div class="step" data-step="b4a"><h3><span class="n">4a</span>As a batch: executive-ready summaries</h3><p>The Executive Formatting skill turns the knowledge base into a branded, structured summary sized to the team’s own standard: executive summary, requirement-statement length, page limit.</p></div>
+        <div class="step" data-step="b4b"><h3><span class="n">4b</span>As a workshop: ask the project AI</h3><p>A BA or PO asks whether a requirement exists or which document it came from, or uses it as a thinking partner on a set of requirements. Every answer points to the doc ID and line, or says it isn’t documented.</p></div>
+      </div>
+      <div class="rule">Hard guardrails on the AI</div>
+      <ul class="guards">
+        <li><b>Deterministic by design</b>No internet, no outside context. It reads the same knowledge base the same way every time.</li>
+        <li><b>Traceable to the line</b>Every answer or summary points back to a document ID and line number.</li>
+        <li><b>Never extrapolates</b>If a requirement isn’t in the knowledge base, the answer is that it isn’t there.</li>
+      </ul>
+      <h2 class="rule">Outcome</h2>
+      <p>Development on the IBM Sterling OMS program couldn’t start until the executive team signed off on the full requirements set. Every requirement had already been approved in workshops, but leadership wanted one more confirmation, and nobody was going to read 300+ pages to give it. This turned it into a 6-page executive summary with line-level traceability. Sign-off came in about a week, and development started on schedule.</p>
+      <p class="fine">Recreated for the portfolio. No company documents or data are shown.</p>
+      ${jump(['Next: Report Consolidation Pipeline', 'doc:reports'], ['AI Lab', 'folder:ailab'])}` },
 
     caas: { file: 'Catalog-as-a-Service.docx', title: 'Case: Catalog-as-a-Service', html: `
       <p class="kicker">Case study · FlexShopper</p>
@@ -1040,7 +1167,7 @@ a{color:var(--accent)}
       <p>A BRD answers a question once. A searchable version of it answers the same question for everyone. Same reason behind the dashboards, the onboarding SOP, the vendor portal FAQ, and the PIM intake form. If something is taking too long by hand, I would rather leave behind something the next person can use.</p>
       <h2>The short version</h2>
       <blockquote>I use AI on analysis work, and I check what it leaves out.</blockquote>
-      ${jump(['The BRD Skill', 'doc:brdskill'], ['1,000+ reports → ~20', 'doc:reports'])}` },
+      ${jump(['BRD Knowledgebase Pipeline', 'doc:brdskill'], ['Report Consolidation Pipeline', 'doc:reports'])}` },
 
     ref_navin: { file: 'Navin Anand.txt', title: 'Kind words – Navin Anand', html: `
       <p class="kicker">Kind Words</p>
@@ -1078,7 +1205,7 @@ a{color:var(--accent)}
       <h1>waterfall_BRD_FINAL_v7.doc</h1>
       <p class="meta">Deleted · Original location: the shared drive nobody could search</p>
       <p>Hundreds of pages. Every question about what had been committed meant a BA digging through it by hand.</p>
-      <p>The requirements live in a Skill now. Ask it a question, get the answer with the source line attached.</p>
+      <p>The requirements live in a line-numbered knowledge base now. Ask it a question, get the answer with the source line attached.</p>
       <p>Restore? No.</p>
       ${jump(['What replaced it', 'doc:brdskill'])}` }
   };
@@ -1099,7 +1226,7 @@ a{color:var(--accent)}
     experience: { label: 'Experience', items: [
       { name: 'README.txt', kind: 'doc', open: 'doc:readme', type: 'Text document', sum: 'I work where business, process, systems, data, and product meet. Retail floor to ecommerce, digital marketing, catalog ops, business analysis, integrations, and now product.' },
       { name: 'MarineMax – YachtIQ', kind: 'doc', tint: '#3ddc84', open: 'doc:marinemax', type: 'Product Manager, 2026 to now', sum: 'I own YachtIQ, the yacht listing system brokers at Northrop & Johnson and Fraser use. Pushing it to be the single source of truth for yacht records, with MLS syndication on the roadmap.' },
-      { name: 'CITY Home – OMS', kind: 'doc', tint: '#2a9a5f', open: 'doc:city', type: 'Sr. Business Analyst, Oct 2025 to Jul 2026', sum: 'IBM Sterling OMS modernization across 25 workstreams. Cut 1,000+ legacy reports to about 20 data models and built the BRD Skill.' },
+      { name: 'CITY Home – OMS', kind: 'doc', tint: '#2a9a5f', open: 'doc:city', type: 'Sr. Business Analyst, Oct 2025 to Jul 2026', sum: 'IBM Sterling OMS modernization across 25 workstreams. Cut 1,000+ legacy reports to about 20 data models and built the BRD knowledge base pipeline.' },
       { name: 'FlexShopper – Project Manager', kind: 'doc', tint: '#1f7a4a', open: 'doc:flexpm', type: 'Project Manager, Merchandising, Mar to Aug 2025', sum: 'Ran the full merchandising portfolio and owned the Logicbroker platform end to end. Monthly roadmap reviews with the CEO.' },
       { name: 'FlexShopper – BSA', kind: 'doc', tint: '#1f7a4a', open: 'doc:flexbsa', type: 'Business Systems Analyst, Nov 2023 to Mar 2025', sum: 'Drove the Logicbroker replacement of the order and inventory system. Vendor onboarding from six weeks to two; rebate setup from a week to a day.' },
       { name: 'Pet Supermarket', kind: 'doc', tint: '#5fe3a1', open: 'doc:pet', type: 'Sales Associate to Jr. BA, 2013 to 2023', sum: 'Ten years from the sales floor to product owner of the PIM. 200+ vendors, 14K+ SKUs, and an email program that lifted open rates 30%.' },
@@ -1109,7 +1236,7 @@ a{color:var(--accent)}
       { name: 'YachtIQ', kind: 'doc', tint: '#3ddc84', open: 'doc:marinemax', type: 'In progress · MarineMax', sum: 'One source of truth for yacht listings, built for the brokers who use it.' },
       { name: '1,000+ reports → ~20', kind: 'doc', tint: '#2a9a5f', open: 'doc:reports', type: 'Case study · CITY Home', sum: 'A decade of undocumented reporting cut to about 20 audit-ready data models, with every decision checkable.' },
       { name: 'Replacing the order system', kind: 'doc', tint: '#1f7a4a', open: 'doc:logicbroker', type: 'Case study · FlexShopper', sum: 'Owned requirements and delivery for the platform that replaced the legacy order and inventory system.' },
-      { name: 'BRD Q&A Skill', kind: 'doc', tint: '#5fe3a1', open: 'doc:brdskill', type: 'Case study · CITY Home', sum: 'Hundreds of pages of BRDs, searchable by any BA, every answer with the source line attached.' },
+      { name: 'BRD Q&A Skill', kind: 'doc', tint: '#5fe3a1', open: 'doc:brdskill', type: 'Case study · CITY Home', sum: 'Hundreds of pages of BRDs normalized into a line-numbered knowledge base, so every answer traces to its source line.' },
       { name: 'Catalog-as-a-Service', kind: 'doc', tint: '#14b87a', open: 'doc:caas', type: 'Case study · FlexShopper', sum: 'A new revenue channel, and the missing clause in the contract behind it, caught before anyone signed.' },
       { name: 'Revenue Share Process Model.pdf', kind: 'pdf', open: 'pdf:process', type: 'PDF', sum: 'The process model behind Catalog-as-a-Service.' },
       { name: 'Hackathon', kind: 'doc', tint: '#9fd8b5', open: 'doc:hackathon', type: 'Best Use of AI award', sum: 'An AI app to help South Floridians find a place to live, built and pitched in 22 hours. I was the project manager.' },
@@ -1117,8 +1244,8 @@ a{color:var(--accent)}
     ]},
     ailab: { label: 'AI Lab', items: [
       { name: 'How I use AI.txt', kind: 'doc', open: 'doc:ai', type: 'Text document', sum: 'Set the rules before AI runs. Build the tool, not just the document.' },
-      { name: 'BRD Q&A Skill', kind: 'doc', tint: '#5fe3a1', open: 'doc:brdskill', type: 'Claude Skill', sum: 'Any BA can ask the program’s BRDs a question and get the answer back with the source line attached.' },
-      { name: 'Report Consolidator', kind: 'doc', tint: '#2a9a5f', open: 'doc:reports', type: 'AI analysis pass', sum: 'About 200 vetted reports scored and grouped by AI under my rules, with a coverage manifest and evidence trail. Final call stayed with me.' },
+      { name: 'BRD Q&A Skill', kind: 'doc', tint: '#5fe3a1', open: 'doc:brdskill', type: 'Claude Skill', sum: 'Ask whether a requirement exists and get the document ID and line back, or a plain “not documented.”' },
+      { name: 'Report Consolidator', kind: 'doc', tint: '#2a9a5f', open: 'doc:reports', type: 'AI analysis pass', sum: 'About 200 vetted reports clustered and QA-scored by a Claude Skill under my rules, down to about 20 data models. The business made the final call.' },
       { name: 'BRD Digest', kind: 'doc', tint: '#2bb56a', open: 'doc:brdskill', type: 'Document synthesis', sum: 'Hundreds of pages of BRDs turned into executive summaries with line-level traceability, in about a week.' },
       { name: 'Steering Report', kind: 'doc', tint: '#6aa883', open: 'doc:reports', type: 'Automated reporting', sum: 'The weekly steering report generated by AI off the tracking dashboard, instead of built by hand.' },
       { name: 'Hackathon app', kind: 'doc', tint: '#9fd8b5', open: 'doc:hackathon', type: 'Best Use of AI award', sum: 'An AI-powered app to help South Floridians find a place to live, built in 22 hours.' },
@@ -1144,7 +1271,7 @@ a{color:var(--accent)}
               ['90+', 'Activity diagrams for customer-notification messages. An unambiguous build spec.', 'CITY Home'],
               ['100+', 'Jira user stories, translated from six departments into BRDs, specs and UML.', 'FlexShopper'],
               ['Week-long', 'All-day requirements workshops, with sign-off at the end of each day.', 'CITY Home']],
-      cases: [['The BRD Skill', 'doc:brdskill'], ['CITY Home role', 'doc:city']] },
+      cases: [['BRD Knowledgebase Pipeline', 'doc:brdskill'], ['CITY Home role', 'doc:city']] },
     { name: 'Delivery & product ownership', tag: 'Owning the backlog all the way through go-live.',
       items: ['Backlog ownership', 'Sprint planning', 'Scrum ceremonies', 'Prioritization frameworks', 'Release & go-live coordination', 'Change management', 'Executive reporting', 'Jira', 'Confluence', 'Asana'],
       ktid: ['Backlog ownership', 'Release & go-live coordination', 'Executive reporting'], short: 'Backlog ownership · Go-lives · Exec reporting',
@@ -1168,15 +1295,15 @@ a{color:var(--accent)}
               ['~200', 'Stakeholder-vetted reports after owner triage and keep-or-retire workshops.', 'CITY Home'],
               ['Current & future', 'Reports mapped back to source systems, so the data team knew what was migrating before the build.', 'CITY Home'],
               ['Weekly', 'Steering report generated with AI off the tracking dashboard, instead of built by hand.', 'CITY Home']],
-      cases: [['1,000+ reports → ~20', 'doc:reports']] },
+      cases: [['Report Consolidation Pipeline', 'doc:reports']] },
     { name: 'AI in practice', tag: 'Set the rules before AI runs. Check what it leaves out.',
       items: ['Directing AI on analysis work', 'Setting rules and constraints for AI output', 'Reviewing and adapting AI output', 'Claude Skills', 'Requirements traceability', 'Automated status reporting', 'Document synthesis at scale'],
       ktid: ['Directing AI on analysis work', 'Claude Skills', 'Requirements traceability'], short: 'Directing AI · Claude Skills · Traceability',
-      proof: [['Line-level', 'Every answer from the BRD Skill comes back with the source BRD and the exact line attached.', 'CITY Home'],
+      proof: [['Line-level', 'Every answer from the BRD knowledge base comes back with the source document ID and the exact line.', 'CITY Home'],
               ['~1 week', 'Hundreds of pages of BRDs turned into executive summaries with line-level traceability.', 'CITY Home'],
               ['Every merge scored', 'AI ran the report pass under my rules and showed its work. The final call stayed with me.', 'CITY Home'],
               ['Best Use of AI', 'Hackathon award for an AI app built in 22 hours. I was the project manager.', 'South Florida Tech Hub']],
-      cases: [['The BRD Skill', 'doc:brdskill'], ['How I use AI', 'doc:ai'], ['Hackathon', 'doc:hackathon']] },
+      cases: [['BRD Knowledgebase Pipeline', 'doc:brdskill'], ['How I use AI', 'doc:ai'], ['Hackathon', 'doc:hackathon']] },
     { name: 'Commerce & catalog', tag: 'How a catalog business actually runs, from the floor up.',
       items: ['Catalog operations', 'Product information management', 'Vendor & marketplace onboarding', 'Order lifecycle', 'CRM & lifecycle marketing', 'Oracle Responsys'],
       ktid: ['Product information management', 'Vendor & marketplace onboarding', 'Catalog operations'], short: 'PIM · Vendor onboarding · Catalog ops',
@@ -1565,9 +1692,9 @@ a{color:var(--accent)}
   /* ---------- document reader ---------- */
   function openDoc(key, src) {
     const d = DOCS[key]; if (!d) return;
-    const W = getOrMake({ id: 'doc:' + key, title: d.file + ' – Reader', icon: docSVG(), w: 700, h: 620 }, W => {
+    const W = getOrMake({ id: 'doc:' + key, title: d.file + ' – Reader', icon: docSVG(), w: d.sheet ? 980 : 700, h: d.sheet ? 720 : 620 }, W => {
       W.inner.innerHTML = `<div class="dmenu"><span>File</span><span>Edit</span><span>View</span><span class="sp"></span><span class="legend"><span class="ktdot"></span><span class="ktid">Key things I do</span></span><button data-open="app:resume">Résumé</button><button data-open="app:contact">Contact</button></div>
-        <div class="pagewrap"><article class="page">${d.html}</article></div>`;
+        <div class="pagewrap"><article class="page${d.sheet ? ' sheet' : ''}">${d.html}</article></div>`;
       highlightKtid($('.page', W.inner));
       W.onOpen = () => $$('.page > *', W.inner).slice(0, 8).forEach((c, i) =>
         c.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 420, easing: EASE_OUT, delay: 180 + i * 40, fill: 'backwards' }));
@@ -1804,6 +1931,17 @@ a{color:var(--accent)}
   }
 
   document.addEventListener('click', e => {
+    const g = e.target.closest('[data-goto]');
+    if (g) {
+      e.preventDefault();
+      const wrap = g.closest('.pagewrap'), t = wrap && wrap.querySelector(`[data-step="${g.dataset.goto}"]`);
+      if (t) {
+        t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        t.classList.remove('flash'); void t.offsetWidth; t.classList.add('flash');
+        setTimeout(() => t.classList.remove('flash'), 1400);
+      }
+      return;
+    }
     const o = e.target.closest('[data-open]');
     if (o) {
       e.preventDefault();
@@ -2323,7 +2461,7 @@ a{color:var(--accent)}
         target: () => iconFor_('folder:projects'), done: () => explorerAt('projects'), act: el => openTarget('folder:projects', el) },
       { say: 'Start with this one: 1,000+ legacy reports cut to about 20. Double-click to open it.',
         target: () => explorerAt('projects') && fileNamed('1,000+ reports → ~20'), done: () => winOpen('doc:reports'), act: el => openTarget('doc:reports', el) },
-      { say: 'Each case runs Context, What I did, Results. The buttons at the end jump to the next case.',
+      { say: 'The diagram shows how it worked. Click any step to jump to that part of the story, and the buttons at the end lead to the next case.',
         target: topPage, next: 'Got it' }
     ],
     skills: [
