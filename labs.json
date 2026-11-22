@@ -2,6 +2,13 @@
   "updated": "2026-11-22",
   "prototypes": [
     {
+      "slug": "impact-dashboard",
+      "title": "Project impact dashboard",
+      "url": "labs/impact-dashboard.html",
+      "date": "2026-11-22",
+      "summary": "Dashboard for business analysts showing Phill's methodology for driving measurable impact: the method (business case → metrics, tools & systems, tracking & iteration) and real metrics (42% revenue growth, $8.6M process savings, 3.2x user adoption, 24hrs fulfillment time reduction, 18-month cultural transformation)."
+    },
+    {
       "slug": "skills-radar",
       "title": "Interactive skills radar chart",
       "url": "labs/skills-radar.html",
@@ -31,6 +38,14 @@
     }
   ],
   "requests": [
+    {
+      "id": "r-20261122-0627-luic",
+      "status": "done",
+      "slug": "impact-dashboard",
+      "url": "labs/impact-dashboard.html",
+      "note": "Two-column dashboard: left side shows the method (business case → metrics, tools, iteration), right side shows real impact metrics (42% revenue growth, $8.6M savings, 3.2x adoption, 24h fulfillment reduction, 18-month cultural shift). Responsive, ~25s to scan.",
+      "updated": "2026-11-22T10:15:00Z"
+    },
     {
       "id": "r-20261122-0517-8pv6",
       "status": "done",
