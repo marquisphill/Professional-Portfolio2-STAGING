@@ -309,8 +309,8 @@ a{color:var(--accent)}
 .gcat.talk .ghead{animation:gnod .5s ease-in-out 2}
 @keyframes gnod{0%,100%{transform:rotate(0)}50%{transform:rotate(-7deg)}}
 .gmouth{transform-box:fill-box;transform-origin:50% 0;transform:scale(.4,0);transition:transform .22s cubic-bezier(.16,1,.3,1)}
-.gcat.chomp .gmouth{transform:scale(1.25,1.6)}
-.gcat.chomp .ghead{transform:rotate(-4deg) scale(1.08)}
+.gcat.chomp .gmouth{transform:scale(2.3,3.1)}
+.gcat.chomp .ghead{transform:rotate(-10deg) scale(1.12)}
 .gcat.chomp .geyes{animation:none;transform:scaleY(.55)}
 .gcat:focus-visible{outline:2px solid #3ddc84;outline-offset:4px;border-radius:8px}
 .gbubble{position:fixed;z-index:9060;width:310px;max-width:calc(100vw - 16px);box-sizing:border-box;padding:14px 14px 12px;border-radius:14px;background:#0f1b14;border:1px solid #2a9a5f;box-shadow:0 16px 40px rgba(0,0,0,.55);color:#e6f2ea;font-size:13.5px;line-height:1.5}
@@ -2302,6 +2302,11 @@ a{color:var(--accent)}
   /* ---------- tidy up: with more than 3 windows open, the cat offers to eat the extras ---------- */
   const CLUTTER = 3;
   let cleanupArmed = true, cleaning = false;
+  function eatLayer() {
+    let L = document.getElementById('eatlayer');
+    if (!L) { L = document.createElement('div'); L.id = 'eatlayer'; L.style.cssText = 'position:fixed;inset:0;z-index:9055;pointer-events:none'; document.body.appendChild(L); }
+    return L;
+  }
   function openCount() { let n = 0; WINS.forEach(W => { if (W.state === 'open' || W.state === 'min') n++; }); return n; }
   function checkClutter() {
     if (!cleanupArmed || cleaning || tour || gcat.hidden || openCount() <= CLUTTER) return;
@@ -2326,29 +2331,47 @@ a{color:var(--accent)}
     const victims = [...WINS.values()].filter(W => W !== keep && W.state !== 'closed' && !W.busy);
     ga('cleanup_accept', { closed: victims.length });
     gcat.classList.add('chomp');
-    await sleep(reduce ? 0 : 260);
+    // he grows and opens wide before eating
+    const grow = reduce ? null : gbodyEl.animate([{ scale: '1' }, { scale: narrow() ? '2.1' : '1.9' }], { duration: 420, easing: SPRING_WIN.easing, fill: 'forwards' });
+    await sleep(reduce ? 0 : 480);
     const m = $('.gmouth', gcat).getBoundingClientRect(), mx = m.left + m.width / 2, my = m.top + m.height / 2;
     await Promise.all(victims.map(async (W, i) => {
       W.busy = true;
       if (!reduce && W.state === 'open') {
-        await sleep(i * 110);
+        await sleep(i * 220);
         const r = W.el.getBoundingClientRect();
         const dx = mx - (r.left + r.width / 2), dy = my - (r.top + r.height / 2);
-        // shrink toward the cat while still behind the window you're reading, then pop over it into his mouth
-        const z = +W.el.style.zIndex || 1, tilt = i % 2 ? 1 : -1;
-        const mid = `translate(${dx * .45}px, ${dy * .45}px) scale(.4) rotate(${tilt * 6}deg)`;
-        W.inner.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, fill: 'forwards' });
+        // 1) shrink toward the cat while still behind the window you're reading
+        // 2) pop over it and fly up to his mouth, about mouth-sized
+        // 3) slide into the mouth and disappear
+        const tilt = i % 2 ? 1 : -1;
+        const sMouth = Math.max(.05, (m.width * 1.5) / r.width);
+        const mid = `translate(${dx * .4}px, ${dy * .4}px) scale(.45) rotate(${tilt * 6}deg)`;
+        const lip = `translate(${dx}px, ${dy - m.height * 1.5}px) scale(${sMouth}) rotate(${tilt * 8}deg)`;
+        W.el.style.transformOrigin = '50% 50%';
+        W.inner.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 300, fill: 'forwards' });
+        const a1 = W.el.animate([
+          { transform: 'none', borderRadius: '8px' },
+          { transform: mid, borderRadius: '14px' }
+        ], { duration: 380, easing: 'cubic-bezier(.3,0,.5,1)', fill: 'forwards' });
+        await a1.finished;
+        // the desktop is its own layer under the cat, so lift the window above everything for the last stretch
+        W.el.style.transform = mid; W.el.style.borderRadius = '14px'; a1.cancel();
+        W.el.style.boxShadow = '0 0 0 2px #3ddc84, 0 0 24px rgba(61,220,132,.55)';
+        eatLayer().appendChild(W.el);
         await W.el.animate([
-          { transform: 'none', opacity: 1, zIndex: z, borderRadius: '8px', filter: 'blur(0)', easing: 'cubic-bezier(.3,0,.5,1)' },
-          { transform: mid, opacity: 1, zIndex: z, borderRadius: '14px', offset: .42 },
-          { transform: mid, opacity: 1, zIndex: 9040, borderRadius: '14px', offset: .43, easing: 'cubic-bezier(.6,0,.9,.4)' },
-          { transform: `translate(${dx}px, ${dy}px) scale(.02) rotate(${tilt * 22}deg)`, opacity: 0, zIndex: 9040, borderRadius: '40px', filter: 'blur(2px)' }
-        ], { duration: 680, fill: 'forwards' }).finished;
-        gbodyEl.animate([{ transform: 'none' }, { transform: 'scale(1.12,.9)' }, { transform: 'none' }], { duration: 200, easing: 'ease-out' });
+          { transform: mid, opacity: 1, borderRadius: '14px', easing: 'cubic-bezier(.4,0,.4,1)' },
+          { transform: lip, opacity: 1, borderRadius: '24%', offset: .52, easing: 'cubic-bezier(.75,0,1,.7)' },
+          { transform: `translate(${dx}px, ${dy}px) scale(${sMouth * .08}, ${sMouth * .3}) rotate(0deg)`, opacity: 1, borderRadius: '50%', offset: .96 },
+          { transform: `translate(${dx}px, ${dy}px) scale(.001)`, opacity: 0, borderRadius: '50%' }
+        ], { duration: 780, fill: 'forwards' }).finished;
+        gbodyEl.animate([{ transform: 'none' }, { transform: 'scale(1.18,.84)' }, { transform: 'scale(.96,1.05)' }, { transform: 'none' }], { duration: 320, easing: 'ease-out' });
       }
       await closeW(W, true);
     }));
+    await sleep(reduce ? 0 : 150);
     gcat.classList.remove('chomp');
+    if (grow) { await gbodyEl.animate([{ scale: getComputedStyle(gbodyEl).scale }, { scale: '1' }], { duration: 320, easing: EASE_OUT }).finished; grow.cancel(); }
     cleaning = false;
     if (keep && keep.state === 'open') { focusW(keep); keep.el.focus({ preventScroll: true }); }
     if (token !== stepToken) return;
