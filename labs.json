@@ -2,6 +2,13 @@
   "updated": "2026-11-22",
   "prototypes": [
     {
+      "slug": "find-projects",
+      "title": "Simple quick how to find projects",
+      "url": "labs/find-projects.html",
+      "date": "2026-11-22",
+      "summary": "Searchable, filterable project finder: each card leads with the headline result and shows exactly where the full case lives on the site, with a one-tap link."
+    },
+    {
       "slug": "view-resume-tutorial",
       "title": "Prototype tutorial: how to view my résumé",
       "url": "labs/view-resume-tutorial.html",
@@ -9,5 +16,14 @@
       "summary": "Step-by-step walkthrough of the three ways to get the résumé: the Résumé button, a tailored version, or the end of a path."
     }
   ],
-  "requests": []
+  "requests": [
+    {
+      "id": "r-20261122-0337-er35",
+      "status": "done",
+      "slug": "find-projects",
+      "url": "labs/find-projects.html",
+      "note": "Project finder with search, topic chips, quick-look previews and deep links for the 4 case studies plus the hackathon; no placeholders needed.",
+      "updated": "2026-11-22T08:40:15Z"
+    }
+  ]
 }
