@@ -2322,6 +2322,7 @@ a{color:var(--accent)}
   }
   async function moveCat(p, flipAtEnd) {
     catTopDocked = false;
+    clearTimeout(idleT);   // he's on the move; whatever he does next restarts the countdown
     if (headMode) exitHead();
     gcat.getAnimations().forEach(a => a.cancel());
     const from = catPos, dx = p.x - from.x, dy = p.y - from.y, dist = Math.hypot(dx, dy);
@@ -2408,7 +2409,6 @@ a{color:var(--accent)}
   }
   function say(html, actions = []) {
     if (headMode) exitHead();
-    armIdle();
     msgSeq++;
     gsay.innerHTML = html; gacts.innerHTML = '';
     actions.forEach(a => {
@@ -2425,6 +2425,7 @@ a{color:var(--accent)}
     if (was) anim(gbub, [{ opacity: 0, transform: 'translateY(8px) scale(.96)' }, { opacity: 1, transform: 'none' }], { duration: SPRING_MENU.duration, easing: SPRING_MENU.easing });
     else anim(gsay, [{ opacity: .3 }, { opacity: 1 }], { duration: 220, easing: EASE_OUT });
     talk();
+    armIdle();
   }
   const hideBubble = () => { gbub.hidden = true; };
 
@@ -2601,7 +2602,8 @@ a{color:var(--accent)}
     tour = null; ringOff();
     gbub.hidden = true;
     await moveCat(homeSpot(), false);
-    if (token !== stepToken || !msg) return;
+    if (token !== stepToken) return;
+    if (!msg) { armIdle(); return; }
     say(msg);
     const mine = msgSeq;
     setTimeout(() => { if (mine === msgSeq) hideBubble(); }, 2600);
@@ -2761,18 +2763,45 @@ a{color:var(--accent)}
   }
 
   /* ---------- after the user has played with him, 10 quiet seconds sends him to his head spot ---------- */
-  const IDLE_MS = 10000;
+  // How long he waits before tucking away:
+  //   4s  when he has nothing to say (chat closed, a short note shown, or he was just dragged)
+  //   10s when he's waiting on the user: a tour step, his menu, or a yes/no question
+  // He never tucks away while the pointer is on him or his bubble, while he's being dragged or eating,
+  // or during a tour while the user is still working in the window he's pointing at.
+  const IDLE_QUIET = 4000, IDLE_WAITING = 10000;
   let hasInteracted = false, idleT = 0;
+  const waitingOnUser = () => !!tour || (!gbub.hidden && gacts.children.length > 0);
   function touchPano() { hasInteracted = true; armIdle(); }
+  // is a mouse pointer resting on him or his bubble? (touch has no hover, so it never counts)
+  let mouseAt = null;
+  document.addEventListener('pointermove', e => { mouseAt = e.pointerType === 'mouse' ? { x: e.clientX, y: e.clientY } : null; }, { capture: true, passive: true });
+  document.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') mouseAt = null; }, { capture: true, passive: true });
+  function mouseOnPano() {
+    if (!mouseAt) return false;
+    const inside = el => { const r = el.getBoundingClientRect(); return mouseAt.x >= r.left && mouseAt.x <= r.right && mouseAt.y >= r.top && mouseAt.y <= r.bottom; };
+    return inside(gcat) || (!gbub.hidden && inside(gbub));
+  }
   function armIdle() {
     clearTimeout(idleT);
     if (!hasInteracted || headMode) return;
     idleT = setTimeout(() => {
       if (headMode) return;
-      if (cleaning || dragging) return armIdle();
+      if (cleaning || dragging || mouseOnPano()) return armIdle();
       goHead();
-    }, IDLE_MS);
+    }, waitingOnUser() ? IDLE_WAITING : IDLE_QUIET);
   }
+  // following a tour counts as activity: clicking, scrolling or typing in the thing he's pointing at
+  let lastTourPing = 0;
+  function tourActivity(e) {
+    if (!tour || headMode || !ringTarget || !(e.target instanceof Node)) return;
+    const now = performance.now();
+    if (now - lastTourPing < 400) return;
+    const win = ringTarget.closest('.window');
+    if (ringTarget.contains(e.target) || (win && win.contains(e.target)) || gbub.contains(e.target)) { lastTourPing = now; armIdle(); }
+  }
+  ['pointerdown', 'pointermove', 'wheel', 'keydown', 'scroll'].forEach(t => document.addEventListener(t, tourActivity, { capture: true, passive: true }));
+  gbub.addEventListener('pointerleave', () => armIdle());
+  gcat.addEventListener('pointerleave', () => armIdle());
   gbub.addEventListener('pointerdown', touchPano);
 
   /* ---------- drag him anywhere; a tap still opens his menu ---------- */
