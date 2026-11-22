@@ -2,6 +2,13 @@
   "updated": "2026-11-22",
   "prototypes": [
     {
+      "slug": "skills-radar",
+      "title": "Interactive skills radar chart",
+      "url": "labs/skills-radar.html",
+      "date": "2026-11-22",
+      "summary": "Radar chart showing Phill's depth across five core dimensions: Business, Process, Systems, Data, and Product. Each shows the specific tools and methods used. Interactive—hover any skill to highlight it."
+    },
+    {
       "slug": "test",
       "title": "Test",
       "url": "labs/test.html",
@@ -24,6 +31,14 @@
     }
   ],
   "requests": [
+    {
+      "id": "r-20261122-0517-8pv6",
+      "status": "done",
+      "slug": "skills-radar",
+      "url": "labs/skills-radar.html",
+      "note": "Interactive 5-axis radar: Business (92%), Process (88%), Systems (85%), Data (90%), Product (86%). Shows methods per skill. Playful green colors, works phones to desktop, ~20s to understand.",
+      "updated": "2026-11-22T09:15:00Z"
+    },
     {
       "id": "r-20261122-0356-sg2v",
       "status": "done",
