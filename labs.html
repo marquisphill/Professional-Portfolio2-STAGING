@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Labs · Phillip Da Silva-Marquis</title>
+<style>
+:root{
+  --wall-1:#030604; --wall-2:#0a1f14; --wall-3:#145a35; --wall-glow:rgba(61,220,132,.16);
+  --glass:rgba(12,22,16,.82); --glass-edge:rgba(61,220,132,.26); --glass-text:#d8f5e3;
+  --pane:#0c130f; --pane-alt:#101a14; --pane-line:#1e2f25; --ink:#e6f2ea; --ink-soft:#8fa898;
+  --select:rgba(61,220,132,.14); --select-edge:rgba(61,220,132,.55);
+  --accent:#3ddc84; --red-ink:#ff6b6d;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font-family:"Segoe UI","Segoe UI Variable","Noto Sans","Helvetica Neue",Arial,sans-serif;
+  font-size:13px;color:var(--ink);overflow:hidden;background:var(--wall-1);
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid #3ddc84;outline-offset:2px}
+
+/* wallpaper */
+#desktop{
+  position:fixed;inset:0;overflow:hidden;
+  background:
+    radial-gradient(120% 70% at 72% 112%, var(--wall-3) 0%, transparent 58%),
+    radial-gradient(80% 55% at 8% -12%, var(--wall-glow), transparent 62%),
+    linear-gradient(162deg, var(--wall-1) 0%, var(--wall-2) 100%);
+}
+#desktop::before{content:"";position:absolute;pointer-events:none;border-radius:50%;filter:blur(38px);
+  width:140vmax;height:22vmax;left:-20vmax;top:46%;
+  background:linear-gradient(90deg,transparent,rgba(61,220,132,.14) 40%,rgba(61,220,132,.22) 60%,transparent);transform:rotate(-14deg)}
+
+/* window */
+.window{
+  position:absolute;top:clamp(0px,4vh,40px);left:50%;transform:translateX(-50%);
+  width:min(1040px,100% - 2*clamp(0px,3vw,40px));height:calc(100% - 2*clamp(0px,4vh,40px));
+  border-radius:8px 8px 6px 6px;background:var(--glass);
+  -webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);
+  border:1px solid rgba(0,0,0,.4);
+  box-shadow:inset 0 0 0 1px var(--glass-edge),0 22px 60px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.3);
+  display:flex;flex-direction:column;
+}
+.titlebar{height:30px;flex:none;display:flex;align-items:center;padding:0 0 0 9px;gap:7px;color:var(--glass-text)}
+.titlebar>svg{width:16px;height:16px;flex:none}
+.titlebar .ttl{flex:1;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ctrls{display:flex;align-self:flex-start;margin-right:6px}
+.ctrls a{height:19px;width:44px;display:grid;place-items:center;border:1px solid rgba(0,0,0,.45);border-top:0;
+  border-radius:0 0 4px 4px;background:#1f7a4a;box-shadow:inset 0 0 0 1px rgba(61,220,132,.16)}
+.ctrls a:hover{filter:brightness(1.18) saturate(1.1)}
+.ctrls svg{width:10px;height:10px;filter:drop-shadow(0 0 2px rgba(0,0,0,.6))}
+.win-inner{position:relative;flex:1;margin:0 7px 7px;display:flex;flex-direction:column;min-height:0;
+  border:1px solid rgba(0,0,0,.35);border-radius:2px;overflow:hidden;background:var(--pane)}
+
+/* explorer chrome */
+.addr{display:flex;gap:8px;align-items:center;padding:5px 6px;background:var(--glass);border-bottom:1px solid rgba(0,0,0,.2);flex:none}
+.crumbs,.search{height:28px;border:1px solid rgba(0,0,0,.3);background:var(--pane);display:flex;align-items:center;padding:0 8px;border-radius:2px;color:var(--ink);font-size:12.5px}
+.crumbs{flex:1;gap:4px;min-width:0;white-space:nowrap;overflow:hidden}
+.crumbs i{font-style:normal;color:var(--ink-soft)}
+.crumbs a{color:var(--ink);text-decoration:none;padding:1px 4px;border-radius:2px}
+.crumbs a:hover{background:var(--select)}
+.search{width:200px;font:inherit;font-size:16px;font-size:max(12.5px,1em)}
+.search::placeholder{color:var(--ink-soft);font-style:italic}
+.cmd{display:flex;gap:2px;align-items:center;padding:3px 6px;background:linear-gradient(var(--pane-alt),var(--pane));border-bottom:1px solid var(--pane-line);font-size:12px;flex:none}
+.cmd button{padding:4px 9px;border:1px solid transparent;border-radius:3px}
+.cmd button:hover{border-color:var(--select-edge);background:var(--select)}
+.cmd button[aria-pressed=true]{border-color:var(--select-edge);background:var(--select)}
+.cmd .count{margin-left:auto;color:var(--ink-soft);padding:0 6px}
+
+/* files */
+.files{flex:1;padding:10px;overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));align-content:start;gap:4px}
+.file{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 4px 7px;border:1px solid transparent;border-radius:3px;text-align:center;min-height:44px}
+.file:hover{background:var(--select)}
+.file.sel{background:rgba(61,220,132,.22);border-color:var(--select-edge)}
+.file svg{width:48px;height:48px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.18));flex:none}
+.file .nm{font-size:12px;line-height:1.3;word-break:break-word}
+.file .dt{display:none}
+.empty{grid-column:1/-1;color:var(--ink-soft);padding:28px;text-align:center;line-height:1.5}
+
+/* details view (list) */
+.files.list{display:block;padding:4px 0}
+.files.list .file{flex-direction:row;align-items:center;gap:10px;width:100%;padding:6px 12px;border-radius:0;text-align:left}
+.files.list .file svg{width:24px;height:24px}
+.files.list .file .nm{flex:1;font-size:13px}
+.files.list .file .dt{display:block;color:var(--ink-soft);font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* details pane */
+.details{display:flex;gap:12px;align-items:center;padding:10px 14px;min-height:72px;flex:none;
+  background:linear-gradient(var(--pane-alt),var(--pane));border-top:1px solid var(--pane-line)}
+.details>svg{width:40px;height:40px;flex:none}
+.details .meta{min-width:0;flex:1;max-width:80ch}
+.details b{display:block;font-weight:600;font-size:13px}
+.details p{margin:2px 0 0;color:var(--ink-soft);font-size:12px;line-height:1.45}
+.details .when{color:var(--glass-text);font-variant-numeric:tabular-nums}
+.wbtn{min-width:86px;height:32px;padding:0 14px;border:1px solid #2a9a5f;border-radius:4px;color:#e6f2ea;font-size:12.5px;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;white-space:nowrap;background:#1f7a4a;flex:none}
+.wbtn:hover,.wbtn:focus-visible{background:#2a9a5f;border-color:#3ddc84}
+.wbtn[aria-disabled=true]{opacity:.45;pointer-events:none}
+
+/* status bar */
+.status{display:flex;justify-content:space-between;gap:10px;padding:3px 10px;font-size:11.5px;color:var(--ink-soft);background:var(--pane-alt);border-top:1px solid var(--pane-line);flex:none}
+.status .tag{color:var(--accent)}
+
+@media (max-width:600px){
+  .window{top:0;width:100%;height:100%;border-radius:0;border:0}
+  .win-inner{margin:0}
+  .search{width:42%}
+  .details{flex-wrap:wrap}
+  .details .wbtn{width:100%}
+}
+</style>
+</head>
+<body>
+<div id="desktop">
+  <div class="window" role="main">
+    <div class="titlebar">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="#3ddc84" d="M1 4.5A1.5 1.5 0 0 1 2.5 3h3.6l1.4 1.5h6A1.5 1.5 0 0 1 15 6v6.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5z"/></svg>
+      <span class="ttl">Labs · Prototypes</span>
+      <div class="ctrls"><a href="./" aria-label="Close and go to the desktop" title="Back to desktop"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></a></div>
+    </div>
+    <div class="win-inner">
+      <div class="addr">
+        <div class="crumbs"><a href="./">Desktop</a><i>›</i><span>Labs</span></div>
+        <input class="search" id="q" type="search" placeholder="Search Labs" aria-label="Search prototypes" autocomplete="off">
+      </div>
+      <div class="cmd" role="toolbar" aria-label="View">
+        <button type="button" id="vIcons" aria-pressed="true">Icons</button>
+        <button type="button" id="vList" aria-pressed="false">Details</button>
+        <span class="count" id="count"></span>
+      </div>
+      <div class="files" id="files" role="listbox" aria-label="Prototypes"><p class="empty">Loading…</p></div>
+      <div class="details" id="details" aria-live="polite">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#page"/></svg>
+        <div class="meta"><b>Labs</b><p>Working prototypes of new portfolio features. Select one to see what it does, then open it.</p></div>
+        <a class="wbtn" id="open" aria-disabled="true">Open</a>
+      </div>
+      <div class="status"><span><span class="tag">Prototype space</span> · not part of the live portfolio</span><span id="upd"></span></div>
+    </div>
+  </div>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="page" viewBox="0 0 48 48">
+    <path fill="#e9f5ee" d="M11 4h18l10 10v28a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+    <path fill="#b9dcc7" d="M29 4v8a2 2 0 0 0 2 2h8z"/>
+    <rect x="9" y="27" width="22" height="9" rx="1.5" fill="#1f7a4a"/>
+    <text x="20" y="34" text-anchor="middle" font-size="6.5" font-weight="700" fill="#fff" font-family="Segoe UI,Arial,sans-serif">LAB</text>
+    <path stroke="#8fbfa2" stroke-width="2" stroke-linecap="round" d="M15 18h14M15 22h18M34 31h0"/>
+  </symbol>
+</svg>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const VKEY = 'labs-view';
+  let all = [], reqs = [], sel = null;
+
+  function safeUrl(u){
+    if (!u) return null;
+    if (/^https:\/\//i.test(u)) return u;
+    if (/^[\w./-]+$/.test(u) && !u.includes('..')) return u.replace(/^\.?\//, '');
+    return null;
+  }
+  // Created time: "created" field, else launch time in the request id, else the date.
+  function idTime(id){
+    const m = /^r-(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})/.exec(id || '');
+    return m ? new Date(+m[1], m[2] - 1, +m[3], +m[4], +m[5]) : null;
+  }
+  function created(p){
+    if (p.created) { const d = new Date(p.created); if (!isNaN(d)) return { d, time: true }; }
+    const hit = reqs.find(r => r.status === 'done' && r.slug === p.slug && idTime(r.id));
+    if (hit) return { d: idTime(hit.id), time: true };
+    if (p.date) { const d = new Date(p.date + 'T00:00'); if (!isNaN(d)) return { d, time: false }; }
+    return null;
+  }
+  function fmt(c, short){
+    if (!c) return '';
+    const n = new Date(), d = c.d;
+    const date = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: d.getFullYear() === n.getFullYear() ? undefined : 'numeric' });
+    return c.time ? date + (short ? ', ' : ' at ') + d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }) : date;
+  }
+  const el = (t, c, txt) => { const e = document.createElement(t); if (c) e.className = c; if (txt != null) e.textContent = txt; return e; };
+  const icon = () => { const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); s.setAttribute('viewBox', '0 0 48 48'); s.setAttribute('aria-hidden', 'true');
+    const u = document.createElementNS('http://www.w3.org/2000/svg', 'use'); u.setAttribute('href', '#page'); s.append(u); return s; };
+
+  function showDetails(p){
+    const box = $('details').querySelector('.meta'); box.replaceChildren();
+    const open = $('open');
+    if (!p) {
+      box.append(el('b', '', 'Labs'), el('p', '', 'Working prototypes of new portfolio features. Select one to see what it does, then open it.'));
+      open.removeAttribute('href'); open.setAttribute('aria-disabled', 'true'); return;
+    }
+    const c = created(p);
+    box.append(el('b', '', p.title || p.slug));
+    if (c) box.append(el('p', 'when', 'Created ' + fmt(c)));
+    if (p.summary) box.append(el('p', '', p.summary));
+    const u = safeUrl(p.url);
+    if (u) { open.href = u; open.removeAttribute('aria-disabled'); } else { open.removeAttribute('href'); open.setAttribute('aria-disabled', 'true'); }
+  }
+
+  function render(){
+    const q = $('q').value.trim().toLowerCase();
+    const list = all.filter(p => !q || [p.title, p.slug, p.summary].join(' ').toLowerCase().includes(q));
+    $('count').textContent = list.length + (list.length === 1 ? ' item' : ' items');
+    const box = $('files');
+    if (!list.length) {
+      box.replaceChildren(el('p', 'empty', all.length ? 'No prototypes match "' + $('q').value.trim() + '".' : 'No prototypes yet.'));
+      showDetails(null); return;
+    }
+    if (sel && !list.includes(sel)) sel = null;
+    box.replaceChildren(...list.map(p => {
+      const b = el('button', 'file' + (p === sel ? ' sel' : '')); b.type = 'button';
+      b.setAttribute('role', 'option'); b.setAttribute('aria-selected', String(p === sel));
+      b.append(icon(), el('span', 'nm', p.title || p.slug), el('span', 'dt', fmt(created(p), true)));
+      b.addEventListener('click', () => {
+        if (sel === p && window.matchMedia('(hover:none)').matches) { const u = safeUrl(p.url); if (u) location.href = u; return; }
+        sel = p; render();
+      });
+      b.addEventListener('dblclick', () => { const u = safeUrl(p.url); if (u) location.href = u; });
+      return b;
+    }));
+    showDetails(sel);
+  }
+
+  function setView(v){
+    $('files').classList.toggle('list', v === 'list');
+    $('vIcons').setAttribute('aria-pressed', String(v !== 'list'));
+    $('vList').setAttribute('aria-pressed', String(v === 'list'));
+    try { localStorage.setItem(VKEY, v); } catch (e) {}
+  }
+  $('vIcons').addEventListener('click', () => setView('icons'));
+  $('vList').addEventListener('click', () => setView('list'));
+  $('q').addEventListener('input', render);
+  let v = 'icons'; try { v = localStorage.getItem(VKEY) || 'icons'; } catch (e) {}
+  setView(v);
+
+  fetch('labs.json?t=' + Date.now(), { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(j => {
+      reqs = Array.isArray(j.requests) ? j.requests : [];
+      all = (Array.isArray(j) ? j : (j.prototypes || [])).slice()
+        .sort((a, b) => ((created(b) || {}).d || 0) - ((created(a) || {}).d || 0));
+      if (j.updated) $('upd').textContent = 'Updated ' + fmt({ d: new Date(j.updated + 'T12:00'), time: false });
+      render();
+    })
+    .catch(() => { $('files').replaceChildren(el('p', 'empty', 'Couldn’t load the prototype list. Refresh to try again.')); $('count').textContent = ''; });
+})();
+</script>
+</body>
+</html>
