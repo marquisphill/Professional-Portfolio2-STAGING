@@ -118,7 +118,7 @@ footer{border-top:1px solid var(--line);padding:var(--s3) 0;font-size:.8rem;colo
 </head>
 <body>
 
-<div class="proto"><span><b>Prototype</b> · staging only, not on the live site</span><a href="../index.html">Back to the portfolio</a></div>
+<div class="proto"><span><b>Prototype</b> · staging only, not on the live site</span><a href="../paths.html">Back to the portfolio</a></div>
 
 <header class="hero wrap">
   <p class="eyebrow">Quick tutorial</p>
@@ -278,7 +278,7 @@ function setRoute(r){
 [].forEach.call(D.querySelectorAll('.route'),function(b){ b.addEventListener('click',function(){ setRoute(b.dataset.route); }); });
 prev.addEventListener('click',function(){ go(i-1); });
 next.addEventListener('click',function(){
-  if(i===ROUTES[route].length-1){ window.open('../index.html','_blank','noopener'); return; }
+  if(i===ROUTES[route].length-1){ window.open('../paths.html','_blank','noopener'); return; }
   go(i+1);
 });
 var q=new URLSearchParams(location.search), qr=q.get('route');
