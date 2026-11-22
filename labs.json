@@ -2,6 +2,13 @@
   "updated": "2026-11-22",
   "prototypes": [
     {
+      "slug": "test",
+      "title": "Test",
+      "url": "labs/test.html",
+      "date": "2026-11-22",
+      "summary": "Minimal test page: the word TEST in very large text, centered."
+    },
+    {
       "slug": "find-projects",
       "title": "Simple quick how to find projects",
       "url": "labs/find-projects.html",
@@ -17,6 +24,14 @@
     }
   ],
   "requests": [
+    {
+      "id": "r-20261122-0356-sg2v",
+      "status": "done",
+      "slug": "test",
+      "url": "labs/test.html",
+      "note": "Minimal test page with only TEST large and centered in a maximized desktop window; recruiter note omitted per the request.",
+      "updated": "2026-11-22T08:57:10Z"
+    },
     {
       "id": "r-20261122-0337-er35",
       "status": "done",
