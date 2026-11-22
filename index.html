@@ -2304,12 +2304,10 @@ a{color:var(--accent)}
   // head mode: just his head, parked at the top middle (or wherever the user dragged it)
   const HEAD_W = () => narrow() ? 120 : 144, HEAD_H = () => narrow() ? 90 : 108;
   const FULL_VB = '0 0 100 120', HEAD_VB = '5 3 72 54';
-  let headMode = false, headHome = false, headPos = null;
-  try { headPos = JSON.parse(sessionStorage.getItem('panoHeadPos') || 'null'); } catch (e) {}
-  function headSpot() {
-    const p = headPos ? { x: headPos.fx * innerWidth - HEAD_W() / 2, y: headPos.y } : { x: innerWidth / 2 - HEAD_W() / 2, y: 6 };
-    return clampSpot(p, HEAD_W(), HEAD_H());
-  }
+  let headMode = false, headHome = false, headMoved = false;
+  try { sessionStorage.removeItem('panoHeadPos'); } catch (e) {}
+  // his head's home is always the top middle of the screen
+  const headSpot = () => clampSpot({ x: innerWidth / 2 - HEAD_W() / 2, y: 6 }, HEAD_W(), HEAD_H());
   // where he stands to talk: on phones inside the docked bubble; once he's lived at the top, just under his head spot
   function homeSpot() {
     if (narrow()) return dockSpot();
@@ -2739,7 +2737,7 @@ a{color:var(--accent)}
   /* ---------- head mode ---------- */
   function enterHead(pop) {
     if (headMode) return;
-    headMode = true; headHome = true;
+    headMode = true; headHome = true; headMoved = false;
     try { sessionStorage.setItem('panoHead', '1'); } catch (e) {}
     ringOff(); gbub.hidden = true;
     gcat.classList.add('head'); gsvg.setAttribute('viewBox', HEAD_VB); gsvg.classList.remove('flip');
@@ -2831,10 +2829,7 @@ a{color:var(--accent)}
     if (drag.moved) {
       suppressClick = true;
       gcat.classList.remove('dragging');
-      if (headMode) {
-        headPos = { fx: (catPos.x + HEAD_W() / 2) / innerWidth, y: catPos.y };
-        try { sessionStorage.setItem('panoHeadPos', JSON.stringify(headPos)); } catch (err) {}
-      }
+      if (headMode) headMoved = true;   // stays where it's dropped, until the next time he tucks away
       setTimeout(() => { suppressClick = false; }, 0);
     }
     dragging = false; drag = null; armIdle();
@@ -2851,7 +2846,7 @@ a{color:var(--accent)}
   $('#gx').addEventListener('click', () => guideRest());
   addEventListener('resize', () => {
     if (gcat.hidden) return;
-    if (headMode) setCat(headSpot());
+    if (headMode) setCat(headMoved ? clampSpot(catPos, HEAD_W(), HEAD_H()) : headSpot());
     else if (!tour && !dragging) setCat(gbub.hidden && !hasInteracted ? cornerSpot() : homeSpot());
     placeBubble();
   });
