@@ -2204,6 +2204,7 @@ a{color:var(--accent)}
   }
   function say(html, actions = []) {
     if (headMode) exitHead();
+    armIdle();
     if (!toast.hidden && (narrow() || overlapArea(toast.getBoundingClientRect(), gcat.getBoundingClientRect()) > 0)) hideToast();
     msgSeq++;
     gsay.innerHTML = html; gacts.innerHTML = '';
@@ -2521,7 +2522,7 @@ a{color:var(--accent)}
     if (!hasInteracted || headMode) return;
     idleT = setTimeout(() => {
       if (headMode) return;
-      if (tour || cleaning || dragging) return armIdle();
+      if (cleaning || dragging) return armIdle();
       goHead();
     }, IDLE_MS);
   }
