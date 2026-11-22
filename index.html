@@ -102,6 +102,14 @@ a{color:var(--accent)}
 .window:not(.active){box-shadow:inset 0 0 0 1px var(--glass-edge),0 12px 30px rgba(0,0,0,.3)}
 .window:not(.active) .titlebar .ttl{opacity:.7}
 .window[hidden]{display:none}
+.rz{position:absolute;z-index:5;touch-action:none}
+.rz.n,.rz.s{left:8px;right:8px;height:7px;cursor:ns-resize}.rz.n{top:-4px}.rz.s{bottom:-4px}
+.rz.e,.rz.w{top:8px;bottom:8px;width:7px;cursor:ew-resize}.rz.e{right:-4px}.rz.w{left:-4px}
+.rz.ne,.rz.nw,.rz.se,.rz.sw{width:11px;height:11px}
+.rz.ne{top:-5px;right:-5px;cursor:nesw-resize}.rz.nw{top:-5px;left:-5px;cursor:nwse-resize}
+.rz.se{bottom:-5px;right:-5px;cursor:nwse-resize;width:16px;height:16px}.rz.sw{bottom:-5px;left:-5px;cursor:nesw-resize}
+.window.max .rz{display:none}
+@media (max-width:640px){.rz{display:none}}
 .window.max{left:0!important;top:0!important;width:100%!important;height:calc(100% - 44px - env(safe-area-inset-bottom,0px))!important;border-radius:0}
 .titlebar{height:30px;flex:none;display:flex;align-items:center;padding:0 0 0 9px;gap:7px;color:var(--glass-text);touch-action:none}
 .titlebar>svg{width:16px;height:16px;flex:none}
@@ -1408,7 +1416,7 @@ a{color:var(--accent)}
         <button data-act="min" aria-label="Minimize"><svg viewBox="0 0 10 10"><rect x="1" y="6.5" width="8" height="2.2" fill="#fff"/></svg></button>
         <button data-act="max" aria-label="Maximize"><svg viewBox="0 0 10 10"><rect x="1.2" y="1.2" width="7.6" height="7.6" fill="none" stroke="#fff" stroke-width="1.6"/></svg></button>
         <button data-act="close" class="close" aria-label="Close"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="#fff" stroke-width="2"/></svg></button>
-      </div></div><div class="win-inner"></div>`;
+      </div></div><div class="win-inner"></div>${['n', 's', 'e', 'w', 'ne', 'nw', 'se', 'sw'].map(d => `<i class="rz ${d}" data-rz="${d}"></i>`).join('')}`;
     layer.appendChild(el);
     const task = document.createElement('button');
     task.className = 'tbtn running'; task.hidden = true;
@@ -1440,12 +1448,70 @@ a{color:var(--accent)}
     });
     tb.addEventListener('pointermove', e => {
       if (!dragging) return;
-      el.style.left = Math.min(innerWidth - 80, Math.max(-el.offsetWidth + 120, ox + e.clientX - sx)) + 'px';
-      el.style.top = Math.min(innerHeight - 90, Math.max(0, oy + e.clientY - sy)) + 'px';
+      el.style.left = (ox + e.clientX - sx) + 'px';
+      el.style.top = (oy + e.clientY - sy) + 'px';
+      keepOnScreen(el);
     });
     const end = () => dragging = false;
     tb.addEventListener('pointerup', end); tb.addEventListener('pointercancel', end);
+    // resize by any edge or corner
+    const MIN_W = 320, MIN_H = 200;
+    $$('.rz', el).forEach(hd => {
+      let st = null;
+      hd.addEventListener('pointerdown', e => {
+        if (W.busy || el.classList.contains('max') || e.button > 0) return;
+        e.preventDefault(); e.stopPropagation(); focusW(W);
+        hd.setPointerCapture(e.pointerId);
+        st = { x: e.clientX, y: e.clientY, l: el.offsetLeft, t: el.offsetTop, w: el.offsetWidth, h: el.offsetHeight, d: hd.dataset.rz };
+      });
+      hd.addEventListener('pointermove', e => {
+        if (!st) return;
+        const dx = e.clientX - st.x, dy = e.clientY - st.y, floor = innerHeight - 44;
+        let l = st.l, t = st.t, w = st.w, h = st.h;
+        if (st.d.includes('e')) w = Math.max(MIN_W, Math.min(innerWidth - st.l, st.w + dx));
+        if (st.d.includes('s')) h = Math.max(MIN_H, Math.min(floor - st.t, st.h + dy));
+        if (st.d.includes('w')) { const nl = Math.max(0, Math.min(st.l + st.w - MIN_W, st.l + dx)); w = st.l + st.w - nl; l = nl; }
+        if (st.d.includes('n')) { const nt = Math.max(0, Math.min(st.t + st.h - MIN_H, st.t + dy)); h = st.t + st.h - nt; t = nt; }
+        el.style.left = l + 'px'; el.style.top = t + 'px'; el.style.width = w + 'px'; el.style.height = h + 'px';
+      });
+      const stop = () => { st = null; };
+      hd.addEventListener('pointerup', stop); hd.addEventListener('pointercancel', stop);
+    });
     return W;
+  }
+  // a window's title bar (and its minimize / maximize / close buttons) must always be reachable
+  function keepOnScreen(el) {
+    if (el.classList.contains('max') || el.hidden) return;
+    const floor = innerHeight - 44;
+    if (el.offsetWidth > innerWidth) el.style.width = innerWidth + 'px';
+    if (el.offsetHeight > floor) el.style.height = floor + 'px';
+    const w = el.offsetWidth;
+    el.style.left = Math.round(Math.min(innerWidth - w, Math.max(-(w - 150), el.offsetLeft))) + 'px';
+    el.style.top = Math.round(Math.min(floor - 34, Math.max(0, el.offsetTop))) + 'px';
+  }
+  addEventListener('resize', () => WINS.forEach(W => keepOnScreen(W.el)));
+  // the desktop is a fixed stage: if anything scrolls it, windows slide off the top. Snap it back.
+  function unscrollStage() {
+    [document.scrollingElement, document.body, $('#desktop'), layer].forEach(n => { if (n && (n.scrollTop || n.scrollLeft)) { n.scrollTop = 0; n.scrollLeft = 0; } });
+  }
+  document.addEventListener('scroll', e => { const t = e.target; if (t === document || t === document.body || t.id === 'desktop' || t.id === 'layer') unscrollStage(); }, true);
+  // scroll an element into view by moving only the scrolling pane it lives in
+  function scrollInPane(el, toStart, smooth) {
+    let p = el.parentElement;
+    while (p && p !== document.body && !p.classList.contains('window')) {
+      const cs = getComputedStyle(p);
+      if (/(auto|scroll)/.test(cs.overflowY + cs.overflowX) && (p.scrollHeight > p.clientHeight + 1 || p.scrollWidth > p.clientWidth + 1)) {
+        const pr = p.getBoundingClientRect(), r = el.getBoundingClientRect();
+        let top = p.scrollTop;
+        if (toStart) top += r.top - pr.top - 12;
+        else if (r.top < pr.top) top += r.top - pr.top - 12;
+        else if (r.bottom > pr.bottom) top += Math.min(r.top - pr.top - 12, r.bottom - pr.bottom + 12);
+        p.scrollTo({ top, behavior: smooth && !reduce ? 'smooth' : 'auto' });
+        break;
+      }
+      p = p.parentElement;
+    }
+    unscrollStage();
   }
   function setTitle(W, t) {
     W.el.querySelector('.ttl').textContent = t;
@@ -1936,7 +2002,7 @@ a{color:var(--accent)}
       e.preventDefault();
       const wrap = g.closest('.pagewrap'), t = wrap && wrap.querySelector(`[data-step="${g.dataset.goto}"]`);
       if (t) {
-        t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        scrollInPane(t, true, true);
         t.classList.remove('flash'); void t.offsetWidth; t.classList.add('flash');
         setTimeout(() => t.classList.remove('flash'), 1400);
       }
@@ -2343,7 +2409,6 @@ a{color:var(--accent)}
   function say(html, actions = []) {
     if (headMode) exitHead();
     armIdle();
-    if (!toast.hidden && (narrow() || overlapArea(toast.getBoundingClientRect(), gcat.getBoundingClientRect()) > 0)) hideToast();
     msgSeq++;
     gsay.innerHTML = html; gacts.innerHTML = '';
     actions.forEach(a => {
@@ -2355,6 +2420,8 @@ a{color:var(--accent)}
     const was = gbub.hidden;
     gbub.hidden = false;
     placeBubble();
+    // the new-message toast never sits on top of him or what he's saying (the message stays in the tray)
+    if (!toast.hidden && (narrow() || overlapArea(toast.getBoundingClientRect(), gcat.getBoundingClientRect()) > 0 || overlapArea(toast.getBoundingClientRect(), gbub.getBoundingClientRect()) > 0)) hideToast();
     if (was) anim(gbub, [{ opacity: 0, transform: 'translateY(8px) scale(.96)' }, { opacity: 1, transform: 'none' }], { duration: SPRING_MENU.duration, easing: SPRING_MENU.easing });
     else anim(gsay, [{ opacity: .3 }, { opacity: 1 }], { duration: 220, easing: EASE_OUT });
     talk();
@@ -2392,11 +2459,8 @@ a{color:var(--accent)}
   }
   async function clearView(el) {
     const own = el.closest('.window');
-    try {
-      const pane = el.parentElement && el.parentElement.closest('.pagewrap, .files, .rlist, .skbody, .win-inner');
-      const tall = pane && el.offsetHeight > pane.clientHeight * .8;
-      el.scrollIntoView({ block: tall ? 'start' : 'nearest', inline: 'nearest' });
-    } catch (e) {}
+    const pane = el.parentElement && el.parentElement.closest('.pagewrap, .files, .rlist, .skbody, .win-inner');
+    scrollInPane(el, !!(pane && el.offsetHeight > pane.clientHeight * .8), false);
     for (let round = 0; round < 5; round++) {
       const r = visibleRect(el);
       if (!r) return;
@@ -2528,6 +2592,7 @@ a{color:var(--accent)}
     if (token !== stepToken) return;
     say(`<span class="gname">Phill’s cat</span>${text}`, [
       ...GOALS.map(([label, k]) => ({ label, fn: () => runTour(k) })),
+      ...windowActions(),
       { label: again ? 'I’m good, thanks' : 'Just looking around', quiet: true, fn: () => guideRest('Okay! Click me any time you want a hand.') }
     ]);
   }
@@ -2562,10 +2627,54 @@ a{color:var(--accent)}
     await moveCat({ x: innerWidth / 2 - CAT_W() / 2, y: (innerHeight - 44) / 2 - CAT_H() / 2 }, false);
     if (token !== stepToken) return;
     say('<span class="gname">Phill’s cat</span>You have a lot of windows open. Can I clean them up?', [
-      { label: 'Yes', pri: true, fn: () => eatWindows(token) },
+      ...(narrow() ? [] : [{ label: 'Organize them', pri: true, fn: () => organizeWindows() }]),
+      { label: narrow() ? 'Yes' : 'Close them', pri: narrow(), fn: () => eatWindows(token) },
       { label: 'No thanks', quiet: true, fn: () => guideRest('Okay! They’re all yours.') }
     ]);
     ga('cleanup_offer', { windows: openCount() });
+  }
+  // menu extras, offered whenever two or more windows are open
+  function windowActions() {
+    if (openCount() < 2) return [];
+    return [
+      ...(narrow() ? [] : [{ label: 'Organize windows', fn: () => organizeWindows() }]),
+      { label: 'Close all windows', fn: () => eatWindows(stepToken) }
+    ];
+  }
+  // stack every window like a fanned deck of cards: same size, stepped diagonally, every title bar and its buttons showing
+  async function organizeWindows() {
+    const token = ++stepToken;
+    tour = null; ringOff(); gbub.hidden = true;
+    const list = [...WINS.values()].filter(W => (W.state === 'open' || W.state === 'min') && !W.busy)
+      .sort((a, b) => (a.state === 'min') - (b.state === 'min') ? (b.state === 'min') - (a.state === 'min') : (+a.el.style.zIndex || 0) - (+b.el.style.zIndex || 0));
+    const n = list.length;
+    if (n < 2) return guideRest('Nothing to organize yet.');
+    ga('organize_windows', { windows: n });
+    const A = { w: innerWidth, h: innerHeight - 44 }, pad = 12;
+    const stepY = Math.max(32, Math.min(38, (A.h - 2 * pad - 260) / (n - 1)));
+    const stepX = Math.max(22, Math.min(38, (A.w - 2 * pad - 380) / (n - 1)));
+    const w = Math.max(360, Math.min(860, A.w - 2 * pad - stepX * (n - 1)));
+    const h = Math.max(240, Math.min(620, A.h - 2 * pad - stepY * (n - 1)));
+    const x0 = Math.max(pad, (A.w - (w + stepX * (n - 1))) / 2), y0 = Math.max(pad, (A.h - (h + stepY * (n - 1))) / 2);
+    await Promise.all(list.map(async (W, i) => {
+      W.busy = true;
+      const wasMin = W.state === 'min';
+      const first = wasMin ? W.task.getBoundingClientRect() : W.el.getBoundingClientRect();
+      if (wasMin) { W.el.style.visibility = ''; W.state = 'open'; }
+      W.el.classList.remove('max');
+      Object.assign(W.el.style, { left: Math.round(x0 + i * stepX) + 'px', top: Math.round(y0 + i * stepY) + 'px', width: Math.round(w) + 'px', height: Math.round(h) + 'px' });
+      keepOnScreen(W.el);
+      focusW(W);
+      const last = W.el.getBoundingClientRect();
+      if (!reduce) await W.el.animate([{ transform: rectDelta(first, last), opacity: wasMin ? 0 : 1 }, { transform: 'none', opacity: 1 }], { duration: SPRING_WIN.duration, easing: SPRING_WIN.easing, delay: i * 60, fill: 'backwards' }).finished;
+      W.busy = false;
+    }));
+    const top = list[n - 1]; focusW(top); top.el.focus({ preventScroll: true });
+    cleanupArmed = false;
+    if (token !== stepToken) return;
+    cheer();
+    guideRest('All organized! Click any title bar to bring that window forward.');
+    armIdle();
   }
   async function eatWindows(token) {
     if (token !== stepToken || cleaning) return;
