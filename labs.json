@@ -3,6 +3,14 @@
   "notice": "Prototypes use sample data. Any numbers, metrics, or scores in them are made up for prototyping and are not Phill's real results.",
   "prototypes": [
     {
+      "slug": "pano-recycle-bin",
+      "title": "pano recycle bin behavior",
+      "summary": "Sample data, not real results. Drag Paño, Phill's cat, onto the desktop Recycle Bin: his eyelids drop, the bin spits him out, he sits down, licks his paw and says \"How dare you try to recycle me, human.\" Works with mouse, touch, or a one-tap \"Try to recycle Paño\" button.",
+      "date": "2026-11-22",
+      "url": "labs/pano-recycle-bin.html",
+      "sample_data": true
+    },
+    {
       "slug": "impact-dashboard",
       "title": "Project impact dashboard",
       "url": "labs/impact-dashboard.html",
@@ -20,6 +28,14 @@
     }
   ],
   "requests": [
+    {
+      "id": "r-20261122-1758-db37",
+      "status": "done",
+      "slug": "pano-recycle-bin",
+      "url": "labs/pano-recycle-bin.html",
+      "note": "Desktop page where dragging Paño onto the Recycle Bin makes him go half-lidded and indifferent, get rejected by the bin, sit, lick his paw and say \"How dare you try to recycle me, human.\" No placeholders to fill.",
+      "updated": "2026-11-22T23:04:10Z"
+    },
     {
       "id": "r-20261122-0627-luic",
       "status": "done",

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Paño vs. the Recycle Bin · Prototype · Phillip Da Silva-Marquis · Product Manager</title>
+<meta name="description" content="Prototype: what happens when you try to drag Paño, Phill's cat, into the Recycle Bin.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='85%25' r='70%25'%3E%3Cstop offset='0' stop-color='%235fe3a1'/%3E%3Cstop offset='.55' stop-color='%231f7a4a'/%3E%3Cstop offset='1' stop-color='%230b2e1b'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15' fill='url(%23g)'/%3E%3Cpath d='M16 5l2.6 8.4L27 16l-8.4 2.6L16 27l-2.6-8.4L5 16l8.4-2.6z' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+/* ---- copied from index.html (house style) ---- */
+:root{
+  --wall-1:#030604; --wall-2:#0a1f14; --wall-3:#145a35; --wall-glow:rgba(61,220,132,.16);
+  --glass:rgba(12,22,16,.82); --glass-edge:rgba(61,220,132,.26); --glass-text:#d8f5e3;
+  --taskbar:rgba(4,10,7,.88);
+  --pane:#0c130f; --pane-alt:#101a14; --pane-line:#1e2f25; --ink:#e6f2ea; --ink-soft:#8fa898;
+  --select:rgba(61,220,132,.14); --select-edge:rgba(61,220,132,.55);
+  --accent:#3ddc84; --paper:#0f1713; --desk:#070b09;
+  --red:#ff4d4f; --red-ink:#ff6b6d;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font-family:"Segoe UI","Segoe UI Variable","Noto Sans","Helvetica Neue",Arial,sans-serif;
+  font-size:13px;color:var(--ink);overflow:hidden;background:var(--wall-1);
+  -webkit-font-smoothing:antialiased;user-select:none;-webkit-tap-highlight-color:transparent;
+}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:default}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid #3ddc84;outline-offset:2px}
+
+#desktop{
+  position:fixed;inset:0;overflow:hidden;
+  background:
+    radial-gradient(120% 70% at 72% 112%, var(--wall-3) 0%, transparent 58%),
+    radial-gradient(80% 55% at 8% -12%, var(--wall-glow), transparent 62%),
+    linear-gradient(162deg, var(--wall-1) 0%, var(--wall-2) 100%);
+}
+#desktop::before,#desktop::after{content:"";position:absolute;pointer-events:none;border-radius:50%;filter:blur(38px)}
+#desktop::before{width:140vmax;height:22vmax;left:-20vmax;top:46%;
+  background:linear-gradient(90deg,transparent,rgba(61,220,132,.14) 40%,rgba(61,220,132,.22) 60%,transparent);transform:rotate(-14deg)}
+#desktop::after{width:90vmax;height:9vmax;left:10vmax;top:60%;
+  background:linear-gradient(90deg,transparent,rgba(61,220,132,.12),transparent);transform:rotate(-9deg)}
+
+.icons{
+  position:absolute;top:10px;left:8px;bottom:56px;
+  display:grid;grid-auto-flow:column;grid-template-rows:repeat(auto-fill,92px);
+  grid-auto-columns:84px;gap:4px;z-index:1;width:max-content;
+}
+.dicon{width:84px;padding:5px 3px 4px;border:1px solid transparent;border-radius:3px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+.dicon:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.28)}
+.dicon.sel{background:rgba(61,220,132,.22);border-color:rgba(61,220,132,.65)}
+.dicon .art{width:48px;height:48px;display:block;overflow:visible}
+.dicon .label{color:#fff;font-size:12px;line-height:1.25;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.85),0 0 6px rgba(0,0,0,.35)}
+
+.window{
+  position:absolute;border-radius:8px 8px 6px 6px;background:var(--glass);
+  -webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);
+  border:1px solid rgba(0,0,0,.4);
+  box-shadow:inset 0 0 0 1px var(--glass-edge),0 22px 60px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.3);
+  display:flex;flex-direction:column;transform-origin:0 0;outline:none;
+}
+.titlebar{height:30px;flex:none;display:flex;align-items:center;padding:0 0 0 9px;gap:7px;color:var(--glass-text);touch-action:none}
+.titlebar>svg{width:16px;height:16px;flex:none}
+.titlebar .ttl{flex:1;font-size:12.5px;text-shadow:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ctrls{display:flex;align-self:flex-start;margin-right:6px}
+.ctrls button{height:19px;width:27px;display:grid;place-items:center;border:1px solid rgba(0,0,0,.45);border-top:0;
+  background:#16231b;
+  box-shadow:inset 0 0 0 1px rgba(61,220,132,.16)}
+.ctrls button:first-child{border-radius:0 0 0 4px}
+.ctrls button+button{border-left:0}
+.ctrls .close{width:44px;border-radius:0 0 4px 0;background:#1f7a4a}
+.ctrls button:hover{filter:brightness(1.18) saturate(1.1)}
+.ctrls svg{width:10px;height:10px;filter:drop-shadow(0 0 2px rgba(0,0,0,.6))}
+.win-inner{position:relative;flex:1;margin:0 7px 7px;display:flex;flex-direction:column;min-height:0;border:1px solid rgba(0,0,0,.35);border-radius:2px;overflow:hidden;background:var(--pane)}
+
+.wbtn{min-width:86px;height:28px;padding:0 12px;border:1px solid #22402e;border-radius:4px;color:#e6f2ea;font-size:12.5px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;white-space:nowrap;
+  background:#15241b}
+.wbtn:hover,.wbtn:focus-visible{border-color:#3ddc84;background:#1a3324}
+.wbtn.default{background:#1f7a4a;border-color:#2a9a5f}
+.wbtn.default:hover,.wbtn.default:focus-visible{background:#2a9a5f;border-color:#3ddc84}
+
+.ktid{color:var(--red-ink);font-weight:600}
+
+.gbubble{position:fixed;z-index:9060;width:310px;max-width:calc(100vw - 16px);box-sizing:border-box;padding:14px 14px 12px;border-radius:14px;background:#0f1b14;border:1px solid #2a9a5f;box-shadow:0 16px 40px rgba(0,0,0,.55);color:#e6f2ea;font-size:13.5px;line-height:1.5}
+.gbubble[hidden]{display:none}
+.gbubble::after{content:"";position:absolute;left:var(--tx,50%);bottom:-8px;width:14px;height:14px;background:#0f1b14;border-right:1px solid #2a9a5f;border-bottom:1px solid #2a9a5f;transform:translateX(-50%) rotate(45deg)}
+.gbubble.below::after{bottom:auto;top:-8px;transform:translateX(-50%) rotate(225deg)}
+.gsay{margin:0 24px 0 0}
+.gname{display:block;color:var(--red-ink);font-size:12px;font-weight:600;letter-spacing:.04em;margin-bottom:2px}
+.gx{position:absolute;right:6px;top:6px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;cursor:pointer}
+.gx:hover{background:#15241b}
+.gx svg{width:10px;height:10px}
+
+.taskbar{position:fixed;left:0;right:0;bottom:0;height:calc(44px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);
+  display:flex;align-items:center;gap:4px;z-index:9100;
+  background:linear-gradient(rgba(255,255,255,.14),rgba(255,255,255,.04) 50%,rgba(0,0,0,.08)),var(--taskbar);
+  -webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);
+  border-top:1px solid rgba(255,255,255,.28);box-shadow:0 -1px 0 rgba(0,0,0,.4)}
+.orb{width:52px;height:44px;display:grid;place-items:center;flex:none;cursor:pointer;text-decoration:none}
+.orb i{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 30%,rgba(255,255,255,.9),rgba(255,255,255,0) 45%),radial-gradient(circle at 50% 85%,#5fe3a1,#1f7a4a 55%,#0b2e1b);
+  border:1px solid rgba(0,20,40,.8);box-shadow:0 0 0 1px rgba(255,255,255,.35) inset,0 0 10px rgba(61,220,132,.35);transition:box-shadow .25s,filter .25s}
+.orb:hover i{box-shadow:0 0 0 1px rgba(255,255,255,.5) inset,0 0 18px rgba(61,220,132,.8);filter:brightness(1.15)}
+.orb svg{width:18px;height:18px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.6))}
+#tasks{display:flex;gap:3px;min-width:0;overflow:hidden;flex:1;align-items:center}
+.tbtn{--mx:50%;height:38px;min-width:46px;max-width:190px;padding:0 10px;display:flex;align-items:center;gap:8px;border-radius:3px;flex:0 1 auto;
+  border:1px solid transparent;color:#fff;font-size:12px;position:relative;overflow:hidden;cursor:pointer}
+.tbtn span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbtn:hover{border-color:rgba(255,255,255,.35);background:radial-gradient(circle at var(--mx) 110%,rgba(61,220,132,.4),transparent 70%),rgba(255,255,255,.08)}
+.tbtn.running{border-color:rgba(255,255,255,.3);background:linear-gradient(rgba(255,255,255,.22),rgba(255,255,255,.06) 50%,rgba(255,255,255,.1))}
+.tbtn svg{width:26px;height:26px;flex:none}
+.tray{margin-left:auto;display:flex;align-items:center;height:100%;color:#fff;flex:none}
+.clock{height:100%;padding:0 12px;text-align:center;font-size:12px;line-height:1.3;border-radius:3px;color:#fff;display:flex;flex-direction:column;justify-content:center}
+.clock span{display:block}
+.showdesk{width:14px;height:100%;border-left:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06)}
+
+/* ---- prototype: info window ---- */
+.info{right:24px;top:24px;width:380px;max-height:calc(100% - 92px);z-index:5}
+.info .win-inner{overflow:auto}
+.ibody{padding:14px 16px 16px;display:flex;flex-direction:column;gap:12px;font-size:13px;line-height:1.5;user-select:text}
+.sample{margin:0;padding:10px 12px;border-radius:6px;background:rgba(255,77,79,.12);border:1px solid var(--red);color:#ffd9da;font-size:12.5px;line-height:1.45}
+.sample b{color:#fff}
+.plabel{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.plabel span{padding:2px 9px;border-radius:999px;background:#174a30;color:#9fe6bd;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.plabel small{color:var(--ink-soft);font-size:12px}
+.ibody h1{margin:0;font-size:18px;font-weight:600;line-height:1.25;color:#f0f8f3}
+.ibody p{margin:0;color:#cfe6d7}
+.ibody ol{margin:0;padding-left:20px;color:#cfe6d7}
+.ibody ol li{margin-bottom:3px}
+.iacts{display:flex;flex-wrap:wrap;gap:8px}
+.why{margin-top:2px;padding:12px 14px;border-radius:6px;background:var(--pane-alt);border:1px solid var(--pane-line)}
+.why h2{margin:0 0 4px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.why p{font-size:12.5px;color:#cfe6d7}
+.ifoot{font-size:12px;color:var(--ink-soft)}
+.status{font-size:12px;color:var(--ink-soft);min-height:18px}
+.status b{color:var(--ink)}
+
+/* ---- the recycle bin as a drop target ---- */
+.bin{position:relative}
+.bin .art{transition:transform .2s}
+.bin.hot{background:rgba(255,77,79,.18);border-color:var(--red)}
+.bin.hot .art{transform:scale(1.15) rotate(-4deg)}
+.bin.reject .art{animation:bshake .45s ease-in-out}
+@keyframes bshake{0%,100%{transform:rotate(0)}20%{transform:rotate(-10deg)}40%{transform:rotate(9deg)}60%{transform:rotate(-6deg)}80%{transform:rotate(4deg)}}
+
+/* ---- Paño ---- */
+.pano{position:fixed;left:0;top:0;width:76px;height:92px;z-index:50;padding:0;touch-action:none;cursor:grab;
+  filter:drop-shadow(0 6px 12px rgba(0,0,0,.5));will-change:transform}
+.pano.hop{transition:transform .55s cubic-bezier(.3,1.5,.5,1)}
+.pano.dragging{cursor:grabbing;z-index:60}
+.pano:focus-visible{outline:2px solid #3ddc84;outline-offset:4px;border-radius:8px}
+.pbody{display:block;width:100%;height:100%;transform-origin:50% 100%;transition:transform .25s}
+.pano svg{width:100%;height:100%;display:block;overflow:visible}
+.pano.dragging .pbody{transform:scale(.94,1.1) rotate(-4deg)}
+.pano.sit .pbody{animation:psit .5s cubic-bezier(.3,1.4,.5,1)}
+@keyframes psit{0%{transform:scale(1.08,.84)}55%{transform:scale(.97,1.04)}100%{transform:scale(1,1)}}
+.ptail{transform-box:view-box;transform-origin:46px 111px;animation:ptail 2.6s ease-in-out infinite}
+@keyframes ptail{0%,100%{transform:rotate(0)}50%{transform:rotate(-12deg)}}
+.pano.dragging .ptail{animation:none;transform:rotate(28deg)}
+.pano.meh .ptail{animation-duration:5s}
+.phead{transform-box:view-box;transform-origin:41px 54px;transition:transform .35s}
+.pano.lick .phead{transform:rotate(16deg) translate(-3px,2px)}
+.peyes{transition:transform .35s}
+.peyes>g{transform-box:fill-box;transform-origin:50% 50%;animation:pblink 5s infinite}
+@keyframes pblink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.12)}}
+.pano.meh .peyes{transform:translate(1.6px,1.3px)}
+.lid{transform:translateY(-9px);transition:transform .45s ease}
+.pano.wary .lid{transform:translateY(-1.6px)}
+.pano.meh .lid{transform:translateY(.4px)}
+.pano.lick .lid{transform:translateY(1.6px)}
+.pmouth{opacity:0;transition:opacity .2s}
+.pano.wary .pmouth{opacity:1}
+.ptongue{transform-box:fill-box;transform-origin:50% 0;transform:scaleY(0) rotate(0)}
+.pano.lick .ptongue{animation:ptongue .6s ease-in-out infinite}
+@keyframes ptongue{0%,100%{transform:scaleY(0)}40%,60%{transform:scaleY(1)}}
+.pleg{transition:opacity .2s}
+.ppaw{opacity:0;transform-box:view-box;transform-origin:31px 80px;transform:rotate(30deg);transition:transform .35s,opacity .2s}
+.pano.lick .pleg{opacity:0}
+.pano.lick .ppaw{opacity:1;transform:rotate(0)}
+.pano.lick .ppaw .pp{animation:ppaw .6s ease-in-out infinite}
+@keyframes ppaw{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+
+.hint{position:absolute;left:50%;top:16px;translate:-50% 0;z-index:3;padding:6px 12px;border-radius:4px;color:#fff;font-size:12px;
+  background:rgba(0,20,40,.45);border:1px solid rgba(255,255,255,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);pointer-events:none;transition:opacity .6s;white-space:nowrap}
+
+@media (prefers-reduced-motion:reduce){
+  .ptail,.peyes>g,.ptongue,.ppaw .pp,.bin.reject .art,.pano.sit .pbody{animation:none!important}
+  .pano.lick .ptongue{transform:scaleY(1)}
+  .pano.hop{transition:none}
+}
+
+@media (max-width:640px){
+  .icons{grid-auto-flow:row;grid-template-columns:repeat(4,1fr);grid-template-rows:none;grid-auto-rows:auto;grid-auto-columns:auto;right:8px;bottom:auto;gap:6px 2px}
+  .dicon{width:auto}
+  .clock .d{display:none}
+  .tbtn span{display:none}
+  .tbtn{padding:0 8px;min-width:42px}
+  .info{left:8px;right:8px;top:auto;bottom:calc(52px + env(safe-area-inset-bottom,0px));width:auto;max-height:44%}
+  .pano{width:64px;height:77px}
+  .hint{display:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="fBack" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a9a5f"/><stop offset="1" stop-color="#1f6b43"/></linearGradient>
+    <linearGradient id="fFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6ff0a8"/><stop offset=".55" stop-color="#3ddc84"/><stop offset="1" stop-color="#2bb56a"/></linearGradient>
+    <linearGradient id="doc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe9d9"/></linearGradient>
+    <linearGradient id="glassBin" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#bfe9d0" stop-opacity=".9"/><stop offset=".5" stop-color="#ffffff" stop-opacity=".55"/><stop offset="1" stop-color="#8fd4ad" stop-opacity=".9"/></linearGradient>
+    <symbol id="folder" viewBox="0 0 64 64">
+      <path d="M4 14q0-3 3-3h16l5 5h29q3 0 3 3v34q0 3-3 3H7q-3 0-3-3z" fill="url(#fBack)" stroke="#145a35" stroke-width=".8"/>
+      <rect x="10" y="16" width="42" height="30" rx="1.2" fill="#fff" stroke="#c9d3dc" stroke-width=".6"/><rect x="13" y="12.5" width="38" height="30" rx="1.2" fill="#f2f6fa" stroke="#c9d3dc" stroke-width=".6"/>
+      <path d="M3 24q0-3 3-3h52q3 0 3 3l-2 28q0 3-3 3H8q-3 0-3-3z" fill="url(#fFront)" stroke="#1a7f4b" stroke-width=".8"/>
+    </symbol>
+    <symbol id="docIcon" viewBox="0 0 48 48">
+      <path d="M10 4h20l9 9v31H10z" fill="url(#doc)" stroke="#4f7a62"/>
+      <path d="M30 4v9h9" fill="#cfe9d9" stroke="#4f7a62"/>
+      <path d="M15 20h18M15 25h18M15 30h18M15 35h12" stroke="#7fb596" stroke-width="1.6"/>
+    </symbol>
+    <symbol id="pdfIcon" viewBox="0 0 48 48">
+      <use href="#docIcon"/><rect x="6" y="30" width="22" height="10" rx="1.5" fill="#1f7a4a"/>
+      <text x="17" y="37.6" font-size="7" font-weight="700" fill="#fff" text-anchor="middle" font-family="Segoe UI,Arial">PDF</text>
+    </symbol>
+    <symbol id="contactIcon" viewBox="0 0 48 48">
+      <rect x="5" y="11" width="38" height="27" rx="2.5" fill="url(#doc)" stroke="#4f7a62"/><path d="M6 13l18 13 18-13" fill="none" stroke="#4f7a62" stroke-width="1.4"/>
+      <circle cx="37" cy="35" r="7" fill="#5fe3a1" stroke="#fff" stroke-width="1.5"/><path d="M34 35l2.2 2.2L40 33" stroke="#fff" stroke-width="1.8" fill="none"/>
+    </symbol>
+    <symbol id="binIcon" viewBox="0 0 48 48">
+      <path d="M11 12h26l-3 30q-.3 2-2.3 2H16.3q-2 0-2.3-2z" fill="url(#glassBin)" stroke="#2f6b49"/><ellipse cx="24" cy="12" rx="14" ry="3" fill="#dff5e8" stroke="#2f6b49"/>
+      <path d="M18 18l1.4 20M24 18v20M30 18l-1.4 20" stroke="#7fb596" stroke-width="1"/>
+      <rect x="17" y="5" width="13" height="10" rx="1" fill="#fff" stroke="#4f7a62" transform="rotate(-12 23 10)"/>
+    </symbol>
+    <symbol id="cpIcon" viewBox="0 0 48 48">
+      <rect x="5" y="7" width="38" height="30" rx="2.5" fill="#1f7a4a" stroke="#0b2e1b"/><rect x="8" y="10" width="32" height="24" fill="#d8f5e3"/>
+      <path d="M12 16h24M12 22h24M12 28h24" stroke="#7fb596" stroke-width="2"/>
+      <rect x="16" y="13" width="5" height="6" rx="1" fill="#9fd8b5"/><rect x="27" y="19" width="5" height="6" rx="1" fill="#5fe3a1"/><rect x="20" y="25" width="5" height="6" rx="1" fill="#1f7a4a"/>
+      <path d="M18 37h12l2 5H16z" fill="#4f7a62"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main id="desktop">
+  <nav class="icons" id="icons" aria-label="Desktop">
+    <button class="dicon bin" id="bin" title="Recycle Bin. Try dragging Paño here."><svg class="art" viewBox="0 0 48 48" aria-hidden="true"><use href="#binIcon"/></svg><span class="label">Recycle Bin</span></button>
+    <a class="dicon" href="../index.html" style="text-decoration:none"><svg class="art" viewBox="0 0 64 64" aria-hidden="true"><use href="#folder"/></svg><span class="label">Experience</span></a>
+    <a class="dicon" href="../index.html" style="text-decoration:none"><svg class="art" viewBox="0 0 64 64" aria-hidden="true"><use href="#folder"/></svg><span class="label">Projects</span></a>
+    <a class="dicon" href="../index.html" style="text-decoration:none"><svg class="art" viewBox="0 0 64 64" aria-hidden="true"><use href="#folder"/></svg><span class="label">AI Lab</span></a>
+    <a class="dicon" href="../index.html" style="text-decoration:none"><svg class="art" viewBox="0 0 64 64" aria-hidden="true"><use href="#folder"/></svg><span class="label">Kind Words</span></a>
+    <a class="dicon" href="../index.html" style="text-decoration:none"><svg class="art" viewBox="0 0 48 48" aria-hidden="true"><use href="#cpIcon"/></svg><span class="label">Skills</span></a>
+    <a class="dicon" href="../2026_Resume_Phillip_Da_Silva_Marquis.pdf" style="text-decoration:none"><svg class="art" viewBox="0 0 48 48" aria-hidden="true"><use href="#pdfIcon"/></svg><span class="label">Résumé.pdf</span></a>
+    <a class="dicon" href="../index.html" style="text-decoration:none"><svg class="art" viewBox="0 0 48 48" aria-hidden="true"><use href="#contactIcon"/></svg><span class="label">Contact</span></a>
+  </nav>
+
+  <div class="hint" id="hint">Drag Paño to the Recycle Bin. He has opinions.</div>
+
+  <section class="window info" id="info" aria-labelledby="ititle">
+    <div class="titlebar">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#docIcon"/></svg>
+      <span class="ttl">About this prototype · Paño vs. the Recycle Bin</span>
+      <div class="ctrls">
+        <button aria-label="Minimize" tabindex="-1"><svg viewBox="0 0 10 10"><path d="M1 8h8" stroke="#fff" stroke-width="1.6"/></svg></button>
+        <a class="close" href="../index.html" aria-label="Close and go back to the desktop" style="display:grid;place-items:center;height:19px;border:1px solid rgba(0,0,0,.45);border-top:0;border-left:0;border-radius:0 0 4px 0;background:#1f7a4a;width:44px"><svg viewBox="0 0 10 10"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7" stroke="#fff" stroke-width="1.6"/></svg></a>
+      </div>
+    </div>
+    <div class="win-inner">
+      <div class="ibody">
+        <p class="sample"><b>Sample data.</b> This is a prototype. Any numbers, metrics, or scores on this page are made up for prototyping and are not Phill's real results.</p>
+        <div class="plabel"><span>Prototype</span><small>What Paño does when you try to throw him away.</small></div>
+        <h1 id="ititle">Paño vs. the Recycle Bin</h1>
+        <p>Paño is the cat who guides visitors around Phill's desktop. Try dragging him onto the Recycle Bin:</p>
+        <ol>
+          <li>Over the bin, his eyelids drop and he looks unimpressed.</li>
+          <li>Let go and the bin spits him out. He sits down beside it.</li>
+          <li>He licks his paw and tells you what he thinks.</li>
+        </ol>
+        <div class="iacts">
+          <button class="wbtn default" id="tryBtn">Try to recycle Paño</button>
+          <button class="wbtn" id="resetBtn">Reset</button>
+        </div>
+        <p class="status" id="status" aria-live="polite">Paño is sitting on the desktop, minding his business.</p>
+        <div class="why">
+          <h2>Why this helps recruiters</h2>
+          <p>It rewards a curious click with personality instead of a dead end. It also shows how Phill thinks as a <span class="ktid">Product Manager</span>: plan for what users actually do, including the things they "shouldn't," and turn that edge case into a moment people remember and mention.</p>
+        </div>
+        <p class="ifoot"><a href="../index.html">← Back to Phill's desktop</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<button class="pano" id="pano" aria-label="Paño, Phill's cat. Drag him around the desktop.">
+  <span class="pbody"><svg viewBox="0 0 100 120" aria-hidden="true">
+    <defs>
+      <clipPath id="eyeL" clipPathUnits="userSpaceOnUse"><ellipse cx="-6" cy="0" rx="3.1" ry="4.1"/></clipPath>
+      <clipPath id="eyeR" clipPathUnits="userSpaceOnUse"><ellipse cx="6" cy="0" rx="3.1" ry="4.1"/></clipPath>
+    </defs>
+    <g class="ptail"><path d="M46 111 C 16 113, 4 88, 12 64 C 17 50, 30 48, 28 60" fill="none" stroke="#ff4d4f" stroke-width="10" stroke-linecap="round"/></g>
+    <path d="M29 50 C 18 70, 16 96, 20 114 L60 114 C 64 96, 62 70, 51 50 Z" fill="#ff4d4f"/>
+    <path class="pleg" d="M34 86 C 33 98, 33 106, 34 113" fill="none" stroke="#c93436" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+    <g class="phead"><g transform="translate(41 38) rotate(6)">
+      <path d="M-16 -29 L-7 -15 Q 0 -17.5 7 -15 L16 -29 L17 -6 C 18 4, 12 13, 0 15 C -12 13, -18 4, -17 -6 Z" fill="#ff4d4f"/>
+      <g class="peyes">
+        <g><ellipse cx="-6" cy="0" rx="2.8" ry="3.8" fill="#07100b"/><ellipse cx="6" cy="0" rx="2.8" ry="3.8" fill="#07100b"/></g>
+      </g>
+      <g clip-path="url(#eyeL)"><g class="lid"><rect x="-10" y="-12" width="8" height="12" fill="#ff4d4f"/><path d="M-10 0 H-2" stroke="#07100b" stroke-width="1.3"/></g></g>
+      <g clip-path="url(#eyeR)"><g class="lid"><rect x="2" y="-12" width="8" height="12" fill="#ff4d4f"/><path d="M2 0 H10" stroke="#07100b" stroke-width="1.3"/></g></g>
+      <path d="M-15 6 L-31 3 M-14.5 9.5 L-31 11.5 M15 6 L31 3 M14.5 9.5 L31 11.5" stroke="#ff4d4f" stroke-width="1.6" stroke-linecap="round"/>
+      <path class="pmouth" d="M-3 9.5 H3" stroke="#3a0608" stroke-width="1.4" stroke-linecap="round"/>
+      <ellipse class="ptongue" cx="0" cy="10.5" rx="2.2" ry="3" fill="#ff8a8c"/>
+    </g></g>
+    <g class="ppaw"><g class="pp">
+      <path d="M31 80 C 27 70, 28 62, 32 56" fill="none" stroke="#b92c2e" stroke-width="10" stroke-linecap="round"/>
+      <path d="M31 80 C 27 70, 28 62, 32 56" fill="none" stroke="#ff4d4f" stroke-width="7.4" stroke-linecap="round"/>
+      <ellipse cx="32.5" cy="53.5" rx="5.2" ry="4.2" fill="#ff4d4f" stroke="#b92c2e" stroke-width="1.3"/>
+      <path d="M30.6 50.6 v1.6 M32.6 50 v1.8 M34.6 50.6 v1.6" stroke="#b92c2e" stroke-width=".9" stroke-linecap="round"/>
+    </g></g>
+  </svg></span>
+</button>
+
+<div class="gbubble" id="bubble" hidden role="status">
+  <button class="gx" id="bx" aria-label="Dismiss"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7" stroke="#8fa898" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+  <span class="gname">PAÑO</span>
+  <p class="gsay" id="say"></p>
+</div>
+
+<footer class="taskbar">
+  <a class="orb" href="../index.html" aria-label="Back to Phill's desktop"><i><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l2.2 6.8L19 10l-6.8 2.2L10 19l-2.2-6.8L1 10l6.8-2.2z" fill="#fff"/><circle cx="10" cy="10" r="2" fill="#14532d"/></svg></i></a>
+  <div id="tasks"><button class="tbtn running" id="taskInfo" aria-label="About this prototype"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#docIcon"/></svg><span>About this prototype</span></button></div>
+  <div class="tray">
+    <div class="clock" id="clock" aria-hidden="true"><span class="t"></span><span class="d"></span></div>
+    <div class="showdesk" aria-hidden="true"></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const pano = $('#pano'), bin = $('#bin'), bubble = $('#bubble'), say = $('#say'), statusEl = $('#status'), hint = $('#hint');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const LINE = 'How dare you try to recycle me, human.';
+  let pos = { x: 0, y: 0 }, timers = [], placed = false;
+
+  const size = () => ({ w: pano.offsetWidth, h: pano.offsetHeight });
+  const bounds = () => ({ w: innerWidth, h: innerHeight - 44 });
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  const later = (fn, ms) => timers.push(setTimeout(fn, reduce ? Math.min(ms, 60) : ms));
+  const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
+
+  function place(x, y) {
+    const { w, h } = size(), b = bounds();
+    pos.x = clamp(x, 4, b.w - w - 4);
+    pos.y = clamp(y, 4, b.h - h - 2);
+    pano.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
+    if (!bubble.hidden) placeBubble();
+  }
+
+  function homeSpot() {
+    const b = bounds(), { w, h } = size();
+    if (innerWidth <= 640) {
+      const icons = $('#icons').getBoundingClientRect(), info = $('#info').getBoundingClientRect();
+      const top = icons.bottom + 10, bottom = info.top - 10;
+      return { x: b.w / 2 - w / 2, y: Math.max(top, top + (bottom - top - h) / 2) };
+    }
+    const info = $('#info').getBoundingClientRect();
+    const right = info.left > 0 ? info.left : b.w;
+    return { x: 200 + (right - 200) / 2 - w / 2, y: b.h * 0.55 - h / 2 };
+  }
+
+  function binRect(pad = 14) {
+    const r = bin.getBoundingClientRect();
+    return { l: r.left - pad, t: r.top - pad, r: r.right + pad, b: r.bottom + pad };
+  }
+  function overBin() {
+    const { w, h } = size(), cx = pos.x + w / 2, cy = pos.y + h / 2, r = binRect();
+    return cx > r.l && cx < r.r && cy > r.t && cy < r.b;
+  }
+
+  function placeBubble() {
+    const pr = pano.getBoundingClientRect(), bw = bubble.offsetWidth, bh = bubble.offsetHeight;
+    const cx = pr.left + pr.width / 2;
+    let left = clamp(cx - bw / 2, 8, innerWidth - bw - 8);
+    let top = pr.top - bh - 14, below = false;
+    if (top < 8) { top = pr.bottom + 14; below = true; }
+    bubble.classList.toggle('below', below);
+    bubble.style.left = left + 'px';
+    bubble.style.top = top + 'px';
+    bubble.style.setProperty('--tx', clamp(cx - left, 18, bw - 18) + 'px');
+  }
+  function speak(text) {
+    say.textContent = text;
+    bubble.hidden = false;
+    placeBubble();
+  }
+  function hush() { bubble.hidden = true; }
+
+  function setStatus(html) { statusEl.innerHTML = html; }
+
+  function calm() {
+    clearTimers();
+    pano.classList.remove('wary', 'meh', 'lick', 'sit', 'hop');
+    bin.classList.remove('hot', 'reject');
+    hush();
+  }
+
+  // The whole reaction: rejected by the bin, sits, goes indifferent, licks paw, speaks.
+  function refuse() {
+    clearTimers();
+    bin.classList.remove('hot');
+    bin.classList.remove('reject'); void bin.offsetWidth; bin.classList.add('reject');
+    pano.classList.add('meh');
+    pano.classList.remove('wary');
+    const r = bin.getBoundingClientRect(), { w, h } = size();
+    // land in open wallpaper next to the icons, never on top of another icon
+    const ir = $('#icons').getBoundingClientRect(), narrowScreen = innerWidth <= 640;
+    const tx = narrowScreen ? r.left + r.width / 2 - w / 2 : ir.left + ir.width + 28;
+    const ty = narrowScreen ? ir.bottom + 16 : r.top + r.height / 2 - h / 2 + 10;
+    pano.classList.add('hop');
+    place(tx, ty);
+    setStatus('<b>Rejected.</b> The bin wants nothing to do with him.');
+    later(() => {
+      pano.classList.remove('hop');
+      pano.classList.remove('sit'); void pano.offsetWidth; pano.classList.add('sit');
+      setStatus('<b>He sits down.</b> Eyes low, lids half shut. Unbothered.');
+    }, 520);
+    later(() => {
+      pano.classList.add('lick');
+      setStatus('<b>Paw lick.</b> A clear sign of contempt.');
+    }, 1150);
+    later(() => {
+      speak(LINE);
+      setStatus('<b>Paño has spoken.</b> Drag him to the bin again if you dare.');
+    }, 1900);
+    later(() => pano.classList.remove('lick'), 6500);
+  }
+
+  // ---- dragging (mouse, pen, touch) ----
+  let drag = null;
+  pano.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return;
+    drag = { sx: e.clientX, sy: e.clientY, ox: pos.x, oy: pos.y, moved: false, id: e.pointerId };
+    pano.setPointerCapture(e.pointerId);
+  });
+  pano.addEventListener('pointermove', (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.sx, dy = e.clientY - drag.sy;
+    if (!drag.moved && Math.hypot(dx, dy) < 4) return;
+    if (!drag.moved) {
+      drag.moved = true; calm();
+      pano.classList.add('dragging');
+      hint.style.opacity = 0;
+      setStatus('You picked him up. He is tolerating it.');
+    }
+    place(drag.ox + dx, drag.oy + dy);
+    const hot = overBin();
+    bin.classList.toggle('hot', hot);
+    pano.classList.toggle('wary', hot);
+    if (hot) setStatus('<b>Over the Recycle Bin.</b> He knows what you are doing.');
+  });
+  const endDrag = (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const moved = drag.moved; drag = null;
+    pano.classList.remove('dragging');
+    if (!moved) return;
+    if (overBin()) refuse();
+    else {
+      bin.classList.remove('hot'); pano.classList.remove('wary');
+      pano.classList.remove('sit'); void pano.offsetWidth; pano.classList.add('sit');
+      setStatus('Paño sits where you left him.');
+    }
+  };
+  pano.addEventListener('pointerup', endDrag);
+  pano.addEventListener('pointercancel', endDrag);
+
+  // Keyboard / one-tap path: Paño gets carried to the bin for you.
+  function tryRecycle() {
+    calm();
+    hint.style.opacity = 0;
+    const r = bin.getBoundingClientRect(), { w, h } = size();
+    pano.classList.add('hop', 'dragging');
+    place(r.left + r.width / 2 - w / 2, r.top + r.height / 2 - h / 2);
+    later(() => { bin.classList.add('hot'); pano.classList.add('wary'); setStatus('<b>Over the Recycle Bin.</b> He knows what you are doing.'); }, 450);
+    later(() => { pano.classList.remove('dragging', 'hop'); refuse(); }, 1250);
+  }
+  $('#tryBtn').addEventListener('click', tryRecycle);
+  pano.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tryRecycle(); } });
+  bin.addEventListener('click', () => setStatus('The Recycle Bin is empty. Paño would like to keep it that way.'));
+  $('#resetBtn').addEventListener('click', () => {
+    calm(); const s = homeSpot(); place(s.x, s.y);
+    setStatus('Paño is sitting on the desktop, minding his business.');
+  });
+  $('#bx').addEventListener('click', hush);
+  $('#taskInfo').addEventListener('click', () => $('#tryBtn').focus());
+
+  addEventListener('resize', () => { if (!placed) return; place(pos.x, pos.y); });
+
+  // clock
+  const tEl = $('#clock .t'), dEl = $('#clock .d');
+  const tick = () => {
+    const n = new Date();
+    tEl.textContent = n.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    dEl.textContent = n.toLocaleDateString();
+  };
+  tick(); setInterval(tick, 15000);
+
+  // start
+  requestAnimationFrame(() => { const s = homeSpot(); place(s.x, s.y); placed = true; });
+  setTimeout(() => { hint.style.opacity = 0; }, 7000);
+
+  // test hook for automated screenshots: ?demo=1 plays the reaction once
+  if (/[?&]demo=1/.test(location.search)) setTimeout(tryRecycle, 400);
+})();
+</script>
+</body>
+</html>
