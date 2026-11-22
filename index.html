@@ -310,6 +310,17 @@ a{color:var(--accent)}
 .gcat.chomp .ghead{transform:rotate(-10deg) scale(1.12)}
 .gcat.chomp .geyes{animation:none;transform:scaleY(.55)}
 .gcat:focus-visible{outline:2px solid #3ddc84;outline-offset:4px;border-radius:8px}
+.gcat{touch-action:none;cursor:grab}
+.gcat.dragging{cursor:grabbing;transition:none}
+.gcat.dragging .gbody{transform:scale(1.08)}
+.gcat.head{width:80px;height:60px;z-index:2147483000}
+.gwavy{display:none}
+.gcat.head .gtail,.gcat.head .gtorso,.gcat.head .gwhisk{display:none}
+.gcat.head .gwavy{display:inline}
+.gwavy path{fill:none;stroke:#ff4d4f;stroke-width:1.6;stroke-linecap:round;transform-box:fill-box;animation:gwig 1.1s ease-in-out infinite alternate}
+.gwavy .wl{transform-origin:100% 50%}.gwavy .wr{transform-origin:0 50%}
+.gwavy path:nth-child(2){animation-delay:-.35s}.gwavy path:nth-child(3){animation-delay:-.6s}.gwavy path:nth-child(4){animation-delay:-.9s}
+@keyframes gwig{0%{transform:rotate(-7deg) scaleY(1)}50%{transform:rotate(1deg) scaleY(-1)}100%{transform:rotate(7deg) scaleY(1)}}
 .gbubble{position:fixed;z-index:9060;width:310px;max-width:calc(100vw - 16px);box-sizing:border-box;padding:14px 14px 12px;border-radius:14px;background:#0f1b14;border:1px solid #2a9a5f;box-shadow:0 16px 40px rgba(0,0,0,.55);color:#e6f2ea;font-size:13.5px;line-height:1.5}
 .gbubble[hidden]{display:none}
 .gbubble::after{content:"";position:absolute;left:var(--tx,50%);bottom:-8px;width:14px;height:14px;background:#0f1b14;border-right:1px solid #2a9a5f;border-bottom:1px solid #2a9a5f;transform:translateX(-50%) rotate(45deg)}
@@ -331,7 +342,7 @@ a{color:var(--accent)}
 .gring{position:fixed;z-index:9055;pointer-events:none;border:2px solid #3ddc84;border-radius:12px;animation:gring 1.4s ease-out infinite;transition:opacity .2s}
 .gring[hidden]{display:none}
 @keyframes gring{0%{box-shadow:0 0 0 0 rgba(61,220,132,.55)}100%{box-shadow:0 0 0 14px rgba(61,220,132,0)}}
-@media (prefers-reduced-motion:reduce){.gtail,.geyes,.gring,.gcat.talk .ghead{animation:none}}
+@media (prefers-reduced-motion:reduce){.gtail,.geyes,.gring,.gcat.talk .ghead,.gwavy path{animation:none}}
 
 /* ---------- taskbar ---------- */
 .taskbar{position:fixed;left:0;right:0;bottom:0;height:calc(44px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);
@@ -516,7 +527,9 @@ a{color:var(--accent)}
   .rfoot{display:none}
   .deskcat{display:none}
   .gcat{width:54px;height:65px;z-index:9065}
-  .gbubble{left:8px!important;right:8px;top:auto!important;bottom:calc(52px + env(safe-area-inset-bottom,0px));width:auto;max-width:none;padding-left:76px}
+  .gcat.head{width:60px;height:45px;z-index:2147483000}
+  .gbubble{left:8px!important;right:8px;top:auto!important;bottom:calc(52px + env(safe-area-inset-bottom,0px));width:auto;max-width:none;padding-left:40px;padding-right:76px}
+  .gbubble .gx{right:auto;left:6px}
   .gbubble.gtop{top:calc(8px + env(safe-area-inset-top,0px))!important;bottom:auto}
   .gbubble::after{display:none}
   .sk{padding:18px 14px 22px}
@@ -757,11 +770,12 @@ a{color:var(--accent)}
 <!-- The cat: a guide that asks what you want and walks you there -->
 <button class="gcat" id="gcat" hidden aria-label="Ask Phill’s cat for a guided tour"><span class="gbody"><svg viewBox="0 0 100 120" aria-hidden="true">
   <g class="gtail"><path d="M46 111 C 16 113, 4 88, 12 64 C 17 50, 30 48, 28 60" fill="none" stroke="#ff4d4f" stroke-width="10" stroke-linecap="round"/></g>
-  <path d="M29 50 C 18 70, 16 96, 20 114 L60 114 C 64 96, 62 70, 51 50 Z" fill="#ff4d4f"/>
+  <path class="gtorso" d="M29 50 C 18 70, 16 96, 20 114 L60 114 C 64 96, 62 70, 51 50 Z" fill="#ff4d4f"/>
   <g class="ghead"><g transform="translate(41 38) rotate(6)">
     <path d="M-16 -29 L-7 -15 Q 0 -17.5 7 -15 L16 -29 L17 -6 C 18 4, 12 13, 0 15 C -12 13, -18 4, -17 -6 Z" fill="#ff4d4f"/>
     <g class="geyes"><ellipse cx="-6" cy="0" rx="2.8" ry="3.8" fill="#07100b"/><ellipse cx="6" cy="0" rx="2.8" ry="3.8" fill="#07100b"/></g>
-    <path d="M-15 6 L-31 3 M-14.5 9.5 L-31 11.5 M15 6 L31 3 M14.5 9.5 L31 11.5" stroke="#ff4d4f" stroke-width="1.6" stroke-linecap="round"/>
+    <path class="gwhisk" d="M-15 6 L-31 3 M-14.5 9.5 L-31 11.5 M15 6 L31 3 M14.5 9.5 L31 11.5" stroke="#ff4d4f" stroke-width="1.6" stroke-linecap="round"/>
+    <g class="gwavy"><path class="wl" d="M-15 6 q-2.67 -2.4 -5.33 -1 t-5.33 -1 t-5.34 -1"/><path class="wl" d="M-14.5 9.5 q-2.75 -1.8 -5.5 .67 t-5.5 .67 t-5.5 .66"/><path class="wr" d="M15 6 q2.67 -2.4 5.33 -1 t5.33 -1 t5.34 -1"/><path class="wr" d="M14.5 9.5 q2.75 -1.8 5.5 .67 t5.5 .67 t5.5 .66"/></g>
     <g class="gmouth"><ellipse cx="0" cy="8.5" rx="6" ry="4.6" fill="#3a0608"/><ellipse cx="0" cy="10.6" rx="3.4" ry="1.8" fill="#ff8a8c"/></g>
   </g></g>
 </svg></span></button>
@@ -1749,11 +1763,20 @@ a{color:var(--accent)}
     if (WINS.has('mail') || !toast.hidden || !lock.hidden) return;
     if (guideBusy()) { setTimeout(showToast, 8000); return; }
     toast.hidden = false; trayMail.hidden = false;
+    liftToastAbovePano();
     if (reduce) return;
     toast.animate([{ transform: 'translateX(calc(100% + 30px))', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: SPRING_MENU.duration, easing: SPRING_MENU.easing });
     toast.querySelectorAll('.tt > *').forEach((t, i) => t.animate([{ opacity: 0, transform: 'translateX(12px)' }, { opacity: 1, transform: 'none' }], { duration: 360, easing: EASE_OUT, delay: 160 + i * 60, fill: 'backwards' }));
     toast.querySelector('.env').animate([{ transform: 'rotate(0)' }, { transform: 'rotate(-14deg)' }, { transform: 'rotate(10deg)' }, { transform: 'rotate(-6deg)' }, { transform: 'rotate(0)' }], { duration: 700, delay: 420, easing: 'ease-out' });
     trayMail.animate([{ transform: 'translateY(12px) scale(.4)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: SPRING_ITEM.duration, easing: SPRING_ITEM.easing, delay: 120, fill: 'backwards' });
+  }
+  // if Paño (full body) is under where the toast pops up, raise the toast above him
+  function liftToastAbovePano() {
+    toast.style.bottom = '';
+    const c = document.getElementById('gcat');
+    if (!c || c.hidden || c.classList.contains('head')) return;
+    const a = toast.getBoundingClientRect(), b = c.getBoundingClientRect();
+    if (a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top) toast.style.bottom = (innerHeight - b.top + 8) + 'px';
   }
   async function hideToast() {
     if (toast.hidden) return;
@@ -2070,14 +2093,32 @@ a{color:var(--accent)}
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   let catPos = { x: 0, y: 0 }, tour = null, stepToken = 0, ringTarget = null, ringRAF = 0, msgSeq = 0;
 
-  const restSpot = () => narrow() ? dockSpot() : { x: innerWidth - 46 - CAT_W(), y: innerHeight - 122 - CAT_H() };
-  const dockSpot = () => ({ x: 16, y: innerHeight - 52 - CAT_H() - 12 });
+  const dockSpot = () => ({ x: innerWidth - CAT_W() - 16, y: innerHeight - 52 - CAT_H() - 12 });
+  // first visit: tucked into the bottom-right corner, just above the taskbar
+  const cornerSpot = () => ({ x: innerWidth - CAT_W() - (narrow() ? 8 : 14), y: innerHeight - (narrow() ? 52 : 44) - CAT_H() - 6 });
+  const clampSpot = (p, w, h) => ({ x: Math.min(innerWidth - w, Math.max(0, p.x)), y: Math.min(innerHeight - h, Math.max(0, p.y)) });
+  // head mode: just his head, parked at the top middle (or wherever the user dragged it)
+  const HEAD_W = () => narrow() ? 60 : 80, HEAD_H = () => narrow() ? 45 : 60;
+  const FULL_VB = '0 0 100 120', HEAD_VB = '5 3 72 54';
+  let headMode = false, headHome = false, headPos = null;
+  try { headPos = JSON.parse(sessionStorage.getItem('panoHeadPos') || 'null'); } catch (e) {}
+  function headSpot() {
+    const p = headPos ? { x: headPos.fx * innerWidth - HEAD_W() / 2, y: headPos.y } : { x: innerWidth / 2 - HEAD_W() / 2, y: 6 };
+    return clampSpot(p, HEAD_W(), HEAD_H());
+  }
+  // where he stands to talk: on phones inside the docked bubble; once he's lived at the top, just under his head spot
+  function homeSpot() {
+    if (narrow()) return dockSpot();
+    if (headHome) { const h = headSpot(); return clampSpot({ x: h.x + HEAD_W() / 2 - CAT_W() / 2, y: Math.max(8, h.y) }, CAT_W(), CAT_H() + 48); }
+    return cornerSpot();
+  }
   function setCat(p, flip) {
     catPos = p; gcat.style.transform = `translate(${Math.round(p.x)}px, ${Math.round(p.y)}px)`;
     if (flip != null) gsvg.classList.toggle('flip', flip);
   }
   async function moveCat(p, flipAtEnd) {
     catTopDocked = false;
+    if (headMode) exitHead();
     gcat.getAnimations().forEach(a => a.cancel());
     const from = catPos, dx = p.x - from.x, dy = p.y - from.y, dist = Math.hypot(dx, dy);
     if (reduce || dist < 6) { setCat(p, flipAtEnd); return; }
@@ -2131,7 +2172,7 @@ a{color:var(--accent)}
     }
     if (top) {
       const b = gbub.getBoundingClientRect();
-      setCat({ x: 16, y: b.bottom - CAT_H() - 10 }); catTopDocked = true;
+      setCat({ x: innerWidth - CAT_W() - 16, y: b.bottom - CAT_H() - 10 }); catTopDocked = true;
     } else if (catTopDocked) { setCat(dockSpot()); catTopDocked = false; }
   }
   function placeBubble() {
@@ -2162,6 +2203,8 @@ a{color:var(--accent)}
     gbub.style.setProperty('--tx', Math.min(bw - 22, Math.max(22, cx - left)) + 'px');
   }
   function say(html, actions = []) {
+    if (headMode) exitHead();
+    if (!toast.hidden && (narrow() || overlapArea(toast.getBoundingClientRect(), gcat.getBoundingClientRect()) > 0)) hideToast();
     msgSeq++;
     gsay.innerHTML = html; gacts.innerHTML = '';
     actions.forEach(a => {
@@ -2233,6 +2276,7 @@ a{color:var(--accent)}
     }
   }
   async function goNear(el) {
+    if (headMode) exitHead();
     if (narrow()) { setCat(dockSpot()); return; }
     const r = el.getBoundingClientRect(), W = CAT_W(), H = CAT_H();
     let x = r.right + 12, flip = true;
@@ -2341,7 +2385,7 @@ a{color:var(--accent)}
     const token = ++stepToken;
     tour = null; ringOff();
     gbub.hidden = true;
-    await moveCat(restSpot(), false);
+    await moveCat(homeSpot(), false);
     if (token !== stepToken) return;
     say(`<span class="gname">Phill’s cat</span>${text}`, [
       ...GOALS.map(([label, k]) => ({ label, fn: () => runTour(k) })),
@@ -2352,7 +2396,7 @@ a{color:var(--accent)}
     const token = ++stepToken;
     tour = null; ringOff();
     gbub.hidden = true;
-    await moveCat(restSpot(), false);
+    await moveCat(homeSpot(), false);
     if (token !== stepToken || !msg) return;
     say(msg);
     const mine = msgSeq;
@@ -2439,24 +2483,109 @@ a{color:var(--accent)}
     await sleep(reduce ? 0 : 450);
     if (token !== stepToken) return;
     guideRest('All clean! I kept the one you were looking at.');
+    armIdle();
   }
 
+  /* ---------- head mode ---------- */
+  function enterHead(pop) {
+    if (headMode) return;
+    headMode = true; headHome = true;
+    try { sessionStorage.setItem('panoHead', '1'); } catch (e) {}
+    ringOff(); gbub.hidden = true;
+    gcat.classList.add('head'); gsvg.setAttribute('viewBox', HEAD_VB); gsvg.classList.remove('flip');
+    setCat(headSpot());
+    if (pop && !reduce) gbodyEl.animate([{ transform: 'scale(.3)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: SPRING_WIN.duration, easing: SPRING_WIN.easing });
+  }
+  function exitHead() {
+    if (!headMode) return;
+    const h = catPos; headMode = false;
+    gcat.classList.remove('head'); gsvg.setAttribute('viewBox', FULL_VB);
+    setCat(clampSpot({ x: h.x + HEAD_W() / 2 - CAT_W() / 2, y: h.y }, CAT_W(), CAT_H()));
+  }
+  async function goHead() {
+    if (headMode) return;
+    const token = ++stepToken;
+    tour = null; ringOff(); gbub.hidden = true;
+    const h = headSpot();
+    await moveCat(clampSpot({ x: h.x + HEAD_W() / 2 - CAT_W() / 2, y: Math.max(8, h.y) }, CAT_W(), CAT_H()), false);
+    if (token !== stepToken) return;
+    enterHead(true);
+  }
+
+  /* ---------- after the user has played with him, 10 quiet seconds sends him to his head spot ---------- */
+  const IDLE_MS = 10000;
+  let hasInteracted = false, idleT = 0;
+  function touchPano() { hasInteracted = true; armIdle(); }
+  function armIdle() {
+    clearTimeout(idleT);
+    if (!hasInteracted || headMode) return;
+    idleT = setTimeout(() => {
+      if (headMode) return;
+      if (tour || cleaning || dragging) return armIdle();
+      goHead();
+    }, IDLE_MS);
+  }
+  gbub.addEventListener('pointerdown', touchPano);
+
+  /* ---------- drag him anywhere; a tap still opens his menu ---------- */
+  let drag = null, dragging = false, suppressClick = false;
+  gcat.addEventListener('pointerdown', e => {
+    if (cleaning || e.button > 0) return;
+    touchPano();
+    const r = gcat.getBoundingClientRect();
+    drag = { id: e.pointerId, sx: e.clientX, sy: e.clientY, ox: r.left, oy: r.top, moved: false };
+    try { gcat.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+  gcat.addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.sx, dy = e.clientY - drag.sy;
+    if (!drag.moved && Math.hypot(dx, dy) < 6) return;
+    if (!drag.moved) {
+      drag.moved = true; dragging = true; catTopDocked = false;
+      gcat.getAnimations().forEach(a => a.cancel());
+      gcat.classList.add('dragging');
+    }
+    const w = headMode ? HEAD_W() : CAT_W(), h = headMode ? HEAD_H() : CAT_H();
+    setCat(clampSpot({ x: drag.ox + dx, y: drag.oy + dy }, w, h));
+    if (!narrow()) placeBubble();
+  });
+  function endDrag(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    if (drag.moved) {
+      suppressClick = true;
+      gcat.classList.remove('dragging');
+      if (headMode) {
+        headPos = { fx: (catPos.x + HEAD_W() / 2) / innerWidth, y: catPos.y };
+        try { sessionStorage.setItem('panoHeadPos', JSON.stringify(headPos)); } catch (err) {}
+      }
+      setTimeout(() => { suppressClick = false; }, 0);
+    }
+    dragging = false; drag = null; armIdle();
+  }
+  gcat.addEventListener('pointerup', endDrag);
+  gcat.addEventListener('pointercancel', endDrag);
+
   gcat.addEventListener('click', () => {
-    if (cleaning) return;
+    if (suppressClick || cleaning) return;
+    if (headMode) { guideMenu('What would you like to do?'); return; }
     if (!gbub.hidden && !tour) guideRest();
     else guideMenu('What would you like to do?');
   });
   $('#gx').addEventListener('click', () => guideRest());
   addEventListener('resize', () => {
     if (gcat.hidden) return;
-    if (!tour) setCat(restSpot());
+    if (headMode) setCat(headSpot());
+    else if (!tour && !dragging) setCat(gbub.hidden && !hasInteracted ? cornerSpot() : homeSpot());
     placeBubble();
   });
 
   // say hello once per visit; returning in the same session, the cat just sits there
   setTimeout(() => {
     gcat.hidden = false;
-    setCat(restSpot(), false);
+    let wasHead = false;
+    try { wasHead = sessionStorage.getItem('panoHead') === '1'; } catch (e) {}
+    if (wasHead) { hasInteracted = true; enterHead(true); return; }
+    setCat(cornerSpot(), false);
     anim(gbodyEl, [{ transform: 'translateY(40px) scale(.5)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: SPRING_WIN.duration, easing: SPRING_WIN.easing });
     let seen = false;
     try { seen = sessionStorage.getItem('catGreeted') === '1'; sessionStorage.setItem('catGreeted', '1'); } catch (e) {}
