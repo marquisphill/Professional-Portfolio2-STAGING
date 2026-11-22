@@ -137,10 +137,10 @@ a{color:var(--accent)}
       <div class="files" id="files" role="listbox" aria-label="Prototypes"><p class="empty">Loading…</p></div>
       <div class="details" id="details" aria-live="polite">
         <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#page"/></svg>
-        <div class="meta"><b>Labs</b><p>Working prototypes of new portfolio features. Select one to see what it does, then open it.</p></div>
+        <div class="meta"><b>Labs</b><p>Working prototypes of new portfolio features. They use sample data: any numbers in them are made up, not Phill's real results. Select one to see what it does, then open it.</p></div>
         <a class="wbtn" id="open" aria-disabled="true">Open</a>
       </div>
-      <div class="status"><span><span class="tag">Prototype space</span> · not part of the live portfolio</span><span id="upd"></span></div>
+      <div class="status"><span><span class="tag">Prototype space</span> · sample data, not real results · not part of the live portfolio</span><span id="upd"></span></div>
     </div>
   </div>
 </div>
@@ -193,7 +193,7 @@ a{color:var(--accent)}
     const box = $('details').querySelector('.meta'); box.replaceChildren();
     const open = $('open');
     if (!p) {
-      box.append(el('b', '', 'Labs'), el('p', '', 'Working prototypes of new portfolio features. Select one to see what it does, then open it.'));
+      box.append(el('b', '', 'Labs'), el('p', '', 'Working prototypes of new portfolio features. They use sample data: any numbers in them are made up, not Phill\'s real results. Select one to see what it does, then open it.'));
       open.removeAttribute('href'); open.setAttribute('aria-disabled', 'true'); return;
     }
     const c = created(p);

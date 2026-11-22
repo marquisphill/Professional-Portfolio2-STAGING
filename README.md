@@ -34,7 +34,7 @@ Example: [marquisphill.github.io/Professional-Portfolio2/#resume](https://marqui
 ### Other pages
 
 - **Hackathon** (`hackathon.html`): what my team built at the South Florida Tech Hub Hackathon, and what I learned.
-- **Labs** (`labs.html`): prototypes of new features before they're added to the site.
+- **Labs** (`labs.html`): prototypes of new features before they're added to the site. Prototypes use sample data: any numbers in them are made up, not real results.
 
 ---
 

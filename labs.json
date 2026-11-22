@@ -1,19 +1,22 @@
 {
   "updated": "2026-11-22",
+  "notice": "Prototypes use sample data. Any numbers, metrics, or scores in them are made up for prototyping and are not Phill's real results.",
   "prototypes": [
     {
       "slug": "impact-dashboard",
       "title": "Project impact dashboard",
       "url": "labs/impact-dashboard.html",
       "date": "2026-11-22",
-      "summary": "Dashboard for business analysts showing Phill's methodology for driving measurable impact: the method (business case → metrics, tools & systems, tracking & iteration) and real metrics (42% revenue growth, $8.6M process savings, 3.2x user adoption, 24hrs fulfillment time reduction, 18-month cultural transformation)."
+      "summary": "Sample data, not real results. Dashboard for business analysts showing Phill's methodology for driving measurable impact: the method (business case → metrics, tools & systems, tracking & iteration) and real metrics (42% revenue growth, $8.6M process savings, 3.2x user adoption, 24hrs fulfillment time reduction, 18-month cultural transformation).",
+      "sample_data": true
     },
     {
       "slug": "skills-radar",
       "title": "Interactive skills radar chart",
       "url": "labs/skills-radar.html",
       "date": "2026-11-22",
-      "summary": "Radar chart showing Phill's depth across five core dimensions: Business, Process, Systems, Data, and Product. Each shows the specific tools and methods used. Interactive—hover any skill to highlight it."
+      "summary": "Sample data, not real results. Radar chart showing Phill's depth across five core dimensions: Business, Process, Systems, Data, and Product. Each shows the specific tools and methods used. Interactive—hover any skill to highlight it.",
+      "sample_data": true
     }
   ],
   "requests": [
