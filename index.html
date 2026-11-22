@@ -384,7 +384,7 @@ a{color:var(--accent)}
 .gcat{touch-action:none;cursor:grab}
 .gcat.dragging{cursor:grabbing;transition:none}
 .gcat.dragging .gbody{transform:scale(1.08)}
-.gcat.head{width:80px;height:60px;z-index:2147483000}
+.gcat.head{width:144px;height:108px;z-index:2147483000}
 .gwavy{display:none}
 .gcat.head .gtail,.gcat.head .gtorso,.gcat.head .gwhisk{display:none}
 .gcat.head .gwavy{display:inline}
@@ -598,7 +598,7 @@ a{color:var(--accent)}
   .rfoot{display:none}
   .deskcat{display:none}
   .gcat{width:54px;height:65px;z-index:9065}
-  .gcat.head{width:60px;height:45px;z-index:2147483000}
+  .gcat.head{width:120px;height:90px;z-index:2147483000}
   .gbubble{left:8px!important;right:8px;top:auto!important;bottom:calc(52px + env(safe-area-inset-bottom,0px));width:auto;max-width:none;padding-left:40px;padding-right:76px}
   .gbubble .gx{right:auto;left:6px}
   .gbubble.gtop{top:calc(8px + env(safe-area-inset-top,0px))!important;bottom:auto}
@@ -2302,7 +2302,7 @@ a{color:var(--accent)}
   const cornerSpot = () => ({ x: innerWidth - CAT_W() - (narrow() ? 8 : 14), y: innerHeight - (narrow() ? 52 : 44) - CAT_H() - 6 });
   const clampSpot = (p, w, h) => ({ x: Math.min(innerWidth - w, Math.max(0, p.x)), y: Math.min(innerHeight - h, Math.max(0, p.y)) });
   // head mode: just his head, parked at the top middle (or wherever the user dragged it)
-  const HEAD_W = () => narrow() ? 60 : 80, HEAD_H = () => narrow() ? 45 : 60;
+  const HEAD_W = () => narrow() ? 120 : 144, HEAD_H = () => narrow() ? 90 : 108;
   const FULL_VB = '0 0 100 120', HEAD_VB = '5 3 72 54';
   let headMode = false, headHome = false, headPos = null;
   try { headPos = JSON.parse(sessionStorage.getItem('panoHeadPos') || 'null'); } catch (e) {}
