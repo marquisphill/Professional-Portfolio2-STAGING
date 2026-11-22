@@ -52,15 +52,16 @@ a{color:var(--accent)}
 #desktop{
   position:fixed;inset:0;overflow:hidden;
   background:
-    radial-gradient(120% 70% at 72% 112%, var(--wall-3) 0%, transparent 58%),
-    radial-gradient(80% 55% at 8% -12%, var(--wall-glow), transparent 62%),
-    linear-gradient(162deg, var(--wall-1) 0%, var(--wall-2) 100%);
+    linear-gradient(180deg, rgba(3,8,5,.38) 0%, rgba(3,8,5,.16) 45%, rgba(3,8,5,.42) 100%),
+    url(images/wallpaper.jpg) center / cover no-repeat,
+    var(--wall-1);
 }
-#desktop::before,#desktop::after{content:"";position:absolute;pointer-events:none;border-radius:50%;filter:blur(38px)}
-#desktop::before{width:140vmax;height:22vmax;left:-20vmax;top:46%;
-  background:linear-gradient(90deg,transparent,rgba(61,220,132,.14) 40%,rgba(61,220,132,.22) 60%,transparent);transform:rotate(-14deg)}
-#desktop::after{width:90vmax;height:9vmax;left:10vmax;top:60%;
-  background:linear-gradient(90deg,transparent,rgba(61,220,132,.12),transparent);transform:rotate(-9deg)}
+@media (max-width:900px){
+  #desktop{background:
+    linear-gradient(180deg, rgba(3,8,5,.38) 0%, rgba(3,8,5,.16) 45%, rgba(3,8,5,.42) 100%),
+    url(images/wallpaper-1280.jpg) center / cover no-repeat,
+    var(--wall-1)}
+}
 
 /* ---------- sticky note ---------- */
 .sticky{
@@ -590,7 +591,7 @@ a{color:var(--accent)}
 
 /* ---------- lock screen ---------- */
 .lock{position:fixed;inset:0;z-index:9800;display:grid;place-items:center;color:#fff;text-align:center;
-  background:radial-gradient(120% 70% at 72% 112%, var(--wall-3) 0%, transparent 58%),linear-gradient(162deg,var(--wall-1),var(--wall-2))}
+  background:linear-gradient(rgba(3,8,5,.6),rgba(3,8,5,.6)),url(images/wallpaper-1280.jpg) center / cover no-repeat,var(--wall-1)}
 .lock[hidden]{display:none}
 .lock .who img{width:118px;height:118px;border-radius:8px;object-fit:cover;object-position:50% 18%;border:5px solid rgba(255,255,255,.75);box-shadow:0 6px 24px rgba(0,0,0,.45)}
 .lock h2{margin:14px 0 4px;font-size:26px;font-weight:300}

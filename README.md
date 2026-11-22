@@ -77,6 +77,12 @@ Then open http://localhost:8000. A local server is needed (rather than opening t
 
 ---
 
+## Credits
+
+Desktop wallpaper: photo by Pine Watt on [Unsplash](https://unsplash.com/).
+
+---
+
 ## Contact
 
 - [LinkedIn](https://www.linkedin.com/in/phillip-marquis-7661a8107/)
