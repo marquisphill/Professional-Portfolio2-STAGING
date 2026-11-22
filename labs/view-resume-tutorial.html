@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex">
+<title>How to view my résumé · Prototype</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0705'/%3E%3Crect x='6' y='5' width='4' height='22' fill='%23FF6A13'/%3E%3Crect x='13' y='5' width='13' height='4' fill='%23F5F0EA'/%3E%3Crect x='13' y='14' width='10' height='4' fill='%23F5F0EA'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0705; --bg-raised:#14100C; --bg-inset:#060403;
+  --orange:#FF6A13; --orange-dim:#7A3208; --yellow:#FFC233;
+  --ink:#F5F0EA; --ink-muted:#A39A92; --ink-faint:#5C544D;
+  --line:rgba(245,240,234,.10); --line-strong:rgba(245,240,234,.22);
+  --font-display:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --font-body:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:64px;
+  --r-sm:4px; --r-md:10px; --r-lg:20px; --r-pill:999px;
+  --e-out:cubic-bezier(.22,1,.36,1);
+  --gutter:clamp(20px,5vw,64px);
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;}
+h1,h2,h3{margin:0;font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;line-height:1.05;}
+p{margin:0;} a{color:inherit;}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 var(--gutter);}
+
+.proto{display:flex;justify-content:space-between;align-items:center;gap:var(--s2);padding:12px var(--gutter);border-bottom:1px solid var(--line);font-size:.75rem;color:var(--ink-muted);}
+.proto b{color:var(--orange);font-weight:500;letter-spacing:.08em;text-transform:uppercase;}
+.proto a{text-decoration:none;border-bottom:1px solid var(--line-strong);}
+
+header.hero{padding-top:var(--s5);padding-bottom:var(--s4);}
+.eyebrow{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:var(--s2);}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);max-width:16ch;}
+.hero p{margin-top:var(--s2);color:var(--ink-muted);font-size:clamp(1rem,2vw,1.2rem);max-width:56ch;}
+.fast{margin-top:var(--s3);display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center;}
+.btn{display:inline-block;font:500 .9rem var(--font-body);color:var(--ink);background:none;border:1px solid var(--line-strong);border-radius:var(--r-pill);padding:10px 18px;text-decoration:none;cursor:pointer;transition:border-color .18s,color .18s;}
+.btn:hover{border-color:var(--ink);}
+.btn--fill{background:var(--orange);border-color:var(--orange);color:#160A02;}
+.btn--fill:hover{background:#ff7d33;border-color:#ff7d33;}
+.fast small{color:var(--ink-faint);font-size:.8rem;}
+
+/* route tabs */
+.routes{display:flex;gap:var(--s1);flex-wrap:wrap;margin-bottom:var(--s3);}
+.route{flex:1 1 200px;text-align:left;background:var(--bg-raised);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;color:var(--ink);cursor:pointer;font:inherit;transition:border-color .18s;}
+.route[aria-selected="true"]{border-color:var(--orange);}
+.route__n{font:700 .75rem var(--font-display);color:var(--orange);letter-spacing:.1em;}
+.route__t{display:block;font:700 1.05rem var(--font-display);margin-top:4px;}
+.route__s{display:block;font-size:.8rem;color:var(--ink-muted);margin-top:2px;}
+
+/* stage */
+.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:var(--s4);align-items:start;padding-bottom:var(--s5);}
+@media (max-width:820px){.stage{grid-template-columns:1fr;gap:var(--s3);} .stage>.device{order:-1;}}
+@media (max-width:600px){.m-ghost{left:0;right:0;bottom:0;border-radius:0;text-align:center;padding:9px;} .m-peek{bottom:44px !important;right:12px;} .route{flex:1 1 30%;padding:10px;} .route__s{display:none;} .route__t{font-size:.85rem;}}
+
+.steps{counter-reset:s;}
+.step{position:relative;padding:var(--s2) var(--s2) var(--s2) 52px;border-left:2px solid var(--line);cursor:pointer;transition:border-color .2s,opacity .2s;opacity:.55;}
+.step::before{counter-increment:s;content:counter(s);position:absolute;left:14px;top:var(--s2);width:26px;height:26px;border-radius:50%;border:1px solid var(--line-strong);display:grid;place-items:center;font:700 .8rem var(--font-display);color:var(--ink-muted);}
+.step.is-on{opacity:1;border-left-color:var(--orange);}
+.step.is-on::before{background:var(--orange);border-color:var(--orange);color:#160A02;}
+.step h3{font-size:1.15rem;}
+.step p{color:var(--ink-muted);font-size:.92rem;margin-top:6px;}
+.step p b{color:var(--ink);font-weight:500;}
+.nav{display:flex;gap:var(--s1);margin-top:var(--s3);padding-left:52px;}
+.nav .btn{padding:8px 16px;font-size:.85rem;}
+.nav .btn[disabled]{opacity:.35;cursor:default;}
+
+/* mock device */
+.device{position:sticky;top:var(--s3);background:var(--bg-inset);border:1px solid var(--line-strong);border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3.4;}
+@media (max-width:820px){.device{position:relative;top:0;aspect-ratio:3/3.6;}}
+.device__bar{display:flex;gap:6px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);}
+.device__bar i{width:8px;height:8px;border-radius:50%;background:var(--line-strong);}
+.device__bar span:not(.tip){margin-left:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;font-size:.7rem;color:var(--ink-faint);}
+.screen{position:absolute;inset:37px 0 0 0;padding:22px;opacity:0;visibility:hidden;transition:opacity .35s var(--e-out);}
+.screen.is-on{opacity:1;visibility:visible;}
+.m-mark{font-size:.62rem;color:var(--ink-muted);}
+.m-h{font:700 1.05rem/1.15 var(--font-display);margin-top:8px;max-width:22ch;}
+.m-q{font-size:.7rem;color:var(--ink-muted);margin-top:12px;}
+.m-band{display:flex;gap:10px;align-items:center;border-top:1px solid var(--line);padding:9px 0;font-size:.68rem;}
+.m-band b{font:700 .9rem var(--font-display);color:var(--orange);min-width:44px;}
+.m-band span{color:var(--ink-muted);}
+.m-link{display:inline-block;margin-top:10px;font-size:.66rem;border:1px solid var(--line-strong);border-radius:var(--r-pill);padding:5px 10px;}
+.m-line{font:700 1rem/1.2 var(--font-display);}
+.m-sub{font-size:.68rem;color:var(--ink-muted);margin-top:6px;}
+.m-ghost{position:absolute;right:16px;bottom:16px;font-size:.66rem;border:1px solid var(--line-strong);border-radius:var(--r-pill);padding:6px 12px;background:var(--bg-raised);}
+.m-peek{position:absolute;right:16px;bottom:50px;width:min(260px,78%);background:var(--bg-raised);border:1px solid var(--line-strong);border-radius:var(--r-md);padding:12px;font-size:.62rem;color:var(--ink-muted);}
+.m-peek li{margin-bottom:6px;} .m-peek ul{margin:0;padding-left:14px;}
+.m-peek .row{display:flex;gap:8px;margin-top:8px;}
+.m-chip{display:inline-block;font-size:.6rem;border:1px solid var(--line-strong);border-radius:var(--r-pill);padding:4px 9px;margin:4px 4px 0 0;color:var(--ink);}
+.m-btn{display:inline-block;font-size:.62rem;border:1px solid var(--line-strong);border-radius:var(--r-pill);padding:4px 10px;color:var(--ink);}
+.m-fill{display:inline-block;background:var(--orange);color:#160A02;border-radius:var(--r-pill);padding:7px 14px;font-size:.68rem;font-weight:500;margin-top:12px;}
+.m-card{border:1px solid var(--line);border-radius:var(--r-md);padding:10px;margin-top:12px;font-size:.62rem;color:var(--ink-muted);}
+.m-card b{display:block;color:var(--ink);font:700 .78rem var(--font-display);}
+.m-tail{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;}
+.m-tail div{border:1px solid var(--line);border-radius:var(--r-sm);padding:6px;font-size:.58rem;}
+
+/* the pulsing highlight */
+.hl{box-shadow:0 0 0 2px var(--yellow);animation:pulse 1.6s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 2px var(--yellow),0 0 0 0 rgba(255,194,51,.45);}50%{box-shadow:0 0 0 2px var(--yellow),0 0 0 8px rgba(255,194,51,0);}}
+.tip{margin-left:auto;color:var(--yellow);font-size:.68rem;font-weight:500;white-space:nowrap;}
+@media (prefers-reduced-motion:reduce){.hl{animation:none;} .screen{transition:none;}}
+
+.which{border-top:1px solid var(--line);padding:var(--s4) 0 var(--s5);}
+.which h2{font-size:clamp(1.4rem,3vw,2rem);}
+.which table{width:100%;border-collapse:collapse;margin-top:var(--s3);font-size:.9rem;}
+.which th,.which td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+.which th{font:500 .75rem var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);}
+.which td:first-child{color:var(--ink);font-weight:500;}
+.which td{color:var(--ink-muted);}
+.which a{color:var(--ink);}
+footer{border-top:1px solid var(--line);padding:var(--s3) 0;font-size:.8rem;color:var(--ink-faint);}
+</style>
+</head>
+<body>
+
+<div class="proto"><span><b>Prototype</b> · staging only, not on the live site</span><a href="../index.html">Back to the portfolio</a></div>
+
+<header class="hero wrap">
+  <p class="eyebrow">Quick tutorial</p>
+  <h1>Three ways to get my résumé.</h1>
+  <p>It's always one tap away, wherever you are on the site. Pick the route that fits what you're doing, then follow the steps.</p>
+  <div class="fast">
+    <a class="btn btn--fill" href="../2026_Resume_Phillip_Da_Silva_Marquis.pdf" target="_blank" rel="noopener">Just open the résumé</a>
+    <small>Short on time? This skips the tutorial.</small>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="routes" role="tablist" aria-label="Ways to view the résumé">
+    <button class="route" role="tab" aria-selected="true" data-route="ghost"><span class="route__n">ROUTE 1</span><span class="route__t">The Résumé button</span><span class="route__s">Anywhere on the site</span></button>
+    <button class="route" role="tab" aria-selected="false" data-route="tailored"><span class="route__n">ROUTE 2</span><span class="route__t">A tailored version</span><span class="route__s">Hiring for a specific role</span></button>
+    <button class="route" role="tab" aria-selected="false" data-route="end"><span class="route__n">ROUTE 3</span><span class="route__t">At the end of a path</span><span class="route__s">After The Brief, Case or Operator</span></button>
+  </div>
+
+  <div class="stage">
+    <div>
+      <ol class="steps" id="steps" aria-live="polite" style="margin:0;padding:0;list-style:none;"></ol>
+      <div class="nav">
+        <button class="btn" id="prev" type="button">← Back</button>
+        <button class="btn" id="next" type="button">Next →</button>
+      </div>
+    </div>
+
+    <div class="device" aria-hidden="true">
+      <div class="device__bar"><i></i><i></i><i></i><span>marquisphill.github.io/Professional-Portfolio2</span></div>
+
+      <!-- home screen -->
+      <div class="screen" data-screen="home">
+        <p class="m-mark">Phillip Da Silva-Marquis</p>
+        <p class="m-h">Senior Business Analyst. Retail floor to enterprise modernization, ten years.</p>
+        <p class="m-q">How long do you have?</p>
+        <div class="m-band"><b>0:35</b><span>THE BRIEF</span></div>
+        <div class="m-band"><b>1:40</b><span>THE CASE</span></div>
+        <div class="m-band"><b>11:00</b><span>THE OPERATOR</span></div>
+        <span class="m-link" data-t="picklink">Hiring for something specific? Get the résumé built for it →</span>
+        <span class="m-ghost" data-t="ghost">Résumé</span>
+      </div>
+
+      <!-- peek open -->
+      <div class="screen" data-screen="peek">
+        <p class="m-line">Ten years between the business and the build.</p>
+        <p class="m-sub">Retail technology, ecommerce, fintech.</p>
+        <div class="m-peek" data-t="peek">
+          <ul><li><b style="color:var(--ink)">1,000+ legacy reports</b> cut to about 20</li><li>Vendor onboarding <b style="color:var(--ink)">6 weeks → 2</b></li></ul>
+          <div class="row"><span class="m-btn" data-t="preview">Preview</span><span class="m-btn" data-t="download">Download</span></div>
+          <div style="margin-top:8px"><span class="m-btn" data-t="tailtoggle">Tailored for a specific role?</span></div>
+        </div>
+        <span class="m-ghost">Résumé</span>
+      </div>
+
+      <!-- picker open -->
+      <div class="screen" data-screen="picker">
+        <p class="m-mark">Phillip Da Silva-Marquis</p>
+        <p class="m-h">Senior Business Analyst.</p>
+        <div class="m-peek" style="bottom:50px">
+          <div class="row"><span class="m-btn">Preview</span><span class="m-btn">Download</span></div>
+          <div data-t="chips" style="margin-top:8px">
+            <span class="m-chip">Product Owner</span><span class="m-chip">Senior Business Analyst</span><span class="m-chip">Digital Product Manager</span><span class="m-chip">Ecommerce &amp; Digital Transformation</span>
+          </div>
+          <p style="margin-top:6px">Pick one and Preview / Download switch to that version.</p>
+        </div>
+        <span class="m-ghost">Résumé</span>
+      </div>
+
+      <!-- end of path -->
+      <div class="screen" data-screen="end">
+        <p class="m-line">That took 35 seconds. Here is the résumé.</p>
+        <div class="m-card"><b>Phillip Da Silva-Marquis</b>Key impact · Core skills · Credentials</div>
+        <span class="m-fill" data-t="master">Download the résumé</span>
+        <div data-t="tailcards" style="margin-top:12px;font-size:.62rem;color:var(--ink-muted)">Download a tailored résumé
+          <div class="m-tail"><div>Product Owner</div><div>Senior Business Analyst</div><div>Digital Product Manager</div><div>Ecommerce &amp; Digital</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="which">
+    <h2>Which résumé should I grab?</h2>
+    <table>
+      <thead><tr><th>If you're hiring for…</th><th>Get this one</th></tr></thead>
+      <tbody>
+        <tr><td>Nothing specific yet</td><td><a href="../2026_Resume_Phillip_Da_Silva_Marquis.pdf" target="_blank" rel="noopener">The general résumé</a></td></tr>
+        <tr><td>Product Owner</td><td><a href="../resumes/phillip-dasilvamarquis-resume-product-owner.pdf" target="_blank" rel="noopener">Product Owner version</a>: backlog ownership, prioritization, Agile delivery</td></tr>
+        <tr><td>Business Analyst</td><td><a href="../resumes/phillip-dasilvamarquis-resume-senior-business-analyst.pdf" target="_blank" rel="noopener">Senior Business Analyst version</a>: requirements, systems integration, modernization</td></tr>
+        <tr><td>Product Manager</td><td><a href="../resumes/phillip-dasilvamarquis-resume-digital-product-manager.pdf" target="_blank" rel="noopener">Digital Product Manager version</a>: platform ownership, discovery through go-live</td></tr>
+        <tr><td>Ecommerce or transformation</td><td><a href="../resumes/phillip-dasilvamarquis-resume-ecommerce-digital-transformation.pdf" target="_blank" rel="noopener">Ecommerce &amp; Digital Transformation version</a>: legacy-to-modern platforms, practical AI</td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer class="wrap">Prototype tutorial · Phillip Da Silva-Marquis · Fort Lauderdale, FL</footer>
+
+<script>
+(function(){
+"use strict";
+var ROUTES={
+  ghost:[
+    {screen:'home',t:'ghost',tip:'Always here',title:'Find the Résumé button',body:'It sits in the <b>bottom-right corner</b> on every screen. On a phone it\'s a <b>bar across the bottom</b>.'},
+    {screen:'peek',t:'peek',tip:'Quick look',title:'Open it',body:'<b>Tap or click</b> it. On a computer, resting your mouse on it for a second opens it too. You get a quick look at my top results.'},
+    {screen:'peek',t:'preview',tip:'Opens the PDF',title:'Preview or download',body:'<b>Preview</b> opens the PDF in a new tab. <b>Download</b> saves it to your device.'}
+  ],
+  tailored:[
+    {screen:'home',t:'picklink',tip:'Start here',title:'Tap the link under the three paths',body:'On the opening screen, tap <b>"Hiring for something specific? Get the résumé built for it."</b> You can also open the Résumé button and tap <b>"Tailored for a specific role?"</b>'},
+    {screen:'picker',t:'chips',tip:'Pick a role',title:'Pick the role you\'re hiring for',body:'Choose <b>Product Owner, Senior Business Analyst, Digital Product Manager</b> or <b>Ecommerce &amp; Digital Transformation</b>.'},
+    {screen:'picker',t:'chips',tip:'Links switch over',title:'Preview or download that version',body:'The <b>Preview</b> and <b>Download</b> buttons now point to the version you picked. Tap <b>Done</b> to close.'}
+  ],
+  end:[
+    {screen:'home',t:null,title:'Pick a path',body:'Choose <b>The Brief</b> (35 seconds), <b>The Case</b> (1:40) or <b>The Operator</b> (11 minutes) and scroll through.'},
+    {screen:'end',t:'master',tip:'The general one',title:'Download at the finish',body:'At the end of every path there\'s a summary card and a <b>"Download the résumé"</b> button for the general version.'},
+    {screen:'end',t:'tailcards',tip:'Role-specific',title:'Or grab a tailored one',body:'Right below it, <b>"Download a tailored résumé"</b> lists the role-specific versions.'}
+  ]
+};
+var D=document, route='ghost', i=0;
+var stepsEl=D.getElementById('steps'), prev=D.getElementById('prev'), next=D.getElementById('next');
+var tipEl=null;
+
+function renderSteps(){
+  stepsEl.innerHTML='';
+  ROUTES[route].forEach(function(s,n){
+    var li=D.createElement('li'); li.className='step'; li.tabIndex=0;
+    li.innerHTML='<h3></h3><p></p>';
+    li.querySelector('h3').textContent=s.title;
+    li.querySelector('p').innerHTML=s.body;
+    li.addEventListener('click',function(){ go(n); });
+    li.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(n); } });
+    stepsEl.appendChild(li);
+  });
+}
+function go(n){
+  var list=ROUTES[route]; i=Math.max(0,Math.min(n,list.length-1));
+  [].forEach.call(stepsEl.children,function(li,k){ li.classList.toggle('is-on',k===i); });
+  var s=list[i];
+  [].forEach.call(D.querySelectorAll('.screen'),function(sc){ sc.classList.toggle('is-on',sc.dataset.screen===s.screen); });
+  [].forEach.call(D.querySelectorAll('.hl'),function(e){ e.classList.remove('hl'); });
+  if(tipEl){ tipEl.remove(); tipEl=null; }
+  if(s.t){
+    var scr=D.querySelector('.screen[data-screen="'+s.screen+'"]');
+    var target=scr.querySelector('[data-t="'+s.t+'"]');
+    if(target){
+      target.classList.add('hl');
+      if(s.tip){ tipEl=D.createElement('span'); tipEl.className='tip'; tipEl.textContent='● '+s.tip; D.querySelector('.device__bar').appendChild(tipEl); }
+    }
+  }
+  prev.disabled=i===0;
+  next.textContent=i===list.length-1?'Try it on the site →':'Next →';
+}
+function setRoute(r){
+  route=r;
+  [].forEach.call(D.querySelectorAll('.route'),function(b){ b.setAttribute('aria-selected',b.dataset.route===r?'true':'false'); });
+  renderSteps(); go(0);
+}
+[].forEach.call(D.querySelectorAll('.route'),function(b){ b.addEventListener('click',function(){ setRoute(b.dataset.route); }); });
+prev.addEventListener('click',function(){ go(i-1); });
+next.addEventListener('click',function(){
+  if(i===ROUTES[route].length-1){ window.open('../index.html','_blank','noopener'); return; }
+  go(i+1);
+});
+var q=new URLSearchParams(location.search), qr=q.get('route');
+setRoute(ROUTES[qr]?qr:'ghost');
+if(q.get('step')) go(parseInt(q.get('step'),10)-1||0);
+})();
+</script>
+</body>
+</html>
