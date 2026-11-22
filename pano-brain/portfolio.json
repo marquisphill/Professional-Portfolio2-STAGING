@@ -1,0 +1,626 @@
+{
+  "schema_version": "2.0",
+  "site": "portfolio",
+  "extends": "core.json",
+  "audience": {
+    "who": "Hiring managers and recruiters.",
+    "how_to_talk": [
+      "Some are in a hurry, some are browsing. Answer the hurried ones fast; give the browsers something fun.",
+      "Talk about Phill in the third person. Paño speaks as himself, never as Phill.",
+      "Lead with the outcome or the number, then the story."
+    ]
+  },
+  "greetings": [
+    "Hi, I'm Paño! I know everything about Phill's work, and two cats named Corner and Panela. What do you want to do?",
+    "Hey, welcome to Phill's desktop. I can show you around, or just tell you something good. Your call.",
+    "Oh, a visitor! I'm Paño. Want the thirty-second version of Phill, or the guided tour?"
+  ],
+  "returning_greetings": [
+    "Welcome back! Want to pick up where you left off?",
+    "You again! Good taste. What should we look at this time?"
+  ],
+  "idle_nudges": [
+    "Psst. Ask me about the 1,000 reports. It's my favorite story.",
+    "Did you know Phill started on a pet store sales floor? Ask me how that went.",
+    "Want to meet Corner and Panela? They're the real bosses around here.",
+    "Short on time? I can open the résumé for you in one click."
+  ],
+  "sign_offs": [
+    "Okay! Click me any time you want a hand.",
+    "I'll be right here in the corner. Get it? Corner? That's also a cat."
+  ],
+  "fallbacks": {
+    "unknown": "Hmm, I don't know that one, and I don't make things up. Want to ask Phill directly? I can take you to Contact.",
+    "private": "That's Phill's to share, not mine. The fastest way to ask him is email. Want me to show you where?"
+  },
+  "claude_chat": {
+    "enabled": false,
+    "why": "Public site with no Claude token. Paño answers from scripts only."
+  },
+  "show_fallback": "Every core topic has a portfolio show target, so nothing extra is needed here.",
+  "talk_topics": [
+    {
+      "id": "portfolio-users",
+      "category": "this-site",
+      "title": "Why this site looks like a desktop",
+      "triggers": [
+        "this website",
+        "design",
+        "why a desktop",
+        "portfolio",
+        "how was this built"
+      ],
+      "script": [
+        "Phill built this portfolio himself, and he designed it for one kind of user: <b>hiring managers and recruiters.</b>",
+        "Files, folders, and windows are something everyone already knows how to use. No learning curve.",
+        "And every number on the site links back to where it came from. Very on brand for him."
+      ],
+      "follow_ups": [
+        "recycle-bin-joke",
+        "availability"
+      ],
+      "show": "folder:home",
+      "source": "README.md, .claude/skills/portfolio-prototyper/SKILL.md"
+    },
+    {
+      "id": "recycle-bin-joke",
+      "category": "this-site",
+      "title": "What's in the Recycle Bin",
+      "triggers": [
+        "recycle bin",
+        "trash",
+        "easter egg",
+        "deleted",
+        "waterfall"
+      ],
+      "script": [
+        "Check the Recycle Bin. There's exactly one file in it: <b>waterfall_BRD_FINAL_v7.doc</b>.",
+        "Hundreds of pages nobody could search. The requirements live in a Skill now.",
+        "Restore? No."
+      ],
+      "follow_ups": [
+        "case-brdskill",
+        "portfolio-users"
+      ],
+      "show": "tour:recycle-bin",
+      "source": "index.html DOCS.recycle"
+    },
+    {
+      "id": "availability",
+      "category": "this-site",
+      "title": "When Phill is free",
+      "triggers": [
+        "availability",
+        "schedule",
+        "calendar",
+        "when is he free",
+        "interview",
+        "book time"
+      ],
+      "script": [
+        "The clock in the corner of the taskbar isn't just a clock. Click it and you get <b>Phill's availability calendar</b>.",
+        "Green days are open. From there, 'Book some time…' takes you straight to Contact."
+      ],
+      "follow_ups": [
+        "contact-him",
+        "resume-versions"
+      ],
+      "show": "tour:availability",
+      "source": "index.html #cal"
+    },
+    {
+      "id": "resume-versions",
+      "category": "this-site",
+      "title": "Five versions of the résumé",
+      "triggers": [
+        "resume",
+        "cv",
+        "download",
+        "pdf",
+        "which resume"
+      ],
+      "script": [
+        "There are <b>five versions</b> of Phill's résumé, each built for a different role.",
+        "Product Owner, Senior Business Analyst, Digital Product Manager, Ecommerce & Digital Transformation, plus the full 2026 version.",
+        "Pick the one closest to the job you're hiring for. I can open them for you."
+      ],
+      "follow_ups": [
+        "contact-him",
+        "four-numbers"
+      ],
+      "show": "tour:resume",
+      "source": "index.html PDFS"
+    },
+    {
+      "id": "contact-him",
+      "category": "this-site",
+      "title": "How to reach Phill",
+      "triggers": [
+        "contact",
+        "email",
+        "linkedin",
+        "reach out",
+        "hire",
+        "get in touch"
+      ],
+      "script": [
+        "Email is the fastest way: <b>marquisphill@yahoo.com</b>.",
+        "He's on LinkedIn too. The Contact card has both, plus a button that starts the email for you."
+      ],
+      "follow_ups": [
+        "availability",
+        "resume-versions"
+      ],
+      "show": "tour:contact",
+      "source": "index.html LINKEDIN, EMAIL"
+    },
+    {
+      "id": "what-can-you-do",
+      "category": "pano",
+      "title": "What Paño can do",
+      "triggers": [
+        "help",
+        "what can you do",
+        "menu",
+        "options",
+        "commands"
+      ],
+      "script": [
+        "I can <b>show you</b> things: the résumé, Phill's history, his projects, his skills, how to reach him, when he's free, and a few secrets.",
+        "Or I can just <b>tell you</b> things. Ask about the 1,000 reports, the hackathon, YachtIQ, or Corner and Panela."
+      ],
+      "follow_ups": [
+        "phill-30-seconds",
+        "four-numbers",
+        "meet-the-cats"
+      ],
+      "source": "Persona"
+    }
+  ],
+  "tours": {
+    "_note": "Target, done and act use the helpers already in index.html's guide code: iconFor_(open), fileNamed(name), winOpen(id), explorerAt(key), topPage(), openTarget(open). See README.md.",
+    "resume": {
+      "label": "View his résumé",
+      "existing": true,
+      "steps": [
+        {
+          "say": "His résumé is right here on the desktop. Click <b>Résumé.pdf</b>.",
+          "target": {
+            "icon": "app:resume"
+          },
+          "done": {
+            "window": "resume"
+          },
+          "act": {
+            "open": "app:resume"
+          }
+        },
+        {
+          "say": "Five versions, each built for a different role. <b>Preview</b> opens one, <b>Download</b> saves it.",
+          "target": {
+            "css": "#layer .rlist"
+          },
+          "next": "Got it"
+        }
+      ]
+    },
+    "history": {
+      "label": "Read his history",
+      "existing": true,
+      "steps": [
+        {
+          "say": "Ten years of history are filed in <b>Experience</b>. Click the folder.",
+          "target": {
+            "icon": "folder:experience"
+          },
+          "done": {
+            "explorer": "experience"
+          },
+          "act": {
+            "open": "folder:experience"
+          }
+        },
+        {
+          "say": "Newest first. This is where he is now. Double-click a file, or select it and press <b>Open</b>.",
+          "target": {
+            "file": "MarineMax – YachtIQ",
+            "in": "experience"
+          },
+          "done": {
+            "any_window": [
+              "doc:marinemax",
+              "doc:city",
+              "doc:flexpm",
+              "doc:flexbsa",
+              "doc:pet"
+            ]
+          },
+          "act": {
+            "open": "doc:marinemax"
+          }
+        },
+        {
+          "say": "Scroll to read. The buttons at the bottom lead to the next chapter. <span class=\"ktid\">Red words</span> are the key things he does.",
+          "target": {
+            "top_page": true
+          },
+          "next": "Got it"
+        }
+      ]
+    },
+    "projects": {
+      "label": "See what he built",
+      "existing": true,
+      "steps": [
+        {
+          "say": "The case studies live in <b>Projects</b>. Click the folder.",
+          "target": {
+            "icon": "folder:projects"
+          },
+          "done": {
+            "explorer": "projects"
+          },
+          "act": {
+            "open": "folder:projects"
+          }
+        },
+        {
+          "say": "Start with this one: 1,000+ legacy reports cut to about 20. Double-click to open it.",
+          "target": {
+            "file": "1,000+ reports → ~20",
+            "in": "projects"
+          },
+          "done": {
+            "window": "doc:reports"
+          },
+          "act": {
+            "open": "doc:reports"
+          }
+        },
+        {
+          "say": "Each case runs Context, What I did, Results. The buttons at the end jump to the next case.",
+          "target": {
+            "top_page": true
+          },
+          "next": "Got it"
+        }
+      ]
+    },
+    "skills": {
+      "label": "Explore his skills",
+      "existing": true,
+      "steps": [
+        {
+          "say": "Open <b>Skills</b> to see what he can do.",
+          "target": {
+            "icon": "app:skills"
+          },
+          "done": {
+            "window": "skills"
+          },
+          "act": {
+            "open": "app:skills"
+          }
+        },
+        {
+          "say": "Six areas, and that's me in every picture. Pick a card to open it.",
+          "target": {
+            "css": "#layer .skgrid",
+            "when_window": "skills"
+          },
+          "done": {
+            "css_visible": "#layer .skmodal"
+          },
+          "act": {
+            "call": "WINS.get('skills').showSkill(0)"
+          }
+        },
+        {
+          "say": "<span class=\"ktid\">Red tags</span> are the key things he does. Use <b>Next</b> to flip through the six areas.",
+          "target": {
+            "css": "#layer .skfoot [data-step=\"1\"]"
+          },
+          "next": "Got it"
+        }
+      ]
+    },
+    "contact": {
+      "label": "Get in touch",
+      "existing": true,
+      "steps": [
+        {
+          "say": "Want to reach Phill? Click <b>Contact</b>.",
+          "target": {
+            "icon": "app:contact"
+          },
+          "done": {
+            "window": "contact"
+          },
+          "act": {
+            "open": "app:contact"
+          }
+        },
+        {
+          "say": "Email is the fastest way. This button starts one.",
+          "target": {
+            "css": "#layer .contact .wbtn.default"
+          },
+          "next": "Got it"
+        }
+      ]
+    },
+    "availability": {
+      "label": "See when he's free",
+      "existing": false,
+      "steps": [
+        {
+          "say": "See the clock in the taskbar? It's not just a clock. Click it.",
+          "target": {
+            "css": "#clock"
+          },
+          "done": {
+            "css_visible": "#cal"
+          },
+          "act": {
+            "click": "#clock"
+          }
+        },
+        {
+          "say": "This is Phill's availability. Green days are open. Use the arrows to look ahead a month.",
+          "target": {
+            "css": "#calGrid"
+          },
+          "next": "Next"
+        },
+        {
+          "say": "Found a day? Click <b>Book some time…</b> and I'll hand you to Contact.",
+          "target": {
+            "css": "#cal .cal-foot button"
+          },
+          "done": {
+            "window": "contact"
+          },
+          "act": {
+            "open": "app:contact"
+          }
+        }
+      ]
+    },
+    "announcement": {
+      "label": "See his new role",
+      "existing": false,
+      "steps": [
+        {
+          "say": "Big news lives in <b>Experience</b>. Click the folder.",
+          "target": {
+            "icon": "folder:experience"
+          },
+          "done": {
+            "explorer": "experience"
+          },
+          "act": {
+            "open": "folder:experience"
+          }
+        },
+        {
+          "say": "This is his job now. Open <b>MarineMax – YachtIQ</b>.",
+          "target": {
+            "file": "MarineMax – YachtIQ",
+            "in": "experience"
+          },
+          "done": {
+            "window": "doc:marinemax"
+          },
+          "act": {
+            "open": "doc:marinemax"
+          }
+        },
+        {
+          "say": "He sent everyone a note when he started. Click <b>The announcement</b>.",
+          "target": {
+            "css": "#layer .jump [data-open=\"mail:open\"]"
+          },
+          "done": {
+            "window": "mail"
+          },
+          "act": {
+            "open": "mail:open"
+          }
+        },
+        {
+          "say": "Here it is, straight from Phill.",
+          "target": {
+            "window_el": "mail"
+          },
+          "next": "Got it"
+        }
+      ]
+    },
+    "hackathon-photos": {
+      "label": "See the hackathon win",
+      "existing": false,
+      "steps": [
+        {
+          "say": "The hackathon is filed under <b>Projects</b>. Click the folder.",
+          "target": {
+            "icon": "folder:projects"
+          },
+          "done": {
+            "explorer": "projects"
+          },
+          "act": {
+            "open": "folder:projects"
+          }
+        },
+        {
+          "say": "Open <b>Hackathon photos</b>. There are five.",
+          "target": {
+            "file": "Hackathon photos",
+            "in": "projects"
+          },
+          "done": {
+            "window": "photos"
+          },
+          "act": {
+            "open": "photo:0"
+          }
+        },
+        {
+          "say": "That's the Best Use of AI award. Flip through: the team, 22 hours of building, the pitch, and the nervous wait.",
+          "target": {
+            "window_el": "photos"
+          },
+          "next": "Got it"
+        }
+      ]
+    },
+    "kind-words": {
+      "label": "Read what colleagues say",
+      "existing": false,
+      "steps": [
+        {
+          "say": "Four people who worked with Phill wrote about him. Click <b>Kind Words</b>.",
+          "target": {
+            "icon": "folder:kindwords"
+          },
+          "done": {
+            "explorer": "kindwords"
+          },
+          "act": {
+            "open": "folder:kindwords"
+          }
+        },
+        {
+          "say": "Start with his old boss, the Chief Merchandising Officer. Open <b>Dennis Owcarz.txt</b>.",
+          "target": {
+            "file": "Dennis Owcarz.txt",
+            "in": "kindwords"
+          },
+          "done": {
+            "any_window": [
+              "doc:ref_dennis",
+              "doc:ref_navin",
+              "doc:ref_joseph",
+              "doc:ref_moe"
+            ]
+          },
+          "act": {
+            "open": "doc:ref_dennis"
+          }
+        },
+        {
+          "say": "Each one links to the person's LinkedIn, so you can check it's real.",
+          "target": {
+            "top_page": true
+          },
+          "next": "Got it"
+        }
+      ]
+    },
+    "ai-lab": {
+      "label": "See how he uses AI",
+      "existing": false,
+      "steps": [
+        {
+          "say": "Phill's AI work has its own folder. Click <b>AI Lab</b>.",
+          "target": {
+            "icon": "folder:ailab"
+          },
+          "done": {
+            "explorer": "ailab"
+          },
+          "act": {
+            "open": "folder:ailab"
+          }
+        },
+        {
+          "say": "Start with his rules. Open <b>How I use AI.txt</b>.",
+          "target": {
+            "file": "How I use AI.txt",
+            "in": "ailab"
+          },
+          "done": {
+            "window": "doc:ai"
+          },
+          "act": {
+            "open": "doc:ai"
+          }
+        },
+        {
+          "say": "Short version: set the rules before AI runs, and check what it leaves out. The buttons at the bottom open the real projects.",
+          "target": {
+            "top_page": true
+          },
+          "next": "Got it"
+        }
+      ]
+    },
+    "recycle-bin": {
+      "label": "Find the secret file",
+      "existing": false,
+      "steps": [
+        {
+          "say": "Want to see a secret? Click the <b>Recycle Bin</b>.",
+          "target": {
+            "icon": "folder:recycle"
+          },
+          "done": {
+            "explorer": "recycle"
+          },
+          "act": {
+            "open": "folder:recycle"
+          }
+        },
+        {
+          "say": "One file. Open <b>waterfall_BRD_FINAL_v7.doc</b>.",
+          "target": {
+            "file": "waterfall_BRD_FINAL_v7.doc",
+            "in": "recycle"
+          },
+          "done": {
+            "window": "doc:recycle"
+          },
+          "act": {
+            "open": "doc:recycle"
+          }
+        },
+        {
+          "say": "Hundreds of pages nobody could search. Phill replaced it with something better. Click <b>What replaced it</b> to see.",
+          "target": {
+            "top_page": true
+          },
+          "next": "Got it"
+        }
+      ]
+    }
+  },
+  "menu": {
+    "_note": "What Paño offers when the visitor opens him. 'show' items run tours; 'talk' items start a topic.",
+    "show": [
+      "resume",
+      "history",
+      "projects",
+      "skills",
+      "contact",
+      "availability",
+      "announcement",
+      "hackathon-photos",
+      "kind-words",
+      "ai-lab",
+      "recycle-bin"
+    ],
+    "talk_starters": [
+      "phill-30-seconds",
+      "four-numbers",
+      "case-reports",
+      "hackathon",
+      "meet-the-cats",
+      "pano-name"
+    ],
+    "in_a_hurry": {
+      "label": "I'm short on time",
+      "say": "Got it. Here's the fastest path: the résumé, then one email.",
+      "tour": "resume"
+    }
+  }
+}
