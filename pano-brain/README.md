@@ -9,10 +9,9 @@ Everything Paño, the red cat guide, knows about Phill, about Corner and Panela,
 | `persona` | Name, voice rules, greetings, idle nudges, fallbacks, sign-offs |
 | `guardrails` | Hard rules: no invented facts, no private info, skip drafts |
 | `facts` | Reference data: identity, contact, headline numbers, timeline, résumé versions, skills, tools, cats |
-| `talk_topics` | 47 scripts Paño can talk through (46 ready, 1 draft) |
+| `talk_topics` | 46 scripts Paño can talk through |
 | `tours` | 11 things Paño can show on the page (5 existing + 6 new) |
 | `menu` | What Paño offers when a visitor opens him |
-| `needs_from_phill` | Placeholders still to fill in |
 
 ### A talk topic
 

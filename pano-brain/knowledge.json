@@ -112,10 +112,7 @@
         "from": "Lady Luck Animal Rescue",
         "found_on": "Petfinder",
         "came_home": "February 2026",
-        "lifestyle": "Indoor cat, never declawed",
-        "look": "[Phill to fill: Corner's color and markings]",
-        "personality": "[Phill to fill: two or three words about Corner]",
-        "name_story": "[Phill to fill: why the name Corner]"
+        "lifestyle": "Indoor cat, never declawed"
       },
       "panela": {
         "name": "Panela",
@@ -123,8 +120,7 @@
         "from": "Humane Society of Broward County",
         "came_home": "February 2026, the same week as Corner",
         "look": "Black cat",
-        "name_meaning": "Panela is unrefined cane sugar, a staple in Colombia. Dissolve it in hot water and you get aguapanela.",
-        "personality": "[Phill to fill: two or three words about Panela]"
+        "name_meaning": "Panela is unrefined cane sugar, a staple in Colombia. Dissolve it in hot water and you get aguapanela."
       },
       "together": "Both came home the same week in February 2026. Within a month there was already a video titled 'Panela and Corner In Love.'"
     }
@@ -682,7 +678,7 @@
         "At the rescue his name was <b>Toffee</b>. He became Corner when he came home in February 2026.",
         "He's an indoor cat, claws and all. Nobody declaws around here."
       ],
-      "follow_ups": ["panela-story", "cats-together", "corner-name"],
+      "follow_ups": ["panela-story", "cats-together", "pet-store-irony"],
       "source": "Corner adoption agreement (cat details only)"
     },
     {
@@ -760,19 +756,6 @@
       ],
       "follow_ups": ["phill-30-seconds", "four-numbers", "meet-the-cats"],
       "source": "Persona"
-    },
-    {
-      "id": "corner-name",
-      "status": "draft",
-      "category": "cats",
-      "title": "Why he's called Corner",
-      "triggers": ["why corner", "corner name"],
-      "script": [
-        "[Phill to fill: the story behind the name Corner]",
-        "[Phill to fill: Corner's look and personality in a sentence]"
-      ],
-      "follow_ups": ["corner-story"],
-      "source": "Needs Phill"
     }
   ],
 
@@ -883,14 +866,5 @@
     "show": ["resume", "history", "projects", "skills", "contact", "availability", "announcement", "hackathon-photos", "kind-words", "ai-lab", "recycle-bin"],
     "talk_starters": ["phill-30-seconds", "four-numbers", "case-reports", "hackathon", "meet-the-cats", "pano-name"],
     "in_a_hurry": { "label": "I'm short on time", "say": "Got it. Here's the fastest path: the résumé, then one email.", "tour": "resume" }
-  },
-
-  "needs_from_phill": [
-    "Corner: color and markings (facts.cats.corner.look)",
-    "Corner: two or three personality words (facts.cats.corner.personality)",
-    "Corner: why the name Corner (facts.cats.corner.name_story, unlocks topic 'corner-name')",
-    "Panela: two or three personality words (facts.cats.panela.personality)",
-    "OK to make public: the cats' shelter names (Toffee, Evie) and rescues (Lady Luck Animal Rescue, Humane Society of Broward County)",
-    "Optional: a photo of each cat for Paño to show"
-  ]
+  }
 }
