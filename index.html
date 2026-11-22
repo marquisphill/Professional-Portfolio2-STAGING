@@ -521,6 +521,7 @@ a{color:var(--accent)}
   .deskcat{display:none}
   .gcat{width:54px;height:65px;z-index:9065}
   .gbubble{left:8px!important;right:8px;top:auto!important;bottom:calc(52px + env(safe-area-inset-bottom,0px));width:auto;max-width:none;padding-left:76px}
+  .gbubble.gtop{top:calc(8px + env(safe-area-inset-top,0px))!important;bottom:auto}
   .gbubble::after{display:none}
   .sk{padding:18px 14px 22px}
   .skhero{min-height:140px;padding-left:18px}
@@ -2063,6 +2064,8 @@ a{color:var(--accent)}
   const HASH = { resume: 'app:resume', contact: 'app:contact', skills: 'app:skills', experience: 'folder:experience', projects: 'folder:projects', ailab: 'folder:ailab', 'kind-words': 'folder:kindwords', readme: 'doc:readme' };
   const h = location.hash.slice(1).toLowerCase();
   if (HASH[h]) setTimeout(() => openTarget(HASH[h]), 350);
+  // a #link clicked while already on the page opens that window too
+  addEventListener('hashchange', () => { const k = location.hash.slice(1).toLowerCase(); if (HASH[k]) openTarget(HASH[k]); });
 
   /* =====================================================================
      THE CAT: asks what you want to do, then walks you there step by step
@@ -2079,6 +2082,7 @@ a{color:var(--accent)}
     if (flip != null) gsvg.classList.toggle('flip', flip);
   }
   async function moveCat(p, flipAtEnd) {
+    catTopDocked = false;
     gcat.getAnimations().forEach(a => a.cancel());
     const from = catPos, dx = p.x - from.x, dy = p.y - from.y, dist = Math.hypot(dx, dy);
     if (reduce || dist < 6) { setCat(p, flipAtEnd); return; }
@@ -2101,8 +2105,43 @@ a{color:var(--accent)}
   }
   function talk() { gcat.classList.remove('talk'); void gcat.offsetWidth; gcat.classList.add('talk'); }
 
+  function visibleRect(el) {
+    const r = el.getBoundingClientRect();
+    let L = r.left, T = r.top, R = r.right, B = r.bottom;
+    for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+      const cs = getComputedStyle(p);
+      if (/(auto|scroll|hidden|clip)/.test(cs.overflowX + cs.overflowY)) {
+        const q = p.getBoundingClientRect();
+        L = Math.max(L, q.left); T = Math.max(T, q.top); R = Math.min(R, q.right); B = Math.min(B, q.bottom);
+      }
+    }
+    const bar = narrow() ? 52 : 44;
+    L = Math.max(L, 0); T = Math.max(T, 0); R = Math.min(R, innerWidth); B = Math.min(B, innerHeight - bar);
+    return R - L > 2 && B - T > 2 ? { left: L, top: T, right: R, bottom: B, width: R - L, height: B - T } : null;
+  }
+  const overlapArea = (a, b) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
+  // on phones the bubble docks at the bottom; if that would hide what the cat is pointing at, dock it at the top
+  let catTopDocked = false;
+  function placeBubbleNarrow() {
+    const t = ringTarget && ringTarget.isConnected ? visibleRect(ringTarget) : null;
+    gbub.classList.remove('gtop');
+    let top = false;
+    if (t) {
+      const atBottom = overlapArea(t, gbub.getBoundingClientRect());
+      if (atBottom > 0) {
+        gbub.classList.add('gtop');
+        top = overlapArea(t, gbub.getBoundingClientRect()) < atBottom;
+        if (!top) gbub.classList.remove('gtop');
+      }
+    }
+    if (top) {
+      const b = gbub.getBoundingClientRect();
+      setCat({ x: 16, y: b.bottom - CAT_H() - 10 }); catTopDocked = true;
+    } else if (catTopDocked) { setCat(dockSpot()); catTopDocked = false; }
+  }
   function placeBubble() {
-    if (gbub.hidden || narrow()) return;
+    if (gbub.hidden) return;
+    if (narrow()) return placeBubbleNarrow();
     const bw = gbub.offsetWidth, bh = gbub.offsetHeight, cx = catPos.x + CAT_W() / 2;
     const left = Math.min(innerWidth - bw - 8, Math.max(8, cx - bw / 2));
     let top = catPos.y - bh - 14, below = false;
@@ -2149,7 +2188,7 @@ a{color:var(--accent)}
     ringTarget = el; gring.hidden = false; cancelAnimationFrame(ringRAF);
     const loop = () => {
       if (!ringTarget || !ringTarget.isConnected) { gring.hidden = true; return; }
-      const r = ringTarget.getBoundingClientRect();
+      const r = visibleRect(ringTarget) || { left: 0, top: 0, width: 0, height: 0 };
       gring.style.opacity = r.width ? 1 : 0;
       gring.style.left = (r.left - 6) + 'px'; gring.style.top = (r.top - 6) + 'px';
       gring.style.width = (r.width + 12) + 'px'; gring.style.height = (r.height + 12) + 'px';
@@ -2173,6 +2212,30 @@ a{color:var(--accent)}
   function bringFront(el) {
     const w = el.closest('.window');
     if (w) w.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, pointerType: 'mouse' }));
+  }
+  async function clearView(el) {
+    const own = el.closest('.window');
+    try {
+      const pane = el.parentElement && el.parentElement.closest('.pagewrap, .files, .rlist, .skbody, .win-inner');
+      const tall = pane && el.offsetHeight > pane.clientHeight * .8;
+      el.scrollIntoView({ block: tall ? 'start' : 'nearest', inline: 'nearest' });
+    } catch (e) {}
+    for (let round = 0; round < 5; round++) {
+      const r = visibleRect(el);
+      if (!r) return;
+      const covers = new Set();
+      for (const [fx, fy] of [[.5, .5], [.15, .2], [.85, .2], [.15, .8], [.85, .8]]) {
+        const hit = document.elementFromPoint(r.left + r.width * fx, r.top + r.height * fy);
+        if (!hit || el.contains(hit) || hit.closest('#gcat, #gbubble, #gring')) continue;
+        if (startOpen && start.contains(hit)) { await closeStart(); continue; }
+        if (calOpen && cal.contains(hit)) { await closeCal(); continue; }
+        const w = hit.closest('.window');
+        if (w && w !== own) { const W = [...WINS.values()].find(o => o.el === w); if (W && W.state === 'open') covers.add(W); }
+      }
+      if (!covers.size) return;
+      await Promise.all([...covers].map(W => minimizeW(W)));
+      if (own) bringFront(el);
+    }
   }
   async function goNear(el) {
     if (narrow()) { setCat(dockSpot()); return; }
@@ -2251,6 +2314,8 @@ a{color:var(--accent)}
       bringFront(el);
       ringOff();
       gbub.hidden = true;
+      await clearView(el);
+      if (token !== stepToken) return;
       await goNear(el);
       if (token !== stepToken) return;
       ringOn(el);
@@ -2382,6 +2447,7 @@ a{color:var(--accent)}
   }
 
   gcat.addEventListener('click', () => {
+    if (cleaning) return;
     if (!gbub.hidden && !tour) guideRest();
     else guideMenu('What would you like to do?');
   });
