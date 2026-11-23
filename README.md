@@ -47,13 +47,15 @@ Example: [marquisphill.github.io/Professional-Portfolio2/#resume](https://marqui
 ├── labs.html              # Labs index, built from labs.json
 ├── labs.json              # List of prototypes (also read by my personal dashboard)
 ├── labs/                  # Prototype pages
-├── pano-brain/            # Paño's knowledge: core facts, tours, and talk topics
+├── pano-brain/            # Old copy of Paño's knowledge, still read by my dashboard (Paño's own brain now lives in the Pano repo)
 ├── resumes/               # Résumé versions offered in the Résumé window
 ├── images/                # Photos and social preview images
 └── .claude/skills/        # Instructions Claude follows when building prototypes
 ```
 
 It's a static site: plain HTML, CSS, and JavaScript, with no build step. GitHub Pages serves it straight from the `main` branch.
+
+**Paño** is not in this repo's code. He lives in the [Pano repo](https://github.com/marquisphill/Pano), and `index.html` loads a fixed release of him from `/Pano/v1/` (his body, skills and words). What stays here is a short adapter near the end of `index.html`'s script that tells him what this page has. A change to Paño reaches this site only when the page is pointed at a new version number.
 
 ---
 
@@ -74,6 +76,8 @@ python3 -m http.server 8000
 ```
 
 Then open http://localhost:8000. A local server is needed (rather than opening the file directly) because some parts load JSON files.
+
+Paño will not appear this way, because he loads from `/Pano/v1/`. To run the site with him, clone the Pano repo too and use its server, which serves this site at `/` and Pano at `/Pano/`: `python3 ../Pano/tests/serve.py . 8000`.
 
 ---
 

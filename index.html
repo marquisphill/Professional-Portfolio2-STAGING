@@ -373,84 +373,13 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
 .skfoot button:hover{background:#15241b;color:var(--ink)}
 .skfoot button+button{background:#15241b;border:1px solid #22402e;color:var(--ink);text-align:right}
 
-/* ---------- the cat guide ---------- */
-.gcat{position:fixed;left:0;top:0;width:76px;height:92px;z-index:9050;padding:0;cursor:pointer;filter:drop-shadow(0 6px 12px rgba(0,0,0,.5));will-change:transform}
-.gcat[hidden]{display:none}
-.gbody{display:block;width:100%;height:100%;transform-origin:50% 100%}
-.gcat svg{width:100%;height:100%;display:block;overflow:visible;transition:transform .25s}
-.gcat svg.flip{transform:scaleX(-1)}
-.gtail{transform-box:view-box;transform-origin:46px 111px;animation:gtail 2.6s ease-in-out infinite}
-.gcat.walking .gtail{animation-duration:.45s}
-@keyframes gtail{0%,100%{transform:rotate(0)}50%{transform:rotate(-12deg)}}
-.geyes{transform-box:fill-box;transform-origin:50% 50%;animation:gblink 5s infinite}
-@keyframes gblink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.12)}}
-.ghead{transform-box:view-box;transform-origin:41px 54px;transition:transform .3s}
-.gcat:hover .ghead{transform:rotate(-8deg)}
-.gcat.talk .ghead{animation:gnod .5s ease-in-out 2}
-@keyframes gnod{0%,100%{transform:rotate(0)}50%{transform:rotate(-7deg)}}
-.gmouth{transform-box:fill-box;transform-origin:50% 0;transform:scale(.4,0);transition:transform .22s cubic-bezier(.16,1,.3,1)}
-.gcat.chomp .gmouth{transform:scale(2.3,3.1)}
-.gcat.chomp .ghead{transform:rotate(-10deg) scale(1.12)}
-.gcat.chomp .geyes{animation:none;transform:scaleY(.55)}
-.gcat:focus-visible{outline:2px solid #3ddc84;outline-offset:4px;border-radius:8px}
-.gcat{touch-action:none;cursor:grab}
-/* being recycled: wary over the bin, then unimpressed, then a contemptuous paw lick */
-.glid{transform:translateY(-9px);transition:transform .45s ease}
-.gcat.wary .glid{transform:translateY(-1.6px)}
-.gcat.meh .glid{transform:translateY(.4px)}
-.gcat.lick .glid{transform:translateY(1.6px)}
-.gcat.meh .geyes{translate:1.6px 1.3px}
-.gcat.meh .gtail{animation-duration:5s}
-.gflat{opacity:0;transition:opacity .2s}
-.gcat.wary .gflat{opacity:1}
-.gtongue{transform-box:fill-box;transform-origin:50% 0;transform:scaleY(0)}
-.gcat.lick .gtongue{animation:gtongue .6s ease-in-out infinite}
-@keyframes gtongue{0%,100%{transform:scaleY(0)}40%,60%{transform:scaleY(1)}}
-.gleg{opacity:.7;transition:opacity .2s}
-.gpaw{opacity:0;transform-box:view-box;transform-origin:31px 80px;transform:rotate(30deg);transition:transform .35s,opacity .2s}
-.gcat.lick .gleg{opacity:0}
-.gcat.lick .gpaw{opacity:1;transform:rotate(0)}
-.gcat.lick .gpp{animation:gppaw .6s ease-in-out infinite}
-@keyframes gppaw{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
-.gcat.lick .ghead{transform:rotate(16deg) translate(-3px,2px)}
-.gcat.head .gleg,.gcat.head .gpaw{display:none}
+/* ---------- the cat guide: his own styles load from /Pano/v1/pano.css; these belong to the Recycle Bin icon ---------- */
 .dicon.binhot{background:rgba(255,77,79,.18);border-color:#ff4d4f}
 .dicon .art{transition:transform .2s}
 .dicon.binhot .art{transform:scale(1.15) rotate(-4deg)}
 .dicon.binreject .art{animation:binshake .45s ease-in-out}
 @keyframes binshake{0%,100%{transform:rotate(0)}20%{transform:rotate(-10deg)}40%{transform:rotate(9deg)}60%{transform:rotate(-6deg)}80%{transform:rotate(4deg)}}
-.gcat.dragging{cursor:grabbing;transition:none}
-.gcat.dragging .gbody{transform:scale(1.08)}
-.gcat.head{width:144px;height:108px;z-index:2147483000}
-.gwavy{display:none}
-.gcat.head .gtail,.gcat.head .gtorso,.gcat.head .gwhisk{display:none}
-.gcat.head .gwavy{display:inline}
-.gwavy path{fill:none;stroke:#ff4d4f;stroke-width:1.6;stroke-linecap:round;transform-box:fill-box;animation:gwig 1.1s ease-in-out infinite alternate}
-.gwavy .wl{transform-origin:100% 50%}.gwavy .wr{transform-origin:0 50%}
-.gwavy path:nth-child(2){animation-delay:-.35s}.gwavy path:nth-child(3){animation-delay:-.6s}.gwavy path:nth-child(4){animation-delay:-.9s}
-@keyframes gwig{0%{transform:rotate(-7deg) scaleY(1)}50%{transform:rotate(1deg) scaleY(-1)}100%{transform:rotate(7deg) scaleY(1)}}
-.gbubble{position:fixed;z-index:9060;width:310px;max-width:calc(100vw - 16px);box-sizing:border-box;padding:14px 14px 12px;border-radius:14px;background:#0f1b14;border:1px solid #2a9a5f;box-shadow:0 16px 40px rgba(0,0,0,.55);color:#e6f2ea;font-size:13.5px;line-height:1.5}
-.gbubble[hidden]{display:none}
-.gbubble::after{content:"";position:absolute;left:var(--tx,50%);bottom:-8px;width:14px;height:14px;background:#0f1b14;border-right:1px solid #2a9a5f;border-bottom:1px solid #2a9a5f;transform:translateX(-50%) rotate(45deg)}
-.gbubble.below::after{bottom:auto;top:-8px;transform:translateX(-50%) rotate(225deg)}
-.gbubble.beside::after{display:none}
-.gsay{margin:0 24px 10px 0}
-.gname{display:block;color:var(--red-ink);font-size:12px;font-weight:600;letter-spacing:.04em;margin-bottom:2px}
-.gstep{display:block;color:var(--ink-soft);font-size:11.5px;margin-bottom:2px}
-.gacts{display:flex;flex-wrap:wrap;gap:6px}
-.gacts:empty{display:none}
-.gbtn{min-height:34px;padding:0 12px;border-radius:999px;background:#15241b;border:1px solid #22402e;color:#e6f2ea;font-size:13px;cursor:pointer}
-.gbtn:hover,.gbtn:focus-visible{border-color:#3ddc84;background:#1a3324}
-.gbtn.pri{background:#3ddc84;border-color:#3ddc84;color:#04140b;font-weight:600}
-.gbtn.quiet{background:none;border-color:transparent;color:var(--ink-soft)}
-.gbtn.quiet:hover{color:#e6f2ea}
-.gx{position:absolute;right:6px;top:6px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;cursor:pointer}
-.gx:hover{background:#15241b}
-.gx svg{width:10px;height:10px}
-.gring{position:fixed;z-index:9055;pointer-events:none;border:2px solid #3ddc84;border-radius:12px;animation:gring 1.4s ease-out infinite;transition:opacity .2s}
-.gring[hidden]{display:none}
-@keyframes gring{0%{box-shadow:0 0 0 0 rgba(61,220,132,.55)}100%{box-shadow:0 0 0 14px rgba(61,220,132,0)}}
-@media (prefers-reduced-motion:reduce){.gtail,.geyes,.gring,.gcat.talk .ghead,.gwavy path,.gcat.lick .gtongue,.gcat.lick .gpp,.dicon.binreject .art{animation:none}}
+@media (prefers-reduced-motion:reduce){.dicon.binreject .art{animation:none}}
 
 /* ---------- taskbar ---------- */
 .taskbar{position:fixed;left:0;right:0;bottom:0;height:calc(44px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);
@@ -634,12 +563,6 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   .ctrls [data-act="max"]{display:none}
   .rfoot{display:none}
   .deskcat{display:none}
-  .gcat{width:54px;height:65px;z-index:9065}
-  .gcat.head{width:120px;height:90px;z-index:2147483000}
-  .gbubble{left:8px!important;right:8px;top:auto!important;bottom:calc(52px + env(safe-area-inset-bottom,0px));width:auto;max-width:none;padding-left:40px;padding-right:76px}
-  .gbubble .gx{right:auto;left:6px}
-  .gbubble.gtop{top:calc(8px + env(safe-area-inset-top,0px))!important;bottom:auto}
-  .gbubble::after{display:none}
   .sk{padding:18px 14px 22px}
   .skhero{min-height:140px;padding-left:18px}
   .skhtext h2{font-size:22px}
@@ -650,6 +573,7 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
 }
 @media (max-height:560px) and (min-width:641px){ .sticky{display:none} }
 </style>
+<link rel="stylesheet" href="/Pano/v1/pano.css">
 </head>
 <body>
 
@@ -875,39 +799,8 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   </div>
 </div>
 
-<!-- The cat: a guide that asks what you want and walks you there -->
-<button class="gcat" id="gcat" hidden aria-label="Ask Phill’s cat for a guided tour"><span class="gbody"><svg viewBox="0 0 100 120" aria-hidden="true">
-  <defs>
-    <clipPath id="gEyeL" clipPathUnits="userSpaceOnUse"><ellipse cx="-6" cy="0" rx="3.1" ry="4.1"/></clipPath>
-    <clipPath id="gEyeR" clipPathUnits="userSpaceOnUse"><ellipse cx="6" cy="0" rx="3.1" ry="4.1"/></clipPath>
-  </defs>
-  <g class="gtail"><path d="M46 111 C 16 113, 4 88, 12 64 C 17 50, 30 48, 28 60" fill="none" stroke="#ff4d4f" stroke-width="10" stroke-linecap="round"/></g>
-  <path class="gtorso" d="M29 50 C 18 70, 16 96, 20 114 L60 114 C 64 96, 62 70, 51 50 Z" fill="#ff4d4f"/>
-  <path class="gleg" d="M34 86 C 33 98, 33 106, 34 113" fill="none" stroke="#c93436" stroke-width="2" stroke-linecap="round"/>
-  <g class="ghead"><g transform="translate(41 38) rotate(6)">
-    <path d="M-16 -29 L-7 -15 Q 0 -17.5 7 -15 L16 -29 L17 -6 C 18 4, 12 13, 0 15 C -12 13, -18 4, -17 -6 Z" fill="#ff4d4f"/>
-    <g class="geyes"><ellipse cx="-6" cy="0" rx="2.8" ry="3.8" fill="#07100b"/><ellipse cx="6" cy="0" rx="2.8" ry="3.8" fill="#07100b"/></g>
-    <g clip-path="url(#gEyeL)"><g class="glid"><rect x="-10" y="-12" width="8" height="12" fill="#ff4d4f"/><path d="M-10 0 H-2" stroke="#07100b" stroke-width="1.3"/></g></g>
-    <g clip-path="url(#gEyeR)"><g class="glid"><rect x="2" y="-12" width="8" height="12" fill="#ff4d4f"/><path d="M2 0 H10" stroke="#07100b" stroke-width="1.3"/></g></g>
-    <path class="gwhisk" d="M-15 6 L-31 3 M-14.5 9.5 L-31 11.5 M15 6 L31 3 M14.5 9.5 L31 11.5" stroke="#ff4d4f" stroke-width="1.6" stroke-linecap="round"/>
-    <g class="gwavy"><path class="wl" d="M-15 6 q-2.67 -2.4 -5.33 -1 t-5.33 -1 t-5.34 -1"/><path class="wl" d="M-14.5 9.5 q-2.75 -1.8 -5.5 .67 t-5.5 .67 t-5.5 .66"/><path class="wr" d="M15 6 q2.67 -2.4 5.33 -1 t5.33 -1 t5.34 -1"/><path class="wr" d="M14.5 9.5 q2.75 -1.8 5.5 .67 t5.5 .67 t5.5 .66"/></g>
-    <g class="gmouth"><ellipse cx="0" cy="8.5" rx="6" ry="4.6" fill="#3a0608"/><ellipse cx="0" cy="10.6" rx="3.4" ry="1.8" fill="#ff8a8c"/></g>
-    <path class="gflat" d="M-3 9.5 H3" stroke="#3a0608" stroke-width="1.4" stroke-linecap="round"/>
-    <ellipse class="gtongue" cx="0" cy="10.5" rx="2.2" ry="3" fill="#ff8a8c"/>
-  </g></g>
-  <g class="gpaw"><g class="gpp">
-    <path d="M31 80 C 27 70, 28 62, 32 56" fill="none" stroke="#b92c2e" stroke-width="10" stroke-linecap="round"/>
-    <path d="M31 80 C 27 70, 28 62, 32 56" fill="none" stroke="#ff4d4f" stroke-width="7.4" stroke-linecap="round"/>
-    <ellipse cx="32.5" cy="53.5" rx="5.2" ry="4.2" fill="#ff4d4f" stroke="#b92c2e" stroke-width="1.3"/>
-    <path d="M30.6 50.6 v1.6 M32.6 50 v1.8 M34.6 50.6 v1.6" stroke="#b92c2e" stroke-width=".9" stroke-linecap="round"/>
-  </g></g>
-</svg></span></button>
-<div class="gbubble" id="gbubble" hidden role="dialog" aria-label="Phill’s cat">
-  <button class="gx" id="gx" aria-label="Close the guide"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7" stroke="#8fa898" stroke-width="1.8" stroke-linecap="round"/></svg></button>
-  <p class="gsay" id="gsay" aria-live="polite"></p>
-  <div class="gacts" id="gacts"></div>
-</div>
-<div class="gring" id="gring" hidden></div>
+<!-- Paño the cat: his body and engine live in the Pano repo. This line loads him; his adapter is near the end of the script below. -->
+<script src="/Pano/v1/pano.js"></script>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <filter id="cb-protan" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  -0.2549 1.2549 0 0 0  0.3031 -0.5451 1.242 0 0  0 0 0 1 0"/></filter>
   <filter id="cb-deutan" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  -0.4375 1.4375 0 0 0  0.2625 -0.5625 1.3 0 0  0 0 0 1 0"/></filter>
@@ -1624,7 +1517,7 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
     W.state = 'open'; W.busy = false;
     if (!W.el.contains(document.activeElement)) W.el.focus({ preventScroll: true });
     ga('open_window', { window_id: W.id });
-    checkClutter();
+    if (pano) pano.notice('window-opened');
   }
   async function closeW(W, quiet) {
     if ((W.busy && !quiet) || W.state === 'closed') return;
@@ -1647,7 +1540,7 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
     W.el.remove(); WINS.delete(W.id);
     if (W.onClose) W.onClose();
     const next = topWin(); if (next) { focusW(next); next.el.focus({ preventScroll: true }); }
-    if (openCount() <= CLUTTER) cleanupArmed = true;
+    if (pano) pano.notice('window-closed');
   }
   async function minimizeW(W) {
     if (W.busy || W.state !== 'open') return;
@@ -2011,7 +1904,7 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   }
   function showToast() {
     if (WINS.has('mail') || !toast.hidden || !lock.hidden) return;
-    if (guideBusy()) { setTimeout(showToast, 8000); return; }
+    if (pano && pano.busy()) { setTimeout(showToast, 8000); return; }
     toast.hidden = false; trayMail.hidden = false;
     liftToastAbovePano();
     if (reduce) return;
@@ -2307,7 +2200,7 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
     metaAlone = false;
     if (e.key === 'Escape') {
       if (!lock.hidden) return;
-      if (!$('#gbubble').hidden) { guideRest(); return; }
+      if (pano && !$('#gbubble').hidden) { pano.rest(); return; }
       if (calOpen) closeCal();
       else if (warnOpen) hideWarn();
       else if (startOpen) closeStart();
@@ -2347,708 +2240,58 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   addEventListener('hashchange', () => { const k = location.hash.slice(1).toLowerCase(); if (HASH[k]) openTarget(HASH[k]); });
 
   /* =====================================================================
-     THE CAT: asks what you want to do, then walks you there step by step
+     THE CAT: his body and engine load from the Pano repo (/Pano/v1/pano.js).
+     His words and tours load from his brain there (/Pano/v1/brain/portfolio.json).
+     His skills load from there too (/Pano/v1/skills/). Each is offered only if this page has what it needs.
+     What stays here is what belongs to this page: where things are, how to read his tours, and his adapter.
      ===================================================================== */
-  const gcat = $('#gcat'), gbodyEl = $('.gbody', gcat), gsvg = $('svg', gcat), gbub = $('#gbubble'), gsay = $('#gsay'), gacts = $('#gacts'), gring = $('#gring');
-  const CAT_W = () => narrow() ? 54 : 76, CAT_H = () => narrow() ? 65 : 92;
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
-  let catPos = { x: 0, y: 0 }, tour = null, stepToken = 0, ringTarget = null, ringRAF = 0, msgSeq = 0;
-
-  const dockSpot = () => ({ x: innerWidth - CAT_W() - 16, y: innerHeight - 52 - CAT_H() - 12 });
-  // first visit: tucked into the bottom-right corner, just above the taskbar
-  const cornerSpot = () => ({ x: innerWidth - CAT_W() - (narrow() ? 8 : 14), y: innerHeight - (narrow() ? 52 : 44) - CAT_H() - 6 });
-  const clampSpot = (p, w, h) => ({ x: Math.min(innerWidth - w, Math.max(0, p.x)), y: Math.min(innerHeight - h, Math.max(0, p.y)) });
-  // head mode: just his head, parked at the top middle (or wherever the user dragged it)
-  const HEAD_W = () => narrow() ? 120 : 144, HEAD_H = () => narrow() ? 90 : 108;
-  const FULL_VB = '0 0 100 120', HEAD_VB = '5 3 72 54';
-  let headMode = false, headHome = false, headMoved = false;
-  try { sessionStorage.removeItem('panoHeadPos'); } catch (e) {}
-  // his head's home is always the top middle of the screen
-  const headSpot = () => clampSpot({ x: innerWidth / 2 - HEAD_W() / 2, y: 6 }, HEAD_W(), HEAD_H());
-  // where he stands to talk: on phones inside the docked bubble; once he's lived at the top, just under his head spot
-  function homeSpot() {
-    if (narrow()) return dockSpot();
-    if (headHome) { const h = headSpot(); return clampSpot({ x: h.x + HEAD_W() / 2 - CAT_W() / 2, y: Math.max(8, h.y) }, CAT_W(), CAT_H() + 48); }
-    return cornerSpot();
-  }
-  function setCat(p, flip) {
-    catPos = p; gcat.style.transform = `translate(${Math.round(p.x)}px, ${Math.round(p.y)}px)`;
-    if (flip != null) gsvg.classList.toggle('flip', flip);
-  }
-  async function moveCat(p, flipAtEnd) {
-    catTopDocked = false;
-    clearTimeout(idleT);   // he's on the move; whatever he does next restarts the countdown
-    if (headMode) exitHead();
-    gcat.getAnimations().forEach(a => a.cancel());
-    const from = catPos, dx = p.x - from.x, dy = p.y - from.y, dist = Math.hypot(dx, dy);
-    if (reduce || dist < 6) { setCat(p, flipAtEnd); return; }
-    if (Math.abs(dx) > 4) gsvg.classList.toggle('flip', dx < 0);
-    const hops = Math.max(1, Math.round(dist / 160)), dur = Math.min(1100, 340 + dist * .7), lift = Math.min(36, 14 + dist / hops / 8);
-    const frames = [];
-    for (let i = 0; i <= hops * 2; i++) {
-      const t = i / (hops * 2);
-      frames.push({ transform: `translate(${from.x + dx * t}px, ${from.y + dy * t - (i % 2 ? lift : 0)}px)` });
-    }
-    gcat.classList.add('walking');
-    try { await gcat.animate(frames, { duration: dur, easing: 'ease-in-out' }).finished; } catch (e) { return; }
-    gcat.classList.remove('walking');
-    setCat(p, flipAtEnd);
-    gbodyEl.animate([{ transform: 'scale(1.1,.86)' }, { transform: 'none' }], { duration: 300, easing: EASE_OUT });
-  }
-  function cheer() {
-    if (reduce) return;
-    gbodyEl.animate([{ transform: 'none' }, { transform: 'translateY(-22px) rotate(-6deg)', offset: .4 }, { transform: 'scale(1.08,.9)', offset: .8 }, { transform: 'none' }], { duration: 520, easing: 'ease-out' });
-  }
-  function talk() { gcat.classList.remove('talk'); void gcat.offsetWidth; gcat.classList.add('talk'); }
-
-  function visibleRect(el) {
-    const r = el.getBoundingClientRect();
-    let L = r.left, T = r.top, R = r.right, B = r.bottom;
-    for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
-      const cs = getComputedStyle(p);
-      if (/(auto|scroll|hidden|clip)/.test(cs.overflowX + cs.overflowY)) {
-        const q = p.getBoundingClientRect();
-        L = Math.max(L, q.left); T = Math.max(T, q.top); R = Math.min(R, q.right); B = Math.min(B, q.bottom);
-      }
-    }
-    const bar = narrow() ? 52 : 44;
-    L = Math.max(L, 0); T = Math.max(T, 0); R = Math.min(R, innerWidth); B = Math.min(B, innerHeight - bar);
-    return R - L > 2 && B - T > 2 ? { left: L, top: T, right: R, bottom: B, width: R - L, height: B - T } : null;
-  }
-  const overlapArea = (a, b) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
-  // on phones the bubble docks at the bottom; if that would hide what the cat is pointing at, dock it at the top
-  let catTopDocked = false;
-  function placeBubbleNarrow() {
-    const t = ringTarget && ringTarget.isConnected ? visibleRect(ringTarget) : null;
-    gbub.classList.remove('gtop');
-    let top = false;
-    if (t) {
-      const atBottom = overlapArea(t, gbub.getBoundingClientRect());
-      if (atBottom > 0) {
-        gbub.classList.add('gtop');
-        top = overlapArea(t, gbub.getBoundingClientRect()) < atBottom;
-        if (!top) gbub.classList.remove('gtop');
-      }
-    }
-    if (top) {
-      const b = gbub.getBoundingClientRect();
-      setCat({ x: innerWidth - CAT_W() - 16, y: b.bottom - CAT_H() - 10 }); catTopDocked = true;
-    } else if (catTopDocked) { setCat(dockSpot()); catTopDocked = false; }
-  }
-  function placeBubble() {
-    if (gbub.hidden) return;
-    if (narrow()) return placeBubbleNarrow();
-    const bw = gbub.offsetWidth, bh = gbub.offsetHeight, cx = catPos.x + CAT_W() / 2;
-    const left = Math.min(innerWidth - bw - 8, Math.max(8, cx - bw / 2));
-    let top = catPos.y - bh - 14, below = false;
-    if (top < 8) { top = catPos.y + CAT_H() + 14; below = true; }
-    top = Math.min(top, innerHeight - 52 - bh);
-    // if that would cover what the cat is pointing at, sit the bubble beside the cat instead
-    const t = ringTarget && ringTarget.isConnected ? ringTarget.getBoundingClientRect() : null;
-    const hits = (l, tp) => t && l < t.right && l + bw > t.left && tp < t.bottom && tp + bh > t.top;
-    if (hits(left, top)) {
-      const sideTop = Math.min(innerHeight - 52 - bh, Math.max(8, catPos.y + CAT_H() / 2 - bh / 2));
-      const right = catPos.x + CAT_W() + 10, leftSide = catPos.x - bw - 10;
-      const spots = [[right, sideTop], [leftSide, sideTop], [t.right + 12, top], [t.left - bw - 12, top]];
-      const pick = spots.find(([l, tp]) => l >= 8 && l + bw <= innerWidth - 8 && !hits(l, tp));
-      if (pick) {
-        gbub.style.left = pick[0] + 'px'; gbub.style.top = pick[1] + 'px';
-        gbub.classList.remove('below'); gbub.classList.add('beside');
-        return;
-      }
-    }
-    gbub.classList.remove('beside');
-    gbub.style.left = left + 'px'; gbub.style.top = top + 'px';
-    gbub.classList.toggle('below', below);
-    gbub.style.setProperty('--tx', Math.min(bw - 22, Math.max(22, cx - left)) + 'px');
-  }
-  function say(html, actions = []) {
-    if (headMode) exitHead();
-    msgSeq++;
-    gsay.innerHTML = html; gacts.innerHTML = '';
-    actions.forEach(a => {
-      const b = document.createElement('button');
-      b.className = 'gbtn' + (a.pri ? ' pri' : '') + (a.quiet ? ' quiet' : '');
-      b.textContent = a.label; b.addEventListener('click', a.fn);
-      gacts.appendChild(b);
-    });
-    const was = gbub.hidden;
-    gbub.hidden = false;
-    placeBubble();
-    // the new-message toast never sits on top of him or what he's saying (the message stays in the tray)
-    if (!toast.hidden && (narrow() || overlapArea(toast.getBoundingClientRect(), gcat.getBoundingClientRect()) > 0 || overlapArea(toast.getBoundingClientRect(), gbub.getBoundingClientRect()) > 0)) hideToast();
-    if (was) anim(gbub, [{ opacity: 0, transform: 'translateY(8px) scale(.96)' }, { opacity: 1, transform: 'none' }], { duration: SPRING_MENU.duration, easing: SPRING_MENU.easing });
-    else anim(gsay, [{ opacity: .3 }, { opacity: 1 }], { duration: 220, easing: EASE_OUT });
-    talk();
-    armIdle();
-  }
-  const hideBubble = () => { gbub.hidden = true; };
-
-  function ringOn(el) {
-    ringTarget = el; gring.hidden = false; cancelAnimationFrame(ringRAF);
-    const loop = () => {
-      if (!ringTarget || !ringTarget.isConnected) { gring.hidden = true; return; }
-      const r = visibleRect(ringTarget) || { left: 0, top: 0, width: 0, height: 0 };
-      gring.style.opacity = r.width ? 1 : 0;
-      gring.style.left = (r.left - 6) + 'px'; gring.style.top = (r.top - 6) + 'px';
-      gring.style.width = (r.width + 12) + 'px'; gring.style.height = (r.height + 12) + 'px';
-      ringRAF = requestAnimationFrame(loop);
-    };
-    loop();
-  }
-  function ringOff() { ringTarget = null; gring.hidden = true; cancelAnimationFrame(ringRAF); }
-  function waitFor(fn, ms = 5000) {
-    return new Promise(res => {
-      const t0 = performance.now();
-      const tick = () => {
-        let v = null; try { v = fn(); } catch (e) {}
-        if (v) return res(v);
-        if (performance.now() - t0 > ms) return res(null);
-        requestAnimationFrame(tick);
-      };
-      tick();
-    });
-  }
-  function bringFront(el) {
-    const w = el.closest('.window');
-    if (w) w.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, pointerType: 'mouse' }));
-  }
-  async function clearView(el) {
-    const own = el.closest('.window');
-    const pane = el.parentElement && el.parentElement.closest('.pagewrap, .files, .rlist, .skbody, .win-inner');
-    scrollInPane(el, !!(pane && el.offsetHeight > pane.clientHeight * .8), false);
-    for (let round = 0; round < 5; round++) {
-      const r = visibleRect(el);
-      if (!r) return;
-      const covers = new Set();
-      for (const [fx, fy] of [[.5, .5], [.15, .2], [.85, .2], [.15, .8], [.85, .8]]) {
-        const hit = document.elementFromPoint(r.left + r.width * fx, r.top + r.height * fy);
-        if (!hit || el.contains(hit) || hit.closest('#gcat, #gbubble, #gring')) continue;
-        if (startOpen && start.contains(hit)) { await closeStart(); continue; }
-        if (calOpen && cal.contains(hit)) { await closeCal(); continue; }
-        const w = hit.closest('.window');
-        if (w && w !== own) { const W = [...WINS.values()].find(o => o.el === w); if (W && W.state === 'open') covers.add(W); }
-      }
-      if (!covers.size) return;
-      await Promise.all([...covers].map(W => minimizeW(W)));
-      if (own) bringFront(el);
-    }
-  }
-  async function goNear(el) {
-    if (headMode) exitHead();
-    if (narrow()) { setCat(dockSpot()); return; }
-    const r = el.getBoundingClientRect(), W = CAT_W(), H = CAT_H();
-    let x = r.right + 12, flip = true;
-    if (x + W > innerWidth - 8) { x = r.left - W - 12; flip = false; }
-    if (x < 8) { x = innerWidth - W - 16; flip = true; }
-    const y = Math.min(innerHeight - 48 - H, Math.max(8, r.top + r.height / 2 - H / 2));
-    await moveCat({ x, y }, flip);
-  }
-
-  // touch screens get "tap" instead of "click"
-  const forTouch = t => (narrow() || matchMedia('(pointer: coarse)').matches)
-    ? t.replace('Double-click a file, or select it and press <b>Open</b>.', 'Tap a file to open it.').replace('Double-click to open it.', 'Tap to open it.').replace(/\bClick\b/g, 'Tap')
-    : t;
-
   // ---- where things are
   const iconFor_ = k => $(`.dicon[data-open="${k}"]`);
   const winOpen = id => { const W = WINS.get(id); return W && !W.el.hidden && W.state !== 'min'; };
-  function guideBusy() { return !!tour || !gbub.hidden; }
   const explorerAt = k => winOpen('explorer') && WINS.get('explorer').st.key === k;
   const fileNamed = n => $$('#layer .window .file').find(f => f.textContent.trim() === n);
   const topPage = () => { const W = topWin(); return W && W.id.startsWith('doc:') ? $('.pagewrap', W.el) : null; };
-  const skillsModalOpen = () => { const m = $('#layer .skmodal'); return m && !m.hidden; };
 
-  // ---- the tours
-  const TOURS = {
-    resume: [
-      { say: 'His résumé is right here on the desktop. Click <b>Résumé.pdf</b>.',
-        target: () => iconFor_('app:resume'), done: () => winOpen('resume'), act: el => openTarget('app:resume', el) },
-      { say: 'Five versions, each built for a different role. <b>Preview</b> opens one, <b>Download</b> saves it.',
-        target: () => $('#layer .rlist'), next: 'Got it' }
-    ],
-    history: [
-      { say: 'Ten years of history are filed in <b>Experience</b>. Click the folder.',
-        target: () => iconFor_('folder:experience'), done: () => explorerAt('experience'), act: el => openTarget('folder:experience', el) },
-      { say: 'Newest first. This is where he is now. Double-click a file, or select it and press <b>Open</b>.',
-        target: () => explorerAt('experience') && fileNamed('MarineMax – YachtIQ'),
-        done: () => ['marinemax', 'city', 'flexpm', 'flexbsa', 'pet'].some(k => winOpen('doc:' + k)), act: el => openTarget('doc:marinemax', el) },
-      { say: 'Scroll to read. The buttons at the bottom lead to the next chapter. <span class="ktid">Red words</span> are the key things he does.',
-        target: topPage, next: 'Got it' }
-    ],
-    projects: [
-      { say: 'The case studies live in <b>Projects</b>. Click the folder.',
-        target: () => iconFor_('folder:projects'), done: () => explorerAt('projects'), act: el => openTarget('folder:projects', el) },
-      { say: 'Start with this one: 1,000+ legacy reports cut to about 20. Double-click to open it.',
-        target: () => explorerAt('projects') && fileNamed('1,000+ reports → ~20'), done: () => winOpen('doc:reports'), act: el => openTarget('doc:reports', el) },
-      { say: 'The diagram shows how it worked. Click any step to jump to that part of the story, and the buttons at the end lead to the next case.',
-        target: topPage, next: 'Got it' }
-    ],
-    skills: [
-      { say: 'Open <b>Skills</b> to see what he can do.',
-        target: () => iconFor_('app:skills'), done: () => winOpen('skills'), act: el => openTarget('app:skills', el) },
-      { say: 'Six areas, and that’s me in every picture. Pick a card to open it.',
-        target: () => winOpen('skills') && $('#layer .skgrid'), done: skillsModalOpen, act: () => WINS.get('skills').showSkill(0) },
-      { say: '<span class="ktid">Red tags</span> are the key things he does. Use <b>Next</b> to flip through the six areas.',
-        target: () => skillsModalOpen() && $('#layer .skfoot [data-step="1"]'), next: 'Got it' }
-    ],
-    contact: [
-      { say: 'Want to reach Phill? Click <b>Contact</b>.',
-        target: () => iconFor_('app:contact'), done: () => winOpen('contact'), act: el => openTarget('app:contact', el) },
-      { say: 'Email is the fastest way. This button starts one.',
-        target: () => $('#layer .contact .wbtn.default'), next: 'Got it' }
-    ]
+  // ---- how to read his tours. The tours themselves (his words, what he points at, what counts as
+  //      done) are in his brain: /Pano/v1/brain/portfolio.json. These are the parts only this page knows.
+  const tourHelpers = {
+    target: {
+      icon: k => iconFor_(k),
+      file: (name, d) => explorerAt(d.in) && fileNamed(name),
+      top_page: () => topPage(),
+      window_el: id => winOpen(id) && WINS.get(id).el
+    },
+    done: {
+      window: id => winOpen(id),
+      any_window: ids => ids.some(winOpen),
+      explorer: k => explorerAt(k)
+    },
+    act: {
+      open: (k, el) => openTarget(k, el),
+      skill_card: i => WINS.get('skills').showSkill(i)
+    }
   };
-  const GOALS = [['View his résumé', 'resume'], ['Read his history', 'history'], ['See what he built', 'projects'], ['Explore his skills', 'skills'], ['Get in touch', 'contact']];
 
-  async function runTour(key) {
-    const steps = TOURS[key], token = ++stepToken;
-    tour = key; ga('guide_choice', { goal: key });
-    for (let i = 0; i < steps.length; i++) {
-      const st = steps[i];
-      const el = await waitFor(st.target);
-      if (token !== stepToken) return;
-      if (!el) return guideMenu('Hmm, I lost track of that. What would you like to do?', true);
-      bringFront(el);
-      ringOff();
-      gbub.hidden = true;
-      await clearView(el);
-      if (token !== stepToken) return;
-      await goNear(el);
-      if (token !== stepToken) return;
-      ringOn(el);
-      let iv;
-      const outcome = await new Promise(resolve => {
-        const acts = [];
-        if (st.act) acts.push({ label: 'Do it for me', pri: !st.next, fn: () => st.act(el) });
-        if (st.next) acts.push({ label: st.next, pri: true, fn: () => resolve('next') });
-        acts.push({ label: 'Stop the tour', quiet: true, fn: () => resolve('stop') });
-        say(`<span class="gstep">Step ${i + 1} of ${steps.length}</span>${forTouch(st.say)}`, acts);
-        iv = setInterval(() => {
-          if (token !== stepToken) return resolve('cancel');
-          let ok = false; try { ok = st.done && st.done(); } catch (e) {}
-          if (ok) resolve('done');
-        }, 200);
-      });
-      clearInterval(iv);
-      if (outcome === 'cancel' || token !== stepToken) return;
-      if (outcome === 'stop') return guideRest('Okay! Click me any time you want a hand.');
-      ringOff(); cheer();
-      await sleep(outcome === 'done' ? 450 : 250);
-      if (token !== stepToken) return;
-    }
-    ga('guide_complete', { goal: key });
-    guideMenu('Done! What would you like to do next?', true);
-  }
-  async function guideMenu(text, again) {
-    const token = ++stepToken;
-    calmCat();
-    tour = null; ringOff();
-    gbub.hidden = true;
-    await moveCat(homeSpot(), false);
-    if (token !== stepToken) return;
-    say(`<span class="gname">Phill’s cat</span>${text}`, [
-      ...GOALS.map(([label, k]) => ({ label, fn: () => runTour(k) })),
-      { label: 'Change the background', fn: () => askWall() },
-      ...windowActions(),
-      { label: again ? 'I’m good, thanks' : 'Just looking around', quiet: true, fn: () => guideRest('Okay! Click me any time you want a hand.') }
-    ]);
-  }
-  async function guideRest(msg) {
-    const token = ++stepToken;
-    calmCat();
-    tour = null; ringOff();
-    gbub.hidden = true;
-    await moveCat(homeSpot(), false);
-    if (token !== stepToken) return;
-    if (!msg) { armIdle(); return; }
-    say(msg);
-    const mine = msgSeq;
-    setTimeout(() => { if (mine === msgSeq) hideBubble(); }, 2600);
-  }
-
-  /* ---------- change the background (and, if asked, apply a colorblind mode) ---------- */
-  const WALLS = [['Misty mountains', 'mountain'], ['All green', 'green'], ['All black', 'black']];
-  const CB_MODES = [['Red-weak (protanopia)', 'protan'], ['Green-weak (deuteranopia)', 'deutan'], ['Blue-yellow (tritanopia)', 'tritan'], ['No color (monochrome)', 'mono']];
-  const CAT_NAME = '<span class="gname">Phill’s cat</span>';
-  const deskEl = $('#desktop');
-  let recoloring = false;
-  const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} } };
-  function setWall(k) { if (k && k !== 'mountain') deskEl.dataset.wall = k; else delete deskEl.dataset.wall; }
-  function setCB(m) { if (m) document.documentElement.dataset.cb = m; else delete document.documentElement.dataset.cb; }
-  // remember the visitor's choice between visits
-  if (WALLS.some(w => w[1] === store.get('pf-wall'))) setWall(store.get('pf-wall'));
-  if (CB_MODES.some(m => m[1] === store.get('pf-cb'))) setCB(store.get('pf-cb'));
-
-  async function askWall() {
-    const token = ++stepToken;
-    tour = null; ringOff(); gbub.hidden = true;
-    await moveCat(homeSpot(), false);
-    if (token !== stepToken) return;
-    say(CAT_NAME + 'Which background would you like?', [
-      ...WALLS.map(([label, k]) => ({ label: label + (k === 'mountain' ? ' (default)' : ''), fn: () => askColorblind(k) })),
-      { label: 'Never mind', quiet: true, fn: () => guideRest() }
-    ]);
-  }
-  function askColorblind(wall) {
-    say(CAT_NAME + 'Are you colorblind?', [
-      { label: 'Yes', fn: () => askMode(wall) },
-      { label: 'No', fn: () => applyLook(wall, null) }
-    ]);
-  }
-  function askMode(wall) {
-    say(CAT_NAME + 'Which colorblind mode should I apply to the site?', CB_MODES.map(([label, m]) => ({ label, fn: () => applyLook(wall, m) })));
-  }
-  async function applyLook(wall, mode) {
-    if (recoloring) return;
-    const token = ++stepToken;
-    recoloring = true;
-    say(CAT_NAME + 'Okay, I am changing the background now for you.');
-    ga('change_background', { wall, colorblind_mode: mode || 'none' });
-    store.set('pf-wall', wall === 'mountain' ? null : wall); store.set('pf-cb', mode);
-    const canVeil = !reduce && window.CSS && (CSS.supports('backdrop-filter', 'grayscale(1)') || CSS.supports('-webkit-backdrop-filter', 'grayscale(1)'));
-    if (reduce) { setWall(wall); setCB(mode); }
-    else {
-      let veil = null;
-      if (mode && canVeil) {
-        // everything, Paño included, drains to black and white...
-        veil = document.createElement('div'); veil.className = 'grayveil'; document.body.appendChild(veil);
-        await veil.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, easing: 'ease-in-out', fill: 'forwards' }).finished;
-        setCB(mode);               // the color correction goes on underneath, unseen
-        await sleep(3000);         // ...and stays that way for three seconds
-      } else { await sleep(900); setCB(mode); }
-      // then a line of light sweeps top to bottom, bringing the color and the new background with it
-      const next = document.createElement('div'); next.className = 'wallnext'; next.dataset.wall = wall;
-      deskEl.insertBefore(next, deskEl.firstChild);
-      const line = document.createElement('div'); line.className = 'wipeline'; document.body.appendChild(line);
-      const T = { duration: 1700, easing: 'cubic-bezier(.45,0,.3,1)', fill: 'forwards' };
-      await Promise.all([
-        next.animate([{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0 0)' }], T).finished,
-        veil ? veil.animate([{ clipPath: 'inset(0 0 0 0)' }, { clipPath: 'inset(100% 0 0 0)' }], T).finished : null,
-        line.animate([{ transform: 'translateY(0)', opacity: 1 }, { transform: `translateY(${innerHeight}px)`, opacity: 1, offset: .97 }, { transform: `translateY(${innerHeight}px)`, opacity: 0 }], T).finished
-      ]);
-      setWall(wall);
-      next.remove(); line.remove(); if (veil) veil.remove();
-    }
-    recoloring = false;
-    if (token !== stepToken) return;
-    if (mode) {
-      cheer();
-      say(CAT_NAME + 'Phill is color blind and thought that was neat and funny. He wants you to know that the world is beautiful, even if you can’t see all the greens and reds.', [
-        { label: 'Thanks, Paño', quiet: true, fn: () => guideRest() }
-      ]);
-    } else guideRest('Done! Enjoy the new view.');
-  }
-
-  /* ---------- tidy up: with more than 3 windows open, the cat offers to eat the extras ---------- */
-  const CLUTTER = 3;
-  let cleanupArmed = true, cleaning = false;
-  function eatLayer() {
-    let L = document.getElementById('eatlayer');
-    if (!L) { L = document.createElement('div'); L.id = 'eatlayer'; L.style.cssText = 'position:fixed;inset:0;z-index:9055;pointer-events:none'; document.body.appendChild(L); }
-    return L;
-  }
-  function openCount() { let n = 0; WINS.forEach(W => { if (W.state === 'open' || W.state === 'min') n++; }); return n; }
-  function checkClutter() {
-    if (!cleanupArmed || cleaning || recoloring || tour || gcat.hidden || openCount() <= CLUTTER) return;
-    cleanupArmed = false;
-    offerCleanup();
-  }
-  async function offerCleanup() {
-    const token = ++stepToken;
-    ringOff(); gbub.hidden = true;
-    await moveCat({ x: innerWidth / 2 - CAT_W() / 2, y: (innerHeight - 44) / 2 - CAT_H() / 2 }, false);
-    if (token !== stepToken) return;
-    say('<span class="gname">Phill’s cat</span>You have a lot of windows open. Can I clean them up?', [
-      ...(narrow() ? [] : [{ label: 'Organize them', pri: true, fn: () => organizeWindows() }]),
-      { label: narrow() ? 'Yes' : 'Close them', pri: narrow(), fn: () => eatWindows(token) },
-      { label: 'No thanks', quiet: true, fn: () => guideRest('Okay! They’re all yours.') }
-    ]);
-    ga('cleanup_offer', { windows: openCount() });
-  }
-  // menu extras, offered whenever two or more windows are open
-  function windowActions() {
-    if (openCount() < 2) return [];
-    return [
-      ...(narrow() ? [] : [{ label: 'Organize windows', fn: () => organizeWindows() }]),
-      { label: 'Close all windows', fn: () => eatWindows(stepToken) }
-    ];
-  }
-  // stack every window like a fanned deck of cards: same size, stepped diagonally, every title bar and its buttons showing
-  async function organizeWindows() {
-    const token = ++stepToken;
-    tour = null; ringOff(); gbub.hidden = true;
-    const list = [...WINS.values()].filter(W => (W.state === 'open' || W.state === 'min') && !W.busy)
-      .sort((a, b) => (a.state === 'min') - (b.state === 'min') ? (b.state === 'min') - (a.state === 'min') : (+a.el.style.zIndex || 0) - (+b.el.style.zIndex || 0));
-    const n = list.length;
-    if (n < 2) return guideRest('Nothing to organize yet.');
-    ga('organize_windows', { windows: n });
-    const A = { w: innerWidth, h: innerHeight - 44 }, pad = 12;
-    const stepY = Math.max(32, Math.min(38, (A.h - 2 * pad - 260) / (n - 1)));
-    const stepX = Math.max(22, Math.min(38, (A.w - 2 * pad - 380) / (n - 1)));
-    const w = Math.max(360, Math.min(860, A.w - 2 * pad - stepX * (n - 1)));
-    const h = Math.max(240, Math.min(620, A.h - 2 * pad - stepY * (n - 1)));
-    const x0 = Math.max(pad, (A.w - (w + stepX * (n - 1))) / 2), y0 = Math.max(pad, (A.h - (h + stepY * (n - 1))) / 2);
-    await Promise.all(list.map(async (W, i) => {
-      W.busy = true;
-      const wasMin = W.state === 'min';
-      const first = wasMin ? W.task.getBoundingClientRect() : W.el.getBoundingClientRect();
-      if (wasMin) { W.el.style.visibility = ''; W.state = 'open'; }
-      W.el.classList.remove('max');
-      Object.assign(W.el.style, { left: Math.round(x0 + i * stepX) + 'px', top: Math.round(y0 + i * stepY) + 'px', width: Math.round(w) + 'px', height: Math.round(h) + 'px' });
-      keepOnScreen(W.el);
-      focusW(W);
-      const last = W.el.getBoundingClientRect();
-      if (!reduce) await W.el.animate([{ transform: rectDelta(first, last), opacity: wasMin ? 0 : 1 }, { transform: 'none', opacity: 1 }], { duration: SPRING_WIN.duration, easing: SPRING_WIN.easing, delay: i * 60, fill: 'backwards' }).finished;
-      W.busy = false;
-    }));
-    const top = list[n - 1]; focusW(top); top.el.focus({ preventScroll: true });
-    cleanupArmed = false;
-    if (token !== stepToken) return;
-    cheer();
-    guideRest('All organized! Click any title bar to bring that window forward.');
-    armIdle();
-  }
-  async function eatWindows(token) {
-    if (token !== stepToken || cleaning) return;
-    cleaning = true; gbub.hidden = true;
-    const keep = topWin();
-    const victims = [...WINS.values()].filter(W => W !== keep && W.state !== 'closed' && !W.busy);
-    ga('cleanup_accept', { closed: victims.length });
-    gcat.classList.add('chomp');
-    // he grows and opens wide before eating
-    const grow = reduce ? null : gbodyEl.animate([{ scale: '1' }, { scale: narrow() ? '2.1' : '1.9' }], { duration: 420, easing: SPRING_WIN.easing, fill: 'forwards' });
-    await sleep(reduce ? 0 : 480);
-    const m = $('.gmouth', gcat).getBoundingClientRect(), mx = m.left + m.width / 2, my = m.top + m.height / 2;
-    await Promise.all(victims.map(async (W, i) => {
-      W.busy = true;
-      if (!reduce && W.state === 'open') {
-        await sleep(i * 220);
-        const r = W.el.getBoundingClientRect();
-        const dx = mx - (r.left + r.width / 2), dy = my - (r.top + r.height / 2);
-        // 1) shrink toward the cat while still behind the window you're reading
-        // 2) pop over it and fly up to his mouth, about mouth-sized
-        // 3) slide into the mouth and disappear
-        const tilt = i % 2 ? 1 : -1;
-        const sMouth = Math.max(.05, (m.width * 1.5) / r.width);
-        const mid = `translate(${dx * .4}px, ${dy * .4}px) scale(.45) rotate(${tilt * 6}deg)`;
-        const lip = `translate(${dx}px, ${dy - m.height * 1.5}px) scale(${sMouth}) rotate(${tilt * 8}deg)`;
-        W.el.style.transformOrigin = '50% 50%';
-        W.inner.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 300, fill: 'forwards' });
-        const a1 = W.el.animate([
-          { transform: 'none', borderRadius: '8px' },
-          { transform: mid, borderRadius: '14px' }
-        ], { duration: 380, easing: 'cubic-bezier(.3,0,.5,1)', fill: 'forwards' });
-        await a1.finished;
-        // the desktop is its own layer under the cat, so lift the window above everything for the last stretch
-        W.el.style.transform = mid; W.el.style.borderRadius = '14px'; a1.cancel();
-        W.el.style.boxShadow = '0 0 0 2px #3ddc84, 0 0 24px rgba(61,220,132,.55)';
-        eatLayer().appendChild(W.el);
-        await W.el.animate([
-          { transform: mid, opacity: 1, borderRadius: '14px', easing: 'cubic-bezier(.4,0,.4,1)' },
-          { transform: lip, opacity: 1, borderRadius: '24%', offset: .52, easing: 'cubic-bezier(.75,0,1,.7)' },
-          { transform: `translate(${dx}px, ${dy}px) scale(${sMouth * .08}, ${sMouth * .3}) rotate(0deg)`, opacity: 1, borderRadius: '50%', offset: .96 },
-          { transform: `translate(${dx}px, ${dy}px) scale(.001)`, opacity: 0, borderRadius: '50%' }
-        ], { duration: 780, fill: 'forwards' }).finished;
-        gbodyEl.animate([{ transform: 'none' }, { transform: 'scale(1.18,.84)' }, { transform: 'scale(.96,1.05)' }, { transform: 'none' }], { duration: 320, easing: 'ease-out' });
-      }
-      await closeW(W, true);
-    }));
-    await sleep(reduce ? 0 : 150);
-    gcat.classList.remove('chomp');
-    if (grow) { await gbodyEl.animate([{ scale: getComputedStyle(gbodyEl).scale }, { scale: '1' }], { duration: 320, easing: EASE_OUT }).finished; grow.cancel(); }
-    cleaning = false;
-    if (keep && keep.state === 'open') { focusW(keep); keep.el.focus({ preventScroll: true }); }
-    if (token !== stepToken) return;
-    cheer();
-    await sleep(reduce ? 0 : 450);
-    if (token !== stepToken) return;
-    guideRest('All clean! I kept the one you were looking at.');
-    armIdle();
-  }
-
-  /* ---------- head mode ---------- */
-  function enterHead(pop) {
-    if (headMode) return;
-    headMode = true; headHome = true; headMoved = false;
-    calmCat();
-    try { sessionStorage.setItem('panoHead', '1'); } catch (e) {}
-    ringOff(); gbub.hidden = true;
-    gcat.classList.add('head'); gsvg.setAttribute('viewBox', HEAD_VB); gsvg.classList.remove('flip');
-    setCat(headSpot());
-    if (pop && !reduce) gbodyEl.animate([{ transform: 'scale(.3)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: SPRING_WIN.duration, easing: SPRING_WIN.easing });
-  }
-  function exitHead() {
-    if (!headMode) return;
-    const h = catPos; headMode = false;
-    gcat.classList.remove('head'); gsvg.setAttribute('viewBox', FULL_VB);
-    setCat(clampSpot({ x: h.x + HEAD_W() / 2 - CAT_W() / 2, y: h.y }, CAT_W(), CAT_H()));
-  }
-  async function goHead() {
-    if (headMode) return;
-    const token = ++stepToken;
-    tour = null; ringOff(); gbub.hidden = true;
-    const h = headSpot();
-    await moveCat(clampSpot({ x: h.x + HEAD_W() / 2 - CAT_W() / 2, y: Math.max(8, h.y) }, CAT_W(), CAT_H()), false);
-    if (token !== stepToken) return;
-    enterHead(true);
-  }
-
-  /* ---------- after the user has played with him, 10 quiet seconds sends him to his head spot ---------- */
-  // How long he waits before tucking away:
-  //   4s  when he has nothing to say (chat closed, a short note shown, or he was just dragged)
-  //   10s when he's waiting on the user: a tour step, his menu, or a yes/no question
-  // He never tucks away while the pointer is on him or his bubble, while he's being dragged or eating,
-  // or during a tour while the user is still working in the window he's pointing at.
-  const IDLE_QUIET = 4000, IDLE_WAITING = 10000;
-  let hasInteracted = false, idleT = 0;
-  const waitingOnUser = () => !!tour || (!gbub.hidden && gacts.children.length > 0);
-  function touchPano() { hasInteracted = true; armIdle(); }
-  // is a mouse pointer resting on him or his bubble? (touch has no hover, so it never counts)
-  let mouseAt = null;
-  document.addEventListener('pointermove', e => { mouseAt = e.pointerType === 'mouse' ? { x: e.clientX, y: e.clientY } : null; }, { capture: true, passive: true });
-  document.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') mouseAt = null; }, { capture: true, passive: true });
-  function mouseOnPano() {
-    if (!mouseAt) return false;
-    const inside = el => { const r = el.getBoundingClientRect(); return mouseAt.x >= r.left && mouseAt.x <= r.right && mouseAt.y >= r.top && mouseAt.y <= r.bottom; };
-    return inside(gcat) || (!gbub.hidden && inside(gbub));
-  }
-  function armIdle() {
-    clearTimeout(idleT);
-    if (!hasInteracted || headMode) return;
-    idleT = setTimeout(() => {
-      if (headMode) return;
-      if (cleaning || dragging || sulking || recoloring || mouseOnPano()) return armIdle();
-      goHead();
-    }, waitingOnUser() ? IDLE_WAITING : IDLE_QUIET);
-  }
-  // following a tour counts as activity: clicking, scrolling or typing in the thing he's pointing at
-  let lastTourPing = 0;
-  function tourActivity(e) {
-    if (!tour || headMode || !ringTarget || !(e.target instanceof Node)) return;
-    const now = performance.now();
-    if (now - lastTourPing < 400) return;
-    const win = ringTarget.closest('.window');
-    if (ringTarget.contains(e.target) || (win && win.contains(e.target)) || gbub.contains(e.target)) { lastTourPing = now; armIdle(); }
-  }
-  ['pointerdown', 'pointermove', 'wheel', 'keydown', 'scroll'].forEach(t => document.addEventListener(t, tourActivity, { capture: true, passive: true }));
-  gbub.addEventListener('pointerleave', () => armIdle());
-  gcat.addEventListener('pointerleave', () => armIdle());
-  gbub.addEventListener('pointerdown', touchPano);
-
-  /* ---------- drag him anywhere; a tap still opens his menu ---------- */
-  let drag = null, dragging = false, suppressClick = false;
-  gcat.addEventListener('pointerdown', e => {
-    if (cleaning || e.button > 0) return;
-    touchPano();
-    const r = gcat.getBoundingClientRect();
-    drag = { id: e.pointerId, sx: e.clientX, sy: e.clientY, ox: r.left, oy: r.top, moved: false };
-    try { gcat.setPointerCapture(e.pointerId); } catch (err) {}
-  });
-  gcat.addEventListener('pointermove', e => {
-    if (!drag || e.pointerId !== drag.id) return;
-    const dx = e.clientX - drag.sx, dy = e.clientY - drag.sy;
-    if (!drag.moved && Math.hypot(dx, dy) < 6) return;
-    if (!drag.moved) {
-      drag.moved = true; dragging = true; catTopDocked = false;
-      gcat.getAnimations().forEach(a => a.cancel());
-      gcat.classList.add('dragging');
-      calmCat();
-    }
-    const w = headMode ? HEAD_W() : CAT_W(), h = headMode ? HEAD_H() : CAT_H();
-    setCat(clampSpot({ x: drag.ox + dx, y: drag.oy + dy }, w, h));
-    if (!narrow()) placeBubble();
-    const hot = overBin();
-    const bin = binIcon(); if (bin) bin.classList.toggle('binhot', hot);
-    gcat.classList.toggle('wary', hot);
-  });
-  function endDrag(e) {
-    if (!drag || e.pointerId !== drag.id) return;
-    if (drag.moved) {
-      suppressClick = true;
-      gcat.classList.remove('dragging');
-      if (headMode) headMoved = true;   // stays where it's dropped, until the next time he tucks away
-      setTimeout(() => { suppressClick = false; }, 0);
-      if (overBin()) { dragging = false; drag = null; refuseRecycle(); return; }
-      gcat.classList.remove('wary');
-    }
-    dragging = false; drag = null; armIdle();
-  }
-
-  /* ---------- drop him on the Recycle Bin and he is not having it ---------- */
-  let sulking = false;
-  const binIcon = () => document.querySelector('.dicon[data-open="folder:recycle"]');
-  function calmCat() {
-    gcat.classList.remove('wary', 'meh', 'lick');
-    const bin = binIcon(); if (bin) bin.classList.remove('binhot', 'binreject');
-    sulking = false;
-  }
-  // his middle is over the bin icon, and the icon isn't hidden behind a window
-  function overBin() {
-    const bin = binIcon(); if (!bin) return false;
-    const b = bin.getBoundingClientRect(), c = gcat.getBoundingClientRect(), pad = 14;
-    const cx = c.left + c.width / 2, cy = c.top + c.height / 2;
-    if (!(cx > b.left - pad && cx < b.right + pad && cy > b.top - pad && cy < b.bottom + pad)) return false;
-    const under = document.elementsFromPoint(b.left + b.width / 2, b.top + b.height / 2).find(n => !n.closest('#gcat, #gbubble, #gring'));
-    return !!under && bin.contains(under);
-  }
-  async function refuseRecycle() {
-    const token = ++stepToken;
-    tour = null; ringOff(); gbub.hidden = true;
-    clearTimeout(idleT); sulking = true;
-    ga('pano_recycle_attempt', {});
-    const bin = binIcon(), b = bin.getBoundingClientRect();
-    bin.classList.remove('binhot', 'binreject'); void bin.offsetWidth; bin.classList.add('binreject');
-    gcat.classList.remove('wary'); gcat.classList.add('meh');
-    // the bin spits him out into open wallpaper beside it (on phones, to his usual talking spot)
-    const spot = narrow() ? dockSpot() : clampSpot({ x: b.right + 34, y: b.top + b.height / 2 - CAT_H() / 2 + 14 }, CAT_W(), CAT_H() + 48);
-    await moveCat(spot, false);
-    if (token !== stepToken) return calmCat();
-    if (!reduce) gbodyEl.animate([{ transform: 'scale(1.08,.84)' }, { transform: 'scale(.97,1.04)', offset: .55 }, { transform: 'none' }], { duration: 500, easing: 'cubic-bezier(.3,1.4,.5,1)' });
-    await sleep(reduce ? 0 : 620);
-    if (token !== stepToken) return calmCat();
-    gcat.classList.add('lick');
-    await sleep(reduce ? 0 : 750);
-    if (token !== stepToken) return calmCat();
-    say('<span class="gname">Phill’s cat</span>How dare you try to recycle me, human.');
-    gcat.classList.remove('talk');   // he says it without looking up from his paw
-    await sleep(4600);
-    if (token !== stepToken) { if (!dragging) calmCat(); return; }
-    gcat.classList.remove('lick');
-    await sleep(reduce ? 0 : 900);
-    if (token !== stepToken) return;
-    sulking = false; gcat.classList.remove('meh'); bin.classList.remove('binreject');
-    armIdle();
-  }
-  gcat.addEventListener('pointerup', endDrag);
-  gcat.addEventListener('pointercancel', endDrag);
-
-  gcat.addEventListener('click', () => {
-    if (suppressClick || cleaning || recoloring) return;
-    if (headMode) { guideMenu('What would you like to do?'); return; }
-    if (!gbub.hidden && !tour) guideRest();
-    else guideMenu('What would you like to do?');
-  });
-  $('#gx').addEventListener('click', () => guideRest());
-  addEventListener('resize', () => {
-    if (gcat.hidden) return;
-    if (headMode) setCat(headMoved ? clampSpot(catPos, HEAD_W(), HEAD_H()) : headSpot());
-    else if (!tour && !dragging) setCat(gbub.hidden && !hasInteracted ? cornerSpot() : homeSpot());
-    placeBubble();
-  });
-
-  // say hello once per visit; returning in the same session, the cat just sits there
-  setTimeout(() => {
-    gcat.hidden = false;
-    let wasHead = false;
-    try { wasHead = sessionStorage.getItem('panoHead') === '1'; } catch (e) {}
-    if (wasHead) { hasInteracted = true; enterHead(true); return; }
-    setCat(cornerSpot(), false);
-    anim(gbodyEl, [{ transform: 'translateY(40px) scale(.5)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: SPRING_WIN.duration, easing: SPRING_WIN.easing });
-    let seen = false;
-    try { seen = sessionStorage.getItem('catGreeted') === '1'; sessionStorage.setItem('catGreeted', '1'); } catch (e) {}
-    if (!seen && !HASH[h] && lock.hidden) setTimeout(() => guideMenu('Hi! I can show you around. What would you like to do?'), 700);
-  }, 900);
+  /* ---------- Paño's adapter: what this page has for him to work with ----------
+     The last four entries are what his skills need. Take one out and he stops offering that skill. */
+  const pano = window.Pano ? Pano.init({
+    ga,
+    brain: 'portfolio',
+    canGreet: () => !HASH[h] && lock.hidden,
+    toast, hideToast,
+    closeOverlayAt: async hit => {
+      if (startOpen && start.contains(hit)) { await closeStart(); return true; }
+      if (calOpen && cal.contains(hit)) { await closeCal(); return true; }
+      return false;
+    },
+    windowOf: el => el.closest('.window'),
+    paneOf: el => el.parentElement && el.parentElement.closest('.pagewrap, .files, .rlist, .skbody, .win-inner'),
+    scrollInPane,
+    tours: tourHelpers,
+    background: { desk: $('#desktop'), walls: ['mountain', 'green', 'black'], modes: ['protan', 'deutan', 'tritan', 'mono'], keys: { wall: 'pf-wall', cb: 'pf-cb' } },
+    windows: { WINS, topWin, focusW, keepOnScreen, rectDelta, closeW, minimizeW },
+    bin: { icon: () => document.querySelector('.dicon[data-open="folder:recycle"]') }
+  }) : null;
 })();
 </script>
 </body>
