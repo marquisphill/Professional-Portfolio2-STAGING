@@ -49,19 +49,30 @@ a{color:var(--accent)}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* ---------- wallpaper ---------- */
-#desktop{
-  position:fixed;inset:0;overflow:hidden;
+#desktop{position:fixed;inset:0;overflow:hidden}
+#desktop,.wallnext{
   background:
     linear-gradient(180deg, rgba(3,8,5,.38) 0%, rgba(3,8,5,.16) 45%, rgba(3,8,5,.42) 100%),
     url(images/wallpaper.jpg) center / cover no-repeat,
     var(--wall-1);
 }
 @media (max-width:900px){
-  #desktop{background:
+  #desktop,.wallnext{background:
     linear-gradient(180deg, rgba(3,8,5,.38) 0%, rgba(3,8,5,.16) 45%, rgba(3,8,5,.42) 100%),
     url(images/wallpaper-1280.jpg) center / cover no-repeat,
     var(--wall-1)}
 }
+#desktop[data-wall="green"],.wallnext[data-wall="green"]{background:#14633a}
+#desktop[data-wall="black"],.wallnext[data-wall="black"]{background:#000}
+/* background change: a new wallpaper wipes in from the top; with a colorblind mode the screen goes grey first */
+.wallnext{position:absolute;inset:0;z-index:0;pointer-events:none;clip-path:inset(0 0 100% 0)}
+.grayveil{position:fixed;inset:0;z-index:2147483646;pointer-events:none;opacity:0;-webkit-backdrop-filter:grayscale(1);backdrop-filter:grayscale(1)}
+.wipeline{position:fixed;left:0;right:0;top:0;height:3px;z-index:2147483647;pointer-events:none;background:#fff;box-shadow:0 0 18px 6px rgba(255,255,255,.75),0 0 60px 18px rgba(255,255,255,.35);opacity:0}
+/* colorblind modes: a color correction over the whole site (see the cb-* filters at the end of the page) */
+html[data-cb="protan"]{filter:url(#cb-protan)}
+html[data-cb="deutan"]{filter:url(#cb-deutan)}
+html[data-cb="tritan"]{filter:url(#cb-tritan)}
+html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
 
 /* ---------- sticky note ---------- */
 .sticky{
@@ -897,6 +908,11 @@ a{color:var(--accent)}
   <div class="gacts" id="gacts"></div>
 </div>
 <div class="gring" id="gring" hidden></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="cb-protan" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  -0.2549 1.2549 0 0 0  0.3031 -0.5451 1.242 0 0  0 0 0 1 0"/></filter>
+  <filter id="cb-deutan" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  -0.4375 1.4375 0 0 0  0.2625 -0.5625 1.3 0 0  0 0 0 1 0"/></filter>
+  <filter id="cb-tritan" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1.05 -0.3825 0.3325 0 0  0 1.2345 -0.2345 0 0  0 0 1 0 0  0 0 0 1 0"/></filter>
+</svg>
 
 <footer class="taskbar">
   <button class="orb" id="orb" aria-label="Start" aria-expanded="false">
@@ -2633,6 +2649,7 @@ a{color:var(--accent)}
     if (token !== stepToken) return;
     say(`<span class="gname">Phill’s cat</span>${text}`, [
       ...GOALS.map(([label, k]) => ({ label, fn: () => runTour(k) })),
+      { label: 'Change the background', fn: () => askWall() },
       ...windowActions(),
       { label: again ? 'I’m good, thanks' : 'Just looking around', quiet: true, fn: () => guideRest('Okay! Click me any time you want a hand.') }
     ]);
@@ -2650,6 +2667,79 @@ a{color:var(--accent)}
     setTimeout(() => { if (mine === msgSeq) hideBubble(); }, 2600);
   }
 
+  /* ---------- change the background (and, if asked, apply a colorblind mode) ---------- */
+  const WALLS = [['Misty mountains', 'mountain'], ['All green', 'green'], ['All black', 'black']];
+  const CB_MODES = [['Red-weak (protanopia)', 'protan'], ['Green-weak (deuteranopia)', 'deutan'], ['Blue-yellow (tritanopia)', 'tritan'], ['No color (monochrome)', 'mono']];
+  const CAT_NAME = '<span class="gname">Phill’s cat</span>';
+  const deskEl = $('#desktop');
+  let recoloring = false;
+  const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} } };
+  function setWall(k) { if (k && k !== 'mountain') deskEl.dataset.wall = k; else delete deskEl.dataset.wall; }
+  function setCB(m) { if (m) document.documentElement.dataset.cb = m; else delete document.documentElement.dataset.cb; }
+  // remember the visitor's choice between visits
+  if (WALLS.some(w => w[1] === store.get('pf-wall'))) setWall(store.get('pf-wall'));
+  if (CB_MODES.some(m => m[1] === store.get('pf-cb'))) setCB(store.get('pf-cb'));
+
+  async function askWall() {
+    const token = ++stepToken;
+    tour = null; ringOff(); gbub.hidden = true;
+    await moveCat(homeSpot(), false);
+    if (token !== stepToken) return;
+    say(CAT_NAME + 'Which background would you like?', [
+      ...WALLS.map(([label, k]) => ({ label: label + (k === 'mountain' ? ' (default)' : ''), fn: () => askColorblind(k) })),
+      { label: 'Never mind', quiet: true, fn: () => guideRest() }
+    ]);
+  }
+  function askColorblind(wall) {
+    say(CAT_NAME + 'Are you colorblind?', [
+      { label: 'Yes', fn: () => askMode(wall) },
+      { label: 'No', fn: () => applyLook(wall, null) }
+    ]);
+  }
+  function askMode(wall) {
+    say(CAT_NAME + 'Which colorblind mode should I apply to the site?', CB_MODES.map(([label, m]) => ({ label, fn: () => applyLook(wall, m) })));
+  }
+  async function applyLook(wall, mode) {
+    if (recoloring) return;
+    const token = ++stepToken;
+    recoloring = true;
+    say(CAT_NAME + 'Okay, I am changing the background now for you.');
+    ga('change_background', { wall, colorblind_mode: mode || 'none' });
+    store.set('pf-wall', wall === 'mountain' ? null : wall); store.set('pf-cb', mode);
+    const canVeil = !reduce && window.CSS && (CSS.supports('backdrop-filter', 'grayscale(1)') || CSS.supports('-webkit-backdrop-filter', 'grayscale(1)'));
+    if (reduce) { setWall(wall); setCB(mode); }
+    else {
+      let veil = null;
+      if (mode && canVeil) {
+        // everything, Paño included, drains to black and white...
+        veil = document.createElement('div'); veil.className = 'grayveil'; document.body.appendChild(veil);
+        await veil.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, easing: 'ease-in-out', fill: 'forwards' }).finished;
+        setCB(mode);               // the color correction goes on underneath, unseen
+        await sleep(3000);         // ...and stays that way for three seconds
+      } else { await sleep(900); setCB(mode); }
+      // then a line of light sweeps top to bottom, bringing the color and the new background with it
+      const next = document.createElement('div'); next.className = 'wallnext'; next.dataset.wall = wall;
+      deskEl.insertBefore(next, deskEl.firstChild);
+      const line = document.createElement('div'); line.className = 'wipeline'; document.body.appendChild(line);
+      const T = { duration: 1700, easing: 'cubic-bezier(.45,0,.3,1)', fill: 'forwards' };
+      await Promise.all([
+        next.animate([{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0 0)' }], T).finished,
+        veil ? veil.animate([{ clipPath: 'inset(0 0 0 0)' }, { clipPath: 'inset(100% 0 0 0)' }], T).finished : null,
+        line.animate([{ transform: 'translateY(0)', opacity: 1 }, { transform: `translateY(${innerHeight}px)`, opacity: 1, offset: .97 }, { transform: `translateY(${innerHeight}px)`, opacity: 0 }], T).finished
+      ]);
+      setWall(wall);
+      next.remove(); line.remove(); if (veil) veil.remove();
+    }
+    recoloring = false;
+    if (token !== stepToken) return;
+    if (mode) {
+      cheer();
+      say(CAT_NAME + 'Phill is color blind and thought that was neat and funny. He wants you to know that the world is beautiful, even if you can’t see all the greens and reds.', [
+        { label: 'Thanks, Paño', quiet: true, fn: () => guideRest() }
+      ]);
+    } else guideRest('Done! Enjoy the new view.');
+  }
+
   /* ---------- tidy up: with more than 3 windows open, the cat offers to eat the extras ---------- */
   const CLUTTER = 3;
   let cleanupArmed = true, cleaning = false;
@@ -2660,7 +2750,7 @@ a{color:var(--accent)}
   }
   function openCount() { let n = 0; WINS.forEach(W => { if (W.state === 'open' || W.state === 'min') n++; }); return n; }
   function checkClutter() {
-    if (!cleanupArmed || cleaning || tour || gcat.hidden || openCount() <= CLUTTER) return;
+    if (!cleanupArmed || cleaning || recoloring || tour || gcat.hidden || openCount() <= CLUTTER) return;
     cleanupArmed = false;
     offerCleanup();
   }
@@ -2828,7 +2918,7 @@ a{color:var(--accent)}
     if (!hasInteracted || headMode) return;
     idleT = setTimeout(() => {
       if (headMode) return;
-      if (cleaning || dragging || sulking || mouseOnPano()) return armIdle();
+      if (cleaning || dragging || sulking || recoloring || mouseOnPano()) return armIdle();
       goHead();
     }, waitingOnUser() ? IDLE_WAITING : IDLE_QUIET);
   }
@@ -2934,7 +3024,7 @@ a{color:var(--accent)}
   gcat.addEventListener('pointercancel', endDrag);
 
   gcat.addEventListener('click', () => {
-    if (suppressClick || cleaning) return;
+    if (suppressClick || cleaning || recoloring) return;
     if (headMode) { guideMenu('What would you like to do?'); return; }
     if (!gbub.hidden && !tour) guideRest();
     else guideMenu('What would you like to do?');
