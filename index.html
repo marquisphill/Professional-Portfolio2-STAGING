@@ -1984,7 +1984,6 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
           <button class="wbtn" data-copy>Copy address</button>
           <a class="wbtn" href="${LINKEDIN}" target="_blank" rel="noopener" data-ga="linkedin">LinkedIn ↗</a>
         </div>
-        <p class="cnote">Easiest is email. If YachtIQ, OMS work, or using AI on analysis is the reason you’re here, say so in the subject and I’ll know where to start.</p>
         <p class="cnote">Curious when I’m free? Click the clock in the corner.</p>
       </div>`;
       const cb = $('[data-copy]', W.inner);
@@ -2296,26 +2295,16 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
      ===================================================================== */
   const cal = $('#cal'), clockBtn = $('#clock'), grid = $('#calGrid');
   let calOpen = false, calBusy = false, view;
-  const DAY = 86400000;
   const D = (y, m, d) => new Date(y, m, d);
-  const JUL1 = D(2026, 6, 1), AUG24 = D(2026, 7, 24);
-  const GAP0 = D(2026, 7, 27), GAP1 = D(2026, 8, 9);
-  const RAMP0 = D(2026, 8, 10);
-  const RAMP_ORDER = [3, 2, 4, 1, 5];
+  const BUSY0 = D(2026, 9, 21);   // busy every business day from Oct 21 through today
   const today0 = () => { const n = new Date(); return D(n.getFullYear(), n.getMonth(), n.getDate()); };
+  const dayHash = d => (Math.imul(d.getFullYear() * 400 + d.getMonth() * 32 + d.getDate(), 2654435761) >>> 0) % 100;
   function dayState(d) {
-    const dow = d.getDay(), weekend = dow === 0 || dow === 6, t = d.getTime();
-    if (t >= JUL1 && t <= AUG24) return 'av';
-    if (weekend) return 'we';
-    if (t >= GAP0 && t <= GAP1) return 'na';
-    if (t >= RAMP0 && t <= today0().getTime()) {
-      const period = Math.floor(Math.round((t - RAMP0) / DAY) / 14);
-      return RAMP_ORDER.slice(0, Math.min(5, 2 ** period)).includes(dow) ? 'av' : 'na';
-    }
-    if (dow === 1 || dow === 5) {
-      const h = (Math.imul(d.getFullYear() * 400 + d.getMonth() * 32 + d.getDate(), 2654435761) >>> 0) % 100;
-      if (h < 30) return 'na';
-    }
+    const dow = d.getDay(), t = d.getTime();
+    if (dow === 0 || dow === 6) return 'we';
+    if (t >= BUSY0 && t <= today0().getTime()) return 'na';
+    if (t < BUSY0) return dayHash(d) < 18 ? 'na' : 'av';   // before Oct 21: mostly free, the odd busy day
+    if ((dow === 1 || dow === 5) && dayHash(d) < 30) return 'na';
     return 'av';
   }
   const STATE_TEXT = { av: 'available', na: 'unavailable', we: 'weekend' };
