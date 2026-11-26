@@ -555,6 +555,7 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
 .cal-date:hover{text-decoration:underline}
 .cal-avail{display:flex;gap:9px;align-items:center;padding:8px 10px;margin-bottom:8px;border-radius:4px;background:var(--select);border:1px solid var(--select-edge)}
 .cal-avail svg{width:22px;height:22px;flex:none}
+.cal-avail .no,.cal-avail.booked .ok{display:none}.cal-avail.booked .no{display:inline}
 .cal-avail h2{margin:0;font-size:14px;font-weight:600;color:var(--ink)}
 .cal-avail span{display:block;font-size:11.5px;color:var(--ink-soft)}
 .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
@@ -816,8 +817,8 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   <div class="cal-inner">
     <button class="cal-date" id="calToday"></button>
     <div class="cal-avail">
-      <svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#1f7a4a"/><path d="M6.5 11.3l3 3 6-6.3" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div><h2>Phill is available</h2><span id="calCount"></span></div>
+      <svg viewBox="0 0 22 22" aria-hidden="true"><g class="ok"><circle cx="11" cy="11" r="10" fill="#1f7a4a"/><path d="M6.5 11.3l3 3 6-6.3" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="no"><circle cx="11" cy="11" r="10" fill="#6b6b6b"/><path d="M6.5 11h9" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></g></svg>
+      <div><h2 id="calHead">Phill is available</h2><span id="calCount"></span></div>
     </div>
     <div class="cal-nav">
       <button id="calPrev" aria-label="Previous month"><svg viewBox="0 0 10 10"><path d="M7 1L2 5l5 4z" fill="var(--ink-soft)"/></svg></button>
@@ -2296,16 +2297,14 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   const cal = $('#cal'), clockBtn = $('#clock'), grid = $('#calGrid');
   let calOpen = false, calBusy = false, view;
   const D = (y, m, d) => new Date(y, m, d);
-  const BUSY0 = D(2026, 9, 21);   // busy every business day from Oct 21 through today
+  const BUSY0 = D(2026, 9, 21);   // busy every business day from Oct 21 onward
   const today0 = () => { const n = new Date(); return D(n.getFullYear(), n.getMonth(), n.getDate()); };
   const dayHash = d => (Math.imul(d.getFullYear() * 400 + d.getMonth() * 32 + d.getDate(), 2654435761) >>> 0) % 100;
   function dayState(d) {
-    const dow = d.getDay(), t = d.getTime();
+    const dow = d.getDay();
     if (dow === 0 || dow === 6) return 'we';
-    if (t >= BUSY0 && t <= today0().getTime()) return 'na';
-    if (t < BUSY0) return dayHash(d) < 18 ? 'na' : 'av';   // before Oct 21: mostly free, the odd busy day
-    if ((dow === 1 || dow === 5) && dayHash(d) < 30) return 'na';
-    return 'av';
+    if (d.getTime() >= BUSY0) return 'na';
+    return dayHash(d) < 18 ? 'na' : 'av';   // before Oct 21: mostly free, the odd busy day
   }
   const STATE_TEXT = { av: 'available', na: 'unavailable', we: 'weekend' };
   function renderCal() {
@@ -2322,6 +2321,8 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
     }
     grid.innerHTML = html;
     $('#calCount').textContent = count ? `${count} open day${count > 1 ? 's' : ''} in ${monthName}` : `No open days in ${monthName}`;
+    $('#calHead').textContent = count ? 'Phill is available' : 'Phill is booked up';
+    $('.cal-avail', cal).classList.toggle('booked', !count);
   }
   function wave(dir = 0, base = 0) {
     if (reduce) return;
