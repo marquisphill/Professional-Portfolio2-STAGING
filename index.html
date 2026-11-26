@@ -421,7 +421,7 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
 .skfoot button:hover{background:#15241b;color:var(--ink)}
 .skfoot button+button{background:#15241b;border:1px solid #22402e;color:var(--ink);text-align:right}
 
-/* ---------- the cat guide: his own styles load from /Pano/v1/pano.css; these belong to the Recycle Bin icon ---------- */
+/* ---------- the cat guide: his own styles load from /Pano/v2/pano.css; these belong to the Recycle Bin icon ---------- */
 .dicon.binhot{background:rgba(255,77,79,.18);border-color:#ff4d4f}
 .dicon .art{transition:transform .2s}
 .dicon.binhot .art{transform:scale(1.15) rotate(-4deg)}
@@ -623,7 +623,7 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
 }
 @media (max-height:560px) and (min-width:641px){ .sticky{display:none} }
 </style>
-<link rel="stylesheet" href="/Pano/v1/pano.css">
+<link rel="stylesheet" href="/Pano/v2/pano.css">
 </head>
 <body>
 
@@ -845,7 +845,7 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
 </div>
 
 <!-- Paño the cat: his body and engine live in the Pano repo. This line loads him; his adapter is near the end of the script below. -->
-<script src="/Pano/v1/pano.js"></script>
+<script src="/Pano/v2/pano.js"></script>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <filter id="cb-protan" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  -0.2549 1.2549 0 0 0  0.3031 -0.5451 1.242 0 0  0 0 0 1 0"/></filter>
   <filter id="cb-deutan" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  -0.4375 1.4375 0 0 0  0.2625 -0.5625 1.3 0 0  0 0 0 1 0"/></filter>
@@ -2441,9 +2441,9 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   addEventListener('hashchange', () => { const k = location.hash.slice(1).toLowerCase(); if (HASH[k]) openTarget(HASH[k]); });
 
   /* =====================================================================
-     THE CAT: his body and engine load from the Pano repo (/Pano/v1/pano.js).
-     His words and tours load from his brain there (/Pano/v1/brain/portfolio.json).
-     His skills load from there too (/Pano/v1/skills/). Each is offered only if this page has what it needs.
+     THE CAT: his body and engine load from the Pano repo (/Pano/v2/pano.js).
+     His words and tours load from his brain there (/Pano/v2/brain/portfolio.json).
+     His skills load from there too (/Pano/v2/skills/). Each is offered only if this page has what it needs.
      What stays here is what belongs to this page: where things are, how to read his tours, and his adapter.
      ===================================================================== */
   // ---- where things are
@@ -2454,7 +2454,7 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   const topPage = () => { const W = topWin(); return W && W.id.startsWith('doc:') ? $('.pagewrap', W.el) : null; };
 
   // ---- how to read his tours. The tours themselves (his words, what he points at, what counts as
-  //      done) are in his brain: /Pano/v1/brain/portfolio.json. These are the parts only this page knows.
+  //      done) are in his brain: /Pano/v2/brain/portfolio.json. These are the parts only this page knows.
   const tourHelpers = {
     target: {
       icon: k => iconFor_(k),
