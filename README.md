@@ -16,10 +16,10 @@ The homepage is a desktop you can click around, with folders and windows instead
 - **Read me first:** a short intro to who I am and what I do.
 - **Experience:** one file per role, from MarineMax back through CITY Home, FlexShopper, and Pet Supermarket.
 - **Projects:** case studies with the headline result up front.
-- **AI Lab:** how I use AI in real work, like the BRD Q&A Skill I built for searching requirements documents.
+- **AI Lab:** how I use AI in real work: the BRD Q&A Skill I built for searching requirements documents, the report consolidator, and the hackathon app.
 - **Skills:** a control panel of tools and methods.
 - **Kind Words:** recommendations from people I've worked with.
-- **Résumé:** pick the version that fits the role you're hiring for, then preview or download it.
+- **Résumé:** one résumé. Read it right in the window, download it, or feed it to Paño.
 - **Contact:** ways to reach me or book time.
 - **Paño:** a small red cat who offers guided tours of the site.
 
@@ -48,7 +48,8 @@ Example: [marquisphill.github.io/Professional-Portfolio2/#resume](https://marqui
 ├── labs.json              # List of prototypes (also read by my personal dashboard)
 ├── labs/                  # Prototype pages
 ├── pano-brain/            # Old copy of Paño's knowledge, still read by my dashboard (Paño's own brain now lives in the Pano repo)
-├── resumes/               # Résumé versions offered in the Résumé window
+├── 2026_Resume_Phillip_Da_Silva_Marquis.pdf  # The résumé (the only one offered)
+├── vendor/pdfjs/          # pdf.js 3.11.174 (Mozilla, Apache-2.0), draws the résumé preview
 ├── images/                # Photos and social preview images
 └── .claude/skills/        # Instructions Claude follows when building prototypes
 ```

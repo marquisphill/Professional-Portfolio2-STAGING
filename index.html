@@ -211,6 +211,35 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
 .page .jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding-top:16px;border-top:1px solid var(--pane-line)}
 .page a[data-open]{cursor:pointer}
 .page .sig{margin-top:20px;font-style:italic;color:var(--ink-soft)}
+/* big buttons (README.txt) */
+.page .tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:26px}
+.page .tile{display:flex;align-items:center;gap:14px;min-height:104px;padding:16px 18px;border-radius:12px;background:var(--pane-alt);border:1px solid #22402e;color:var(--ink);text-decoration:none;cursor:pointer;
+  transition:transform .16s,border-color .16s,box-shadow .16s,background .16s}
+.page .tile:hover,.page .tile:focus-visible{transform:translateY(-2px);border-color:var(--accent);background:#15241b;box-shadow:0 12px 26px rgba(0,0,0,.45)}
+.page .tile svg{width:46px;height:46px;flex:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+.page .tile span{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.page .tile b{font-size:17px;font-weight:600;line-height:1.25}
+.page .tile small{font-size:12.5px;line-height:1.4;color:var(--ink-soft)}
+.page .tile i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:15px;background:#1f7a4a;color:#e6f2ea;transition:transform .16s}
+.page .tile:hover i,.page .tile:focus-visible i{transform:translateX(3px)}
+.page .tile.pri{background:#1f7a4a;border-color:#2a9a5f}
+.page .tile.pri:hover,.page .tile.pri:focus-visible{background:#2a9a5f;border-color:#3ddc84}
+.page .tile.pri small{color:#cfeedd}
+.page .tile.pri i{background:#3ddc84;color:#04140b}
+/* hackathon: team picture across the top, and buttons styled like the ones on hackathon.html */
+.page .hhero{margin:-34px -40px 24px;background:#0b1510;overflow:hidden}
+.page .hhero img{display:block;width:100%;height:auto}
+.page .hbtns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:4px 0 24px}
+.page .hbtn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 20px;border-radius:8px;
+  background:linear-gradient(90deg,#2563eb,#ef4444);color:#fff;font-size:16px;font-weight:600;text-decoration:none;cursor:pointer;
+  box-shadow:0 8px 20px rgba(37,99,235,.28),0 2px 6px rgba(0,0,0,.35);transition:transform .16s,box-shadow .16s,filter .16s}
+.page .hbtn:hover,.page .hbtn:focus-visible{transform:translateY(-2px);filter:brightness(1.1);box-shadow:0 12px 26px rgba(239,68,68,.32),0 2px 6px rgba(0,0,0,.35)}
+.page .hbtn svg{width:26px;height:26px;flex:none}
+.page .hbtn span{font-size:18px;line-height:1}
+@container (max-width: 540px){
+  .page .tiles,.page .hbtns{grid-template-columns:minmax(0,1fr)}
+  .page .tile{min-height:80px}
+}
 /* ---------- sheet: light case-study page driven by a process diagram ---------- */
 .pagewrap{container-type:inline-size}
 .page.sheet{max-width:900px;background:#f4f7f3;color:#12241a;padding:40px 44px 44px;border-radius:4px}
@@ -288,19 +317,38 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
 .photo .pbar svg{width:14px;height:14px}
 .photo .cap{font-size:12.5px;min-width:0;flex:1;max-width:360px;text-align:center;color:#b5cdbe}
 
-/* résumé picker */
-.rhead{padding:16px 20px 12px;background:linear-gradient(var(--pane-alt),var(--pane));border-bottom:1px solid var(--pane-line);flex:none}
-.rhead h2{margin:0 0 4px;font-size:17px;font-weight:400;color:var(--accent)}
-.rhead p{margin:0;color:var(--ink-soft);font-size:12.5px}
-.rlist{flex:1;overflow:auto;padding:8px}
-.rrow{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:10px 10px;border-radius:3px;border:1px solid transparent}
-.rrow:hover{background:var(--select);border-color:var(--select-edge)}
-.rrow svg{width:40px;height:40px}
-.rrow b{display:block;font-size:13.5px;font-weight:600}
-.rrow small{display:block;color:var(--ink-soft);font-size:12px;line-height:1.4;margin-top:1px}
-.rrow .acts{display:flex;gap:6px}
-.rrow .wbtn{min-width:0}
-.rfoot{flex:none;padding:10px 16px;border-top:1px solid var(--pane-line);background:var(--pane-alt);font-size:12px;color:var(--ink-soft);line-height:1.5;user-select:text}
+/* résumé: a readable preview of the one PDF, with Download and Feed to Phill's cat */
+.rbar{display:flex;align-items:center;gap:8px;padding:4px 6px 4px 12px;background:var(--pane-alt);border-bottom:1px solid var(--pane-line);flex:none;font-size:12px}
+.rbar .rname{color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.rbar .rname small{color:var(--ink-soft);font-size:12px}
+.rbar .sp{flex:1}
+.rzoom{display:flex;align-items:center;gap:2px;flex:none}
+.rzoom button{width:28px;height:26px;border-radius:4px;border:1px solid transparent;display:grid;place-items:center;cursor:pointer;color:var(--ink);font-size:16px;line-height:1}
+.rzoom button:hover:not(:disabled){background:var(--select);border-color:var(--select-edge)}
+.rzoom button:disabled{opacity:.35;cursor:default}
+.rzoom output{min-width:44px;text-align:center;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.rview{flex:1;min-height:0;overflow:auto;background:var(--desk);padding:18px;outline:none;-webkit-overflow-scrolling:touch}
+.rview:focus-visible{box-shadow:inset 0 0 0 2px var(--accent)}
+.rpages{display:flex;flex-direction:column;align-items:center;gap:16px;width:max-content;min-width:100%}
+.rpage{position:relative;flex:none;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.45)}
+.rpage canvas{display:block;width:100%;height:100%}
+.rpage a{position:absolute;display:block;border-radius:2px}
+.rpage a:hover,.rpage a:focus-visible{background:rgba(61,220,132,.18);outline:1px solid rgba(31,122,74,.6)}
+.rmsg{margin:40px auto;max-width:42ch;text-align:center;color:var(--ink-soft);font-size:13px;line-height:1.55;user-select:text}
+.rmsg .wbtn{margin-top:12px}
+.rframe{width:100%;height:100%;border:0;display:block;background:#525659}
+.rview.framed{padding:0;overflow:hidden}
+.ract{flex:none;display:flex;justify-content:center;gap:10px;padding:12px 14px;background:linear-gradient(var(--pane-alt),var(--pane));border-top:1px solid var(--pane-line)}
+.rbtn{flex:1 1 0;max-width:280px;min-height:44px;padding:0 18px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-size:14.5px;font-weight:600;text-decoration:none;white-space:nowrap;cursor:pointer;transition:transform .16s,background .16s,border-color .16s,box-shadow .16s}
+.rbtn svg{width:20px;height:20px;flex:none}
+.rbtn.dl{background:#1f7a4a;border:1px solid #2a9a5f;color:#fff}
+.rbtn.dl:hover,.rbtn.dl:focus-visible{background:#2a9a5f;border-color:#3ddc84;transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.rbtn.feed{background:rgba(255,77,79,.12);border:1px solid var(--red);color:var(--red-ink)}
+.rbtn.feed svg{width:26px;height:20px}
+.rbtn.feed:hover,.rbtn.feed:focus-visible{background:rgba(255,77,79,.22);transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.rbtn.feed[hidden]{display:none}
+.rbtn:disabled{opacity:.5;cursor:default;transform:none}
 
 /* contact */
 .contact{flex:1;overflow:auto;padding:22px 24px;display:flex;flex-direction:column;gap:16px}
@@ -555,13 +603,15 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   .tbtn span{display:none}
   .tbtn{padding:0 8px;min-width:42px}
   .page{padding:24px 20px 30px}
+  .page .hhero{margin:-24px -20px 20px}
   .pagewrap{padding:12px 8px 30px}
-  .rrow{grid-template-columns:32px 1fr}
-  .rrow svg{width:32px;height:32px}
-  .rrow .acts{grid-column:2}
+  .rview{padding:10px}
+  /* stacked, with the bottom-right corner left free: that's where Paño sits on phones */
+  .ract{flex-direction:column;align-items:stretch;padding:10px 76px 10px 10px;gap:8px}
+  .rbtn{flex:none;max-width:none;min-height:42px;padding:0 12px;font-size:14px}
+  .rbar .rname small{display:none}
   .hint{display:none}
   .ctrls [data-act="max"]{display:none}
-  .rfoot{display:none}
   .deskcat{display:none}
   .sk{padding:18px 14px 22px}
   .skhero{min-height:140px;padding-left:18px}
@@ -583,10 +633,6 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   <p>Product Manager at MarineMax, owning YachtIQ. Ten years between the business and the build: retail floor, ecommerce, digital marketing, catalog operations, business analysis, integrations, and now product. Senior Business Analyst on CITY Home's IBM Sterling OMS modernization, where he cut 1,000+ legacy reports to about 20 audit-ready data models. Owned requirements and delivery for the platform that replaced FlexShopper's order and inventory system, cutting vendor onboarding from six weeks to two.</p>
   <ul>
     <li><a href="2026_Resume_Phillip_Da_Silva_Marquis.pdf">Résumé (PDF)</a></li>
-    <li><a href="resumes/phillip-dasilvamarquis-resume-product-owner.pdf">Résumé: Product Owner</a></li>
-    <li><a href="resumes/phillip-dasilvamarquis-resume-senior-business-analyst.pdf">Résumé: Senior Business Analyst</a></li>
-    <li><a href="resumes/phillip-dasilvamarquis-resume-digital-product-manager.pdf">Résumé: Digital Product Manager</a></li>
-    <li><a href="resumes/phillip-dasilvamarquis-resume-ecommerce-digital-transformation.pdf">Résumé: Ecommerce &amp; Digital Transformation</a></li>
     <li><a href="https://www.linkedin.com/in/phillip-marquis-7661a8107/">LinkedIn</a></li>
     <li><a href="mailto:marquisphill@yahoo.com">marquisphill@yahoo.com</a></li>
   </ul>
@@ -700,7 +746,6 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   <aside class="sticky" aria-label="About Phill">
     <h1>Phill Da Silva-Marquis</h1>
     <p>Product Manager. Ten years between the business and the build: retail, ecommerce, fintech, enterprise modernization.</p>
-    <p>Last year I cut 1,000+ legacy reports down to about 20.</p>
     <div class="nlinks">
       <button data-open="doc:readme">Read me first</button>
       <button data-open="app:resume">Résumé</button>
@@ -853,12 +898,12 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   const LINKEDIN = 'https://www.linkedin.com/in/phillip-marquis-7661a8107/';
   const EMAIL = 'marquisphill@yahoo.com';
 
+  // the one résumé. To publish a new one, replace this PDF (or point file at the new one).
+  const RESUME = { file: '2026_Resume_Phillip_Da_Silva_Marquis.pdf', save: 'Phillip_Da_Silva-Marquis_Resume.pdf' };
+  // what Paño says after eating it
+  const FED_LINE = 'Delicious. Tastes like ten years of experience.';
+
   const PDFS = {
-    full: { title: 'Résumé (2026)', file: '2026_Resume_Phillip_Da_Silva_Marquis.pdf', desc: 'The full résumé. Business analysis, digital marketing, CRM and ecommerce.' },
-    po: { title: 'Product Owner', file: 'resumes/phillip-dasilvamarquis-resume-product-owner.pdf', desc: 'Backlog ownership, prioritization, and Agile delivery, from the product side of the table.' },
-    sba: { title: 'Senior Business Analyst', file: 'resumes/phillip-dasilvamarquis-resume-senior-business-analyst.pdf', desc: 'Requirements, systems integration, and enterprise modernization work, led end to end.' },
-    pm: { title: 'Digital Product Manager', file: 'resumes/phillip-dasilvamarquis-resume-digital-product-manager.pdf', desc: 'Platform ownership and cross-functional delivery, from discovery through go-live.' },
-    ecom: { title: 'Ecommerce & Digital Transformation', file: 'resumes/phillip-dasilvamarquis-resume-ecommerce-digital-transformation.pdf', desc: 'Ecommerce operations and legacy-to-modern platform transformation, with AI worked in as a practical tool.' },
     process: { title: 'Revenue Share Process Model', file: 'Revenue_Share_Process_Model.pdf', desc: 'The process model behind the Catalog-as-a-Service revenue-share program.' }
   };
 
@@ -871,26 +916,20 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   ];
 
   const jump = (...pairs) => `<div class="jump">${pairs.map(([label, open]) => `<a class="wbtn" href="#" data-open="${open}">${label}</a>`).join('')}</div>`;
+  // big buttons: [label, target, icon, one line about it]. The first one is the main action.
+  const tiles = (...rows) => `<div class="tiles">${rows.map(([label, open, icon, sub], i) => `<a class="tile${i ? '' : ' pri'}" href="#" data-open="${open}"><svg aria-hidden="true"><use href="#${icon}"/></svg><span><b>${label}</b><small>${sub}</small></span><i aria-hidden="true">→</i></a>`).join('')}</div>`;
 
   const DOCS = {
-    readme: { file: 'README.txt', title: 'Read me first', html: `
+    readme: { file: 'README.txt', title: 'Read me first', h: 700, html: `
       <p class="kicker">README.txt</p>
       <h1>Phillip Da Silva-Marquis. Phill.</h1>
       <p class="meta">Product Manager · Fort Lauderdale, FL</p>
       <p>I work where business, process, systems, data, and product meet. Ten years from the retail floor to ecommerce, digital marketing, catalog ops, business analysis, integrations, and now product.</p>
       <p>Right now I’m Product Manager at MarineMax Superyacht Services, where I own YachtIQ, the listing system yacht brokers use to bring boats to market.</p>
-      <h2>Four numbers worth repeating</h2>
-      <ul class="stats">
-        <li><b>1,000+ → ~20</b>Legacy reports cut to audit-ready data models</li>
-        <li><b>6 wks → 2 wks</b>Vendor onboarding, contract to live products</li>
-        <li><b>1 wk → 1 day</b>Rebate setup for the merchandising team</li>
-        <li><b>25</b>Workstreams on an enterprise OMS modernization</li>
-      </ul>
-      <h2>One thing runs through all of it</h2>
-      <p>I use AI on analysis work, and I check what it leaves out.</p>
-      <h2>Where to look</h2>
-      <p>Short on time? The résumé is two pages. Got a few minutes? The Projects folder has the numbers and where they came from.</p>
-      ${jump(['Open the résumé', 'app:resume'], ['Projects', 'folder:projects'], ['Experience', 'folder:experience'], ['AI Lab', 'folder:ailab'])}` },
+      ${tiles(['Open the résumé', 'app:resume', 'pdfIcon', 'Two pages. Read it here or download it.'],
+              ['Projects', 'folder:projects', 'folder', 'Case studies, with the numbers.'],
+              ['Experience', 'folder:experience', 'folder', 'Every role, newest first.'],
+              ['AI Lab', 'folder:ailab', 'folder', 'How I use AI on analysis work.'])}` },
 
     marinemax: { file: 'MarineMax – YachtIQ.docx', title: 'MarineMax – Product Manager', html: `
       <p class="kicker">Experience · Now</p>
@@ -1105,16 +1144,20 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
       <p>Reading the MSA was not part of my scope. I read it anyway and found the gap before it cost anything.</p>
       ${jump(['View the process model (PDF)', 'pdf:process'])}` },
 
-    hackathon: { file: 'Hackathon.docx', title: 'Hackathon – Best Use of AI', html: `
+    hackathon: { file: 'Hackathon.docx', title: 'Hackathon – Best Use of AI', h: 740, html: `
+      <figure class="hhero"><img src="images/hackathon-team-chipmunks.jpg" width="742" height="411" alt="Phill and his hackathon teammates, drawn as chipmunks: team Alvin &amp; The Chipmunks"></figure>
       <p class="kicker">Project · South Florida Tech Hub Hackathon</p>
       <h1>Best Use of AI, in 22 hours</h1>
       <p class="meta">Project Manager · Team “Alvin &amp; The Chipmunks”</p>
+      <div class="hbtns">
+        <a class="hbtn" href="#" data-open="photo:0"><svg aria-hidden="true"><use href="#photoIcon"/></svg>See the photos</a>
+        <a class="hbtn" href="#" data-open="url:hackathon">The full story<span aria-hidden="true">↗</span></a>
+      </div>
       <p>Over one intense weekend, our team brainstormed, built, and pitched an AI-powered application designed to help South Floridians find the perfect place to live. It won the Best Use of AI award.</p>
       <h2>My role</h2>
       <p>Keep the team aligned to both the product goal and the hackathon theme of solving a South Florida issue. Whenever a new feature idea came up, I pushed us to ask: does this contribute to our main product goal? Does it fit the theme? I studied the judging rubric, made sure we had at least two strong talking points ready for each judge, and ran as many mock pitch sessions as we could fit in.</p>
       <h2>Biggest takeaway</h2>
-      <p>A team needs a project manager, and the style has to fit the team and the project. With so little time and the product goal shifting as we went, I kept a running record of the latest goals and used flexible due-times instead of a rigid plan. That balance between structure and flexibility kept us moving without losing momentum.</p>
-      ${jump(['See the photos', 'photo:0'], ['The full story ↗', 'url:hackathon'])}` },
+      <p>A team needs a project manager, and the style has to fit the team and the project. With so little time and the product goal shifting as we went, I kept a running record of the latest goals and used flexible due-times instead of a rigid plan. That balance between structure and flexibility kept us moving without losing momentum.</p>` },
 
     ai: { file: 'How I use AI.txt', title: 'How I use AI', html: `
       <p class="kicker">AI Lab · How I use AI.txt</p>
@@ -1178,7 +1221,7 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
       { name: 'Kind Words', kind: 'folder', open: 'folder:kindwords', type: 'File folder', sum: 'Four people who worked with me, in their own words.' },
       { name: 'Skills', kind: 'cp', open: 'app:skills', type: 'Control Panel', sum: 'What I actually know how to do.' },
       { name: 'README.txt', kind: 'doc', open: 'doc:readme', type: 'Text document', sum: 'Start here. Who I am in thirty seconds.' },
-      { name: 'Résumé.pdf', kind: 'pdf', open: 'app:resume', type: 'PDF · 5 versions', sum: 'Two pages. Pick the version built for the role.' },
+      { name: 'Résumé.pdf', kind: 'pdf', open: 'app:resume', type: 'PDF · 2 pages', sum: 'Two pages. Read it here or download it.' },
       { name: 'Contact', kind: 'contact', open: 'app:contact', type: 'Contact card', sum: 'Email, LinkedIn, and where I am.' }
     ]},
     experience: { label: 'Experience', items: [
@@ -1191,24 +1234,15 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
       { name: 'Education.txt', kind: 'doc', open: 'doc:education', type: 'Text document', sum: 'BA in Communication, Florida Atlantic University. PSPO I. Studying for PSM I.' }
     ]},
     projects: { label: 'Projects', items: [
-      { name: 'YachtIQ', kind: 'doc', tint: '#3ddc84', open: 'doc:marinemax', type: 'In progress · MarineMax', sum: 'One source of truth for yacht listings, built for the brokers who use it.' },
       { name: '1,000+ reports → ~20', kind: 'doc', tint: '#2a9a5f', open: 'doc:reports', type: 'Case study · CITY Home', sum: 'A decade of undocumented reporting cut to about 20 audit-ready data models, with every decision checkable.' },
       { name: 'Replacing the order system', kind: 'doc', tint: '#1f7a4a', open: 'doc:logicbroker', type: 'Case study · FlexShopper', sum: 'Owned requirements and delivery for the platform that replaced the legacy order and inventory system.' },
-      { name: 'BRD Q&A Skill', kind: 'doc', tint: '#5fe3a1', open: 'doc:brdskill', type: 'Case study · CITY Home', sum: 'Hundreds of pages of BRDs normalized into a line-numbered knowledge base, so every answer traces to its source line.' },
-      { name: 'Catalog-as-a-Service', kind: 'doc', tint: '#14b87a', open: 'doc:caas', type: 'Case study · FlexShopper', sum: 'A new revenue channel, and the missing clause in the contract behind it, caught before anyone signed.' },
-      { name: 'Revenue Share Process Model.pdf', kind: 'pdf', open: 'pdf:process', type: 'PDF', sum: 'The process model behind Catalog-as-a-Service.' },
-      { name: 'Hackathon', kind: 'doc', tint: '#9fd8b5', open: 'doc:hackathon', type: 'Best Use of AI award', sum: 'An AI app to help South Floridians find a place to live, built and pitched in 22 hours. I was the project manager.' },
-      { name: 'Hackathon photos', kind: 'img', open: 'photo:0', type: '5 photos', sum: 'The team, the pitch, the award.' }
+      { name: 'Catalog-as-a-Service', kind: 'doc', tint: '#14b87a', open: 'doc:caas', type: 'Case study · FlexShopper', sum: 'A new revenue channel, and the missing clause in the contract behind it, caught before anyone signed.' }
     ]},
     ailab: { label: 'AI Lab', items: [
       { name: 'How I use AI.txt', kind: 'doc', open: 'doc:ai', type: 'Text document', sum: 'Set the rules before AI runs. Build the tool, not just the document.' },
       { name: 'BRD Q&A Skill', kind: 'doc', tint: '#5fe3a1', open: 'doc:brdskill', type: 'Claude Skill', sum: 'Ask whether a requirement exists and get the document ID and line back, or a plain “not documented.”' },
       { name: 'Report Consolidator', kind: 'doc', tint: '#2a9a5f', open: 'doc:reports', type: 'AI analysis pass', sum: 'About 200 vetted reports clustered and QA-scored by a Claude Skill under my rules, down to about 20 data models. The business made the final call.' },
-      { name: 'BRD Digest', kind: 'doc', tint: '#2bb56a', open: 'doc:brdskill', type: 'Document synthesis', sum: 'Hundreds of pages of BRDs turned into executive summaries with line-level traceability, in about a week.' },
-      { name: 'Steering Report', kind: 'doc', tint: '#6aa883', open: 'doc:reports', type: 'Automated reporting', sum: 'The weekly steering report generated by AI off the tracking dashboard, instead of built by hand.' },
-      { name: 'Hackathon app', kind: 'doc', tint: '#9fd8b5', open: 'doc:hackathon', type: 'Best Use of AI award', sum: 'An AI-powered app to help South Floridians find a place to live, built in 22 hours.' },
-      { name: 'AI Adoption Board', kind: 'info', tint: '#14b87a', type: 'Write-up coming soon', sum: 'A grassroots wall of real use cases.' },
-      { name: 'Then & Now', kind: 'info', tint: '#2bb56a', type: 'Write-up coming soon', sum: 'Vibe-coded with the Anthropic API.' }
+      { name: 'Hackathon app', kind: 'doc', tint: '#9fd8b5', open: 'doc:hackathon', type: 'Best Use of AI award', sum: 'An AI-powered app to help South Floridians find a place to live, built in 22 hours.' }
     ]},
     kindwords: { label: 'Kind Words', items: [
       { name: 'Navin Anand.txt', kind: 'quote', open: 'doc:ref_navin', type: 'CTO, FlexShopper', sum: '“From day one, Phil took on large-scale programs with confidence and delivered results.”' },
@@ -1280,9 +1314,7 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
     { name: 'Report Consolidator', sub: '1,000+ legacy reports, cut to ~20', color: '#1f7a4a', open: 'doc:reports' },
     { name: 'BRD Digest', sub: 'Hundreds of pages, line-level traceable', color: '#5fe3a1', open: 'doc:brdskill' },
     { sep: true },
-    { name: 'Hackathon', sub: 'Best Use of AI, built in 22 hours', color: '#9fd8b5', open: 'doc:hackathon' },
-    { name: 'AI Adoption Board', sub: 'A grassroots wall of real use cases', color: '#14b87a', open: 'folder:ailab#AI Adoption Board' },
-    { name: 'Then & Now', sub: 'Vibe-coded with the Anthropic API', color: '#2bb56a', open: 'folder:ailab#Then & Now' }
+    { name: 'Hackathon', sub: 'Best Use of AI, built in 22 hours', color: '#9fd8b5', open: 'doc:hackathon' }
   ];
 
   /* =====================================================================
@@ -1708,7 +1740,7 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
   /* ---------- document reader ---------- */
   function openDoc(key, src) {
     const d = DOCS[key]; if (!d) return;
-    const W = getOrMake({ id: 'doc:' + key, title: d.file + ' – Reader', icon: docSVG(), w: d.sheet ? 980 : 700, h: d.sheet ? 720 : 620 }, W => {
+    const W = getOrMake({ id: 'doc:' + key, title: d.file + ' – Reader', icon: docSVG(), w: d.sheet ? 980 : 700, h: d.h || (d.sheet ? 720 : 620) }, W => {
       W.inner.innerHTML = `<div class="dmenu"><span>File</span><span>Edit</span><span>View</span><span class="sp"></span><span class="legend"><span class="ktdot"></span><span class="ktid">Key things I do</span></span><button data-open="app:resume">Résumé</button><button data-open="app:contact">Contact</button></div>
         <div class="pagewrap"><article class="page${d.sheet ? ' sheet' : ''}">${d.html}</article></div>`;
       highlightKtid($('.page', W.inner));
@@ -1754,22 +1786,191 @@ html[data-cb="mono"]{filter:grayscale(1) contrast(1.2)}
     openW(W, src);
   }
 
-  /* ---------- résumé picker ---------- */
+  /* ---------- résumé: the one PDF, drawn page by page (pdf.js, in vendor/pdfjs/) so it reads and scrolls
+     the same on every screen. Two buttons: Download, and Feed to Phill's cat. ---------- */
+  const PDFJS_HOME = 'vendor/pdfjs/';
+  let pdfjsP = null;
+  function loadPdfjs() {
+    if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
+    return pdfjsP || (pdfjsP = new Promise((ok, no) => {
+      const s = document.createElement('script');
+      s.src = PDFJS_HOME + 'pdf.min.js';
+      s.onload = () => {
+        if (!window.pdfjsLib) { pdfjsP = null; no(new Error('pdf.js did not start')); return; }
+        pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_HOME + 'pdf.worker.min.js';
+        ok(pdfjsLib);
+      };
+      s.onerror = () => { pdfjsP = null; s.remove(); no(new Error('pdf.js did not load')); };
+      document.head.appendChild(s);
+    }));
+  }
+  const ZOOMS = [1, 1.25, 1.5, 2, 2.5, 3];   // 1 = the page fits the window's width
+  const DL_ICON = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9.5m0 0L6 8.5m4 4l4-4M4 14v2.5h12V14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const CAT_ICON = '<svg viewBox="-33 -31 66 48" aria-hidden="true"><use href="#kh"/></svg>';
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
   function openResume(src) {
-    const W = getOrMake({ id: 'resume', title: 'Résumé.pdf – Choose a version', icon: use('pdfIcon'), w: 640, h: 560 }, W => {
-      const rows = ['full', 'po', 'sba', 'pm', 'ecom'].map(k => {
-        const p = PDFS[k];
-        return `<div class="rrow">${use('pdfIcon')}<div><b>${p.title}</b><small>${p.desc}</small></div>
-          <div class="acts"><button class="wbtn" data-open="pdf:${k}">Preview</button><a class="wbtn default" href="${p.file}" download data-dl="${p.file}">Download</a></div></div>`;
-      }).join('');
-      W.inner.innerHTML = `<div class="rhead"><h2>Which version do you want?</h2><p>Same ten years, each one built for a different role. Two pages either way.</p></div>
-        <div class="rlist">${rows}</div>
-        <div class="rfoot"><b>Key impact:</b> 1,000+ legacy reports cut to ~20 audit-ready data models · Vendor onboarding 6 weeks → 2 · Rebate setup 1 week → 1 day · 200+ vendors and 14K+ SKUs through Syndigo PIM.<br>PSPO I · Studying for PSM I · BA in Communication, Florida Atlantic University</div>`;
-      $$('[data-dl]', W.inner).forEach(a => a.addEventListener('click', () => ga('resume_download', { file: a.dataset.dl })));
-      W.onOpen = () => $$('.rrow', W.inner).forEach((r, i) =>
-        r.animate([{ opacity: 0, transform: 'translateX(-10px)' }, { opacity: 1, transform: 'none' }], { duration: SPRING_ITEM.duration, easing: SPRING_ITEM.easing, delay: 160 + i * 45, fill: 'backwards' }));
+    ga('resume_preview', { file: RESUME.file });
+    const W = getOrMake({ id: 'resume', title: 'Résumé.pdf', icon: use('pdfIcon'), w: 820, h: 880 }, W => {
+      W.inner.innerHTML = `<div class="rbar"><span class="rname">Phillip Da Silva-Marquis · Résumé <small>· 2 pages</small></span><span class="sp"></span>
+          <div class="rzoom" role="group" aria-label="Zoom"><button data-z="-1" aria-label="Zoom out" disabled>−</button><output aria-live="polite">Fit</output><button data-z="1" aria-label="Zoom in">+</button></div></div>
+        <div class="rview rlist" tabindex="0" role="document" aria-label="Résumé preview"><div class="rpages"><p class="rmsg">Opening the résumé…</p></div></div>
+        <div class="ract">
+          <a class="rbtn dl" href="${RESUME.file}" download="${RESUME.save}">${DL_ICON}Download</a>
+          <button class="rbtn feed"${pano ? '' : ' hidden'}>${CAT_ICON}Feed to Phill’s cat</button>
+        </div>`;
+      const view = $('.rview', W.inner), pagesEl = $('.rpages', W.inner), out = $('.rzoom output', W.inner);
+      const zin = $('[data-z="1"]', W.inner), zout = $('[data-z="-1"]', W.inner);
+      let zi = 0, gen = 0, doc = null, failed = false, jobs = [], lastW = 0, wait = 0, spoken = false;
+
+      function zoomUI() {
+        out.textContent = zi ? Math.round(ZOOMS[zi] * 100) + '%' : 'Fit';
+        zout.disabled = failed || zi === 0; zin.disabled = failed || zi === ZOOMS.length - 1;
+      }
+      // pages are drawn off-screen, then swapped in together, so a re-draw never flickers
+      async function render() {
+        const my = ++gen;
+        jobs.forEach(t => t.cancel()); jobs = [];
+        try {
+          const lib = await loadPdfjs();
+          if (!doc) doc = await lib.getDocument({ url: RESUME.file }).promise;
+          if (my !== gen) return;
+          const pad = parseFloat(getComputedStyle(view).paddingLeft) || 0;
+          const fit = Math.max(200, Math.min(860, view.clientWidth - pad * 2));
+          const cssW = Math.round(fit * ZOOMS[zi]);
+          const px = Math.min(window.devicePixelRatio || 1, 3, 2800 / cssW);   // sharp, but never a huge canvas
+          const frag = document.createDocumentFragment(), drawing = [];
+          for (let n = 1; n <= doc.numPages; n++) {
+            const page = await doc.getPage(n);
+            if (my !== gen) return;
+            const vp = page.getViewport({ scale: cssW / page.getViewport({ scale: 1 }).width });
+            const box = document.createElement('div');
+            box.className = 'rpage'; box.style.width = vp.width + 'px'; box.style.height = vp.height + 'px';
+            const c = document.createElement('canvas');
+            c.width = Math.floor(vp.width * px); c.height = Math.floor(vp.height * px);
+            c.setAttribute('aria-hidden', 'true');
+            box.appendChild(c);
+            const task = page.render({ canvasContext: c.getContext('2d'), viewport: vp, transform: px === 1 ? null : [px, 0, 0, px, 0, 0] });
+            jobs.push(task); drawing.push(task.promise);
+            // the PDF's own links (portfolio, LinkedIn, email) stay clickable
+            (await page.getAnnotations()).forEach(a => {
+              if (a.subtype !== 'Link' || !a.url || !/^(https?:|mailto:)/i.test(a.url)) return;
+              const [x1, y1, x2, y2] = vp.convertToViewportRectangle(a.rect);
+              const l = document.createElement('a');
+              l.href = a.url; l.target = '_blank'; l.rel = 'noopener'; l.title = a.url;
+              l.setAttribute('aria-label', 'Link in the résumé: ' + a.url);
+              Object.assign(l.style, { left: Math.min(x1, x2) + 'px', top: Math.min(y1, y2) + 'px', width: Math.abs(x2 - x1) + 'px', height: Math.abs(y2 - y1) + 'px' });
+              box.appendChild(l);
+            });
+            frag.appendChild(box);
+            if (!spoken) {   // screen readers get the text, since the pages themselves are pictures
+              const tc = await page.getTextContent();
+              const sr = document.createElement('div'); sr.className = 'sr-only';
+              sr.textContent = `Page ${n} of ${doc.numPages}. ` + tc.items.map(t => t.str + (t.hasEOL ? '\n' : '')).join('');
+              view.appendChild(sr);
+            }
+          }
+          spoken = true;
+          await Promise.all(drawing);
+          if (my !== gen) return;
+          // keep the reader's place when the zoom or the window size changes
+          const fy = pagesEl.scrollHeight ? (view.scrollTop + view.clientHeight / 2) / pagesEl.scrollHeight : 0;
+          const fx = pagesEl.scrollWidth ? (view.scrollLeft + view.clientWidth / 2) / pagesEl.scrollWidth : 0;
+          const first = !pagesEl.querySelector('.rpage');
+          pagesEl.replaceChildren(frag);
+          if (!first) { view.scrollTop = fy * pagesEl.scrollHeight - view.clientHeight / 2; view.scrollLeft = fx * pagesEl.scrollWidth - view.clientWidth / 2; }
+          else anim(pagesEl, [{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 360, easing: EASE_OUT });
+        } catch (e) {
+          if (my !== gen || (e && e.name === 'RenderingCancelledException')) return;
+          fallback();
+        }
+      }
+      // if the preview can't be drawn, fall back to the browser's own PDF viewer (or a link on phones)
+      function fallback() {
+        failed = true; zoomUI();
+        if (narrow() || matchMedia('(pointer: coarse)').matches) {
+          pagesEl.innerHTML = `<p class="rmsg">The preview couldn’t load here.<br><a class="wbtn default" href="${RESUME.file}" target="_blank" rel="noopener">Open the PDF</a></p>`;
+        } else {
+          view.classList.add('framed');
+          view.innerHTML = `<iframe class="rframe" src="${RESUME.file}#view=FitH" title="Résumé PDF"></iframe>`;
+        }
+      }
+      function zoom(d) {
+        const n = Math.max(0, Math.min(ZOOMS.length - 1, zi + d));
+        if (n === zi || failed) return;
+        zi = n; zoomUI(); render();
+        ga('resume_zoom', { zoom: ZOOMS[zi] });
+      }
+      zin.addEventListener('click', () => zoom(1));
+      zout.addEventListener('click', () => zoom(-1));
+      view.addEventListener('keydown', e => {
+        if (e.key === '+' || e.key === '=') { e.preventDefault(); zoom(1); }
+        if (e.key === '-' || e.key === '_') { e.preventDefault(); zoom(-1); }
+      });
+      // draw once the window has a size, and again whenever its width changes
+      const ro = new ResizeObserver(() => {
+        const w = view.clientWidth;
+        if (failed || !w || w === lastW) return;
+        const firstTime = !lastW; lastW = w;
+        clearTimeout(wait); wait = setTimeout(render, firstTime ? 0 : 180);
+      });
+      ro.observe(view);
+      $('.dl', W.inner).addEventListener('click', () => ga('resume_download', { file: RESUME.file }));
+      $('.feed', W.inner).addEventListener('click', () => feedToCat(W));
+      W.onClose = () => { gen++; clearTimeout(wait); jobs.forEach(t => t.cancel()); ro.disconnect(); if (doc) doc.destroy(); };
     });
     openW(W, src);
+  }
+
+  /* ---------- feed the résumé to Paño. Same moves as when he eats windows to tidy up (Pano repo,
+     skills/windows.js): he grows, opens wide, the window shrinks toward him, flies up to his mouth and is gone. */
+  function eatLayer() {
+    let el = document.getElementById('eatlayer');
+    if (!el) { el = document.createElement('div'); el.id = 'eatlayer'; el.style.cssText = 'position:fixed;inset:0;z-index:9055;pointer-events:none'; document.body.appendChild(el); }
+    return el;
+  }
+  async function feedToCat(W) {
+    if (W.busy || W.state !== 'open') return;
+    const cat = $('#gcat');
+    if (!pano || !cat || cat.hidden) { closeW(W); return; }   // he isn't here yet: just close it
+    ga('resume_feed_cat', { file: RESUME.file });
+    W.busy = true; W.el.style.pointerEvents = 'none';
+    focusW(W);
+    if (pano.busy()) await pano.rest();   // drop his tour or speech bubble first
+    const body = $('.gbody', cat), mouth = $('.gmouth', cat);
+    cat.classList.add('chomp');
+    const grow = reduce ? null : body.animate([{ scale: '1' }, { scale: narrow() ? '2.1' : '1.9' }], { duration: 420, easing: SPRING_WIN.easing, fill: 'forwards' });
+    await sleep(reduce ? 0 : 480);
+    if (!reduce) {
+      const m = mouth.getBoundingClientRect(), mx = m.left + m.width / 2, my = m.top + m.height / 2;
+      const r = W.el.getBoundingClientRect();
+      const dx = mx - (r.left + r.width / 2), dy = my - (r.top + r.height / 2);
+      const sMouth = Math.max(.05, (m.width * 1.5) / r.width);
+      const mid = `translate(${dx * .4}px, ${dy * .4}px) scale(.45) rotate(-6deg)`;
+      const lip = `translate(${dx}px, ${dy - m.height * 1.5}px) scale(${sMouth}) rotate(-8deg)`;
+      W.el.style.transformOrigin = '50% 50%';
+      W.inner.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 300, fill: 'forwards' });
+      const a1 = W.el.animate([{ transform: 'none', borderRadius: '8px' }, { transform: mid, borderRadius: '14px' }], { duration: 380, easing: 'cubic-bezier(.3,0,.5,1)', fill: 'forwards' });
+      await a1.finished;
+      // lift it above the desktop for the last stretch into his mouth
+      W.el.style.transform = mid; W.el.style.borderRadius = '14px'; a1.cancel();
+      W.el.style.boxShadow = '0 0 0 2px #3ddc84, 0 0 24px rgba(61,220,132,.55)';
+      eatLayer().appendChild(W.el);
+      await W.el.animate([
+        { transform: mid, opacity: 1, borderRadius: '14px', easing: 'cubic-bezier(.4,0,.4,1)' },
+        { transform: lip, opacity: 1, borderRadius: '24%', offset: .52, easing: 'cubic-bezier(.75,0,1,.7)' },
+        { transform: `translate(${dx}px, ${dy}px) scale(${sMouth * .08}, ${sMouth * .3}) rotate(0deg)`, opacity: 1, borderRadius: '50%', offset: .96 },
+        { transform: `translate(${dx}px, ${dy}px) scale(.001)`, opacity: 0, borderRadius: '50%' }
+      ], { duration: 780, fill: 'forwards' }).finished;
+      body.animate([{ transform: 'none' }, { transform: 'scale(1.18,.84)' }, { transform: 'scale(.96,1.05)' }, { transform: 'none' }], { duration: 320, easing: 'ease-out' });
+    }
+    await closeW(W, true);
+    await sleep(reduce ? 0 : 150);
+    cat.classList.remove('chomp');
+    if (grow) { await body.animate([{ scale: getComputedStyle(body).scale }, { scale: '1' }], { duration: 320, easing: EASE_OUT }).finished; grow.cancel(); }
+    if (!reduce) body.animate([{ transform: 'none' }, { transform: 'translateY(-22px) rotate(-6deg)', offset: .4 }, { transform: 'scale(1.08,.9)', offset: .8 }, { transform: 'none' }], { duration: 520, easing: 'ease-out' });
+    await sleep(reduce ? 0 : 450);
+    pano.rest(FED_LINE);
   }
 
   /* ---------- contact ---------- */
